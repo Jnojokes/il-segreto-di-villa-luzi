@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Il Segreto · Villa Luzi — Ristorante a Treia, Marche</title>
+<meta name="description" content="Il Segreto · Villa Luzi. Cucina d'autore dello Chef Jan Paul Kana in una dimora del 1737 a Treia, Marche. Prenota il tuo tavolo." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --ottanio: #0E3B3E;
+  --ottanio-deep: #0a2d2f;
+  --verde-notte: #081E20;
+  --oro: #C9A86A;
+  --oro-soft: #b89855;
+  --oro-bright: #d4b576;
+  --avorio: #F4ECDC;
+  --avorio-warm: #ece2cf;
+  --rosa-rame: #D49785;
+  --inchiostro: #1A1A1A;
+  --whisper: rgba(244, 236, 220, 0.65);
+  --whisper-soft: rgba(244, 236, 220, 0.4);
+  --whisper-faint: rgba(244, 236, 220, 0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ottanio);
+  color: var(--avorio);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* ─── Typography utilities ─── */
+.eyebrow {
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  font-weight: 500;
+  color: var(--oro);
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.section-eyebrow .line {
+  width: 30px;
+  height: 1px;
+  background: var(--oro);
+}
+
+/* ─── Top bar ─── */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(8,30,32,0.85) 0%, rgba(8,30,32,0) 100%);
+  backdrop-filter: blur(2px);
+  transition: padding 0.4s ease, background 0.4s ease;
+}
+.topbar.scrolled {
+  padding: 12px 32px;
+  background: rgba(8,30,32,0.92);
+  backdrop-filter: blur(12px);
+}
+.topbar-mark {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+.topbar-mark:hover { opacity: 0.85; }
+.topbar-mark img {
+  height: 56px;
+  width: auto;
+  display: block;
+  mix-blend-mode: lighten;
+  transition: height 0.4s ease;
+}
+.topbar.scrolled .topbar-mark img { height: 44px; }
+
+.topbar-actions { display: flex; align-items: center; gap: 12px; }
+
+.topbar-ig {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  color: var(--avorio);
+  border: 1px solid var(--whisper-soft);
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  text-decoration: none;
+}
+.topbar-ig svg { width: 16px; height: 16px; }
+.topbar-ig:hover { background: var(--avorio); color: var(--ottanio); border-color: var(--avorio); }
+
+.topbar-cta {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ottanio);
+  text-decoration: none;
+  padding: 11px 22px;
+  background: var(--oro);
+  border-radius: 100px;
+  font-weight: 500;
+  transition: all 0.4s ease;
+}
+.topbar-cta:hover { background: var(--avorio); transform: translateY(-1px); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 32px 80px;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(14,59,62,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(201,168,106,0.06) 0%, transparent 50%),
+    var(--verde-notte);
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(201,168,106,0.04) 0%, transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(212,151,133,0.03) 0%, transparent 30%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeIn 1.2s ease 0.2s forwards;
+}
+.hero-eyebrow .line { width: 40px; height: 1px; background: var(--oro); }
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(56px, 9vw, 132px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  color: var(--avorio);
+  opacity: 0;
+  animation: revealUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+.hero-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--oro);
+  display: block;
+  font-size: 0.82em;
+  margin-top: 0.05em;
+}
+
+.hero-divider {
+  width: 1px;
+  height: 56px;
+  background: linear-gradient(180deg, transparent, var(--oro), transparent);
+  margin: 48px auto 32px;
+  opacity: 0;
+  animation: fadeIn 1s ease 1.4s forwards;
+}
+
+.hero-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 300;
+  color: var(--whisper);
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: fadeIn 1s ease 1.6s forwards;
+}
+
+.hero-meta {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-top: 24px;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeIn 1s ease 1.8s forwards;
+}
+.hero-meta .sep { color: var(--whisper-soft); margin: 0 12px; }
+
+.hero-ctas {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeIn 1s ease 2s forwards;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 38px;
+  background: var(--oro);
+  color: var(--ottanio);
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 100px;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--avorio);
+  transform: translateX(-100%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+}
+.hero-cta:hover::before { transform: translateX(0); }
+.hero-cta span, .hero-cta svg { position: relative; z-index: 1; }
+.hero-cta svg { width: 16px; height: 16px; }
+
+.hero-cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 28px;
+  color: var(--avorio);
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 400;
+  border-radius: 100px;
+  border: 1px solid var(--whisper-soft);
+  transition: all 0.4s ease;
+}
+.hero-cta-ghost:hover { border-color: var(--oro); color: var(--oro); }
+
+/* ─── Sections common ─── */
+section { position: relative; padding: 140px 32px; }
+
+.container { max-width: 1180px; margin: 0 auto; }
+.container-narrow { max-width: 760px; margin: 0 auto; }
+.container-wide { max-width: 1400px; margin: 0 auto; }
+
+/* ─── Narrative ─── */
+.narrative {
+  background: var(--ottanio);
+  text-align: center;
+}
+.narrative::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 1px; height: 80px;
+  background: linear-gradient(180deg, var(--oro), transparent);
+}
+.seal {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.seal img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: lighten;
+}
+
+.narrative-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.1;
+  font-weight: 400;
+  margin-bottom: 40px;
+  letter-spacing: -0.01em;
+}
+.narrative-title em { font-style: italic; color: var(--oro); }
+
+.narrative-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.6;
+  color: var(--whisper);
+  font-style: italic;
+}
+.narrative-body p { margin-bottom: 1.2em; }
+.narrative-body p:last-child { margin-bottom: 0; }
+.narrative-body .accent { color: var(--avorio); font-style: normal; font-family: 'Playfair Display', serif; }
+
+/* ─── Chef glassmorphism ─── */
+.chef {
+  position: relative;
+  background: var(--ottanio-deep);
+  padding: 160px 32px;
+  overflow: hidden;
+}
+.chef::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('chef-jan-paul-kana.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(40px) saturate(0.7);
+  opacity: 0.22;
+  transform: scale(1.15);
+}
+.chef::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(8,30,32,0.7) 70%, var(--ottanio-deep) 100%);
+}
+
+.chef-card {
+  position: relative;
+  z-index: 2;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.85fr 1fr;
+  background: rgba(244, 236, 220, 0.045);
+  backdrop-filter: blur(28px) saturate(1.2);
+  -webkit-backdrop-filter: blur(28px) saturate(1.2);
+  border: 1px solid rgba(244, 236, 220, 0.12);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow:
+    0 50px 100px -30px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 0 rgba(244, 236, 220, 0.06);
+}
+
+.chef-card-photo {
+  position: relative;
+  background: var(--verde-notte);
+  overflow: hidden;
+  min-height: 600px;
+}
+.chef-card-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.chef-card-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(8,30,32,0.5) 100%);
+}
+
+.chef-card-photo .photo-frame {
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(244, 236, 220, 0.2);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.chef-card-content {
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chef-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 4vw, 56px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin-bottom: 16px;
+  color: var(--avorio);
+}
+.chef-name em { font-style: italic; color: var(--oro); }
+
+.chef-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: 36px;
+}
+
+.chef-bio {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(18px, 1.5vw, 21px);
+  line-height: 1.6;
+  color: var(--whisper);
+  margin-bottom: 36px;
+}
+.chef-bio p { margin-bottom: 1em; }
+.chef-bio p:last-child { margin-bottom: 0; }
+
+.chef-credentials {
+  display: flex;
+  gap: 32px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(244, 236, 220, 0.1);
+  flex-wrap: wrap;
+}
+.chef-cred {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.chef-cred-num {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 28px;
+  color: var(--oro);
+  font-weight: 400;
+  line-height: 1;
+}
+.chef-cred-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--whisper);
+  line-height: 1.4;
+}
+
+/* ─── Custodia (boule chef) ─── */
+.custodia {
+  background: var(--ottanio);
+  padding: 160px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.custodia::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--oro-soft), transparent);
+}
+.custodia-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.custodia-image {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px -30px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,106,0.15);
+}
+.custodia-image img {
+  width: 100%; height: auto; display: block;
+  filter: saturate(0.92) contrast(1.02);
+}
+.custodia-frame { position: absolute; inset: 14px; border: 1px solid rgba(244,236,220,0.18); pointer-events: none; }
+.custodia-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 4.5vw, 60px);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 32px;
+}
+.custodia-title em { font-style: italic; color: var(--oro); }
+.custodia-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(19px, 1.8vw, 24px);
+  line-height: 1.55;
+  color: var(--whisper);
+}
+.custodia-body .accent { color: var(--avorio); font-style: normal; font-family: 'Playfair Display', serif; }
+
+/* ─── Dish full-bleed showcase ─── */
+.dish {
+  position: relative;
+  padding: 0;
+  background: var(--verde-notte);
+  overflow: hidden;
+}
+.dish-img-wrap {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  max-height: 880px;
+  overflow: hidden;
+}
+.dish-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 78%;
+  filter: saturate(1.05) contrast(1.02);
+}
+.dish-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8,30,32,0.25) 0%, transparent 30%, transparent 60%, rgba(8,30,32,0.85) 100%),
+    linear-gradient(90deg, rgba(8,30,32,0.4) 0%, transparent 50%);
+}
+.dish-content {
+  position: absolute;
+  bottom: 80px;
+  left: 0; right: 0;
+  padding: 0 64px;
+  max-width: 900px;
+}
+.dish-content .eyebrow { color: var(--oro); margin-bottom: 16px; display: inline-block; }
+.dish-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin-bottom: 20px;
+  color: var(--avorio);
+}
+.dish-title em { font-style: italic; color: var(--oro); }
+.dish-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(18px, 1.6vw, 22px);
+  color: var(--whisper);
+  max-width: 560px;
+  line-height: 1.5;
+}
+
+/* ─── Menu section ─── */
+.menu-section {
+  background: var(--ottanio-deep);
+  padding: 160px 32px;
+  position: relative;
+}
+.menu-section::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--oro-soft), transparent);
+}
+
+.menu-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 80px;
+}
+.menu-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 400;
+  color: var(--avorio);
+  letter-spacing: -0.01em;
+  margin: 16px 0 20px;
+}
+.menu-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(18px, 1.8vw, 22px);
+  color: var(--whisper);
+  line-height: 1.5;
+}
+
+.menu-layout {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.menu-nav {
+  position: sticky;
+  top: 120px;
+  padding-top: 8px;
+}
+.menu-nav-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: 20px;
+  padding-left: 16px;
+}
+.menu-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-left: 1px solid rgba(244,236,220,0.08);
+}
+.menu-nav-link {
+  display: block;
+  padding: 12px 16px;
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--whisper);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  font-weight: 400;
+}
+.menu-nav-link::before {
+  content: '';
+  position: absolute;
+  left: -1px; top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 0;
+  background: var(--oro);
+  transition: height 0.3s ease;
+}
+.menu-nav-link:hover { color: var(--avorio); }
+.menu-nav-link.active { color: var(--oro); font-style: italic; }
+.menu-nav-link.active::before { height: 70%; }
+
+.menu-content {
+  padding-top: 8px;
+}
+
+.menu-category {
+  margin-bottom: 80px;
+  scroll-margin-top: 100px;
+}
+.menu-category:last-child { margin-bottom: 0; }
+
+.menu-category-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.menu-category-header .line-h {
+  flex: 1;
+  height: 1px;
+  background: rgba(244,236,220,0.12);
+}
+.menu-category-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 400;
+  color: var(--oro);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.menu-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(244,236,220,0.06);
+  align-items: baseline;
+}
+.menu-item:last-child { border-bottom: none; }
+
+.menu-item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.menu-item-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px, 1.6vw, 21px);
+  font-weight: 400;
+  color: var(--avorio);
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+}
+.menu-item-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(14px, 1.2vw, 16px);
+  color: var(--whisper);
+  line-height: 1.45;
+  font-weight: 300;
+}
+.menu-item-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--oro-soft);
+  margin-top: 2px;
+}
+
+.menu-item-price {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(16px, 1.4vw, 19px);
+  color: var(--oro);
+  font-weight: 400;
+  white-space: nowrap;
+}
+.menu-item-price.on-request {
+  font-style: italic;
+  font-size: 14px;
+  color: var(--whisper);
+}
+
+.menu-footnote {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(244,236,220,0.08);
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--whisper-soft);
+}
+
+/* ─── Parco quote ─── */
+.parco {
+  background: var(--ottanio);
+  padding: 160px 32px;
+  text-align: center;
+}
+.parco-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.3;
+  font-weight: 400;
+  color: var(--avorio);
+  max-width: 820px;
+  margin: 0 auto 40px;
+  letter-spacing: -0.01em;
+}
+.parco-quote .gold { color: var(--oro); font-style: italic; }
+.parco-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--oro-soft);
+}
+.ornament {
+  display: block;
+  margin: 64px auto 0;
+  width: 120px;
+  opacity: 0.5;
+}
+
+/* ─── BOOKING WIDGET ─── */
+.booking {
+  background: linear-gradient(180deg, var(--ottanio) 0%, var(--verde-notte) 100%);
+  padding: 160px 32px;
+  position: relative;
+}
+.booking::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--oro-soft), transparent);
+}
+
+.booking-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 64px;
+}
+.booking-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 5.5vw, 72px);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin: 16px 0 24px;
+}
+.booking-title em { font-style: italic; color: var(--oro); }
+.booking-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(18px, 1.8vw, 22px);
+  color: var(--whisper);
+  line-height: 1.5;
+}
+
+.booking-form {
+  max-width: 980px;
+  margin: 0 auto;
+  background: rgba(244, 236, 220, 0.03);
+  backdrop-filter: blur(20px) saturate(1.1);
+  -webkit-backdrop-filter: blur(20px) saturate(1.1);
+  border: 1px solid rgba(244, 236, 220, 0.1);
+  border-radius: 8px;
+  padding: 48px;
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.5);
+}
+
+.booking-step {
+  margin-bottom: 40px;
+}
+.booking-step:last-of-type { margin-bottom: 32px; }
+
+.booking-step-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.booking-step-num {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--oro);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--oro-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.booking-step-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--avorio);
+  font-weight: 500;
+}
+.booking-step-hint {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--whisper);
+  margin-left: auto;
+}
+
+/* Date pills */
+.date-pills-wrap {
+  position: relative;
+  margin: 0 -8px;
+  padding: 0 8px;
+}
+.date-pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 4px 0 14px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--oro-soft) transparent;
+}
+.date-pills::-webkit-scrollbar { height: 4px; }
+.date-pills::-webkit-scrollbar-track { background: rgba(244,236,220,0.04); border-radius: 2px; }
+.date-pills::-webkit-scrollbar-thumb { background: var(--oro-soft); border-radius: 2px; }
+
+.date-pill {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 76px;
+  padding: 14px 12px;
+  background: rgba(244, 236, 220, 0.04);
+  border: 1px solid rgba(244, 236, 220, 0.1);
+  border-radius: 6px;
+  color: var(--avorio);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  text-align: center;
+}
+.date-pill:hover {
+  background: rgba(244, 236, 220, 0.08);
+  border-color: rgba(244, 236, 220, 0.25);
+}
+.date-pill.selected {
+  background: var(--oro);
+  border-color: var(--oro);
+  color: var(--ottanio);
+  box-shadow: 0 8px 24px -8px rgba(201, 168, 106, 0.6);
+}
+.date-pill .dow {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 4px;
+}
+.date-pill .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 400;
+}
+.date-pill .mon {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-top: 4px;
+}
+
+/* Time slots */
+.time-group-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--oro-soft);
+  margin: 0 0 12px;
+  padding-left: 2px;
+}
+.time-group-label:not(:first-child) { margin-top: 20px; }
+.time-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.time-pill {
+  padding: 12px 22px;
+  background: rgba(244, 236, 220, 0.04);
+  border: 1px solid rgba(244, 236, 220, 0.1);
+  border-radius: 100px;
+  color: var(--avorio);
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.time-pill:hover { background: rgba(244, 236, 220, 0.08); border-color: rgba(244, 236, 220, 0.25); }
+.time-pill.selected {
+  background: var(--oro);
+  border-color: var(--oro);
+  color: var(--ottanio);
+  box-shadow: 0 8px 24px -8px rgba(201, 168, 106, 0.6);
+}
+
+/* People stepper */
+.people-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(244, 236, 220, 0.04);
+  border: 1px solid rgba(244, 236, 220, 0.1);
+  border-radius: 100px;
+  padding: 6px;
+}
+.people-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  color: var(--avorio);
+  font-size: 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.people-btn:hover:not(:disabled) { background: rgba(244, 236, 220, 0.1); }
+.people-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.people-count {
+  min-width: 90px;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: var(--avorio);
+  padding: 0 12px;
+}
+.people-count em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--whisper);
+  display: block;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+/* Submit */
+.booking-submit-wrap {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(244, 236, 220, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.booking-summary {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--whisper);
+  text-align: center;
+  min-height: 24px;
+  transition: opacity 0.3s ease;
+}
+.booking-summary.empty { opacity: 0.5; }
+.booking-summary .gold { color: var(--oro); font-style: normal; font-family: 'Playfair Display', serif; }
+
+.booking-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px 44px;
+  background: var(--oro);
+  color: var(--ottanio);
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 100px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+  cursor: pointer;
+  opacity: 0.4;
+  pointer-events: none;
+  box-shadow: 0 20px 60px -20px rgba(201, 168, 106, 0.4);
+}
+.booking-submit.ready {
+  opacity: 1;
+  pointer-events: auto;
+}
+.booking-submit.ready:hover {
+  background: var(--avorio);
+  transform: translateY(-2px);
+  box-shadow: 0 30px 80px -20px rgba(201, 168, 106, 0.6);
+}
+.booking-submit svg { width: 18px; height: 18px; }
+
+.booking-fallback {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(244, 236, 220, 0.08);
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--whisper);
+}
+.booking-fallback a {
+  color: var(--avorio);
+  text-decoration: none;
+  border-bottom: 1px solid var(--oro-soft);
+  margin-left: 6px;
+  padding-bottom: 2px;
+}
+.booking-fallback a:hover { color: var(--oro); }
+
+/* ─── Info ─── */
+.info { background: var(--verde-notte); padding: 140px 32px; }
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1px;
+  background: rgba(244,236,220,0.08);
+  margin-top: 64px;
+  border-top: 1px solid rgba(244,236,220,0.08);
+  border-bottom: 1px solid rgba(244,236,220,0.08);
+}
+.info-cell { background: var(--verde-notte); padding: 40px 32px; transition: background 0.4s ease; }
+.info-cell:hover { background: var(--ottanio-deep); }
+.info-cell .label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: 14px;
+}
+.info-cell h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--avorio);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.info-cell p {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--whisper);
+  font-weight: 300;
+}
+.info-header { text-align: center; }
+.info-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 4.5vw, 56px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+.info-header h2 em { font-style: italic; color: var(--oro); }
+
+/* ─── Footer ─── */
+footer {
+  background: var(--verde-notte);
+  padding: 80px 32px 40px;
+  text-align: center;
+  border-top: 1px solid rgba(244,236,220,0.06);
+}
+.footer-mark-img {
+  width: 110px; height: auto;
+  margin: 0 auto 8px;
+  display: block;
+  mix-blend-mode: lighten;
+}
+.footer-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: 24px;
+}
+.footer-divider { width: 40px; height: 1px; background: var(--oro-soft); margin: 24px auto 32px; }
+.footer-contact {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: var(--whisper);
+  font-weight: 300;
+  line-height: 1.8;
+}
+.footer-contact a {
+  color: var(--avorio);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+.footer-contact a:hover { border-bottom-color: var(--oro); }
+.footer-ig {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 10px 18px;
+  border: 1px solid var(--whisper-soft) !important;
+  border-radius: 100px;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  transition: all 0.3s ease;
+}
+.footer-ig svg { width: 14px; height: 14px; }
+.footer-ig:hover { background: var(--avorio); color: var(--ottanio) !important; border-color: var(--avorio) !important; }
+.footer-legal {
+  margin-top: 40px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--whisper-soft);
+}
+
+/* ─── Animations ─── */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── Responsive ─── */
+@media (max-width: 980px) {
+  .chef-card { grid-template-columns: 1fr; }
+  .chef-card-photo { min-height: 480px; }
+  .chef-card-content { padding: 48px 36px; }
+  .menu-layout { grid-template-columns: 1fr; gap: 40px; }
+  .menu-nav {
+    position: sticky;
+    top: 70px;
+    z-index: 10;
+    background: rgba(10, 45, 47, 0.92);
+    backdrop-filter: blur(12px);
+    margin: 0 -32px;
+    padding: 16px 32px;
+    border-top: 1px solid rgba(244,236,220,0.08);
+    border-bottom: 1px solid rgba(244,236,220,0.08);
+  }
+  .menu-nav-title { display: none; }
+  .menu-nav-list {
+    flex-direction: row;
+    overflow-x: auto;
+    border-left: none;
+    gap: 6px;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .menu-nav-list::-webkit-scrollbar { display: none; }
+  .menu-nav-link {
+    padding: 8px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(244,236,220,0.08);
+    font-size: 13px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .menu-nav-link::before { display: none; }
+  .menu-nav-link.active {
+    background: var(--oro);
+    border-color: var(--oro);
+    color: var(--ottanio);
+    font-style: normal;
+  }
+  .custodia-inner { grid-template-columns: 1fr; gap: 48px; }
+  .custodia-image { max-width: 480px; margin: 0 auto; }
+}
+
+@media (max-width: 768px) {
+  .topbar { padding: 14px 20px; }
+  .topbar.scrolled { padding: 10px 20px; }
+  .topbar-mark img { height: 42px; }
+  .topbar.scrolled .topbar-mark img { height: 36px; }
+  .topbar-actions { gap: 8px; }
+  .topbar-ig { width: 34px; height: 34px; }
+  .topbar-ig svg { width: 14px; height: 14px; }
+  .topbar-cta { padding: 9px 16px; font-size: 10px; letter-spacing: 0.14em; }
+
+  .hero { padding: 100px 20px 60px; }
+  section { padding: 100px 20px; }
+  .chef, .custodia, .menu-section, .parco, .booking, .info { padding: 100px 20px; }
+  .hero-meta .sep { display: block; height: 1px; width: 20px; background: var(--whisper-soft); margin: 8px auto; }
+  .hero-meta { line-height: 2; }
+  .hero-ctas { flex-direction: column; gap: 14px; }
+  .hero-cta { padding: 18px 30px; font-size: 12px; }
+
+  .booking-form { padding: 32px 24px; }
+  .booking-step-hint { display: none; }
+  .date-pill { min-width: 64px; padding: 12px 8px; }
+  .date-pill .num { font-size: 20px; }
+  .time-pill { padding: 10px 18px; font-size: 14px; }
+  .booking-submit { padding: 20px 32px; font-size: 12px; width: 100%; justify-content: center; }
+  .people-stepper { width: 100%; justify-content: space-between; }
+
+  .dish-img-wrap { height: 70vh; min-height: 500px; }
+  .dish-content { padding: 0 24px; bottom: 60px; }
+
+  .info-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .topbar-mark img { height: 36px; }
+  .topbar.scrolled .topbar-mark img { height: 32px; }
+  .topbar-cta { padding: 8px 14px; font-size: 9px; letter-spacing: 0.12em; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar" id="topbar">
+  <a href="#top" class="topbar-mark" aria-label="Il Segreto · Villa Luzi">
+    <img src="il-segreto-logo.png" alt="Il Segreto · Villa Luzi" />
+  </a>
+  <div class="topbar-actions">
+    <a href="https://www.instagram.com/villaluzi1737/" class="topbar-ig" target="_blank" rel="noopener" aria-label="Instagram Villa Luzi">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="#prenota" class="topbar-cta">Prenota</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="line"></span>
+      <span class="eyebrow">Il Segreto · Villa Luzi</span>
+      <span class="line"></span>
+    </div>
+
+    <h1 class="hero-title">
+      Dove il tempo<br/>
+      <em>si ferma.</em>
+    </h1>
+
+    <div class="hero-divider"></div>
+
+    <p class="hero-tagline">
+      Cucina d'autore in una dimora del 1737.
+    </p>
+
+    <p class="hero-meta">
+      Villa Luzi <span class="sep">·</span> Treia <span class="sep">·</span> Marche
+    </p>
+
+    <div class="hero-ctas">
+      <a href="#prenota" class="hero-cta">
+        <span>Prenota un tavolo</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#menu" class="hero-cta-ghost">
+        <span>Scopri il menu</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- NARRATIVE -->
+<section class="narrative">
+  <div class="container-narrow">
+    <div class="seal">
+      <img src="il-segreto-logo.png" alt="Il Segreto" />
+    </div>
+
+    <h2 class="narrative-title reveal">
+      Dal 1737,<br/>
+      <em>una dimora.</em><br/>
+      Oggi, una tavola.
+    </h2>
+
+    <div class="narrative-body reveal">
+      <p>
+        Dietro le mura di <span class="accent">Villa Luzi</span>,
+        un luogo che il tempo non ha toccato.
+        Una cucina che la famiglia ha custodito attraverso tre secoli,
+        oggi affidata alle mani di uno chef.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CHEF GLASSMORPHISM CARD -->
+<section class="chef" id="chef">
+  <div class="chef-card reveal">
+    <div class="chef-card-photo">
+      <img src="chef-jan-paul-kana.png" alt="Lo Chef Jan Paul Kana — Il Segreto · Villa Luzi" />
+      <div class="photo-frame"></div>
+    </div>
+    <div class="chef-card-content">
+      <div class="section-eyebrow">
+        <span class="line"></span>
+        <span class="eyebrow">Lo Chef</span>
+      </div>
+
+      <h2 class="chef-name">
+        Jan Paul <em>Kana</em>
+      </h2>
+      <p class="chef-role">Executive Chef · Il Segreto</p>
+
+      <div class="chef-bio">
+        <p>
+          Una cucina che parte dalle Marche e attraversa il Mediterraneo.
+          Ingredienti del territorio, tecnica precisa, una memoria del gesto
+          che non rinuncia mai alla sostanza.
+        </p>
+        <p>
+          A Il Segreto, ogni piatto è un patto silenzioso tra la terra di Treia
+          e chi siede al tavolo.
+        </p>
+      </div>
+
+      <div class="chef-credentials">
+        <div class="chef-cred">
+          <span class="chef-cred-num">25+</span>
+          <span class="chef-cred-label">Anni in cucina</span>
+        </div>
+        <div class="chef-cred">
+          <span class="chef-cred-num">A.I.C.</span>
+          <span class="chef-cred-label">Associazione<br/>Italiana Cuochi</span>
+        </div>
+        <div class="chef-cred">
+          <span class="chef-cred-num">W.C.</span>
+          <span class="chef-cred-label">World Chefs<br/>Membro</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTODIA (boule) -->
+<section class="custodia">
+  <div class="custodia-inner">
+    <div class="custodia-image reveal">
+      <img src="chef-villa-luzi.png" alt="Il Segreto custodito a Villa Luzi" />
+      <div class="custodia-frame"></div>
+    </div>
+    <div class="custodia-text reveal">
+      <div class="section-eyebrow">
+        <span class="line"></span>
+        <span class="eyebrow">La Casa</span>
+      </div>
+      <h2 class="custodia-title">
+        Un segreto<br/>
+        <em>custodito a mano.</em>
+      </h2>
+      <p class="custodia-body">
+        Tre secoli di storia in un parco silenzioso a pochi minuti da Treia.
+        Il loggiato, il salone, gli ulivi.
+        <span class="accent">Villa Luzi</span> non si racconta:
+        si attraversa.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DISH FULL-BLEED SHOWCASE -->
+<section class="dish">
+  <div class="dish-img-wrap">
+    <img src="dish-tartare.png" alt="Un piatto dello Chef Jan Paul Kana servito nel parco di Villa Luzi" />
+    <div class="dish-overlay"></div>
+    <div class="dish-content">
+      <span class="eyebrow">La Cucina</span>
+      <h2 class="dish-title">
+        Marche nel piatto,<br/>
+        <em>parco intorno.</em>
+      </h2>
+      <p class="dish-sub">
+        Tartare di chianina, finocchio selvatico, riduzione al ribes.
+        Servito a vista, davanti alla villa che la ispira.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="menu-header">
+    <div class="section-eyebrow" style="justify-content: center;">
+      <span class="line"></span>
+      <span class="eyebrow">La Carta</span>
+      <span class="line"></span>
+    </div>
+    <h2 class="menu-title">Menu</h2>
+    <p class="menu-subtitle">
+      Materia prima del territorio marchigiano,
+      mano dello chef, attesa che non corre.
+    </p>
+  </div>
+
+  <div class="menu-layout">
+    <aside class="menu-nav" id="menu-nav">
+      <div class="menu-nav-title">Le Portate</div>
+      <ul class="menu-nav-list">
+        <li><a href="#cat-aperitivo" class="menu-nav-link" data-target="cat-aperitivo">Aperitivo</a></li>
+        <li><a href="#cat-antipasti" class="menu-nav-link" data-target="cat-antipasti">Antipasti</a></li>
+        <li><a href="#cat-primi" class="menu-nav-link" data-target="cat-primi">Primi</a></li>
+        <li><a href="#cat-secondi" class="menu-nav-link" data-target="cat-secondi">Secondi</a></li>
+        <li><a href="#cat-tagli" class="menu-nav-link" data-target="cat-tagli">Carni al Taglio</a></li>
+        <li><a href="#cat-contorni" class="menu-nav-link" data-target="cat-contorni">Contorni</a></li>
+        <li><a href="#cat-dolci" class="menu-nav-link" data-target="cat-dolci">Dolci</a></li>
+      </ul>
+    </aside>
+
+    <div class="menu-content">
+
+      <div class="menu-category" id="cat-aperitivo">
+        <div class="menu-category-header">
+          <span class="menu-category-name">Aperitivo</span>
+          <span class="line-h"></span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Patanegra e Champagne</span></div>
+          <span class="menu-item-price">€ 40,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Taglio Misto</span></div>
+          <span class="menu-item-price">€ 15,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Degustazione Formaggi</span></div>
+          <span class="menu-item-price">€ 15,00</span>
+        </div>
+      </div>
+
+      <div class="menu-category" id="cat-antipasti">
+        <div class="menu-category-header">
+          <span class="menu-category-name">Antipasti</span>
+          <span class="line-h"></span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Selezione Salumi e Formaggi</span>
+            <span class="menu-item-note">due persone</span>
+          </div>
+          <span class="menu-item-price">€ 25,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Panella di Ceci</span></div>
+          <span class="menu-item-price">€ 15,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Torre di Melanzane</span></div>
+          <span class="menu-item-price">€ 12,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Battuto al Coltello</span></div>
+          <span class="menu-item-price">€ 18,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Prosciutto al Coltello</span>
+            <span class="menu-item-desc">Sant'Ilario · Pata Negra</span>
+          </div>
+          <span class="menu-item-price">€ 60,00</span>
+        </div>
+      </div>
+
+      <div class="menu-category" id="cat-primi">
+        <div class="menu-category-header">
+          <span class="menu-category-name">Primi</span>
+          <span class="line-h"></span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Tortelloni di Melanzane</span>
+            <span class="menu-item-desc">scamorza affumicata, datterino emulsionato, basilico e croccante di parmigiano</span>
+          </div>
+          <span class="menu-item-price">€ 15,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Tagliatelle al Cinghiale Bianco</span>
+            <span class="menu-item-desc">funghi cardoncelli e frutti di bosco</span>
+          </div>
+          <span class="menu-item-price">€ 15,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Paccheri Mancini</span>
+            <span class="menu-item-desc">ragù di coniglio, carciofi, fave, pecorino e finocchietto</span>
+          </div>
+          <span class="menu-item-price">€ 15,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Gnocchi di Patate</span>
+            <span class="menu-item-desc">ciauscolo al Varnelli, ricotta vaccina, gocce di peperone</span>
+          </div>
+          <span class="menu-item-price">€ 13,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Fusillo Mancini</span>
+            <span class="menu-item-desc">ragù di verdure e ricotta salata</span>
+          </div>
+          <span class="menu-item-price">€ 12,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Spaghettoni Mancini alla Gricia</span>
+            <span class="menu-item-desc">guanciale della Marca</span>
+          </div>
+          <span class="menu-item-price on-request">su richiesta</span>
+        </div>
+      </div>
+
+      <div class="menu-category" id="cat-secondi">
+        <div class="menu-category-header">
+          <span class="menu-category-name">Secondi</span>
+          <span class="line-h"></span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Coniglio in Porchetta</span>
+            <span class="menu-item-desc">e i suoi pugnali</span>
+          </div>
+          <span class="menu-item-price">€ 20,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Carré di Agnello al Carbone</span>
+            <span class="menu-item-desc">finocchio allo zafferano</span>
+          </div>
+          <span class="menu-item-price">€ 22,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Cuore di Reale</span>
+            <span class="menu-item-desc">caponata di melanzane</span>
+          </div>
+          <span class="menu-item-price">€ 20,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Tagliata di Carne Argentina</span>
+            <span class="menu-item-desc">cipolla alla brace</span>
+          </div>
+          <span class="menu-item-price">€ 30,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Assortimento di Carni alla Brace</span>
+            <span class="menu-item-desc">agnello, capocollo, salsiccia, maiale, controfiletto, pancetta e pollo · patata dolce</span>
+          </div>
+          <span class="menu-item-price">€ 25,00</span>
+        </div>
+      </div>
+
+      <div class="menu-category" id="cat-tagli">
+        <div class="menu-category-header">
+          <span class="menu-category-name">Carni al Taglio</span>
+          <span class="line-h"></span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Marchigiana</span></div>
+          <span class="menu-item-price on-request">al kg</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Irlandese</span></div>
+          <span class="menu-item-price on-request">al kg</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Kobe</span></div>
+          <span class="menu-item-price on-request">al kg</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Wagyu</span></div>
+          <span class="menu-item-price on-request">al kg</span>
+        </div>
+        <p style="margin-top: 24px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--whisper);">
+          Tagli e pezzature al kg — chiedere in sala.
+        </p>
+      </div>
+
+      <div class="menu-category" id="cat-contorni">
+        <div class="menu-category-header">
+          <span class="menu-category-name">Contorni</span>
+          <span class="line-h"></span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Patate Anna</span></div>
+          <span class="menu-item-price">€ 6,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Erbe di Campo</span></div>
+          <span class="menu-item-price">€ 6,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Caponata</span></div>
+          <span class="menu-item-price">€ 6,00</span>
+        </div>
+      </div>
+
+      <div class="menu-category" id="cat-dolci">
+        <div class="menu-category-header">
+          <span class="menu-category-name">Dolci</span>
+          <span class="line-h"></span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Cannolo Siciliano</span>
+            <span class="menu-item-desc">ricotta e pistacchio</span>
+          </div>
+          <span class="menu-item-price">€ 8,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Tiramisù</span></div>
+          <span class="menu-item-price">€ 8,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Semifreddo al Croccante</span>
+            <span class="menu-item-desc">mandorle siciliane e salsa di cioccolato</span>
+          </div>
+          <span class="menu-item-price">€ 8,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Torta di Mele</span>
+            <span class="menu-item-desc">farina di riso · senza glutine</span>
+          </div>
+          <span class="menu-item-price">€ 10,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Degustazione di Formaggi e Passito</span></div>
+          <span class="menu-item-price on-request">su richiesta</span>
+        </div>
+      </div>
+
+      <p class="menu-footnote">
+        Per allergeni e intolleranze rivolgersi al personale di sala
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PARCO QUOTE -->
+<section class="parco">
+  <div class="container-narrow">
+    <p class="parco-quote reveal">
+      "Ci sono luoghi <span class="gold">che non chiedono attenzione</span>,
+      ma la meritano.<br/>
+      Villa Luzi è uno di questi."
+    </p>
+    <p class="parco-note reveal">Manuela Ilari · Famiglia Luzi</p>
+    <svg class="ornament" viewBox="0 0 120 20" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="10" x2="48" y2="10" stroke="#C9A86A" stroke-width="0.5"/>
+      <circle cx="60" cy="10" r="3" fill="none" stroke="#C9A86A" stroke-width="0.8"/>
+      <circle cx="60" cy="10" r="1" fill="#C9A86A"/>
+      <line x1="72" y1="10" x2="120" y2="10" stroke="#C9A86A" stroke-width="0.5"/>
+    </svg>
+  </div>
+</section>
+
+<!-- BOOKING WIDGET -->
+<section class="booking" id="prenota">
+  <div class="booking-header">
+    <div class="section-eyebrow" style="justify-content: center;">
+      <span class="line"></span>
+      <span class="eyebrow">Prenotazione</span>
+      <span class="line"></span>
+    </div>
+    <h2 class="booking-title">
+      Riserva il tuo<br/>
+      <em>tavolo.</em>
+    </h2>
+    <p class="booking-subtitle">
+      Scegli il giorno, l'ora, il numero di ospiti.
+      Ti risponderemo su WhatsApp per la conferma.
+    </p>
+  </div>
+
+  <form class="booking-form reveal" onsubmit="return false;">
+
+    <div class="booking-step">
+      <div class="booking-step-header">
+        <span class="booking-step-num">i</span>
+        <span class="booking-step-label">Il Giorno</span>
+        <span class="booking-step-hint">scorri per i giorni successivi</span>
+      </div>
+      <div class="date-pills-wrap">
+        <div class="date-pills" id="date-pills"></div>
+      </div>
+    </div>
+
+    <div class="booking-step">
+      <div class="booking-step-header">
+        <span class="booking-step-num">ii</span>
+        <span class="booking-step-label">L'Ora</span>
+      </div>
+      <div>
+        <p class="time-group-label">Pranzo</p>
+        <div class="time-pills" id="time-lunch">
+          <button type="button" class="time-pill" data-time="12:30">12:30</button>
+          <button type="button" class="time-pill" data-time="13:00">13:00</button>
+          <button type="button" class="time-pill" data-time="13:30">13:30</button>
+          <button type="button" class="time-pill" data-time="14:00">14:00</button>
+        </div>
+        <p class="time-group-label">Cena</p>
+        <div class="time-pills" id="time-dinner">
+          <button type="button" class="time-pill" data-time="19:30">19:30</button>
+          <button type="button" class="time-pill" data-time="20:00">20:00</button>
+          <button type="button" class="time-pill" data-time="20:30">20:30</button>
+          <button type="button" class="time-pill" data-time="21:00">21:00</button>
+          <button type="button" class="time-pill" data-time="21:30">21:30</button>
+          <button type="button" class="time-pill" data-time="22:00">22:00</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking-step">
+      <div class="booking-step-header">
+        <span class="booking-step-num">iii</span>
+        <span class="booking-step-label">Quanti Siete</span>
+      </div>
+      <div class="people-stepper">
+        <button type="button" class="people-btn" id="people-minus" aria-label="Diminuisci">−</button>
+        <div class="people-count">
+          <span id="people-num">2</span>
+          <em id="people-word">persone</em>
+        </div>
+        <button type="button" class="people-btn" id="people-plus" aria-label="Aumenta">+</button>
+      </div>
+    </div>
+
+    <div class="booking-submit-wrap">
+      <div class="booking-summary empty" id="booking-summary">
+        Seleziona giorno e orario per continuare
+      </div>
+      <a href="#" class="booking-submit" id="booking-submit" target="_blank" rel="noopener" aria-disabled="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <span>Invia richiesta su WhatsApp</span>
+      </a>
+    </div>
+
+    <div class="booking-fallback">
+      Preferisci una telefonata?
+      <a href="tel:+393452419263">+39 345 241 9263</a>
+    </div>
+  </form>
+</section>
+
+<!-- INFO -->
+<section class="info">
+  <div class="container">
+    <div class="info-header reveal">
+      <div class="section-eyebrow" style="justify-content: center;">
+        <span class="line"></span>
+        <span class="eyebrow">Le informazioni</span>
+        <span class="line"></span>
+      </div>
+      <h2>Tutto quello che <em>serve sapere</em></h2>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-cell reveal">
+        <div class="label">Indirizzo</div>
+        <h4>Villa Luzi</h4>
+        <p>Contrada Chiaravalle 49<br/>62010 Treia (MC)</p>
+      </div>
+      <div class="info-cell reveal">
+        <div class="label">Apertura</div>
+        <h4>Pranzo e Cena</h4>
+        <p>Pranzo: 12:30 — 14:30<br/>Cena: 19:30 — 22:30</p>
+      </div>
+      <div class="info-cell reveal">
+        <div class="label">Prenotazioni</div>
+        <h4>+39 345 241 9263</h4>
+        <p>WhatsApp · Telefono<br/>Risposta entro 24 ore</p>
+      </div>
+      <div class="info-cell reveal">
+        <div class="label">Parcheggio</div>
+        <h4>Gratuito</h4>
+        <p>Area dedicata in villa,<br/>segnalata all'arrivo.</p>
+      </div>
+      <div class="info-cell reveal">
+        <div class="label">Eventi privati</div>
+        <h4>Su richiesta</h4>
+        <p>Compleanni, anniversari,<br/>cene aziendali, matrimoni.</p>
+      </div>
+      <div class="info-cell reveal">
+        <div class="label">Come arrivare</div>
+        <h4>30 min da Macerata</h4>
+        <p>45 min da Ancona e Civitanova.<br/>1h da Falconara aeroporto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="il-segreto-logo.png" alt="Il Segreto" class="footer-mark-img" />
+  <div class="footer-sub">Villa Luzi · Dal 1737 · Treia · Marche</div>
+
+  <div class="footer-divider"></div>
+
+  <div class="footer-contact">
+    Contrada Chiaravalle 49 · 62010 Treia (MC)<br/>
+    <a href="tel:+393452419263">+39 345 241 9263</a> ·
+    <a href="mailto:info@villaluzi.it">info@villaluzi.it</a>
+    <br/>
+    <a href="https://www.instagram.com/villaluzi1737/" target="_blank" rel="noopener" class="footer-ig">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      <span>@villaluzi1737</span>
+    </a>
+  </div>
+
+  <div class="footer-legal">© 2026 Il Segreto · Villa Luzi · Privacy · Cookie</div>
+</footer>
+
+<script>
+// ─── Scroll reveal ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15, rootMargin: '-50px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ─── Topbar scrolled state ───
+const topbar = document.getElementById('topbar');
+window.addEventListener('scroll', () => {
+  topbar.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// ─── MENU active-category highlight ───
+const menuLinks = document.querySelectorAll('.menu-nav-link');
+const menuCategories = document.querySelectorAll('.menu-category');
+const catObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      menuLinks.forEach(l => l.classList.toggle('active', l.dataset.target === id));
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+menuCategories.forEach(c => catObserver.observe(c));
+
+// ─── BOOKING WIDGET ───
+const phoneNumber = '393452419263';
+const DAYS_AHEAD = 45;
+const MONTHS_IT = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+const MONTHS_IT_FULL = ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+const DAYS_IT = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
+const DAYS_IT_FULL = ['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+
+const booking = {
+  date: null,        // ISO string e.g. 2026-05-21
+  dateObj: null,     // Date object
+  time: null,        // 'HH:MM'
+  people: 2
+};
+
+// Build date pills
+(function buildDates() {
+  const wrap = document.getElementById('date-pills');
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  for (let i = 0; i < DAYS_AHEAD; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() + i);
+    const iso = d.toISOString().split('T')[0];
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'date-pill';
+    btn.dataset.iso = iso;
+    btn.innerHTML = `
+      <span class="dow">${DAYS_IT[d.getDay()]}</span>
+      <span class="num">${d.getDate()}</span>
+      <span class="mon">${MONTHS_IT[d.getMonth()]}</span>
+    `;
+    btn.addEventListener('click', () => selectDate(btn, d, iso));
+    wrap.appendChild(btn);
+  }
+})();
+
+function selectDate(btn, dObj, iso) {
+  document.querySelectorAll('.date-pill').forEach(p => p.classList.remove('selected'));
+  btn.classList.add('selected');
+  booking.date = iso;
+  booking.dateObj = dObj;
+  updateSummary();
+}
+
+// Time pills
+document.querySelectorAll('.time-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.time-pill').forEach(p => p.classList.remove('selected'));
+    pill.classList.add('selected');
+    booking.time = pill.dataset.time;
+    updateSummary();
+  });
+});
+
+// People stepper
+const peopleNum = document.getElementById('people-num');
+const peopleWord = document.getElementById('people-word');
+const peopleMinus = document.getElementById('people-minus');
+const peoplePlus = document.getElementById('people-plus');
+
+// Summary + Submit (declared before renderPeople which calls updateSummary)
+const summaryEl = document.getElementById('booking-summary');
+const submitEl = document.getElementById('booking-submit');
+
+function renderPeople() {
+  peopleNum.textContent = booking.people;
+  peopleWord.textContent = booking.people === 1 ? 'persona' : 'persone';
+  peopleMinus.disabled = booking.people <= 1;
+  peoplePlus.disabled = booking.people >= 12;
+  updateSummary();
+}
+peopleMinus.addEventListener('click', () => { if (booking.people > 1) { booking.people--; renderPeople(); } });
+peoplePlus.addEventListener('click', () => { if (booking.people < 12) { booking.people++; renderPeople(); } });
+
+function formatNiceDate(d) {
+  return `${DAYS_IT_FULL[d.getDay()]} ${d.getDate()} ${MONTHS_IT_FULL[d.getMonth()]}`;
+}
+
+function updateSummary() {
+  if (booking.date && booking.time) {
+    const nice = formatNiceDate(booking.dateObj);
+    const peopleStr = booking.people === 1 ? '1 persona' : `${booking.people} persone`;
+    summaryEl.innerHTML = `Per <span class="gold">${peopleStr}</span> · ${nice} · ore <span class="gold">${booking.time}</span>`;
+    summaryEl.classList.remove('empty');
+    const message = `Vorrei prenotare un tavolo a Il Segreto · Villa Luzi per ${peopleStr}, ${nice} alle ${booking.time}. Grazie!`;
+    submitEl.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    submitEl.classList.add('ready');
+    submitEl.removeAttribute('aria-disabled');
+  } else if (booking.date) {
+    summaryEl.textContent = 'Ora seleziona un orario';
+    summaryEl.classList.remove('empty');
+    submitEl.classList.remove('ready');
+    submitEl.setAttribute('aria-disabled', 'true');
+    submitEl.removeAttribute('href');
+  } else {
+    summaryEl.textContent = 'Seleziona giorno e orario per continuare';
+    summaryEl.classList.add('empty');
+    submitEl.classList.remove('ready');
+    submitEl.setAttribute('aria-disabled', 'true');
+    submitEl.removeAttribute('href');
+  }
+}
+
+renderPeople();
+</script>
+
+</body>
+</html>
