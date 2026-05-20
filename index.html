@@ -2245,7 +2245,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
 </section>
 
 <!-- INFO -->
-<section class="info">
+<section class="info" id="info">
   <div class="container">
     <div class="info-header reveal">
       <div class="section-eyebrow" style="justify-content: center;">
@@ -2532,6 +2532,147 @@ function updateSummary() {
 }
 
 renderPeople();
+</script>
+
+<!-- ─── Meta Pixel · Eventi standard custom ─── -->
+<script>
+(function() {
+  // Se fbq non c'è (adblock o errore di caricamento) usciamo silenziosamente.
+  function px() {
+    if (typeof window.fbq !== 'function') return;
+    try { window.fbq.apply(null, arguments); } catch (e) {}
+  }
+
+  // Anti-duplicati: ogni evento passivo (scroll-based / prima interazione)
+  // viene fired una sola volta per sessione.
+  var fired = {
+    viewContentMenu: false,
+    findLocation: false,
+    initiateCheckout: false
+  };
+
+  // ─── ViewContent: l'utente sta guardando il menu ───
+  var menuEl = document.getElementById('menu');
+  if (menuEl && 'IntersectionObserver' in window) {
+    var menuObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting && !fired.viewContentMenu) {
+          fired.viewContentMenu = true;
+          px('track', 'ViewContent', {
+            content_name: 'Menu',
+            content_category: 'menu',
+            content_type: 'product_group'
+          });
+          menuObs.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    menuObs.observe(menuEl);
+  }
+
+  // ─── FindLocation: l'utente vede la sezione "Per trovarci" ───
+  var infoEl = document.getElementById('info');
+  if (infoEl && 'IntersectionObserver' in window) {
+    var infoObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting && !fired.findLocation) {
+          fired.findLocation = true;
+          px('track', 'FindLocation', {
+            content_name: 'Villa Luzi · Treia',
+            city: 'Treia',
+            region: 'MC',
+            country: 'IT'
+          });
+          infoObs.disconnect();
+        }
+      });
+    }, { threshold: 0.35 });
+    infoObs.observe(infoEl);
+  }
+
+  // ─── InitiateCheckout: prima interazione col booking widget ───
+  function triggerInitiateCheckout() {
+    if (fired.initiateCheckout) return;
+    fired.initiateCheckout = true;
+    px('track', 'InitiateCheckout', {
+      content_name: 'Prenotazione tavolo',
+      content_category: 'restaurant_booking'
+    });
+  }
+  document.querySelectorAll('.date-pill:not(.closed)').forEach(function(el) {
+    el.addEventListener('click', triggerInitiateCheckout, { once: false });
+  });
+  document.querySelectorAll('.time-pill').forEach(function(el) {
+    el.addEventListener('click', triggerInitiateCheckout, { once: false });
+  });
+  var pMinus = document.getElementById('people-minus');
+  var pPlus = document.getElementById('people-plus');
+  if (pMinus) pMinus.addEventListener('click', triggerInitiateCheckout);
+  if (pPlus) pPlus.addEventListener('click', triggerInitiateCheckout);
+
+  // ─── Schedule + Lead: l'utente conferma la prenotazione su WhatsApp ───
+  var submitEl = document.getElementById('booking-submit');
+  if (submitEl) {
+    submitEl.addEventListener('click', function(e) {
+      // Se il pulsante non è ready (aria-disabled) ignoriamo
+      if (submitEl.getAttribute('aria-disabled') === 'true') return;
+      // Stima LTV: ~€55 per coperto su menu €€€ (valore custom, modificabile)
+      var peopleCount = (typeof booking !== 'undefined' && booking.people) ? booking.people : 2;
+      var isPrivateEvent = peopleCount >= (typeof GROUP_THRESHOLD !== 'undefined' ? GROUP_THRESHOLD : 12);
+      var estimatedValue = isPrivateEvent ? 0 : peopleCount * 55;
+
+      px('track', 'Schedule', {
+        content_name: isPrivateEvent ? 'Richiesta evento privato' : 'Prenotazione tavolo',
+        content_category: 'restaurant_booking',
+        num_items: peopleCount,
+        currency: 'EUR',
+        predicted_ltv: estimatedValue,
+        booking_channel: 'whatsapp',
+        booking_date: (typeof booking !== 'undefined' && booking.date) ? booking.date : null,
+        booking_time: (typeof booking !== 'undefined' && booking.time) ? booking.time : null
+      });
+
+      px('track', 'Lead', {
+        content_name: isPrivateEvent ? 'Lead evento privato' : 'Lead prenotazione',
+        content_category: 'restaurant_booking',
+        value: estimatedValue,
+        currency: 'EUR',
+        lead_channel: 'whatsapp'
+      });
+    });
+  }
+
+  // ─── Lead: l'utente usa l'email fallback ───
+  var emailFallbackEl = document.getElementById('booking-email');
+  if (emailFallbackEl) {
+    emailFallbackEl.addEventListener('click', function() {
+      if (!emailFallbackEl.getAttribute('href') || emailFallbackEl.getAttribute('href') === '#') return;
+      var peopleCount = (typeof booking !== 'undefined' && booking.people) ? booking.people : 2;
+      var isPrivateEvent = peopleCount >= (typeof GROUP_THRESHOLD !== 'undefined' ? GROUP_THRESHOLD : 12);
+      var estimatedValue = isPrivateEvent ? 0 : peopleCount * 55;
+
+      px('track', 'Lead', {
+        content_name: isPrivateEvent ? 'Lead evento privato' : 'Lead prenotazione',
+        content_category: 'restaurant_booking',
+        value: estimatedValue,
+        currency: 'EUR',
+        lead_channel: 'email'
+      });
+    });
+  }
+
+  // ─── Contact: click su tel: o mailto: diretti (fuori dal booking widget) ───
+  // Escludiamo l'email fallback del booking (già tracciata come Lead).
+  document.querySelectorAll('a[href^="tel:"], a[href^="mailto:"]').forEach(function(a) {
+    if (a.id === 'booking-email') return;
+    a.addEventListener('click', function() {
+      var method = a.getAttribute('href').indexOf('tel:') === 0 ? 'phone' : 'email';
+      px('track', 'Contact', {
+        contact_method: method
+      });
+    });
+  });
+})();
 </script>
 
 </body>
