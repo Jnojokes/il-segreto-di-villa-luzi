@@ -3,8 +3,66 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Il Segreto · Villa Luzi — Ristorante a Treia, Marche</title>
-<meta name="description" content="Il Segreto · Villa Luzi. Cucina d'autore dello Chef Jan Paul Kana in una dimora del 1737 a Treia, Marche. Prenota il tuo tavolo." />
+<title>Il Segreto · Il ristorante di Villa Luzi — Treia, Marche</title>
+<meta name="description" content="Il Segreto è la cucina d'autore di Villa Luzi, dimora del 1737 a Treia (MC). Lo Chef Jan Paul Kana firma una cucina che unisce tradizione marchigiana e tecnica contemporanea. Prenota il tuo tavolo." />
+<meta name="theme-color" content="#0E3B3E" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="restaurant.restaurant" />
+<meta property="og:site_name" content="Il Segreto · Villa Luzi" />
+<meta property="og:title" content="Il Segreto · Il ristorante di Villa Luzi" />
+<meta property="og:description" content="Cucina d'autore in una dimora del 1737. Treia, Marche." />
+<meta property="og:image" content="dish-tartare.png" />
+<meta property="og:image:alt" content="Un piatto dello Chef Jan Paul Kana, servito nel parco di Villa Luzi" />
+<meta property="og:locale" content="it_IT" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Il Segreto · Il ristorante di Villa Luzi" />
+<meta name="twitter:description" content="Cucina d'autore in una dimora del 1737. Treia, Marche." />
+<meta name="twitter:image" content="dish-tartare.png" />
+
+<!-- Schema.org Restaurant -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "@id": "#ilsegreto",
+  "name": "Il Segreto · Villa Luzi",
+  "alternateName": "Il Segreto",
+  "description": "Il ristorante di Villa Luzi. Cucina d'autore dello Chef Jan Paul Kana in una dimora del 1737, a Treia (MC).",
+  "image": ["chef-jan-paul-kana.png", "dish-tartare.png"],
+  "logo": "il-segreto-logo.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Contrada Chiaravalle 49",
+    "addressLocality": "Treia",
+    "addressRegion": "MC",
+    "postalCode": "62010",
+    "addressCountry": "IT"
+  },
+  "telephone": "+393452419263",
+  "email": "info@villaluzi.it",
+  "servesCuisine": ["Italian", "Marchigiana", "Mediterranean", "Contemporary"],
+  "priceRange": "€€€",
+  "acceptsReservations": "True",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "12:30",
+      "closes": "14:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "19:30",
+      "closes": "22:30"
+    }
+  ],
+  "sameAs": ["https://www.instagram.com/villaluzi1737/"]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1230,6 +1288,340 @@ footer {
   color: var(--whisper-soft);
 }
 
+/* ─── Hero video background ─── */
+.hero-video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+  pointer-events: none;
+  filter: saturate(0.92) brightness(0.85);
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8,30,32,0.55) 0%, rgba(8,30,32,0.35) 35%, rgba(8,30,32,0.45) 65%, rgba(8,30,32,0.92) 100%),
+    radial-gradient(ellipse at center, transparent 30%, rgba(8,30,32,0.5) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── Showreel — 3 dish cards ─── */
+.showreel {
+  background: var(--verde-notte);
+  padding: 160px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.showreel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--oro-soft), transparent);
+}
+.showreel-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 80px;
+}
+.showreel-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 5.5vw, 72px);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin: 16px 0 24px;
+  color: var(--avorio);
+}
+.showreel-title em { font-style: italic; color: var(--oro); }
+.showreel-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(18px, 1.8vw, 22px);
+  color: var(--whisper);
+  line-height: 1.5;
+}
+
+.showreel-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.dish-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.dish-card-media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--ottanio-deep);
+  border-radius: 4px;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dish-card:hover .dish-card-media { transform: translateY(-6px); }
+.dish-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dish-card:hover .dish-card-media img { transform: scale(1.04); }
+.dish-card-media .photo-frame {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(244, 236, 220, 0.2);
+  pointer-events: none;
+  z-index: 2;
+}
+.dish-card-badge {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 3;
+  padding: 6px 12px;
+  background: rgba(8, 30, 32, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(244, 236, 220, 0.15);
+  border-radius: 100px;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--oro);
+  font-weight: 500;
+}
+
+/* Placeholder version */
+.dish-card-media.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(135deg, var(--ottanio) 0%, var(--ottanio-deep) 50%, var(--verde-notte) 100%);
+  position: relative;
+}
+.dish-card-media.placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(201,168,106,0.06) 0%, transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(201,168,106,0.04) 0%, transparent 40%);
+}
+.placeholder-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  color: var(--oro-soft);
+}
+.placeholder-icon {
+  width: 56px;
+  height: 56px;
+  border: 1px dashed rgba(201, 168, 106, 0.35);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.placeholder-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--oro-soft);
+  fill: none;
+  stroke-width: 1;
+}
+.placeholder-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: var(--oro-soft);
+}
+
+.dish-card-content {
+  padding: 28px 4px 0;
+}
+.dish-card-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.dish-card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 1.8vw, 26px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--avorio);
+  letter-spacing: -0.005em;
+  margin-bottom: 8px;
+}
+.dish-card-name em { font-style: italic; color: var(--oro); }
+.dish-card-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(15px, 1.2vw, 17px);
+  color: var(--whisper);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+/* ─── Sticky mobile CTA ─── */
+.sticky-cta {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 90;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  background: var(--oro);
+  color: var(--ottanio);
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 100px;
+  box-shadow:
+    0 16px 40px -8px rgba(201, 168, 106, 0.55),
+    0 2px 6px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.sticky-cta.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sticky-cta svg { width: 14px; height: 14px; }
+
+/* ─── Closed date styling ─── */
+.date-pill.closed {
+  opacity: 0.35;
+  cursor: not-allowed;
+  position: relative;
+}
+.date-pill.closed::after {
+  content: 'chiuso';
+  position: absolute;
+  bottom: 2px;
+  left: 0; right: 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 9px;
+  letter-spacing: 0.02em;
+  color: var(--oro-soft);
+}
+.date-pill.closed .mon { display: none; }
+.date-pill.closed:hover { background: rgba(244, 236, 220, 0.04); border-color: rgba(244, 236, 220, 0.1); }
+
+/* ─── Email fallback link in booking ─── */
+.booking-secondary {
+  margin-top: 14px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--whisper);
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.booking-secondary.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.booking-secondary a {
+  color: var(--oro);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+.booking-secondary a:hover { border-bottom-color: var(--oro); }
+
+/* ─── Group booking notice ─── */
+.group-notice {
+  display: none;
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: rgba(201, 168, 106, 0.08);
+  border: 1px solid rgba(201, 168, 106, 0.25);
+  border-radius: 6px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--whisper);
+  text-align: center;
+}
+.group-notice.visible { display: block; }
+.group-notice .gold { color: var(--oro); font-style: normal; font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
+
+/* ─── Closing scene ─── */
+.closing {
+  background: var(--verde-notte);
+  padding: 140px 32px 80px;
+  text-align: center;
+  position: relative;
+  border-top: 1px solid rgba(244, 236, 220, 0.05);
+}
+.closing::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 1px; height: 80px;
+  background: linear-gradient(180deg, var(--oro), transparent);
+}
+.closing-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 400;
+  color: var(--oro);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  margin-bottom: 32px;
+}
+.closing-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(20px, 2.2vw, 26px);
+  color: var(--whisper);
+  margin-bottom: 24px;
+}
+.closing-meta {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--oro-soft);
+}
+
 /* ─── Animations ─── */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes revealUp {
@@ -1245,6 +1637,7 @@ footer {
 
 /* ─── Responsive ─── */
 @media (max-width: 980px) {
+  .showreel-grid { grid-template-columns: 1fr; gap: 48px; max-width: 480px; }
   .chef-card { grid-template-columns: 1fr; }
   .chef-card-photo { min-height: 480px; }
   .chef-card-content { padding: 48px 36px; }
@@ -1290,6 +1683,9 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .sticky-cta { display: inline-flex; }
+  .showreel { padding: 100px 20px; }
+  .closing { padding: 100px 20px 60px; }
   .topbar { padding: 14px 20px; }
   .topbar.scrolled { padding: 10px 20px; }
   .topbar-mark img { height: 42px; }
@@ -1345,10 +1741,16 @@ footer {
 
 <!-- HERO -->
 <section class="hero" id="top">
+  <video class="hero-video" autoplay muted loop playsinline poster="dish-tartare.png">
+    <source src="hero-bg.mp4" type="video/mp4" />
+    <source src="hero-bg.webm" type="video/webm" />
+  </video>
+  <div class="hero-overlay"></div>
+
   <div class="hero-inner">
     <div class="hero-eyebrow">
       <span class="line"></span>
-      <span class="eyebrow">Il Segreto · Villa Luzi</span>
+      <span class="eyebrow">Il ristorante di Villa Luzi</span>
       <span class="line"></span>
     </div>
 
@@ -1360,7 +1762,7 @@ footer {
     <div class="hero-divider"></div>
 
     <p class="hero-tagline">
-      Cucina d'autore in una dimora del 1737.
+      Il Segreto. Cucina d'autore in una dimora del 1737.
     </p>
 
     <p class="hero-meta">
@@ -1387,17 +1789,17 @@ footer {
     </div>
 
     <h2 class="narrative-title reveal">
-      Dal 1737,<br/>
-      <em>una dimora.</em><br/>
-      Oggi, una tavola.
+      Un ristorante<br/>
+      <em>che vive in due tempi.</em>
     </h2>
 
     <div class="narrative-body reveal">
       <p>
-        Dietro le mura di <span class="accent">Villa Luzi</span>,
-        un luogo che il tempo non ha toccato.
-        Una cucina che la famiglia ha custodito attraverso tre secoli,
-        oggi affidata alle mani di uno chef.
+        <span class="accent">Il Segreto</span> è la cucina d'autore
+        di <span class="accent">Villa Luzi</span>, dimora del 1737
+        nel cuore delle Marche.
+        Una tradizione che riposa nelle mura,
+        una tecnica che la rinnova ogni giorno.
       </p>
     </div>
   </div>
@@ -1407,7 +1809,7 @@ footer {
 <section class="chef" id="chef">
   <div class="chef-card reveal">
     <div class="chef-card-photo">
-      <img src="chef-jan-paul-kana.png" alt="Lo Chef Jan Paul Kana — Il Segreto · Villa Luzi" />
+      <img src="chef-jan-paul-kana.png" alt="Lo Chef Jan Paul Kana — Il Segreto · Villa Luzi" loading="lazy" />
       <div class="photo-frame"></div>
     </div>
     <div class="chef-card-content">
@@ -1423,13 +1825,16 @@ footer {
 
       <div class="chef-bio">
         <p>
-          Una cucina che parte dalle Marche e attraversa il Mediterraneo.
-          Ingredienti del territorio, tecnica precisa, una memoria del gesto
-          che non rinuncia mai alla sostanza.
+          Una cucina che parla due lingue.
+          Quella delle nonne marchigiane, custodita nei ricettari
+          e nei gesti tramandati. E quella di oggi,
+          che usa la tecnica per riportare ogni piatto al suo nucleo.
         </p>
         <p>
-          A Il Segreto, ogni piatto è un patto silenzioso tra la terra di Treia
-          e chi siede al tavolo.
+          Il passato come materia prima, il presente come firma.
+          A Il Segreto, ogni portata è un dialogo
+          tra ciò che la tradizione ci ha lasciato
+          e ciò che oggi sappiamo farne.
         </p>
       </div>
 
@@ -1451,48 +1856,85 @@ footer {
   </div>
 </section>
 
-<!-- CUSTODIA (boule) -->
-<section class="custodia">
-  <div class="custodia-inner">
-    <div class="custodia-image reveal">
-      <img src="chef-villa-luzi.png" alt="Il Segreto custodito a Villa Luzi" />
-      <div class="custodia-frame"></div>
+<!-- SHOWREEL — 3 dishes from the kitchen -->
+<section class="showreel" id="dalla-cucina">
+  <div class="showreel-header">
+    <div class="section-eyebrow" style="justify-content: center;">
+      <span class="line"></span>
+      <span class="eyebrow">Dalla cucina</span>
+      <span class="line"></span>
     </div>
-    <div class="custodia-text reveal">
-      <div class="section-eyebrow">
-        <span class="line"></span>
-        <span class="eyebrow">La Casa</span>
-      </div>
-      <h2 class="custodia-title">
-        Un segreto<br/>
-        <em>custodito a mano.</em>
-      </h2>
-      <p class="custodia-body">
-        Tre secoli di storia in un parco silenzioso a pochi minuti da Treia.
-        Il loggiato, il salone, gli ulivi.
-        <span class="accent">Villa Luzi</span> non si racconta:
-        si attraversa.
-      </p>
-    </div>
+    <h2 class="showreel-title">
+      Tre piatti,<br/>
+      <em>una firma.</em>
+    </h2>
+    <p class="showreel-subtitle">
+      Lo show reel della cucina di Il Segreto.
+      Una selezione che cambia con le stagioni.
+    </p>
   </div>
-</section>
 
-<!-- DISH FULL-BLEED SHOWCASE -->
-<section class="dish">
-  <div class="dish-img-wrap">
-    <img src="dish-tartare.png" alt="Un piatto dello Chef Jan Paul Kana servito nel parco di Villa Luzi" />
-    <div class="dish-overlay"></div>
-    <div class="dish-content">
-      <span class="eyebrow">La Cucina</span>
-      <h2 class="dish-title">
-        Marche nel piatto,<br/>
-        <em>parco intorno.</em>
-      </h2>
-      <p class="dish-sub">
-        Tartare di chianina, finocchio selvatico, riduzione al ribes.
-        Servito a vista, davanti alla villa che la ispira.
-      </p>
-    </div>
+  <div class="showreel-grid">
+
+    <!-- Dish 1: real tartare image -->
+    <article class="dish-card reveal">
+      <div class="dish-card-media">
+        <span class="dish-card-badge">Antipasto</span>
+        <img src="dish-tartare.png" alt="Battuto al coltello dello Chef Jan Paul Kana — Il Segreto" loading="lazy" />
+        <div class="photo-frame"></div>
+      </div>
+      <div class="dish-card-content">
+        <div class="dish-card-eyebrow">Signature</div>
+        <h3 class="dish-card-name">Battuto <em>al coltello</em></h3>
+        <p class="dish-card-desc">
+          Finocchio selvatico, riduzione al ribes,
+          fiori del giardino.
+        </p>
+      </div>
+    </article>
+
+    <!-- Dish 2: placeholder (Primo) -->
+    <article class="dish-card reveal">
+      <div class="dish-card-media placeholder">
+        <span class="dish-card-badge">Primo</span>
+        <div class="placeholder-inner">
+          <div class="placeholder-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/></svg>
+          </div>
+          <span class="placeholder-label">Foto in arrivo</span>
+        </div>
+      </div>
+      <div class="dish-card-content">
+        <div class="dish-card-eyebrow">Signature</div>
+        <h3 class="dish-card-name">Tortelloni <em>di melanzane</em></h3>
+        <p class="dish-card-desc">
+          Scamorza affumicata, datterino emulsionato,
+          croccante di parmigiano.
+        </p>
+      </div>
+    </article>
+
+    <!-- Dish 3: placeholder (Secondo) -->
+    <article class="dish-card reveal">
+      <div class="dish-card-media placeholder">
+        <span class="dish-card-badge">Secondo</span>
+        <div class="placeholder-inner">
+          <div class="placeholder-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/></svg>
+          </div>
+          <span class="placeholder-label">Foto in arrivo</span>
+        </div>
+      </div>
+      <div class="dish-card-content">
+        <div class="dish-card-eyebrow">Signature</div>
+        <h3 class="dish-card-name">Carré di agnello <em>al carbone</em></h3>
+        <p class="dish-card-desc">
+          Finocchio allo zafferano,
+          riduzione di vino rosso delle colline marchigiane.
+        </p>
+      </div>
+    </article>
+
   </div>
 </section>
 
@@ -1758,15 +2200,15 @@ footer {
   </div>
 </section>
 
-<!-- PARCO QUOTE -->
+<!-- STAGIONALITÀ -->
 <section class="parco">
   <div class="container-narrow">
     <p class="parco-quote reveal">
-      "Ci sono luoghi <span class="gold">che non chiedono attenzione</span>,
-      ma la meritano.<br/>
-      Villa Luzi è uno di questi."
+      In questa stagione,<br/>
+      <span class="gold">i carciofi violetti, le fave nuove,<br/>
+      il finocchio selvatico delle colline.</span>
     </p>
-    <p class="parco-note reveal">Manuela Ilari · Famiglia Luzi</p>
+    <p class="parco-note reveal">La carta che cambia con l'orto</p>
     <svg class="ornament" viewBox="0 0 120 20" xmlns="http://www.w3.org/2000/svg">
       <line x1="0" y1="10" x2="48" y2="10" stroke="#C9A86A" stroke-width="0.5"/>
       <circle cx="60" cy="10" r="3" fill="none" stroke="#C9A86A" stroke-width="0.8"/>
@@ -1845,6 +2287,9 @@ footer {
         </div>
         <button type="button" class="people-btn" id="people-plus" aria-label="Aumenta">+</button>
       </div>
+      <div class="group-notice" id="group-notice">
+        <span class="gold">Evento privato</span> · Vi ricontatteremo per i dettagli, il menu personalizzato e la conferma.
+      </div>
     </div>
 
     <div class="booking-submit-wrap">
@@ -1853,8 +2298,11 @@ footer {
       </div>
       <a href="#" class="booking-submit" id="booking-submit" target="_blank" rel="noopener" aria-disabled="true">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        <span>Invia richiesta su WhatsApp</span>
+        <span id="booking-submit-label">Invia richiesta su WhatsApp</span>
       </a>
+      <div class="booking-secondary" id="booking-secondary">
+        Niente WhatsApp? <a href="#" id="booking-email">Scrivici via email</a>
+      </div>
     </div>
 
     <div class="booking-fallback">
@@ -1911,10 +2359,23 @@ footer {
   </div>
 </section>
 
+<!-- CLOSING SCENE -->
+<section class="closing">
+  <h2 class="closing-title reveal">Vi aspettiamo.</h2>
+  <p class="closing-sub reveal">Contrada Chiaravalle 49 · Treia</p>
+  <p class="closing-meta reveal">Il Segreto · Villa Luzi · Marche</p>
+</section>
+
+<!-- STICKY MOBILE CTA -->
+<a href="#prenota" class="sticky-cta" id="sticky-cta">
+  <span>Prenota</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+</a>
+
 <!-- FOOTER -->
 <footer>
-  <img src="il-segreto-logo.png" alt="Il Segreto" class="footer-mark-img" />
-  <div class="footer-sub">Villa Luzi · Dal 1737 · Treia · Marche</div>
+  <img src="il-segreto-logo.png" alt="Il Segreto" class="footer-mark-img" loading="lazy" />
+  <div class="footer-sub">Il Segreto · Il ristorante di Villa Luzi · Treia · Marche</div>
 
   <div class="footer-divider"></div>
 
@@ -1947,6 +2408,19 @@ window.addEventListener('scroll', () => {
   topbar.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
+// ─── Sticky mobile CTA visibility ───
+const stickyCta = document.getElementById('sticky-cta');
+const bookingSection = document.getElementById('prenota');
+function updateStickyCta() {
+  const heroH = window.innerHeight;
+  const bookingTop = bookingSection.getBoundingClientRect().top + window.scrollY;
+  const scrolledPastHero = window.scrollY > heroH * 0.6;
+  const beforeBooking = window.scrollY + window.innerHeight < bookingTop + 200;
+  stickyCta.classList.toggle('visible', scrolledPastHero && beforeBooking);
+}
+window.addEventListener('scroll', updateStickyCta, { passive: true });
+updateStickyCta();
+
 // ─── MENU active-category highlight ───
 const menuLinks = document.querySelectorAll('.menu-nav-link');
 const menuCategories = document.querySelectorAll('.menu-category');
@@ -1962,20 +2436,26 @@ menuCategories.forEach(c => catObserver.observe(c));
 
 // ─── BOOKING WIDGET ───
 const phoneNumber = '393452419263';
+const emailAddress = 'info@villaluzi.it';
 const DAYS_AHEAD = 45;
+// Closed weekdays (0 = Sunday, 1 = Monday, ... 6 = Saturday). Empty = always open.
+// Esempio: per chiudere lunedì e martedì → CLOSED_WEEKDAYS = [1, 2]
+const CLOSED_WEEKDAYS = [];
+const GROUP_THRESHOLD = 12; // dalle 12 persone in su, prenotazione = evento privato
+
 const MONTHS_IT = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
 const MONTHS_IT_FULL = ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
 const DAYS_IT = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
 const DAYS_IT_FULL = ['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
 
 const booking = {
-  date: null,        // ISO string e.g. 2026-05-21
-  dateObj: null,     // Date object
-  time: null,        // 'HH:MM'
+  date: null,
+  dateObj: null,
+  time: null,
   people: 2
 };
 
-// Build date pills
+// Build date pills (with closed-day flagging)
 (function buildDates() {
   const wrap = document.getElementById('date-pills');
   const today = new Date();
@@ -1984,16 +2464,23 @@ const booking = {
     const d = new Date(today);
     d.setDate(today.getDate() + i);
     const iso = d.toISOString().split('T')[0];
+    const isClosed = CLOSED_WEEKDAYS.includes(d.getDay());
     const btn = document.createElement('button');
     btn.type = 'button';
-    btn.className = 'date-pill';
+    btn.className = 'date-pill' + (isClosed ? ' closed' : '');
     btn.dataset.iso = iso;
+    if (isClosed) {
+      btn.disabled = true;
+      btn.setAttribute('aria-label', `${DAYS_IT_FULL[d.getDay()]} ${d.getDate()} ${MONTHS_IT_FULL[d.getMonth()]} - chiuso`);
+    }
     btn.innerHTML = `
       <span class="dow">${DAYS_IT[d.getDay()]}</span>
       <span class="num">${d.getDate()}</span>
       <span class="mon">${MONTHS_IT[d.getMonth()]}</span>
     `;
-    btn.addEventListener('click', () => selectDate(btn, d, iso));
+    if (!isClosed) {
+      btn.addEventListener('click', () => selectDate(btn, d, iso));
+    }
     wrap.appendChild(btn);
   }
 })();
@@ -2021,47 +2508,88 @@ const peopleNum = document.getElementById('people-num');
 const peopleWord = document.getElementById('people-word');
 const peopleMinus = document.getElementById('people-minus');
 const peoplePlus = document.getElementById('people-plus');
+const groupNotice = document.getElementById('group-notice');
 
 // Summary + Submit (declared before renderPeople which calls updateSummary)
 const summaryEl = document.getElementById('booking-summary');
 const submitEl = document.getElementById('booking-submit');
+const submitLabel = document.getElementById('booking-submit-label');
+const secondaryEl = document.getElementById('booking-secondary');
+const emailEl = document.getElementById('booking-email');
+
+function isGroup() { return booking.people >= GROUP_THRESHOLD; }
 
 function renderPeople() {
-  peopleNum.textContent = booking.people;
-  peopleWord.textContent = booking.people === 1 ? 'persona' : 'persone';
+  if (isGroup()) {
+    peopleNum.textContent = GROUP_THRESHOLD + '+';
+    peopleWord.textContent = 'evento privato';
+    groupNotice.classList.add('visible');
+  } else {
+    peopleNum.textContent = booking.people;
+    peopleWord.textContent = booking.people === 1 ? 'persona' : 'persone';
+    groupNotice.classList.remove('visible');
+  }
   peopleMinus.disabled = booking.people <= 1;
-  peoplePlus.disabled = booking.people >= 12;
+  peoplePlus.disabled = booking.people >= GROUP_THRESHOLD;
   updateSummary();
 }
 peopleMinus.addEventListener('click', () => { if (booking.people > 1) { booking.people--; renderPeople(); } });
-peoplePlus.addEventListener('click', () => { if (booking.people < 12) { booking.people++; renderPeople(); } });
+peoplePlus.addEventListener('click', () => { if (booking.people < GROUP_THRESHOLD) { booking.people++; renderPeople(); } });
 
 function formatNiceDate(d) {
   return `${DAYS_IT_FULL[d.getDay()]} ${d.getDate()} ${MONTHS_IT_FULL[d.getMonth()]}`;
 }
 
+function buildMessage() {
+  const nice = formatNiceDate(booking.dateObj);
+  if (isGroup()) {
+    return `Vorrei prenotare a Il Segreto · Villa Luzi per un evento privato (${GROUP_THRESHOLD}+ persone), ${nice} alle ${booking.time}. Vi chiedo di ricontattarmi per i dettagli. Grazie!`;
+  }
+  const peopleStr = booking.people === 1 ? '1 persona' : `${booking.people} persone`;
+  return `Vorrei prenotare un tavolo a Il Segreto · Villa Luzi per ${peopleStr}, ${nice} alle ${booking.time}. Grazie!`;
+}
+
 function updateSummary() {
   if (booking.date && booking.time) {
     const nice = formatNiceDate(booking.dateObj);
-    const peopleStr = booking.people === 1 ? '1 persona' : `${booking.people} persone`;
+    const peopleStr = isGroup()
+      ? `${GROUP_THRESHOLD}+ persone <span style="font-style:italic;color:var(--whisper);font-family:'Cormorant Garamond',serif;font-size:0.9em;">· evento privato</span>`
+      : (booking.people === 1 ? '1 persona' : `${booking.people} persone`);
     summaryEl.innerHTML = `Per <span class="gold">${peopleStr}</span> · ${nice} · ore <span class="gold">${booking.time}</span>`;
     summaryEl.classList.remove('empty');
-    const message = `Vorrei prenotare un tavolo a Il Segreto · Villa Luzi per ${peopleStr}, ${nice} alle ${booking.time}. Grazie!`;
+
+    const message = buildMessage();
+
+    // WhatsApp
     submitEl.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     submitEl.classList.add('ready');
     submitEl.removeAttribute('aria-disabled');
+    submitLabel.textContent = isGroup() ? 'Richiedi info su WhatsApp' : 'Invia richiesta su WhatsApp';
+
+    // Email fallback
+    const subject = isGroup()
+      ? 'Richiesta evento privato a Il Segreto'
+      : `Prenotazione tavolo · ${formatNiceDate(booking.dateObj)} · ore ${booking.time}`;
+    emailEl.href = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+    secondaryEl.classList.add('visible');
   } else if (booking.date) {
     summaryEl.textContent = 'Ora seleziona un orario';
     summaryEl.classList.remove('empty');
     submitEl.classList.remove('ready');
     submitEl.setAttribute('aria-disabled', 'true');
     submitEl.removeAttribute('href');
+    submitLabel.textContent = 'Invia richiesta su WhatsApp';
+    secondaryEl.classList.remove('visible');
+    emailEl.removeAttribute('href');
   } else {
     summaryEl.textContent = 'Seleziona giorno e orario per continuare';
     summaryEl.classList.add('empty');
     submitEl.classList.remove('ready');
     submitEl.setAttribute('aria-disabled', 'true');
     submitEl.removeAttribute('href');
+    submitLabel.textContent = 'Invia richiesta su WhatsApp';
+    secondaryEl.classList.remove('visible');
+    emailEl.removeAttribute('href');
   }
 }
 
