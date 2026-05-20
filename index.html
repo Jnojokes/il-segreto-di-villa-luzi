@@ -2164,7 +2164,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
     </h2>
     <p class="booking-subtitle">
       Pochi tavoli, una sala raccolta.
-      La prenotazione ci aiuta ad accoglierti come si deve.
+      Le prenotazioni sono aperte a partire dal 1 giugno.
     </p>
   </div>
 
@@ -2370,6 +2370,9 @@ menuCategories.forEach(c => catObserver.observe(c));
 const phoneNumber = '393452419263';
 const emailAddress = 'info@villaluzi.it';
 const DAYS_AHEAD = 45;
+// Data di apertura prenotazioni: 1 giugno 2026.
+// Finché non arriva quel giorno, il calendario parte da lì; dopo, parte da oggi.
+const MIN_DATE = new Date(2026, 5, 1); // mese 5 = giugno (0-indexed)
 // Closed weekdays (0 = Sunday, 1 = Monday, ... 6 = Saturday). Empty = always open.
 // Esempio: per chiudere lunedì e martedì → CLOSED_WEEKDAYS = [1, 2]
 const CLOSED_WEEKDAYS = [];
@@ -2392,9 +2395,12 @@ const booking = {
   const wrap = document.getElementById('date-pills');
   const today = new Date();
   today.setHours(0,0,0,0);
+  MIN_DATE.setHours(0,0,0,0);
+  // Punto di partenza: il più tardo tra oggi e MIN_DATE (1 giugno 2026)
+  const startDate = today > MIN_DATE ? today : MIN_DATE;
   for (let i = 0; i < DAYS_AHEAD; i++) {
-    const d = new Date(today);
-    d.setDate(today.getDate() + i);
+    const d = new Date(startDate);
+    d.setDate(startDate.getDate() + i);
     const iso = d.toISOString().split('T')[0];
     const isClosed = CLOSED_WEEKDAYS.includes(d.getDay());
     const btn = document.createElement('button');
