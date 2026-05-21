@@ -912,73 +912,177 @@ section { position: relative; padding: 140px 32px; }
   margin-left: auto;
 }
 
-/* Date pills */
-.date-pills-wrap {
-  position: relative;
-  margin: 0 -8px;
-  padding: 0 8px;
+/* ─── Calendar widget ─── */
+.calendar {
+  background: rgba(8, 30, 32, 0.45);
+  border: 1px solid rgba(244,236,220,0.10);
+  border-radius: 12px;
+  padding: 22px 22px 16px;
+  margin: 4px 0 0;
+  box-shadow:
+    0 24px 60px -28px rgba(0,0,0,0.6),
+    inset 0 0 0 1px rgba(201,168,106,0.04);
 }
-.date-pills {
+.calendar-header {
   display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 4px 0 14px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--oro-soft) transparent;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
 }
-.date-pills::-webkit-scrollbar { height: 4px; }
-.date-pills::-webkit-scrollbar-track { background: rgba(244,236,220,0.04); border-radius: 2px; }
-.date-pills::-webkit-scrollbar-thumb { background: var(--oro-soft); border-radius: 2px; }
-
-.date-pill {
-  flex-shrink: 0;
+.calendar-month {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--avorio);
+  text-transform: capitalize;
+  flex: 1;
+  text-align: center;
+}
+.calendar-nav {
+  width: 36px;
+  height: 36px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 76px;
-  padding: 14px 12px;
-  background: rgba(244, 236, 220, 0.04);
-  border: 1px solid rgba(244, 236, 220, 0.1);
-  border-radius: 6px;
+  background: transparent;
+  border: 1px solid rgba(244,236,220,0.15);
+  border-radius: 50%;
   color: var(--avorio);
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: inherit;
+  padding: 0;
+  flex-shrink: 0;
+}
+.calendar-nav:hover:not(:disabled) {
+  background: rgba(201,168,106,0.10);
+  border-color: var(--oro);
+  color: var(--oro);
+}
+.calendar-nav:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+.calendar-nav svg { width: 16px; height: 16px; }
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.calendar-weekdays span {
   text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--whisper-soft);
+  padding: 4px 0;
 }
-.date-pill:hover {
-  background: rgba(244, 236, 220, 0.08);
-  border-color: rgba(244, 236, 220, 0.25);
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
 }
-.date-pill.selected {
+.calendar-day {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--avorio);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+  position: relative;
+  min-height: 38px;
+}
+.calendar-day:hover:not(:disabled):not(.is-closed) {
+  background: rgba(244,236,220,0.06);
+  border-color: rgba(201,168,106,0.4);
+}
+.calendar-day.is-empty {
+  cursor: default;
+  pointer-events: none;
+}
+.calendar-day.is-past,
+.calendar-day.is-before-min {
+  color: var(--whisper-faint);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.calendar-day.is-closed {
+  color: var(--whisper-faint);
+  cursor: not-allowed;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(244,236,220,0.25);
+}
+.calendar-day.is-today:not(.is-closed):not(.is-past) {
+  border-color: rgba(201,168,106,0.35);
+}
+.calendar-day.is-today::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--oro);
+}
+.calendar-day.is-selected {
   background: var(--oro);
   border-color: var(--oro);
   color: var(--ottanio);
-  box-shadow: 0 8px 24px -8px rgba(201, 168, 106, 0.6);
+  font-weight: 500;
+  box-shadow: 0 6px 20px -6px rgba(201,168,106,0.65);
 }
-.date-pill .dow {
+.calendar-day.is-selected::after { background: var(--ottanio); }
+
+.calendar-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(244,236,220,0.06);
   font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  opacity: 0.75;
-  margin-bottom: 4px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--whisper-soft);
 }
-.date-pill .num {
-  font-family: 'Playfair Display', serif;
-  font-size: 24px;
-  line-height: 1;
-  font-weight: 400;
+.calendar-legend span:not(.legend-dot) { line-height: 1; }
+.legend-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 4px;
+  vertical-align: -1px;
 }
-.date-pill .mon {
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  opacity: 0.75;
-  margin-top: 4px;
+.legend-dot.legend-open { background: var(--oro); }
+.legend-dot.legend-closed {
+  background: transparent;
+  border: 1px solid rgba(244,236,220,0.25);
+  position: relative;
+}
+.legend-dot.legend-closed::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: -1px; right: -1px;
+  height: 1px;
+  background: rgba(244,236,220,0.4);
+  transform: rotate(-45deg);
 }
 
 /* Time slots */
@@ -1133,18 +1237,30 @@ section { position: relative; padding: 140px 32px; }
 .booking-fallback a:hover { color: var(--oro); }
 
 /* ─── Info ─── */
-.info { background: var(--verde-notte); padding: 140px 32px; }
+.info { background: var(--verde-notte); padding: 160px 32px; }
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: rgba(244,236,220,0.08);
   margin-top: 64px;
   border-top: 1px solid rgba(244,236,220,0.08);
   border-bottom: 1px solid rgba(244,236,220,0.08);
 }
-.info-cell { background: var(--verde-notte); padding: 40px 32px; transition: background 0.4s ease; }
+@media (max-width: 980px) { .info-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .info-grid { grid-template-columns: 1fr; } }
+.info-cell { background: var(--verde-notte); padding: 40px 32px; transition: background 0.4s ease; position: relative; }
+.info-cell::after {
+  content: '';
+  position: absolute;
+  top: 40px; left: 32px;
+  width: 24px; height: 1px;
+  background: var(--oro);
+  opacity: 0;
+  transition: opacity 0.4s ease, width 0.4s ease;
+}
 .info-cell:hover { background: var(--ottanio-deep); }
+.info-cell:hover::after { opacity: 1; width: 32px; }
 .info-cell .label {
   font-family: 'Inter', sans-serif;
   font-size: 10px;
@@ -1470,26 +1586,6 @@ footer {
 }
 .sticky-cta svg { width: 14px; height: 14px; }
 
-/* ─── Closed date styling ─── */
-.date-pill.closed {
-  opacity: 0.35;
-  cursor: not-allowed;
-  position: relative;
-}
-.date-pill.closed::after {
-  content: 'chiuso';
-  position: absolute;
-  bottom: 2px;
-  left: 0; right: 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 10px;
-  letter-spacing: 0.02em;
-  color: var(--oro-soft);
-}
-.date-pill.closed .mon { display: none; }
-.date-pill.closed:hover { background: rgba(244, 236, 220, 0.04); border-color: rgba(244, 236, 220, 0.1); }
-
 /* ─── Email fallback link in booking ─── */
 .booking-secondary {
   margin-top: 14px;
@@ -1751,8 +1847,17 @@ footer {
 
   .booking-form { padding: 32px 24px; }
   .booking-step-hint { display: none; }
-  .date-pill { min-width: 64px; padding: 12px 8px; }
-  .date-pill .num { font-size: 20px; }
+  .calendar { padding: 18px 14px 12px; }
+  .calendar-month { font-size: 17px; }
+  .calendar-weekdays span {
+    font-size: 10px;
+    letter-spacing: 0.10em;
+    font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+  }
+  .calendar-day { font-size: 13px; min-height: 36px; }
+  .calendar-grid { gap: 2px; }
+  .calendar-weekdays { gap: 2px; }
+  .calendar-legend { font-size: 10px; gap: 12px; }
   .time-pill { padding: 10px 18px; font-size: 14px; }
   .booking-submit { padding: 20px 32px; font-size: 12px; width: 100%; justify-content: center; }
   .people-stepper { width: 100%; justify-content: space-between; }
@@ -1769,61 +1874,10 @@ footer {
   .topbar-cta { padding: 8px 14px; font-size: 10px; letter-spacing: 0.10em; }
 }
 /* ─────────────────────────────────────────────────────────
-   IL SEGRETO REVEAL — sigillo · torcia · pulviscolo · magnete
+   IL SEGRETO · REVEAL — torcia, pulviscolo, magnete, shimmer
    Tutti gli scuri usano var(--verde-notte) #081E20, mai #000.
    Tutti i caldi usano var(--oro) #C9A86A e --oro-bright #D4B576.
    ───────────────────────────────────────────────────────── */
-
-/* SPLASH — sigillo che si presenta e si spezza */
-.splash {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: var(--verde-notte);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  overflow: hidden;
-  transition: opacity 1s cubic-bezier(.4,0,.2,1);
-}
-.splash::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center, rgba(201,168,106,0.06) 0%, transparent 60%);
-  pointer-events: none;
-}
-.splash.dismissed { opacity: 0; }
-.splash.gone { display: none; }
-
-.splash-logo {
-  width: min(78vw, 360px);
-  height: auto;
-  opacity: 0;
-  transform: scale(0.94);
-  filter: drop-shadow(0 0 24px rgba(201,168,106,0));
-  position: relative;
-  z-index: 2;
-  animation: splash-breathe 2400ms cubic-bezier(.4,0,.2,1) forwards;
-}
-@keyframes splash-breathe {
-  0%   { opacity: 0; transform: scale(0.94); filter: drop-shadow(0 0 12px rgba(201,168,106,0)); }
-  22%  { opacity: 1; transform: scale(1.0);  filter: drop-shadow(0 0 24px rgba(201,168,106,0.18)); }
-  58%  { opacity: 1; transform: scale(1.028); filter: drop-shadow(0 0 44px rgba(212,181,118,0.42)); }
-  82%  { opacity: 1; transform: scale(1.0);  filter: drop-shadow(0 0 28px rgba(201,168,106,0.28)); }
-  100% { opacity: 1; transform: scale(1.0);  filter: drop-shadow(0 0 28px rgba(201,168,106,0.32)); }
-}
-.splash-logo.shatter {
-  animation: splash-shatter 760ms cubic-bezier(.55,0,.65,1) forwards;
-}
-@keyframes splash-shatter {
-  0%   { opacity: 1; transform: scale(1.0);  filter: drop-shadow(0 0 28px rgba(201,168,106,0.4)); }
-  30%  { opacity: 0.85; transform: scale(1.14); filter: drop-shadow(0 0 80px rgba(255,220,150,0.75)); }
-  100% { opacity: 0; transform: scale(1.55); filter: drop-shadow(0 0 100px rgba(255,220,150,0)); }
-}
-.splash-canvas { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
-body.splashing { overflow: hidden; }
 
 /* HERO — strato reattivo */
 .hero-veil {
@@ -1927,10 +1981,109 @@ body.splashing { overflow: hidden; }
   66%, 100% { background-position: -100% 0; }
 }
 
-/* ACCESSIBILITÀ — utenti con prefers-reduced-motion */
+/* ─── HERO ON-LOAD STAGGER FADE-RISE ───
+   I figli di .hero-rise entrano in cascata quando body.site-ready si attiva.
+   Niente splash, niente attesa: l'animazione è dell'hero stesso. */
+.hero-rise > * {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1);
+}
+body.site-ready .hero-rise > *  { opacity: 1; transform: none; }
+body.site-ready .hero-rise > *:nth-child(1) { transition-delay: 0.10s; }
+body.site-ready .hero-rise > *:nth-child(2) { transition-delay: 0.28s; }
+body.site-ready .hero-rise > *:nth-child(3) { transition-delay: 0.42s; }
+body.site-ready .hero-rise > *:nth-child(4) { transition-delay: 0.54s; }
+body.site-ready .hero-rise > *:nth-child(5) { transition-delay: 0.66s; }
+body.site-ready .hero-rise > *:nth-child(6) { transition-delay: 0.78s; }
+
+/* ─── DRAMA · ombre profonde e gradient ombrosi sulle sezioni ───
+   Più contrasto, più cinema, meno appiattimento sull'ottanio. */
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 220px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, rgba(4,18,20,0.7) 60%, var(--verde-notte) 100%);
+}
+
+/* Sezione narrativa — gradient profondo dall'alto verso il basso */
+.narrative {
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(201,168,106,0.04) 0%, transparent 60%),
+    linear-gradient(180deg, var(--verde-notte) 0%, var(--ottanio-deep) 50%, var(--ottanio) 100%);
+  position: relative;
+}
+
+/* Showreel — pannello scuro con vignettatura profonda */
+.showreel {
+  background:
+    radial-gradient(ellipse at center, var(--ottanio-deep) 0%, var(--verde-notte) 90%);
+  position: relative;
+}
+.showreel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at top, transparent 40%, rgba(4,18,20,0.4) 100%),
+    radial-gradient(ellipse at bottom, transparent 40%, rgba(4,18,20,0.55) 100%);
+  z-index: 0;
+}
+.showreel > * { position: relative; z-index: 1; }
+
+/* Dish card — ombra premium su desktop */
+.dish-card-media {
+  box-shadow:
+    0 24px 60px -20px rgba(0,0,0,0.55),
+    0 8px 20px -8px rgba(0,0,0,0.4);
+}
+
+/* Chef — gradient laterale per dare profondità al glassmorphism */
+.chef {
+  background:
+    radial-gradient(ellipse at 80% 50%, rgba(201,168,106,0.05) 0%, transparent 60%),
+    linear-gradient(180deg, var(--ottanio) 0%, var(--ottanio-deep) 100%);
+}
+
+/* Menu — fondo più scuro per far brillare l'oro */
+.menu-section {
+  background:
+    linear-gradient(180deg, var(--ottanio-deep) 0%, var(--verde-notte) 100%);
+  position: relative;
+}
+
+/* Info section — il piede del sito ha un alone profondo */
+.info {
+  background:
+    radial-gradient(ellipse at 50% 0%, var(--ottanio) 0%, var(--ottanio-deep) 40%, var(--verde-notte) 100%);
+}
+
+/* Booking section — concentrazione di luce dorata al centro */
+.booking {
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(201,168,106,0.06) 0%, transparent 55%),
+    linear-gradient(180deg, var(--verde-notte) 0%, var(--ottanio-deep) 50%, var(--verde-notte) 100%);
+}
+
+/* Smooth section transitions con gradient overlap */
+section + section {
+  position: relative;
+}
+section + section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(201,168,106,0.18) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ─── ACCESSIBILITÀ — utenti con prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
-  .splash { display: none !important; }
-  .splash-logo { animation: none; opacity: 1; transform: none; }
   .hero-veil {
     opacity: 1 !important;
     background: linear-gradient(180deg,
@@ -1948,6 +2101,7 @@ body.splashing { overflow: hidden; }
   }
   .hero-cta { transition: none; transform: none !important; }
   .hero-cta::after { display: none; }
+  .hero-rise > * { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
 
 </style>
@@ -1974,16 +2128,10 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
 </head>
 <body>
 
-<!-- IL SEGRETO · SIGILLO DI APERTURA -->
-<div class="splash" id="splash" aria-hidden="true">
-  <canvas class="splash-canvas" id="splash-canvas"></canvas>
-  <img class="splash-logo" id="splash-logo" src="LS-Icon.png" alt="Il Segreto · Villa Luzi" />
-</div>
-
 <!-- TOP BAR -->
 <header class="topbar" id="topbar">
   <a href="#top" class="topbar-mark" aria-label="Il Segreto · Villa Luzi">
-    <img src="il-segreto-logo.png" alt="Il Segreto · Villa Luzi" />
+    <img src="LS-Mark.png" alt="Il Segreto · Villa Luzi" />
   </a>
   <div class="topbar-actions">
     <a href="https://www.instagram.com/villaluzi1737/" class="topbar-ig" target="_blank" rel="noopener" aria-label="Instagram Villa Luzi">
@@ -2003,7 +2151,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
   <div class="hero-torch" id="hero-torch"></div>
   <canvas class="hero-canvas" id="hero-canvas"></canvas>
 
-  <div class="hero-inner">
+  <div class="hero-inner hero-rise">
     <div class="hero-eyebrow">
       <span class="line"></span>
       <span class="eyebrow">Il ristorante di Villa Luzi</span>
@@ -2465,10 +2613,26 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
       <div class="booking-step-header">
         <span class="booking-step-num">i</span>
         <span class="booking-step-label">Il Giorno</span>
-        <span class="booking-step-hint">scorri per i giorni successivi</span>
+        <span class="booking-step-hint">aperti gio · ven · sab · dom</span>
       </div>
-      <div class="date-pills-wrap">
-        <div class="date-pills" id="date-pills"></div>
+      <div class="calendar" id="calendar">
+        <div class="calendar-header">
+          <button type="button" class="calendar-nav" id="cal-prev" aria-label="Mese precedente">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="calendar-month" id="cal-month">Giugno 2026</div>
+          <button type="button" class="calendar-nav" id="cal-next" aria-label="Mese successivo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="calendar-weekdays" aria-hidden="true">
+          <span>Lun</span><span>Mar</span><span>Mer</span><span>Gio</span><span>Ven</span><span>Sab</span><span>Dom</span>
+        </div>
+        <div class="calendar-grid" id="cal-grid"></div>
+        <div class="calendar-legend">
+          <span class="legend-dot legend-open"></span><span>Disponibile</span>
+          <span class="legend-dot legend-closed"></span><span>Chiuso</span>
+        </div>
       </div>
     </div>
 
@@ -2685,42 +2849,114 @@ const booking = {
   people: 2
 };
 
-// Build date pills (with closed-day flagging)
-(function buildDates() {
-  const wrap = document.getElementById('date-pills');
+// ─── CALENDAR WIDGET ───
+// Navigabile mese per mese a partire da MIN_DATE (1 giugno 2026).
+// Massimo 4 mesi avanti (sufficienti per una pianificazione realistica).
+const calendarState = (function(){
   const today = new Date();
   today.setHours(0,0,0,0);
   MIN_DATE.setHours(0,0,0,0);
-  // Punto di partenza: il più tardo tra oggi e MIN_DATE (1 giugno 2026)
-  const startDate = today > MIN_DATE ? today : MIN_DATE;
-  for (let i = 0; i < DAYS_AHEAD; i++) {
-    const d = new Date(startDate);
-    d.setDate(startDate.getDate() + i);
-    const iso = d.toISOString().split('T')[0];
-    const isClosed = CLOSED_WEEKDAYS.includes(d.getDay());
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'date-pill' + (isClosed ? ' closed' : '');
-    btn.dataset.iso = iso;
-    if (isClosed) {
-      btn.disabled = true;
-      btn.setAttribute('aria-label', `${DAYS_IT_FULL[d.getDay()]} ${d.getDate()} ${MONTHS_IT_FULL[d.getMonth()]} - chiuso`);
-    }
-    btn.innerHTML = `
-      <span class="dow">${DAYS_IT[d.getDay()]}</span>
-      <span class="num">${d.getDate()}</span>
-      <span class="mon">${MONTHS_IT[d.getMonth()]}</span>
-    `;
-    if (!isClosed) {
-      btn.addEventListener('click', () => selectDate(btn, d, iso));
-    }
-    wrap.appendChild(btn);
-  }
+  // Mese iniziale = quello della prima data prenotabile
+  const firstBookable = today > MIN_DATE ? today : MIN_DATE;
+  const initial = new Date(firstBookable.getFullYear(), firstBookable.getMonth(), 1);
+  const maxMonth = new Date(initial.getFullYear(), initial.getMonth() + 4, 1);
+  return {
+    today,
+    firstBookable,
+    initial,
+    maxMonth,
+    viewYear: initial.getFullYear(),
+    viewMonth: initial.getMonth()
+  };
 })();
 
-function selectDate(btn, dObj, iso) {
-  document.querySelectorAll('.date-pill').forEach(p => p.classList.remove('selected'));
-  btn.classList.add('selected');
+function renderCalendar() {
+  const grid = document.getElementById('cal-grid');
+  const monthLabel = document.getElementById('cal-month');
+  const prevBtn = document.getElementById('cal-prev');
+  const nextBtn = document.getElementById('cal-next');
+  if (!grid || !monthLabel) return;
+
+  const { viewYear, viewMonth, firstBookable, today, initial, maxMonth } = calendarState;
+
+  monthLabel.textContent = MONTHS_IT_FULL[viewMonth] + ' ' + viewYear;
+
+  // Disable prev/next on boundaries
+  const curView = new Date(viewYear, viewMonth, 1);
+  prevBtn.disabled = curView <= initial;
+  nextBtn.disabled = curView >= maxMonth;
+
+  // Compute first cell offset: ISO week starts Monday
+  // JS getDay(): 0=Sun, 1=Mon, ..., 6=Sat. Convert to Monday-first index.
+  const firstOfMonth = new Date(viewYear, viewMonth, 1);
+  const lastOfMonth = new Date(viewYear, viewMonth + 1, 0);
+  const startOffset = (firstOfMonth.getDay() + 6) % 7; // Mon = 0
+  const daysInMonth = lastOfMonth.getDate();
+
+  grid.innerHTML = '';
+
+  // Empty cells before first day
+  for (let i = 0; i < startOffset; i++) {
+    const empty = document.createElement('div');
+    empty.className = 'calendar-day is-empty';
+    grid.appendChild(empty);
+  }
+
+  // Day cells
+  for (let dayNum = 1; dayNum <= daysInMonth; dayNum++) {
+    const d = new Date(viewYear, viewMonth, dayNum);
+    d.setHours(0,0,0,0);
+    const iso = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+
+    const isBeforeMin = d < firstBookable;
+    const isClosed = CLOSED_WEEKDAYS.includes(d.getDay());
+    const isToday = d.getTime() === today.getTime();
+    const disabled = isBeforeMin || isClosed;
+
+    const cell = document.createElement('button');
+    cell.type = 'button';
+    cell.className = 'calendar-day';
+    cell.textContent = dayNum;
+    cell.dataset.iso = iso;
+    if (isBeforeMin) cell.classList.add('is-before-min');
+    if (isClosed)    cell.classList.add('is-closed');
+    if (isToday)     cell.classList.add('is-today');
+    if (booking.date === iso) cell.classList.add('is-selected');
+
+    if (disabled) {
+      cell.disabled = true;
+      if (isClosed) cell.setAttribute('aria-label', DAYS_IT_FULL[d.getDay()] + ' ' + dayNum + ' ' + MONTHS_IT_FULL[viewMonth] + ' — chiuso');
+    } else {
+      cell.addEventListener('click', () => selectDate(cell, d, iso));
+    }
+    grid.appendChild(cell);
+  }
+}
+
+document.getElementById('cal-prev').addEventListener('click', () => {
+  if (calendarState.viewMonth === 0) {
+    calendarState.viewMonth = 11;
+    calendarState.viewYear--;
+  } else {
+    calendarState.viewMonth--;
+  }
+  renderCalendar();
+});
+document.getElementById('cal-next').addEventListener('click', () => {
+  if (calendarState.viewMonth === 11) {
+    calendarState.viewMonth = 0;
+    calendarState.viewYear++;
+  } else {
+    calendarState.viewMonth++;
+  }
+  renderCalendar();
+});
+
+renderCalendar();
+
+function selectDate(cell, dObj, iso) {
+  document.querySelectorAll('.calendar-day.is-selected').forEach(p => p.classList.remove('is-selected'));
+  cell.classList.add('is-selected');
   booking.date = iso;
   booking.dateObj = dObj;
 
@@ -2968,7 +3204,7 @@ renderPeople();
 <script>
 /* ═══════════════════════════════════════════════════════════
    IL SEGRETO · REVEAL CONTROLLER
-   - Splash on-load (1x per sessione) — sigillo che si rompe da solo
+   - Animazione on-load degli elementi hero (stagger fade-rise)
    - Torcia e pulviscolo sull'hero, reattivi al cursore
    - Su mobile la torcia orbita lenta come una farfalla notturna
    - Magnetismo discreto sul CTA "Prenota un tavolo"
@@ -2979,137 +3215,28 @@ renderPeople();
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(hover: none)').matches;
-  const SEAL_KEY = 'segreto-seal-broken-v1';
 
-  const splash = document.getElementById('splash');
-  const splashLogo = document.getElementById('splash-logo');
-  const splashCanvas = document.getElementById('splash-canvas');
   const hero = document.querySelector('.hero');
   const heroVeil = document.getElementById('hero-veil');
   const heroTorch = document.getElementById('hero-torch');
   const heroCanvas = document.getElementById('hero-canvas');
 
-  const alreadyBroken = (() => {
-    try { return sessionStorage.getItem(SEAL_KEY) === '1'; } catch(e) { return false; }
-  })();
-
-  if (reduceMotion || alreadyBroken) {
-    if (splash) { splash.style.display = 'none'; }
-    document.body.classList.remove('splashing');
-    if (!reduceMotion) initHeroEffects(true);
+  if (reduceMotion) {
+    // Solo veil statico, niente animazioni
+    if (hero) hero.classList.add('veil-on');
     return;
   }
 
-  document.body.classList.add('splashing');
-  runSplashSequence();
+  // Triggera l'animazione di entrata degli elementi hero
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.body.classList.add('site-ready');
+    });
+  });
 
-  function runSplashSequence(){
-    const ctx = splashCanvas.getContext('2d');
-    const DPR = Math.min(window.devicePixelRatio || 1, 2);
-    let W = 0, H = 0;
-    const resize = () => {
-      W = window.innerWidth;
-      H = window.innerHeight;
-      splashCanvas.width = W * DPR;
-      splashCanvas.height = H * DPR;
-      splashCanvas.style.width = W + 'px';
-      splashCanvas.style.height = H + 'px';
-      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-    };
-    resize();
-    window.addEventListener('resize', resize);
+  initHeroEffects();
 
-    let shards = [];
-    let shardLoopActive = false;
-
-    function explode(){
-      const cx = W / 2;
-      const cy = H / 2;
-      for (let i = 0; i < 72; i++) {
-        const angle = (i / 72) * Math.PI * 2 + (Math.random() - 0.5) * 0.5;
-        const speed = 3 + Math.random() * 7;
-        shards.push({
-          x: cx + (Math.random() - 0.5) * 40,
-          y: cy + (Math.random() - 0.5) * 40,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed - 0.6,
-          rot: Math.random() * Math.PI,
-          vrot: (Math.random() - 0.5) * 0.28,
-          len: 5 + Math.random() * 18,
-          life: 1.0,
-          decay: 0.005 + Math.random() * 0.011,
-          warm: Math.random() > 0.35
-        });
-      }
-      if (!shardLoopActive) {
-        shardLoopActive = true;
-        requestAnimationFrame(animateShards);
-      }
-    }
-
-    function animateShards(){
-      ctx.clearRect(0, 0, W, H);
-      for (let i = shards.length - 1; i >= 0; i--) {
-        const s = shards[i];
-        s.x += s.vx;
-        s.y += s.vy;
-        s.vy += 0.07;
-        s.vx *= 0.992;
-        s.rot += s.vrot;
-        s.life -= s.decay;
-        if (s.life <= 0) { shards.splice(i, 1); continue; }
-
-        ctx.save();
-        ctx.translate(s.x, s.y);
-        ctx.rotate(s.rot);
-        const stroke = s.warm
-          ? 'rgba(255,220,150,' + s.life + ')'
-          : 'rgba(201,168,106,' + s.life + ')';
-        ctx.strokeStyle = stroke;
-        ctx.lineWidth = 1.4;
-        ctx.lineCap = 'round';
-        ctx.beginPath();
-        ctx.moveTo(-s.len/2, 0);
-        ctx.lineTo(s.len/2, 0);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.fillStyle = 'rgba(255,230,170,' + (s.life * 0.75) + ')';
-        ctx.arc(0, 0, 1.5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-      }
-      if (shards.length > 0) {
-        requestAnimationFrame(animateShards);
-      } else {
-        shardLoopActive = false;
-        ctx.clearRect(0, 0, W, H);
-      }
-    }
-
-    // Timeline:
-    //   0    – 2400 ms : breathing animation (CSS)
-    //   2400 ms        : shatter + particle burst
-    //   3050 ms        : dissolve overlay
-    //   3950 ms        : remove splash, init hero effects
-    setTimeout(() => {
-      splashLogo.classList.add('shatter');
-      explode();
-    }, 2400);
-
-    setTimeout(() => {
-      splash.classList.add('dismissed');
-      document.body.classList.remove('splashing');
-      // Pre-init hero effects so they're ready when veil fades in
-      initHeroEffects(false);
-    }, 3050);
-
-    setTimeout(() => {
-      splash.classList.add('gone');
-      try { sessionStorage.setItem(SEAL_KEY, '1'); } catch(e) {}
-    }, 3950);
-  }
-
-  function initHeroEffects(immediate){
+  function initHeroEffects(){
     if (!hero || !heroCanvas || reduceMotion) return;
 
     const ctx = heroCanvas.getContext('2d');
@@ -3155,12 +3282,11 @@ renderPeople();
     }
     makeParticles();
 
-    // Reveal veil and torch
-    const revealDelay = immediate ? 0 : 200;
+    // Reveal veil e torch dopo l'animazione di entrata dell'hero
     setTimeout(() => {
       hero.classList.add('veil-on');
       hero.classList.add('torch-on');
-    }, revealDelay);
+    }, 900);
 
     if (!isTouch) {
       window.addEventListener('mousemove', (e) => {
