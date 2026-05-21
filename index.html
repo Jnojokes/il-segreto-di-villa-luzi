@@ -655,23 +655,15 @@ section { position: relative; padding: 140px 32px; }
 .menu-header {
   text-align: center;
   max-width: 760px;
-  margin: 0 auto 80px;
-}
-.menu-title {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: clamp(48px, 7vw, 96px);
-  font-weight: 400;
-  color: var(--avorio);
-  letter-spacing: -0.01em;
-  margin: 16px 0 20px;
+  margin: 0 auto 64px;
 }
 .menu-subtitle {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: clamp(18px, 1.8vw, 22px);
-  color: var(--whisper);
-  line-height: 1.5;
+  font-size: clamp(22px, 2.2vw, 30px);
+  color: var(--avorio);
+  line-height: 1.4;
+  margin-top: 24px;
 }
 
 /* ─── MENU — CARTE ACCORDION ───
@@ -2363,19 +2355,19 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
       </div>
     </article>
 
-    <!-- Dish 2: Brasato di Marchigiana -->
+    <!-- Dish 2: Tagliata di Angus -->
     <article class="dish-card reveal">
       <div class="dish-card-media">
-        <span class="dish-card-badge">Specialità</span>
-        <img src="dish-marchigiana.jpg" alt="Brasato di Marchigiana — Il Segreto, Villa Luzi" loading="lazy" />
+        <span class="dish-card-badge">Signature</span>
+        <img src="dish-tagliata-angus.jpg" alt="Tagliata di Angus — Il Segreto, Villa Luzi" loading="lazy" />
         <div class="photo-frame"></div>
       </div>
       <div class="dish-card-content">
-        <div class="dish-card-eyebrow">Signature</div>
-        <h3 class="dish-card-name">Brasato <em>di Marchigiana</em></h3>
+        <div class="dish-card-eyebrow">Secondo</div>
+        <h3 class="dish-card-name">Tagliata <em>di Angus</em></h3>
         <p class="dish-card-desc">
-          Cipolla rossa stufata, rosmarino del giardino,
-          fondo bruno alle erbe.
+          Salsa al gorgonzola, pere macerate al vino rosso,
+          patate Anna.
         </p>
       </div>
     </article>
@@ -2410,7 +2402,6 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
       <span class="eyebrow">La Carta</span>
       <span class="line"></span>
     </div>
-    <h2 class="menu-title">Menu</h2>
     <p class="menu-subtitle">
       Una cucina di stagione, marchigiana, contemporanea.
     </p>
@@ -2429,15 +2420,24 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
       </button>
       <div class="menu-card-body-wrap"><div class="menu-card-body"><div class="menu-card-body-inner" id="cat-aperitivo">
         <div class="menu-item">
-          <div class="menu-item-main"><span class="menu-item-name">Patanegra e Champagne</span></div>
+          <div class="menu-item-main">
+            <span class="menu-item-name">Patanegra e Champagne</span>
+            <span class="menu-item-note">per due</span>
+          </div>
           <span class="menu-item-price">€ 40,00</span>
         </div>
         <div class="menu-item">
-          <div class="menu-item-main"><span class="menu-item-name">Taglio Misto</span></div>
+          <div class="menu-item-main">
+            <span class="menu-item-name">Taglio Misto</span>
+            <span class="menu-item-note">a persona</span>
+          </div>
           <span class="menu-item-price">€ 15,00</span>
         </div>
         <div class="menu-item">
-          <div class="menu-item-main"><span class="menu-item-name">Degustazione Formaggi</span></div>
+          <div class="menu-item-main">
+            <span class="menu-item-name">Degustazione Formaggi</span>
+            <span class="menu-item-note">a persona</span>
+          </div>
           <span class="menu-item-price">€ 15,00</span>
         </div>
       </div></div></div>
@@ -2543,7 +2543,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2 0 4 1 4 4s-2 4-2 6 2 3 2 5-2 3-4 3-4-1-4-3 2-3 2-5-2-3-2-6 2-4 4-4z"/></svg>
         </span>
         <span class="menu-card-name">Secondi</span>
-        <span class="menu-card-count">5</span>
+        <span class="menu-card-count">7</span>
         <svg class="menu-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="menu-card-body-wrap"><div class="menu-card-body"><div class="menu-card-body-inner" id="cat-secondi">
@@ -2570,10 +2570,23 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
         </div>
         <div class="menu-item">
           <div class="menu-item-main">
+            <span class="menu-item-name">Tagliata di Angus</span>
+            <span class="menu-item-desc">salsa al gorgonzola, pere macerate al vino rosso, patate Anna</span>
+          </div>
+          <span class="menu-item-price">€ 30,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
+            <span class="menu-item-name">Tagliata ai Porcini</span>
+          </div>
+          <span class="menu-item-price">€ 28,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main">
             <span class="menu-item-name">Tagliata di Carne Argentina</span>
             <span class="menu-item-desc">cipolla alla brace</span>
           </div>
-          <span class="menu-item-price">€ 30,00</span>
+          <span class="menu-item-price">€ 27,00</span>
         </div>
         <div class="menu-item">
           <div class="menu-item-main">
@@ -2621,7 +2634,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M12 8C7 8 4 11 4 16h8z"/><path d="M12 8c5 0 8 3 8 8h-8z"/></svg>
         </span>
         <span class="menu-card-name">Contorni</span>
-        <span class="menu-card-count">3</span>
+        <span class="menu-card-count">4</span>
         <svg class="menu-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="menu-card-body-wrap"><div class="menu-card-body"><div class="menu-card-body-inner" id="cat-contorni">
@@ -2636,6 +2649,10 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
         <div class="menu-item">
           <div class="menu-item-main"><span class="menu-item-name">Caponata</span></div>
           <span class="menu-item-price">€ 6,00</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">L'Oro della Terra</span></div>
+          <span class="menu-item-price">€ 8,00</span>
         </div>
       </div></div></div>
     </article>
@@ -2702,7 +2719,6 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
       <em>tavolo.</em>
     </h2>
     <p class="booking-subtitle">
-      Pochi tavoli, una sala raccolta.
       Le prenotazioni sono aperte a partire dal 1 giugno.
     </p>
   </div>
