@@ -42,20 +42,20 @@
     "addressCountry": "IT"
   },
   "telephone": "+393452419263",
-  "email": "info@villaluzi.it",
+  "email": "villaluzi1737@gmail.com",
   "servesCuisine": ["Italian", "Marchigiana", "Mediterranean", "Contemporary"],
   "priceRange": "€€€",
   "acceptsReservations": "True",
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "dayOfWeek": ["Sunday"],
       "opens": "12:30",
       "closes": "14:30"
     },
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "dayOfWeek": ["Thursday", "Friday", "Saturday", "Sunday"],
       "opens": "19:30",
       "closes": "22:30"
     }
@@ -95,6 +95,15 @@ body {
   font-weight: 300;
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Micro-type safety: per tipografia sotto i 10px (ove non evitabile),
+   Helvetica/Arial hanno una x-height più ampia e restano leggibili. */
+.micro {
+  font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.08em;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -161,7 +170,9 @@ body::before {
   height: 56px;
   width: auto;
   display: block;
-  mix-blend-mode: lighten;
+  /* mix-blend-mode rimosso: in conflitto con backdrop-filter del topbar (creava il quadrato nero).
+     Sostituito con un filter leggero per mantenere il logo luminoso. */
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
   transition: height 0.4s ease;
 }
 .topbar.scrolled .topbar-mark img { height: 44px; }
@@ -1338,8 +1349,8 @@ footer {
   border: 1px solid rgba(244, 236, 220, 0.15);
   border-radius: 100px;
   font-family: 'Inter', sans-serif;
-  font-size: 9px;
-  letter-spacing: 0.28em;
+  font-size: 10px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--oro);
   font-weight: 500;
@@ -1472,7 +1483,7 @@ footer {
   left: 0; right: 0;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.02em;
   color: var(--oro-soft);
 }
@@ -1576,7 +1587,99 @@ footer {
 
 /* ─── Responsive ─── */
 @media (max-width: 980px) {
-  .showreel-grid { grid-template-columns: 1fr; gap: 48px; max-width: 480px; }
+  /* ─── SHOWREEL 3D SLIDER (mobile only) ───
+     Scroll-snap orizzontale con prospettiva: le card laterali si inclinano,
+     la centrale si raddrizza. Tridimensionale, fisico, tosto. */
+  .showreel-grid.showreel-slider {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    perspective: 1400px;
+    perspective-origin: 50% 45%;
+    gap: 16px;
+    padding: 50px 14% 60px;
+    margin: 0 -20px;
+    max-width: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-padding-inline: 14%;
+  }
+  .showreel-grid.showreel-slider::-webkit-scrollbar { display: none; }
+
+  .showreel-slider .dish-card {
+    flex: 0 0 76%;
+    max-width: 380px;
+    min-width: 260px;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    transform-style: preserve-3d;
+    transform-origin: center center;
+    transform: scale(0.82) rotateY(-18deg) translateZ(-80px);
+    transition: transform 0.6s cubic-bezier(.2,.8,.2,1),
+                opacity 0.5s ease,
+                filter 0.5s ease,
+                box-shadow 0.5s ease;
+    opacity: 0.42;
+    filter: blur(0.6px) saturate(0.85);
+    will-change: transform, opacity;
+    position: relative;
+  }
+  .showreel-slider .dish-card.is-next {
+    transform: scale(0.82) rotateY(-18deg) translateZ(-80px);
+  }
+  .showreel-slider .dish-card.is-prev {
+    transform: scale(0.82) rotateY(18deg) translateZ(-80px);
+  }
+  .showreel-slider .dish-card.is-active {
+    transform: scale(1) rotateY(0deg) translateZ(0);
+    opacity: 1;
+    filter: none;
+    z-index: 3;
+  }
+  .showreel-slider .dish-card.is-active .dish-card-media {
+    box-shadow:
+      0 30px 80px -20px rgba(0,0,0,0.65),
+      0 8px 24px -8px rgba(201,168,106,0.18);
+  }
+  .showreel-slider .dish-card-media {
+    transition: box-shadow 0.6s ease;
+  }
+  .showreel-slider .dish-card:hover .dish-card-media { transform: none; }
+  .showreel-slider .dish-card:hover .dish-card-media img { transform: none; }
+
+  /* DOT INDICATORS — visibili solo mobile */
+  .showreel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: -10px 0 0;
+    padding: 0;
+    height: 32px;
+  }
+  .showreel-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(244,236,220,0.20);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.45s cubic-bezier(.2,.8,.2,1);
+    flex-shrink: 0;
+  }
+  .showreel-dot:hover { background: rgba(244,236,220,0.40); }
+  .showreel-dot.active {
+    background: var(--oro);
+    width: 24px;
+    border-radius: 4px;
+    box-shadow: 0 0 12px rgba(201,168,106,0.4);
+  }
+
+  /* CHEF + menu come prima */
   .chef-card { grid-template-columns: 1fr; }
   .chef-card-photo { min-height: 480px; }
   .chef-card-content { padding: 48px 36px; }
@@ -1621,6 +1724,10 @@ footer {
   .custodia-image { max-width: 480px; margin: 0 auto; }
 }
 
+@media (min-width: 981px) {
+  .showreel-dots { display: none; }
+}
+
 @media (max-width: 768px) {
   .sticky-cta { display: inline-flex; }
   .showreel { padding: 100px 20px; }
@@ -1659,8 +1766,190 @@ footer {
 @media (max-width: 480px) {
   .topbar-mark img { height: 36px; }
   .topbar.scrolled .topbar-mark img { height: 32px; }
-  .topbar-cta { padding: 8px 14px; font-size: 9px; letter-spacing: 0.12em; }
+  .topbar-cta { padding: 8px 14px; font-size: 10px; letter-spacing: 0.10em; }
 }
+/* ─────────────────────────────────────────────────────────
+   IL SEGRETO REVEAL — sigillo · torcia · pulviscolo · magnete
+   Tutti gli scuri usano var(--verde-notte) #081E20, mai #000.
+   Tutti i caldi usano var(--oro) #C9A86A e --oro-bright #D4B576.
+   ───────────────────────────────────────────────────────── */
+
+/* SPLASH — sigillo che si presenta e si spezza */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--verde-notte);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  overflow: hidden;
+  transition: opacity 1s cubic-bezier(.4,0,.2,1);
+}
+.splash::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(201,168,106,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.splash.dismissed { opacity: 0; }
+.splash.gone { display: none; }
+
+.splash-logo {
+  width: min(78vw, 360px);
+  height: auto;
+  opacity: 0;
+  transform: scale(0.94);
+  filter: drop-shadow(0 0 24px rgba(201,168,106,0));
+  position: relative;
+  z-index: 2;
+  animation: splash-breathe 2400ms cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes splash-breathe {
+  0%   { opacity: 0; transform: scale(0.94); filter: drop-shadow(0 0 12px rgba(201,168,106,0)); }
+  22%  { opacity: 1; transform: scale(1.0);  filter: drop-shadow(0 0 24px rgba(201,168,106,0.18)); }
+  58%  { opacity: 1; transform: scale(1.028); filter: drop-shadow(0 0 44px rgba(212,181,118,0.42)); }
+  82%  { opacity: 1; transform: scale(1.0);  filter: drop-shadow(0 0 28px rgba(201,168,106,0.28)); }
+  100% { opacity: 1; transform: scale(1.0);  filter: drop-shadow(0 0 28px rgba(201,168,106,0.32)); }
+}
+.splash-logo.shatter {
+  animation: splash-shatter 760ms cubic-bezier(.55,0,.65,1) forwards;
+}
+@keyframes splash-shatter {
+  0%   { opacity: 1; transform: scale(1.0);  filter: drop-shadow(0 0 28px rgba(201,168,106,0.4)); }
+  30%  { opacity: 0.85; transform: scale(1.14); filter: drop-shadow(0 0 80px rgba(255,220,150,0.75)); }
+  100% { opacity: 0; transform: scale(1.55); filter: drop-shadow(0 0 100px rgba(255,220,150,0)); }
+}
+.splash-canvas { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+body.splashing { overflow: hidden; }
+
+/* HERO — strato reattivo */
+.hero-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--torch-x,50%) var(--torch-y,50%),
+      rgba(8,30,32,0) 0px,
+      rgba(8,30,32,0) 130px,
+      rgba(8,30,32,0.55) 360px,
+      rgba(8,30,32,0.85) 760px),
+    linear-gradient(180deg,
+      rgba(8,30,32,0.50) 0%,
+      rgba(8,30,32,0.20) 35%,
+      rgba(8,30,32,0.40) 65%,
+      rgba(8,30,32,0.96) 100%);
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.hero.veil-on .hero-veil { opacity: 1; }
+
+.hero-torch {
+  position: absolute;
+  z-index: 2;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle,
+    rgba(255,220,150,0.22) 0%,
+    rgba(255,190,110,0.13) 28%,
+    rgba(201,168,106,0.05) 55%,
+    transparent 72%);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  left: 0; top: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  will-change: transform, opacity;
+}
+.hero.torch-on .hero-torch { opacity: 1; }
+
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* L'hero-inner sale sopra il sistema reattivo */
+.hero-inner { z-index: 3 !important; }
+.hero-video { z-index: 0; }
+
+/* MAGNETIC CTA — solo sul "Prenota un tavolo" */
+.hero-cta { will-change: transform; transition: transform 0.4s cubic-bezier(.2,.8,.2,1); }
+.hero-cta.magnetic-near { transition: transform 0.18s cubic-bezier(.2,.8,.2,1); }
+.hero-cta::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--mag-x,50%) var(--mag-y,50%),
+    rgba(212,181,118,0.55) 0%,
+    rgba(201,168,106,0.18) 40%,
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(8px);
+}
+.hero-cta.magnetic-near::after { opacity: 1; }
+
+/* SHIMMER su "Segreto" — passaggio dorato discreto */
+.shimmer-segreto {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(
+    100deg,
+    var(--avorio) 0%,
+    var(--avorio) 38%,
+    #fff4d8 48%,
+    var(--oro-bright) 54%,
+    var(--avorio) 64%,
+    var(--avorio) 100%
+  );
+  background-size: 280% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shimmer-pass 10s linear infinite;
+  animation-delay: 5s;
+}
+@keyframes shimmer-pass {
+  0%, 38%   { background-position: 100% 0; }
+  52%       { background-position: 0% 0; }
+  66%, 100% { background-position: -100% 0; }
+}
+
+/* ACCESSIBILITÀ — utenti con prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .splash { display: none !important; }
+  .splash-logo { animation: none; opacity: 1; transform: none; }
+  .hero-veil {
+    opacity: 1 !important;
+    background: linear-gradient(180deg,
+      rgba(8,30,32,0.50) 0%,
+      rgba(8,30,32,0.20) 35%,
+      rgba(8,30,32,0.40) 65%,
+      rgba(8,30,32,0.96) 100%);
+  }
+  .hero-torch, .hero-canvas { display: none; }
+  .shimmer-segreto {
+    animation: none;
+    background: none;
+    -webkit-text-fill-color: var(--avorio);
+    color: var(--avorio);
+  }
+  .hero-cta { transition: none; transform: none !important; }
+  .hero-cta::after { display: none; }
+}
+
 </style>
 
 <!-- Meta Pixel Code -->
@@ -1685,6 +1974,12 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
 </head>
 <body>
 
+<!-- IL SEGRETO · SIGILLO DI APERTURA -->
+<div class="splash" id="splash" aria-hidden="true">
+  <canvas class="splash-canvas" id="splash-canvas"></canvas>
+  <img class="splash-logo" id="splash-logo" src="LS-Icon.png" alt="Il Segreto · Villa Luzi" />
+</div>
+
 <!-- TOP BAR -->
 <header class="topbar" id="topbar">
   <a href="#top" class="topbar-mark" aria-label="Il Segreto · Villa Luzi">
@@ -1704,7 +1999,9 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
     <source src="hero-bg.mp4" type="video/mp4" />
     <source src="hero-bg.webm" type="video/webm" />
   </video>
-  <div class="hero-overlay"></div>
+  <div class="hero-veil" id="hero-veil"></div>
+  <div class="hero-torch" id="hero-torch"></div>
+  <canvas class="hero-canvas" id="hero-canvas"></canvas>
 
   <div class="hero-inner">
     <div class="hero-eyebrow">
@@ -1721,7 +2018,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
     <div class="hero-divider"></div>
 
     <p class="hero-tagline">
-      Ora, anche di una cucina. Il Segreto · Cucina di Jan Paul Kana.
+      Ora, anche di una cucina. Il <span class="shimmer-segreto">Segreto</span> · Cucina di Jan Paul Kana.
     </p>
 
     <p class="hero-meta">
@@ -1825,7 +2122,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
     </p>
   </div>
 
-  <div class="showreel-grid">
+  <div class="showreel-grid showreel-slider" id="showreel-slider">
 
     <!-- Dish 1: real tartare image -->
     <article class="dish-card reveal">
@@ -1844,37 +2141,29 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
       </div>
     </article>
 
-    <!-- Dish 2: placeholder (Primo) -->
+    <!-- Dish 2: Brasato di Marchigiana -->
     <article class="dish-card reveal">
-      <div class="dish-card-media placeholder">
-        <span class="dish-card-badge">Primo</span>
-        <div class="placeholder-inner">
-          <div class="placeholder-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/></svg>
-          </div>
-          <span class="placeholder-label">Foto in arrivo</span>
-        </div>
+      <div class="dish-card-media">
+        <span class="dish-card-badge">Specialità</span>
+        <img src="dish-marchigiana.jpg" alt="Brasato di Marchigiana — Il Segreto, Villa Luzi" loading="lazy" />
+        <div class="photo-frame"></div>
       </div>
       <div class="dish-card-content">
         <div class="dish-card-eyebrow">Signature</div>
-        <h3 class="dish-card-name">Tortelloni <em>di melanzane</em></h3>
+        <h3 class="dish-card-name">Brasato <em>di Marchigiana</em></h3>
         <p class="dish-card-desc">
-          Scamorza affumicata, datterino emulsionato,
-          croccante di parmigiano.
+          Cipolla rossa stufata, rosmarino del giardino,
+          fondo bruno alle erbe.
         </p>
       </div>
     </article>
 
-    <!-- Dish 3: placeholder (Secondo) -->
+    <!-- Dish 3: Carré di agnello al carbone -->
     <article class="dish-card reveal">
-      <div class="dish-card-media placeholder">
+      <div class="dish-card-media">
         <span class="dish-card-badge">Secondo</span>
-        <div class="placeholder-inner">
-          <div class="placeholder-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/></svg>
-          </div>
-          <span class="placeholder-label">Foto in arrivo</span>
-        </div>
+        <img src="dish-carre.jpg" alt="Carré di agnello al carbone — Il Segreto, Villa Luzi" loading="lazy" />
+        <div class="photo-frame"></div>
       </div>
       <div class="dish-card-content">
         <div class="dish-card-eyebrow">Signature</div>
@@ -1887,6 +2176,8 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
     </article>
 
   </div>
+
+  <div class="showreel-dots" id="showreel-dots" aria-hidden="true"></div>
 </section>
 
 <!-- MENU -->
@@ -2187,7 +2478,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
         <span class="booking-step-label">L'Ora</span>
       </div>
       <div>
-        <p class="time-group-label">Pranzo</p>
+        <p class="time-group-label" id="lunch-label">Pranzo</p>
         <div class="time-pills" id="time-lunch">
           <button type="button" class="time-pill" data-time="12:30">12:30</button>
           <button type="button" class="time-pill" data-time="13:00">13:00</button>
@@ -2245,7 +2536,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
 </section>
 
 <!-- INFO -->
-<section class="info" id="info">
+<section class="info">
   <div class="container">
     <div class="info-header reveal">
       <div class="section-eyebrow" style="justify-content: center;">
@@ -2264,8 +2555,8 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
       </div>
       <div class="info-cell reveal">
         <div class="label">Apertura</div>
-        <h4>Pranzo e Cena</h4>
-        <p>Pranzo: 12:30 — 14:30<br/>Cena: 19:30 — 22:30<br/>Solo su prenotazione.</p>
+        <h4>Da giovedì a domenica</h4>
+        <p>Giovedì, venerdì e sabato: solo cena.<br/>Domenica: pranzo e cena.<br/>Pranzo 12:30 — 14:30 · Cena 19:30 — 22:30.<br/>Solo su prenotazione.</p>
       </div>
       <div class="info-cell reveal">
         <div class="label">Prenotazioni</div>
@@ -2314,7 +2605,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
   <div class="footer-contact">
     Contrada Chiaravalle 49 · 62010 Treia (MC)<br/>
     <a href="tel:+393452419263">+39 345 241 9263</a> ·
-    <a href="mailto:info@villaluzi.it">info@villaluzi.it</a>
+    <a href="mailto:villaluzi1737@gmail.com">villaluzi1737@gmail.com</a>
     <br/>
     <a href="https://www.instagram.com/villaluzi1737/" target="_blank" rel="noopener" class="footer-ig">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -2368,14 +2659,18 @@ menuCategories.forEach(c => catObserver.observe(c));
 
 // ─── BOOKING WIDGET ───
 const phoneNumber = '393452419263';
-const emailAddress = 'info@villaluzi.it';
+const emailAddress = 'villaluzi1737@gmail.com';
 const DAYS_AHEAD = 45;
 // Data di apertura prenotazioni: 1 giugno 2026.
 // Finché non arriva quel giorno, il calendario parte da lì; dopo, parte da oggi.
 const MIN_DATE = new Date(2026, 5, 1); // mese 5 = giugno (0-indexed)
 // Closed weekdays (0 = Sunday, 1 = Monday, ... 6 = Saturday). Empty = always open.
 // Esempio: per chiudere lunedì e martedì → CLOSED_WEEKDAYS = [1, 2]
-const CLOSED_WEEKDAYS = [];
+// Aperti: giovedì (4), venerdì (5), sabato (6), domenica (0)
+// Chiusi: lunedì (1), martedì (2), mercoledì (3)
+const CLOSED_WEEKDAYS = [1, 2, 3];
+// Giorni in cui c'è il pranzo (oltre alla cena). Tutti gli altri = solo cena.
+const LUNCH_DAYS = [0]; // solo domenica
 const GROUP_THRESHOLD = 12; // dalle 12 persone in su, prenotazione = evento privato
 
 const MONTHS_IT = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
@@ -2428,6 +2723,24 @@ function selectDate(btn, dObj, iso) {
   btn.classList.add('selected');
   booking.date = iso;
   booking.dateObj = dObj;
+
+  // Pranzo solo nei giorni di LUNCH_DAYS (domenica); per gli altri giorni nasconde il gruppo
+  const lunchLabel = document.getElementById('lunch-label');
+  const lunchGroup = document.getElementById('time-lunch');
+  const hasLunch = LUNCH_DAYS.includes(dObj.getDay());
+  if (lunchLabel && lunchGroup) {
+    lunchLabel.style.display = hasLunch ? '' : 'none';
+    lunchGroup.style.display = hasLunch ? '' : 'none';
+    // Se l'utente aveva già selezionato un orario di pranzo, lo deseleziona
+    if (!hasLunch && booking.time) {
+      const lunchTimes = ['12:30','13:00','13:30','14:00'];
+      if (lunchTimes.includes(booking.time)) {
+        booking.time = null;
+        document.querySelectorAll('#time-lunch .time-pill').forEach(p => p.classList.remove('selected'));
+      }
+    }
+  }
+
   updateSummary();
 }
 
@@ -2534,144 +2847,456 @@ function updateSummary() {
 renderPeople();
 </script>
 
-<!-- ─── Meta Pixel · Eventi standard custom ─── -->
 <script>
-(function() {
-  // Se fbq non c'è (adblock o errore di caricamento) usciamo silenziosamente.
-  function px() {
-    if (typeof window.fbq !== 'function') return;
-    try { window.fbq.apply(null, arguments); } catch (e) {}
+/* ═══════════════════════════════════════════════════════════
+   SHOWREEL · SLIDER 3D ORIZZONTALE (mobile)
+   - Scroll-snap + active card detection via scroll position
+   - Dot indicator interattivo
+   - Su desktop (>980px) il sistema è inattivo: grid 3 colonne
+   ═══════════════════════════════════════════════════════════ */
+(function(){
+  const slider = document.getElementById('showreel-slider');
+  const dotsWrap = document.getElementById('showreel-dots');
+  if (!slider || !dotsWrap) return;
+
+  const cards = Array.from(slider.querySelectorAll('.dish-card'));
+  if (cards.length === 0) return;
+
+  const dots = cards.map((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'showreel-dot';
+    d.type = 'button';
+    d.dataset.i = i;
+    d.setAttribute('aria-label', 'Vai al piatto ' + (i + 1));
+    dotsWrap.appendChild(d);
+    return d;
+  });
+
+  const mq = window.matchMedia('(max-width: 980px)');
+  let activeIdx = -1;
+  let rafScroll = null;
+
+  function setActive(idx, animateScroll) {
+    if (idx === activeIdx) return;
+    activeIdx = idx;
+    cards.forEach((c, i) => {
+      c.classList.toggle('is-active', i === idx);
+      c.classList.toggle('is-prev', i < idx);
+      c.classList.toggle('is-next', i > idx);
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
   }
 
-  // Anti-duplicati: ogni evento passivo (scroll-based / prima interazione)
-  // viene fired una sola volta per sessione.
-  var fired = {
-    viewContentMenu: false,
-    findLocation: false,
-    initiateCheckout: false
-  };
+  function findCenteredCard() {
+    const sRect = slider.getBoundingClientRect();
+    const center = sRect.left + sRect.width / 2;
+    let bestIdx = 0;
+    let bestDist = Infinity;
+    for (let i = 0; i < cards.length; i++) {
+      const r = cards[i].getBoundingClientRect();
+      const cc = r.left + r.width / 2;
+      const d = Math.abs(cc - center);
+      if (d < bestDist) { bestDist = d; bestIdx = i; }
+    }
+    return bestIdx;
+  }
 
-  // ─── ViewContent: l'utente sta guardando il menu ───
-  var menuEl = document.getElementById('menu');
-  if (menuEl && 'IntersectionObserver' in window) {
-    var menuObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting && !fired.viewContentMenu) {
-          fired.viewContentMenu = true;
-          px('track', 'ViewContent', {
-            content_name: 'Menu',
-            content_category: 'menu',
-            content_type: 'product_group'
-          });
-          menuObs.disconnect();
+  function onScroll() {
+    if (rafScroll) return;
+    rafScroll = requestAnimationFrame(() => {
+      rafScroll = null;
+      setActive(findCenteredCard());
+    });
+  }
+
+  function activateSlider() {
+    slider.addEventListener('scroll', onScroll, { passive: true });
+    setActive(0);
+    // Initial centering — wait one frame for layout
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const first = cards[0];
+        if (!first) return;
+        const sRect = slider.getBoundingClientRect();
+        const cRect = first.getBoundingClientRect();
+        slider.scrollLeft += cRect.left - sRect.left - (sRect.width - cRect.width) / 2;
+        setActive(findCenteredCard());
+      });
+    });
+  }
+
+  function deactivateSlider() {
+    slider.removeEventListener('scroll', onScroll);
+    activeIdx = -1;
+    cards.forEach(c => c.classList.remove('is-active', 'is-prev', 'is-next'));
+    dots.forEach(d => d.classList.remove('active'));
+  }
+
+  // Dot click → smooth scroll to that card
+  dots.forEach((d, i) => {
+    d.addEventListener('click', () => {
+      const card = cards[i];
+      const sRect = slider.getBoundingClientRect();
+      const cRect = card.getBoundingClientRect();
+      const target = slider.scrollLeft + cRect.left - sRect.left - (sRect.width - cRect.width) / 2;
+      slider.scrollTo({ left: target, behavior: 'smooth' });
+    });
+  });
+
+  // Tap-to-center on side cards (mobile feels better with this)
+  cards.forEach((c, i) => {
+    c.addEventListener('click', (e) => {
+      if (!mq.matches) return;
+      if (c.classList.contains('is-active')) return;
+      e.preventDefault();
+      const sRect = slider.getBoundingClientRect();
+      const cRect = c.getBoundingClientRect();
+      const target = slider.scrollLeft + cRect.left - sRect.left - (sRect.width - cRect.width) / 2;
+      slider.scrollTo({ left: target, behavior: 'smooth' });
+    });
+  });
+
+  function syncToViewport() {
+    if (mq.matches) activateSlider();
+    else deactivateSlider();
+  }
+  syncToViewport();
+  mq.addEventListener ? mq.addEventListener('change', syncToViewport) : mq.addListener(syncToViewport);
+})();
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   IL SEGRETO · REVEAL CONTROLLER
+   - Splash on-load (1x per sessione) — sigillo che si rompe da solo
+   - Torcia e pulviscolo sull'hero, reattivi al cursore
+   - Su mobile la torcia orbita lenta come una farfalla notturna
+   - Magnetismo discreto sul CTA "Prenota un tavolo"
+   - Rispetta prefers-reduced-motion e si auto-pausa fuori viewport
+   ═══════════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouch = window.matchMedia('(hover: none)').matches;
+  const SEAL_KEY = 'segreto-seal-broken-v1';
+
+  const splash = document.getElementById('splash');
+  const splashLogo = document.getElementById('splash-logo');
+  const splashCanvas = document.getElementById('splash-canvas');
+  const hero = document.querySelector('.hero');
+  const heroVeil = document.getElementById('hero-veil');
+  const heroTorch = document.getElementById('hero-torch');
+  const heroCanvas = document.getElementById('hero-canvas');
+
+  const alreadyBroken = (() => {
+    try { return sessionStorage.getItem(SEAL_KEY) === '1'; } catch(e) { return false; }
+  })();
+
+  if (reduceMotion || alreadyBroken) {
+    if (splash) { splash.style.display = 'none'; }
+    document.body.classList.remove('splashing');
+    if (!reduceMotion) initHeroEffects(true);
+    return;
+  }
+
+  document.body.classList.add('splashing');
+  runSplashSequence();
+
+  function runSplashSequence(){
+    const ctx = splashCanvas.getContext('2d');
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    let W = 0, H = 0;
+    const resize = () => {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      splashCanvas.width = W * DPR;
+      splashCanvas.height = H * DPR;
+      splashCanvas.style.width = W + 'px';
+      splashCanvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    let shards = [];
+    let shardLoopActive = false;
+
+    function explode(){
+      const cx = W / 2;
+      const cy = H / 2;
+      for (let i = 0; i < 72; i++) {
+        const angle = (i / 72) * Math.PI * 2 + (Math.random() - 0.5) * 0.5;
+        const speed = 3 + Math.random() * 7;
+        shards.push({
+          x: cx + (Math.random() - 0.5) * 40,
+          y: cy + (Math.random() - 0.5) * 40,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 0.6,
+          rot: Math.random() * Math.PI,
+          vrot: (Math.random() - 0.5) * 0.28,
+          len: 5 + Math.random() * 18,
+          life: 1.0,
+          decay: 0.005 + Math.random() * 0.011,
+          warm: Math.random() > 0.35
+        });
+      }
+      if (!shardLoopActive) {
+        shardLoopActive = true;
+        requestAnimationFrame(animateShards);
+      }
+    }
+
+    function animateShards(){
+      ctx.clearRect(0, 0, W, H);
+      for (let i = shards.length - 1; i >= 0; i--) {
+        const s = shards[i];
+        s.x += s.vx;
+        s.y += s.vy;
+        s.vy += 0.07;
+        s.vx *= 0.992;
+        s.rot += s.vrot;
+        s.life -= s.decay;
+        if (s.life <= 0) { shards.splice(i, 1); continue; }
+
+        ctx.save();
+        ctx.translate(s.x, s.y);
+        ctx.rotate(s.rot);
+        const stroke = s.warm
+          ? 'rgba(255,220,150,' + s.life + ')'
+          : 'rgba(201,168,106,' + s.life + ')';
+        ctx.strokeStyle = stroke;
+        ctx.lineWidth = 1.4;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(-s.len/2, 0);
+        ctx.lineTo(s.len/2, 0);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(255,230,170,' + (s.life * 0.75) + ')';
+        ctx.arc(0, 0, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+      if (shards.length > 0) {
+        requestAnimationFrame(animateShards);
+      } else {
+        shardLoopActive = false;
+        ctx.clearRect(0, 0, W, H);
+      }
+    }
+
+    // Timeline:
+    //   0    – 2400 ms : breathing animation (CSS)
+    //   2400 ms        : shatter + particle burst
+    //   3050 ms        : dissolve overlay
+    //   3950 ms        : remove splash, init hero effects
+    setTimeout(() => {
+      splashLogo.classList.add('shatter');
+      explode();
+    }, 2400);
+
+    setTimeout(() => {
+      splash.classList.add('dismissed');
+      document.body.classList.remove('splashing');
+      // Pre-init hero effects so they're ready when veil fades in
+      initHeroEffects(false);
+    }, 3050);
+
+    setTimeout(() => {
+      splash.classList.add('gone');
+      try { sessionStorage.setItem(SEAL_KEY, '1'); } catch(e) {}
+    }, 3950);
+  }
+
+  function initHeroEffects(immediate){
+    if (!hero || !heroCanvas || reduceMotion) return;
+
+    const ctx = heroCanvas.getContext('2d');
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    let W = 0, H = 0;
+    let mouseX = 0.5, mouseY = 0.42;
+    let smoothX = 0.5, smoothY = 0.42;
+    let hasMoved = false;
+    let active = true;
+    let particles = [];
+    let lastFrame = performance.now();
+    let autoT = Math.random() * Math.PI * 2;
+
+    function resize(){
+      const r = hero.getBoundingClientRect();
+      W = r.width;
+      H = r.height;
+      heroCanvas.width = W * DPR;
+      heroCanvas.height = H * DPR;
+      heroCanvas.style.width = W + 'px';
+      heroCanvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(hero);
+
+    function makeParticles(){
+      particles = [];
+      const count = Math.min(54, Math.max(28, Math.floor(W / 26)));
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: 0.5 + Math.random() * 1.6,
+          vx: (Math.random() - 0.5) * 0.12,
+          vy: -0.04 - Math.random() * 0.18,
+          a: 0.12 + Math.random() * 0.4,
+          tw: Math.random() * Math.PI * 2,
+          tws: 0.02 + Math.random() * 0.04
+        });
+      }
+    }
+    makeParticles();
+
+    // Reveal veil and torch
+    const revealDelay = immediate ? 0 : 200;
+    setTimeout(() => {
+      hero.classList.add('veil-on');
+      hero.classList.add('torch-on');
+    }, revealDelay);
+
+    if (!isTouch) {
+      window.addEventListener('mousemove', (e) => {
+        const r = hero.getBoundingClientRect();
+        const nx = (e.clientX - r.left) / r.width;
+        const ny = (e.clientY - r.top) / r.height;
+        if (nx >= -0.1 && nx <= 1.1 && ny >= -0.1 && ny <= 1.1) {
+          mouseX = Math.max(0, Math.min(1, nx));
+          mouseY = Math.max(0, Math.min(1, ny));
+          hasMoved = true;
         }
-      });
-    }, { threshold: 0.4 });
-    menuObs.observe(menuEl);
-  }
+      }, { passive: true });
+    }
+    hero.addEventListener('touchmove', (e) => {
+      const t = e.touches[0]; if (!t) return;
+      const r = hero.getBoundingClientRect();
+      mouseX = Math.max(0, Math.min(1, (t.clientX - r.left) / r.width));
+      mouseY = Math.max(0, Math.min(1, (t.clientY - r.top) / r.height));
+      hasMoved = true;
+    }, { passive: true });
 
-  // ─── FindLocation: l'utente vede la sezione "Per trovarci" ───
-  var infoEl = document.getElementById('info');
-  if (infoEl && 'IntersectionObserver' in window) {
-    var infoObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting && !fired.findLocation) {
-          fired.findLocation = true;
-          px('track', 'FindLocation', {
-            content_name: 'Villa Luzi · Treia',
-            city: 'Treia',
-            region: 'MC',
-            country: 'IT'
-          });
-          infoObs.disconnect();
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        const was = active;
+        active = entries[0].isIntersecting;
+        if (active && !was) {
+          lastFrame = performance.now();
+          requestAnimationFrame(loop);
         }
-      });
-    }, { threshold: 0.35 });
-    infoObs.observe(infoEl);
+      }, { threshold: 0 });
+      io.observe(hero);
+    }
+
+    function loop(now){
+      if (!active) return;
+      const dt = Math.min(33, now - lastFrame) / 16.67;
+      lastFrame = now;
+
+      // Autonomous orbit when user hasn't engaged (mobile or idle desktop)
+      if (!hasMoved || isTouch) {
+        autoT += 0.0035 * dt;
+        const tx = 0.5 + Math.cos(autoT) * 0.30;
+        const ty = 0.44 + Math.sin(autoT * 0.7) * 0.18;
+        mouseX += (tx - mouseX) * 0.02 * dt;
+        mouseY += (ty - mouseY) * 0.02 * dt;
+      }
+
+      smoothX += (mouseX - smoothX) * 0.10 * dt;
+      smoothY += (mouseY - smoothY) * 0.10 * dt;
+
+      const tx = smoothX * W;
+      const ty = smoothY * H;
+      heroVeil.style.setProperty('--torch-x', (smoothX * 100).toFixed(2) + '%');
+      heroVeil.style.setProperty('--torch-y', (smoothY * 100).toFixed(2) + '%');
+
+      const flicker = 0.88 + Math.sin(now * 0.008) * 0.06 + Math.sin(now * 0.0173) * 0.04;
+      heroTorch.style.transform = 'translate(' + tx + 'px, ' + ty + 'px) translate(-50%, -50%) scale(' + flicker.toFixed(3) + ')';
+
+      ctx.clearRect(0, 0, W, H);
+      const LIGHT_R2 = 48000;
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx * dt;
+        p.y += p.vy * dt;
+        p.tw += p.tws * dt;
+
+        if (p.y < -12) { p.y = H + 12; p.x = Math.random() * W; }
+        if (p.x < -12) p.x = W + 12;
+        if (p.x > W + 12) p.x = -12;
+
+        const dx = p.x - tx;
+        const dy = p.y - ty;
+        const d2 = dx*dx + dy*dy;
+        const inLight = d2 < LIGHT_R2;
+        const boost = inLight ? (1 - d2 / LIGHT_R2) : 0;
+
+        if (inLight) {
+          const inv = 1 / (Math.sqrt(d2) + 1);
+          p.vx += (-dx * inv) * 0.009 * dt;
+          p.vy += (-dy * inv) * 0.009 * dt;
+        }
+        const drag = Math.pow(0.985, dt);
+        p.vx *= drag;
+        p.vy = p.vy * drag - 0.002 * dt;
+
+        const alpha = (p.a + Math.sin(p.tw) * 0.1) * (0.32 + boost * 1.4);
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(255,220,150,' + Math.min(1, alpha).toFixed(3) + ')';
+        ctx.arc(p.x, p.y, p.r + boost * 1.1, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+
+    initMagneticCTA();
   }
 
-  // ─── InitiateCheckout: prima interazione col booking widget ───
-  function triggerInitiateCheckout() {
-    if (fired.initiateCheckout) return;
-    fired.initiateCheckout = true;
-    px('track', 'InitiateCheckout', {
-      content_name: 'Prenotazione tavolo',
-      content_category: 'restaurant_booking'
-    });
+  function initMagneticCTA(){
+    if (isTouch || reduceMotion) return;
+    const cta = document.querySelector('.hero-cta:not(.hero-cta-ghost)');
+    if (!cta) return;
+
+    const RANGE = 110;
+    const PULL = 0.24;
+    let raf = null;
+    let lastE = null;
+
+    function tick(){
+      raf = null;
+      if (!lastE) return;
+      const r = cta.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      const dx = lastE.clientX - cx;
+      const dy = lastE.clientY - cy;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const reach = RANGE + Math.max(r.width, r.height) / 2;
+
+      if (dist < reach) {
+        const factor = 1 - dist / reach;
+        cta.style.transform = 'translate(' + (dx * PULL * factor).toFixed(2) + 'px,' + (dy * PULL * factor).toFixed(2) + 'px)';
+        cta.classList.add('magnetic-near');
+        cta.style.setProperty('--mag-x', (((lastE.clientX - r.left) / r.width) * 100).toFixed(1) + '%');
+        cta.style.setProperty('--mag-y', (((lastE.clientY - r.top) / r.height) * 100).toFixed(1) + '%');
+      } else if (cta.classList.contains('magnetic-near')) {
+        cta.style.transform = '';
+        cta.classList.remove('magnetic-near');
+      }
+    }
+    window.addEventListener('mousemove', (e) => {
+      lastE = e;
+      if (raf === null) raf = requestAnimationFrame(tick);
+    }, { passive: true });
   }
-  document.querySelectorAll('.date-pill:not(.closed)').forEach(function(el) {
-    el.addEventListener('click', triggerInitiateCheckout, { once: false });
-  });
-  document.querySelectorAll('.time-pill').forEach(function(el) {
-    el.addEventListener('click', triggerInitiateCheckout, { once: false });
-  });
-  var pMinus = document.getElementById('people-minus');
-  var pPlus = document.getElementById('people-plus');
-  if (pMinus) pMinus.addEventListener('click', triggerInitiateCheckout);
-  if (pPlus) pPlus.addEventListener('click', triggerInitiateCheckout);
-
-  // ─── Schedule + Lead: l'utente conferma la prenotazione su WhatsApp ───
-  var submitEl = document.getElementById('booking-submit');
-  if (submitEl) {
-    submitEl.addEventListener('click', function(e) {
-      // Se il pulsante non è ready (aria-disabled) ignoriamo
-      if (submitEl.getAttribute('aria-disabled') === 'true') return;
-      // Stima LTV: ~€55 per coperto su menu €€€ (valore custom, modificabile)
-      var peopleCount = (typeof booking !== 'undefined' && booking.people) ? booking.people : 2;
-      var isPrivateEvent = peopleCount >= (typeof GROUP_THRESHOLD !== 'undefined' ? GROUP_THRESHOLD : 12);
-      var estimatedValue = isPrivateEvent ? 0 : peopleCount * 55;
-
-      px('track', 'Schedule', {
-        content_name: isPrivateEvent ? 'Richiesta evento privato' : 'Prenotazione tavolo',
-        content_category: 'restaurant_booking',
-        num_items: peopleCount,
-        currency: 'EUR',
-        predicted_ltv: estimatedValue,
-        booking_channel: 'whatsapp',
-        booking_date: (typeof booking !== 'undefined' && booking.date) ? booking.date : null,
-        booking_time: (typeof booking !== 'undefined' && booking.time) ? booking.time : null
-      });
-
-      px('track', 'Lead', {
-        content_name: isPrivateEvent ? 'Lead evento privato' : 'Lead prenotazione',
-        content_category: 'restaurant_booking',
-        value: estimatedValue,
-        currency: 'EUR',
-        lead_channel: 'whatsapp'
-      });
-    });
-  }
-
-  // ─── Lead: l'utente usa l'email fallback ───
-  var emailFallbackEl = document.getElementById('booking-email');
-  if (emailFallbackEl) {
-    emailFallbackEl.addEventListener('click', function() {
-      if (!emailFallbackEl.getAttribute('href') || emailFallbackEl.getAttribute('href') === '#') return;
-      var peopleCount = (typeof booking !== 'undefined' && booking.people) ? booking.people : 2;
-      var isPrivateEvent = peopleCount >= (typeof GROUP_THRESHOLD !== 'undefined' ? GROUP_THRESHOLD : 12);
-      var estimatedValue = isPrivateEvent ? 0 : peopleCount * 55;
-
-      px('track', 'Lead', {
-        content_name: isPrivateEvent ? 'Lead evento privato' : 'Lead prenotazione',
-        content_category: 'restaurant_booking',
-        value: estimatedValue,
-        currency: 'EUR',
-        lead_channel: 'email'
-      });
-    });
-  }
-
-  // ─── Contact: click su tel: o mailto: diretti (fuori dal booking widget) ───
-  // Escludiamo l'email fallback del booking (già tracciata come Lead).
-  document.querySelectorAll('a[href^="tel:"], a[href^="mailto:"]').forEach(function(a) {
-    if (a.id === 'booking-email') return;
-    a.addEventListener('click', function() {
-      var method = a.getAttribute('href').indexOf('tel:') === 0 ? 'phone' : 'email';
-      px('track', 'Contact', {
-        contact_method: method
-      });
-    });
-  });
 })();
 </script>
 
