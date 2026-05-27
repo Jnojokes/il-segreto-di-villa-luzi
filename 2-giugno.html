@@ -825,7 +825,8 @@ gtag('config', 'GA4_ID');
     z-index: 1;
   }
 
-  .doblone {
+  /* Carta del pappagallo — medaglione oro con illustrazione */
+  .parrot {
     width: 78px; height: 78px;
     border-radius: 50%;
     background: radial-gradient(circle at 35% 30%, #f4d99a 0%, #d4a857 45%, #8a6730 100%);
@@ -836,20 +837,20 @@ gtag('config', 'GA4_ID');
       inset 0 3px 6px rgba(255,255,255,0.4);
     display: flex; align-items: center; justify-content: center;
   }
-  .doblone::before {
+  .parrot::before {
     content: "";
     position: absolute;
     inset: 6px;
     border-radius: 50%;
     border: 1px dashed rgba(60, 40, 12, 0.55);
   }
-  .doblone span {
-    font-family: 'Cormorant SC', serif;
-    font-weight: 600;
-    font-size: 20px;
-    color: #4a3514;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.35);
-    letter-spacing: 0.06em;
+  .parrot svg {
+    width: 56px;
+    height: 56px;
+    color: #4a2410;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 1px 0 rgba(255,255,255,0.3));
   }
 
   .empty-mark {
@@ -925,15 +926,6 @@ gtag('config', 'GA4_ID');
     background: rgba(212, 168, 87, 0.06);
   }
 
-  .replay-note {
-    text-align: center;
-    margin-top: 26px;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 15px;
-    color: var(--magnolia-soft);
-    opacity: 0.55;
-  }
 
   /* ==================== INFO PRATICHE ==================== */
   .practical {
@@ -1173,8 +1165,8 @@ gtag('config', 'GA4_ID');
     .face-front .corner.bottom { bottom: 14px; }
     .face-back { padding: 14px 8px; }
     .face-back .symbol { width: 56px; height: 56px; margin-bottom: 10px; }
-    .doblone, .empty-mark { width: 50px; height: 50px; }
-    .doblone span { font-size: 15px; }
+    .parrot, .empty-mark { width: 50px; height: 50px; }
+    .parrot svg { width: 36px; height: 36px; }
     .face-back .name { font-size: 17px; }
     .face-back .latin { font-size: 12px; letter-spacing: 0.04em; }
 
@@ -1366,7 +1358,7 @@ gtag('config', 'GA4_ID');
 
   <!-- GAME -->
   <section class="game" id="game">
-    <div class="game-prompt">Una scelta su quindici nasconde il doblone.</div>
+    <div class="game-prompt">Una scelta su quindici nasconde il pappagallo.</div>
     <div class="game-rule">Scegli. Una sola volta.</div>
 
     <div class="cards" id="cards" role="group" aria-label="Tre carte da scoprire">
@@ -1409,7 +1401,6 @@ gtag('config', 'GA4_ID');
       <div class="cta-helper">Risponde Villa Luzi · +39 345 241 9263</div>
     </div>
 
-    <div class="replay-note" id="replayNote" style="display:none;">Hai già scelto la tua carta. La sorte non concede repliche.</div>
   </section>
 
   <!-- INFO PRATICHE -->
@@ -1527,15 +1518,27 @@ gtag('config', 'GA4_ID');
   setInterval(tick, 1000);
 
   /* ============ GAME ============ */
-  const STORAGE_KEY = 'villaluzi_corsari_played_v3';
+  // Stato in-memory: ogni atterraggio sulla pagina = partita nuova.
+  // Lo stato si resetta a ogni page load — nessuna persistenza fra visite.
+  let hasPlayed = false;
+
   const WHATSAPP_NUMBER = '393452419263';
   const WIN_CODE = 'DRINK-OMAGGIO';
   const WIN_DENOMINATOR = 15;
 
   const WIN_FACE = `
-    <div class="symbol"><div class="doblone"><span>L·S</span></div></div>
-    <div class="name">Doblone d'oro</div>
-    <div class="latin">aurum invenisti</div>
+    <div class="symbol"><div class="parrot">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M38 14 C 30 14, 24 18, 24 26 C 24 30, 26 32, 30 32"/>
+        <path d="M38 18 Q 46 18 46 24 Q 46 28 40 28 L 36 24"/>
+        <circle cx="34" cy="20" r="1.4" fill="currentColor"/>
+        <path d="M30 32 Q 22 38 24 48 Q 26 54 34 54 L 42 54 Q 50 52 50 44 Q 50 36 42 32"/>
+        <path d="M34 36 Q 40 42 40 52"/>
+        <path d="M36 54 L 32 64 M 40 54 L 42 64 M 44 54 L 48 64"/>
+      </svg>
+    </div></div>
+    <div class="name">Il Pappagallo</div>
+    <div class="latin">psittacus invenisti</div>
   `;
 
   const LOSE_FACES = [
@@ -1558,19 +1561,6 @@ gtag('config', 'GA4_ID');
   const $codeBox = document.getElementById('codeBox');
   const $ctaWhatsapp = document.getElementById('ctaWhatsapp');
   const $ctaLabel = document.getElementById('ctaLabel');
-  const $replayNote = document.getElementById('replayNote');
-
-  function readSavedState() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return null;
-      return JSON.parse(raw);
-    } catch (e) { return null; }
-  }
-
-  function saveState(state) {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
-  }
 
   function fillCardFace(cardEl, isWinner, loseFaceIdx) {
     const back = cardEl.querySelector('.face-back');
@@ -1602,7 +1592,7 @@ gtag('config', 'GA4_ID');
   function buildWhatsappLink(won) {
     let text;
     if (won) {
-      text = `Buongiorno Villa Luzi, ho trovato il doblone fra le tre carte del Salotto. Codice ${WIN_CODE}. Vorrei prenotare per Il Salotto dei Corsari di domenica 2 giugno (€38 a persona, bevanda inclusa).\n\nNome:\nNumero persone:`;
+      text = `Buongiorno Villa Luzi, ho trovato il pappagallo fra le tre carte del Salotto. Codice ${WIN_CODE}. Vorrei prenotare per Il Salotto dei Corsari di domenica 2 giugno (€38 a persona, bevanda inclusa).\n\nNome:\nNumero persone:`;
     } else {
       text = `Buongiorno Villa Luzi, vorrei prenotare per Il Salotto dei Corsari di domenica 2 giugno (€38 a persona, bevanda inclusa).\n\nNome:\nNumero persone:`;
     }
@@ -1611,14 +1601,14 @@ gtag('config', 'GA4_ID');
 
   function showResult(won) {
     if (won) {
-      $resultTitle.innerHTML = `Hai trovato <em>il doblone</em>.`;
+      $resultTitle.innerHTML = `Hai trovato <em>il pappagallo</em>.`;
       $resultText.textContent = `Un drink in omaggio ti aspetta all'arrivo del 2 giugno. Conferma il tuo posto su WhatsApp con il codice qui sotto, e ci vediamo all'ora di pranzo.`;
       $codeBox.textContent = WIN_CODE;
       $codeBox.style.display = 'inline-block';
       $ctaLabel.textContent = 'Riscatta su WhatsApp';
     } else {
       $resultTitle.innerHTML = `La carta era un'altra.`;
-      $resultText.textContent = `Il doblone è rimasto nascosto, ma il salotto è aperto a tutti. Prenota il tuo posto per il 2 giugno su WhatsApp — €38 a persona, bevanda inclusa.`;
+      $resultText.textContent = `Il pappagallo è rimasto nascosto, ma il salotto è aperto a tutti. Prenota il tuo posto per il 2 giugno su WhatsApp — €38 a persona, bevanda inclusa.`;
       $codeBox.style.display = 'none';
       $ctaLabel.textContent = 'Prenota su WhatsApp';
     }
@@ -1627,15 +1617,14 @@ gtag('config', 'GA4_ID');
   }
 
   function onCardClick(e) {
+    if (hasPlayed) return;
     const card = e.currentTarget;
     const idx = parseInt(card.dataset.index, 10);
     if (isNaN(idx)) return;
-    const saved = readSavedState();
-    if (saved) return;
+    hasPlayed = true;
 
     const won = (Math.floor(Math.random() * WIN_DENOMINATOR) === 0);
     const loseFaceIdx = Math.floor(Math.random() * LOSE_FACES.length);
-    saveState({ played: true, selected: idx, won: won, loseFaceIdx: loseFaceIdx, at: new Date().toISOString() });
 
     revealSelected(idx, won, loseFaceIdx);
     setTimeout(() => showResult(won), 500);
@@ -1647,14 +1636,6 @@ gtag('config', 'GA4_ID');
   }
 
   function initGame() {
-    const saved = readSavedState();
-    if (saved && saved.played) {
-      const loseFaceIdx = (typeof saved.loseFaceIdx === 'number') ? saved.loseFaceIdx : 0;
-      revealSelected(saved.selected, !!saved.won, loseFaceIdx);
-      showResult(!!saved.won);
-      $replayNote.style.display = 'block';
-      return;
-    }
     $cards.forEach(card => {
       card.addEventListener('click', onCardClick);
       card.addEventListener('keydown', (e) => {
