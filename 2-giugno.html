@@ -119,25 +119,29 @@ gtag('config', 'GA4_ID');
     position: sticky;
     top: 0;
     z-index: 50;
-    background: linear-gradient(90deg, var(--bordeaux-deep) 0%, var(--bordeaux) 50%, var(--bordeaux-deep) 100%);
+    background:
+      linear-gradient(180deg, rgba(20, 52, 56, 0.96) 0%, rgba(10, 26, 28, 0.98) 100%);
     color: var(--magnolia);
     text-align: center;
-    padding: 10px 14px;
+    padding: 11px 14px;
     font-family: 'Cormorant SC', serif;
     font-size: 11px;
-    letter-spacing: 0.22em;
-    border-bottom: 1px solid rgba(212, 168, 87, 0.35);
+    letter-spacing: 0.26em;
+    border-bottom: 1px solid rgba(212, 168, 87, 0.30);
     box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
-  .urgency-bar strong { color: var(--oro); font-weight: 600; letter-spacing: 0.18em; }
+  .urgency-bar strong { color: var(--oro); font-weight: 600; letter-spacing: 0.22em; }
   .urgency-bar .pulse {
     display: inline-block;
-    width: 7px; height: 7px;
+    width: 6px; height: 6px;
     border-radius: 50%;
     background: var(--oro);
-    margin-right: 8px;
+    margin-right: 10px;
     vertical-align: 1px;
     animation: pulse 1.8s ease-in-out infinite;
+    box-shadow: 0 0 8px rgba(212, 168, 87, 0.7);
   }
   @keyframes pulse {
     0%, 100% { opacity: 0.4; transform: scale(0.9); }
@@ -146,13 +150,52 @@ gtag('config', 'GA4_ID');
 
   /* ==================== HERO ==================== */
   .hero {
-    padding: 36px 24px 24px;
+    padding: 52px 24px 28px;
     text-align: center;
     position: relative;
+    overflow: hidden;
+  }
+
+  /* drappo velluto suggerito — echeggia lo sfondo della locandina */
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(20, 52, 56, 0.55) 0%, rgba(20, 52, 56, 0.0) 70%),
+      radial-gradient(ellipse 50% 40% at 50% 85%, rgba(106, 31, 36, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  /* Ornamento tendina sopra la locandina */
+  .drape {
+    max-width: 720px;
+    margin: 0 auto 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    opacity: 0.65;
+  }
+  .drape .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--oro), transparent);
+    max-width: 220px;
+  }
+  .drape .crest {
+    font-family: 'Cormorant SC', serif;
+    font-size: 10px;
+    letter-spacing: 0.38em;
+    color: var(--oro);
+    white-space: nowrap;
   }
 
   .hero-frame {
-    max-width: 540px;
+    max-width: 620px;
     margin: 0 auto;
     position: relative;
   }
@@ -160,55 +203,93 @@ gtag('config', 'GA4_ID');
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 4px;
+    border-radius: 2px;
     box-shadow:
-      0 0 0 1px rgba(212, 168, 87, 0.2),
-      0 0 0 6px rgba(16, 10, 8, 0.4),
-      0 0 0 7px rgba(212, 168, 87, 0.15),
-      0 40px 80px rgba(0, 0, 0, 0.7),
-      0 20px 40px rgba(0, 0, 0, 0.5);
+      0 0 0 1px rgba(212, 168, 87, 0.35),
+      0 0 0 8px rgba(16, 10, 8, 0.55),
+      0 0 0 9px rgba(212, 168, 87, 0.22),
+      0 0 60px rgba(20, 52, 56, 0.55),
+      0 50px 100px rgba(0, 0, 0, 0.75),
+      0 24px 48px rgba(0, 0, 0, 0.55);
   }
 
-  .hero-meta {
-    margin-top: 32px;
-    font-family: 'Cormorant SC', 'Cormorant Garamond', serif;
-    font-weight: 500;
-    font-size: 13px;
-    letter-spacing: 0.28em;
+  /* Filetti d'oro che incorniciano l'immagine */
+  .hero-frame::before,
+  .hero-frame::after {
+    content: "";
+    position: absolute;
+    left: -32px; right: -32px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 168, 87, 0.5), transparent);
+    pointer-events: none;
+  }
+  .hero-frame::before { top: -22px; }
+  .hero-frame::after { bottom: -22px; }
+
+  .hero-caption {
+    margin-top: 36px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 15px;
+    color: var(--magnolia-soft);
+    opacity: 0.78;
+    letter-spacing: 0.02em;
+  }
+  .hero-caption .place {
+    font-family: 'Cormorant SC', serif;
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.32em;
     color: var(--oro);
+    display: block;
+    margin-top: 8px;
   }
-  .hero-meta .sep { color: var(--bordeaux); margin: 0 12px; opacity: 0.8; }
 
-  /* Countdown */
+  /* Countdown — sigillo barocco */
   .countdown {
-    margin: 28px auto 0;
+    margin: 36px auto 0;
     display: flex;
     justify-content: center;
-    gap: 14px;
-    max-width: 460px;
+    gap: 0;
+    max-width: 480px;
+    border: 1px solid rgba(212, 168, 87, 0.32);
+    border-radius: 3px;
+    background: linear-gradient(180deg, rgba(16, 10, 8, 0.55), rgba(20, 52, 56, 0.18));
+    box-shadow:
+      inset 0 1px 0 rgba(212, 168, 87, 0.15),
+      0 8px 24px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
   }
   .countdown .unit {
     flex: 1;
-    background: linear-gradient(180deg, rgba(212,168,87,0.08), rgba(212,168,87,0.02));
-    border: 1px solid rgba(212, 168, 87, 0.28);
-    border-radius: 4px;
-    padding: 14px 8px 10px;
+    padding: 16px 8px 13px;
     text-align: center;
+    position: relative;
+  }
+  .countdown .unit + .unit::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 18%; bottom: 18%;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(212, 168, 87, 0.35), transparent);
   }
   .countdown .num {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 500;
-    font-size: 28px;
+    font-size: 30px;
     color: var(--magnolia);
     line-height: 1;
     display: block;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.5);
   }
   .countdown .lbl {
-    margin-top: 6px;
+    margin-top: 8px;
     font-family: 'Cormorant SC', serif;
-    font-size: 10px;
+    font-size: 9px;
     color: var(--oro);
-    letter-spacing: 0.22em;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
   }
 
   /* Primary CTA */
@@ -288,34 +369,59 @@ gtag('config', 'GA4_ID');
   /* ==================== INCLUDES (value prop) ==================== */
   .includes {
     max-width: 880px;
-    margin: 36px auto 0;
+    margin: 44px auto 0;
     padding: 0 24px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
+    gap: 16px;
   }
   .include {
-    background: linear-gradient(180deg, rgba(20, 52, 56, 0.45), rgba(20, 52, 56, 0.18));
-    border: 1px solid rgba(212, 168, 87, 0.20);
-    border-radius: 6px;
-    padding: 22px 14px 18px;
+    position: relative;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(212, 168, 87, 0.08) 0%, transparent 70%),
+      linear-gradient(180deg, rgba(20, 52, 56, 0.38), rgba(20, 52, 56, 0.10));
+    border: 1px solid rgba(212, 168, 87, 0.22);
+    border-radius: 2px;
+    padding: 26px 14px 20px;
     text-align: center;
-    transition: border-color 0.3s ease, transform 0.3s ease;
+    transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
   }
-  .include:hover { border-color: rgba(212, 168, 87, 0.45); transform: translateY(-3px); }
+  .include::before,
+  .include::after {
+    content: "";
+    position: absolute;
+    width: 14px; height: 14px;
+    border: 1px solid var(--oro);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .include::before {
+    top: 6px; left: 6px;
+    border-right: none; border-bottom: none;
+  }
+  .include::after {
+    bottom: 6px; right: 6px;
+    border-left: none; border-top: none;
+  }
+  .include:hover {
+    border-color: rgba(212, 168, 87, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4);
+  }
   .include .icon {
-    width: 30px; height: 30px;
-    margin: 0 auto 10px;
+    width: 32px; height: 32px;
+    margin: 0 auto 12px;
     color: var(--oro);
-    opacity: 0.85;
+    opacity: 0.9;
   }
-  .include .icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.4; }
+  .include .icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
   .include .lbl {
     font-family: 'Cormorant SC', serif;
-    font-size: 11px;
-    letter-spacing: 0.2em;
+    font-size: 10px;
+    letter-spacing: 0.3em;
     color: var(--oro);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
   }
   .include .val {
     font-family: 'Cormorant Garamond', serif;
@@ -323,6 +429,7 @@ gtag('config', 'GA4_ID');
     color: var(--magnolia);
     font-weight: 400;
     line-height: 1.3;
+    letter-spacing: 0.01em;
   }
 
   /* Activity strip */
@@ -361,17 +468,29 @@ gtag('config', 'GA4_ID');
     text-align: center;
   }
 
-  /* ==================== ORNAMENT ==================== */
+  /* ==================== ORNAMENT (laurel-inspired) ==================== */
   .ornament {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 14px;
-    margin: 60px auto 12px;
-    opacity: 0.55;
+    gap: 18px;
+    margin: 64px auto 16px;
+    opacity: 0.7;
   }
-  .ornament .line { width: 70px; height: 1px; background: var(--oro); }
-  .ornament .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--oro); }
+  .ornament .line {
+    width: 90px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--oro), transparent);
+  }
+  .ornament .crest {
+    color: var(--oro);
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ornament .crest svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1; }
 
   /* ==================== GAME ==================== */
   section.game {
@@ -663,34 +782,55 @@ gtag('config', 'GA4_ID');
 
   /* ==================== PRE-FOOTER BANNER ==================== */
   .closing-banner {
-    margin-top: 70px;
+    margin-top: 80px;
     position: relative;
     background:
-      linear-gradient(180deg, rgba(16, 10, 8, 0.55) 0%, rgba(16, 10, 8, 0.78) 100%),
+      radial-gradient(ellipse at 50% 100%, rgba(106, 31, 36, 0.22) 0%, transparent 70%),
+      linear-gradient(180deg, rgba(16, 10, 8, 0.60) 0%, rgba(16, 10, 8, 0.82) 100%),
       url("./assets/editorial_web.jpg") center 25% / cover no-repeat;
-    padding: 80px 28px;
+    padding: 96px 28px;
     text-align: center;
     overflow: hidden;
-    border-top: 1px solid rgba(212, 168, 87, 0.15);
-    border-bottom: 1px solid rgba(212, 168, 87, 0.15);
+    border-top: 1px solid rgba(212, 168, 87, 0.22);
+    border-bottom: 1px solid rgba(212, 168, 87, 0.22);
   }
+  .closing-banner::before,
+  .closing-banner::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(560px, 80%);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 168, 87, 0.45), transparent);
+  }
+  .closing-banner::before { top: 28px; }
+  .closing-banner::after { bottom: 28px; }
   .closing-banner .inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+
+  .closing-banner .crest-mini {
+    color: var(--oro);
+    width: 28px; height: 28px;
+    margin: 0 auto 22px;
+    opacity: 0.85;
+  }
+  .closing-banner .crest-mini svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1; }
 
   .closing-banner h3 {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(26px, 4vw, 36px);
+    font-size: clamp(26px, 4vw, 38px);
     color: var(--magnolia);
     line-height: 1.3;
-    margin-bottom: 26px;
+    margin-bottom: 28px;
   }
   .closing-banner .where {
     font-family: 'Cormorant SC', serif;
     font-size: 12px;
     letter-spacing: 0.3em;
     color: var(--oro);
-    margin-bottom: 32px;
+    margin-bottom: 34px;
   }
   .closing-banner .where .sep { color: var(--bordeaux); margin: 0 10px; opacity: 0.85; }
 
@@ -758,17 +898,21 @@ gtag('config', 'GA4_ID');
 
   @media (max-width: 720px) {
     .sticky-cta { display: block; }
-    .urgency-bar { font-size: 10px; letter-spacing: 0.14em; padding: 9px 10px; }
+    .urgency-bar { font-size: 10px; letter-spacing: 0.18em; padding: 10px 10px; }
 
-    .hero { padding: 22px 18px 20px; }
+    .hero { padding: 30px 18px 22px; }
+    .drape { gap: 12px; margin-bottom: 20px; }
+    .drape .crest { font-size: 9px; letter-spacing: 0.28em; }
+    .drape .line { max-width: 60px; }
     .hero-frame { max-width: 100%; }
-    .hero-meta { font-size: 11px; letter-spacing: 0.2em; }
-    .hero-meta .sep { display: block; height: 0; visibility: hidden; margin: 4px 0; }
+    .hero-frame::before, .hero-frame::after { display: none; }
+    .hero-caption { font-size: 14px; margin-top: 26px; }
+    .hero-caption .place { font-size: 10px; letter-spacing: 0.26em; }
 
-    .countdown { gap: 8px; max-width: 100%; }
-    .countdown .unit { padding: 12px 4px 8px; }
-    .countdown .num { font-size: 22px; }
-    .countdown .lbl { font-size: 9px; letter-spacing: 0.16em; }
+    .countdown { max-width: 100%; margin-top: 28px; }
+    .countdown .unit { padding: 12px 4px 9px; }
+    .countdown .num { font-size: 23px; }
+    .countdown .lbl { font-size: 8px; letter-spacing: 0.24em; }
 
     .cta-whatsapp { padding: 16px 26px; font-size: 13px; letter-spacing: 0.14em; }
 
@@ -778,8 +922,13 @@ gtag('config', 'GA4_ID');
       gap: 10px;
       padding: 0 18px;
     }
-    .include { padding: 16px 10px 14px; }
+    .include { padding: 20px 10px 16px; }
+    .include::before, .include::after { width: 10px; height: 10px; }
     .include .val { font-size: 14px; }
+    .include .lbl { font-size: 9px; letter-spacing: 0.24em; }
+
+    .ornament { gap: 12px; margin: 50px auto 10px; }
+    .ornament .line { width: 60px; }
 
     .activities { font-size: 10px; letter-spacing: 0.20em; }
     .activities .dot { margin: 0 6px; }
@@ -832,36 +981,46 @@ gtag('config', 'GA4_ID');
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-frame">
-      <img src="./assets/locandina_web.jpg" alt="Il Salotto dei Corsari · Pic Nic in Villa · Villa Luzi dal 1737 · Domenica 2 giugno ore 13:00" loading="eager" fetchpriority="high">
-    </div>
-    <div class="hero-meta">
-      <span>Domenica 2 giugno</span><span class="sep">·</span><span>Ore 13:00</span><span class="sep">·</span><span>Treia, le Marche</span>
-    </div>
+    <div class="hero-inner">
+      <div class="drape">
+        <span class="line"></span>
+        <span class="crest">VILLA LUZI · MDCCXXXVII</span>
+        <span class="line"></span>
+      </div>
 
-    <!-- Countdown -->
-    <div class="countdown" id="countdown" aria-label="Countdown all'evento">
-      <div class="unit"><span class="num" id="cdDays">—</span><span class="lbl">Giorni</span></div>
-      <div class="unit"><span class="num" id="cdHours">—</span><span class="lbl">Ore</span></div>
-      <div class="unit"><span class="num" id="cdMin">—</span><span class="lbl">Minuti</span></div>
-      <div class="unit"><span class="num" id="cdSec">—</span><span class="lbl">Secondi</span></div>
-    </div>
+      <div class="hero-frame">
+        <img src="./assets/locandina_web.jpg" alt="Il Salotto dei Corsari · Pic Nic in Villa · Villa Luzi dal 1737 · Domenica 2 giugno ore 13:00" loading="eager" fetchpriority="high">
+      </div>
 
-    <div class="hero-cta-wrap">
-      <a class="cta-whatsapp" href="https://wa.me/393452419263?text=Buongiorno%20Villa%20Luzi%2C%20vorrei%20prenotare%20per%20Il%20Salotto%20dei%20Corsari%20del%202%20giugno.%0A%0ANome%3A%0ANumero%20persone%3A" target="_blank" rel="noopener" data-cta="hero">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067zm6.067-8.293c-.333-.16-1.973-.973-2.28-1.08-.307-.107-.533-.16-.747.16-.213.32-.853 1.08-1.04 1.293-.187.213-.387.24-.72.08-.333-.16-1.4-.52-2.667-1.653-.987-.88-1.653-1.973-1.853-2.307-.187-.32-.013-.493.147-.653.147-.147.32-.387.493-.573.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.747-1.8-1.027-2.467-.267-.64-.547-.547-.747-.56-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.253 3.44 5.467 4.827.76.32 1.36.52 1.827.667.76.24 1.453.213 2 .133.613-.093 1.973-.8 2.253-1.587.28-.787.28-1.467.187-1.587-.08-.133-.293-.213-.627-.373z"/></svg>
-        <span>Prenota su WhatsApp</span>
-      </a>
-      <div class="cta-helper">Risposta in giornata · Pagamento al ristorante</div>
+      <div class="hero-caption">
+        Una giornata fuori dal tempo, dal pranzo al tramonto.
+        <span class="place">Treia · le Marche</span>
+      </div>
+
+      <!-- Countdown -->
+      <div class="countdown" id="countdown" aria-label="Countdown all'evento">
+        <div class="unit"><span class="num" id="cdDays">—</span><span class="lbl">Giorni</span></div>
+        <div class="unit"><span class="num" id="cdHours">—</span><span class="lbl">Ore</span></div>
+        <div class="unit"><span class="num" id="cdMin">—</span><span class="lbl">Minuti</span></div>
+        <div class="unit"><span class="num" id="cdSec">—</span><span class="lbl">Secondi</span></div>
+      </div>
+
+      <div class="hero-cta-wrap">
+        <a class="cta-whatsapp" href="https://wa.me/393452419263?text=Buongiorno%20Villa%20Luzi%2C%20vorrei%20prenotare%20per%20Il%20Salotto%20dei%20Corsari%20del%202%20giugno.%0A%0ANome%3A%0ANumero%20persone%3A" target="_blank" rel="noopener" data-cta="hero">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067zm6.067-8.293c-.333-.16-1.973-.973-2.28-1.08-.307-.107-.533-.16-.747.16-.213.32-.853 1.08-1.04 1.293-.187.213-.387.24-.72.08-.333-.16-1.4-.52-2.667-1.653-.987-.88-1.653-1.973-1.853-2.307-.187-.32-.013-.493.147-.653.147-.147.32-.387.493-.573.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.747-1.8-1.027-2.467-.267-.64-.547-.547-.747-.56-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.253 3.44 5.467 4.827.76.32 1.36.52 1.827.667.76.24 1.453.213 2 .133.613-.093 1.973-.8 2.253-1.587.28-.787.28-1.467.187-1.587-.08-.133-.293-.213-.627-.373z"/></svg>
+          <span>Prenota su WhatsApp</span>
+        </a>
+        <div class="cta-helper">Risposta in giornata · Pagamento al ristorante</div>
+      </div>
     </div>
   </section>
 
   <!-- INTRO -->
   <section class="intro">
-    <div class="eyebrow">Pic Nic in Villa</div>
-    <div class="tagline">Eleganza, avventura e libertà.</div>
-    <p>Una dimora del 1737 che vive in due tempi. Domenica 2 giugno il giardino di Villa Luzi si apre per una giornata fuori dal tempo: pic nic in villa, sei tappe da scoprire fra fontana, laghetto, tempio e torre, e un segreto custodito da quasi tre secoli.</p>
-    <p>Si arriva all'ora di pranzo. Si resta fino al tramonto.</p>
+    <div class="eyebrow">Cosa vi aspetta</div>
+    <div class="tagline">Sei tappe nel giardino. Un segreto custodito dal 1737.</div>
+    <p>Il giardino di Villa Luzi si apre per una giornata fuori dal tempo. Fontana, laghetto, tempio e torre: sei tappe da scoprire fra le sue mura, con un cestino da pic nic, una bevanda di benvenuto e un'animazione settecentesca che vi accompagnerà fino al tramonto.</p>
+    <p>Si arriva all'ora di pranzo. Si resta finché la luce non cambia.</p>
   </section>
 
   <!-- INCLUDES -->
@@ -904,8 +1063,10 @@ gtag('config', 'GA4_ID');
     <div class="cta-helper">+39 345 241 9263 · risponde Villa Luzi</div>
   </div>
 
-  <div class="ornament">
-    <span class="line"></span><span class="dot"></span><span class="line"></span>
+  <div class="ornament" aria-hidden="true">
+    <span class="line"></span>
+    <span class="crest"><svg viewBox="0 0 24 24"><path d="M12 2 L14 8 L20 8 L15 12 L17 18 L12 14 L7 18 L9 12 L4 8 L10 8 Z"/></svg></span>
+    <span class="line"></span>
   </div>
 
   <!-- GAME -->
@@ -994,6 +1155,9 @@ gtag('config', 'GA4_ID');
   <!-- BANNER PRE-FOOTER -->
   <section class="closing-banner">
     <div class="inner">
+      <div class="crest-mini" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2 L14 8 L20 8 L15 12 L17 18 L12 14 L7 18 L9 12 L4 8 L10 8 Z"/></svg>
+      </div>
       <h3>Una giornata, due tempi. Il pranzo e il tramonto.</h3>
       <div class="where">
         <span>Villa Luzi</span><span class="sep">·</span><span>Treia, le Marche</span>
