@@ -79,6 +79,7 @@ gtag('config', 'GA4_ID');
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  html { scroll-behavior: smooth; }
   html, body {
     background: var(--notte);
     color: var(--magnolia);
@@ -1060,6 +1061,340 @@ gtag('config', 'GA4_ID');
     opacity: 0.75;
   }
 
+  /* ==================== BOOKING FORM ==================== */
+  .booking {
+    background: linear-gradient(180deg, var(--ottanio-cupo) 0%, var(--notte) 100%);
+    padding: 100px 28px 110px;
+    position: relative;
+    scroll-margin-top: 60px;
+  }
+  .booking::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--oro), transparent);
+    opacity: 0.6;
+  }
+  .booking-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 52px;
+  }
+  .booking-header .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .booking-header .section-eyebrow .line {
+    width: 36px;
+    height: 1px;
+    background: var(--oro);
+    opacity: 0.7;
+  }
+  .booking-header .section-eyebrow .eyebrow {
+    font-family: 'Cormorant SC', serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.30em;
+    color: var(--oro);
+    text-transform: uppercase;
+  }
+  .booking-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5.2vw, 58px);
+    line-height: 1.1;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    margin: 6px 0 18px;
+    color: var(--magnolia);
+  }
+  .booking-title em { font-style: italic; color: var(--oro); }
+  .booking-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(17px, 1.7vw, 20px);
+    color: var(--magnolia-soft);
+    line-height: 1.5;
+    opacity: 0.88;
+  }
+
+  .booking-form {
+    max-width: 880px;
+    margin: 0 auto;
+    background: rgba(240, 228, 206, 0.03);
+    backdrop-filter: blur(20px) saturate(1.1);
+    -webkit-backdrop-filter: blur(20px) saturate(1.1);
+    border: 1px solid rgba(212, 168, 87, 0.20);
+    border-radius: 6px;
+    padding: 44px;
+    box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.55);
+    position: relative;
+  }
+  .booking-form::before,
+  .booking-form::after {
+    content: "";
+    position: absolute;
+    width: 18px; height: 18px;
+    border: 1px solid var(--oro);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .booking-form::before { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+  .booking-form::after { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+  .booking-step { margin-bottom: 38px; }
+  .booking-step:last-of-type { margin-bottom: 28px; }
+
+  .booking-step-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .booking-step-num {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--oro-deep);
+    background: rgba(212, 168, 87, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--oro);
+  }
+  .booking-step-num svg { width: 18px; height: 18px; }
+  .booking-step-label {
+    font-family: 'Cormorant SC', serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--magnolia);
+  }
+
+  /* Experience pills */
+  .time-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .time-pill {
+    flex: 1 1 240px;
+    padding: 18px 22px;
+    background: rgba(240, 228, 206, 0.04);
+    border: 1px solid rgba(212, 168, 87, 0.20);
+    border-radius: 4px;
+    color: var(--magnolia);
+    font-family: 'Cormorant Garamond', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .time-pill .pill-title {
+    font-size: 21px;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.15;
+  }
+  .time-pill .pill-meta {
+    font-family: 'Cormorant SC', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--oro);
+    text-transform: uppercase;
+  }
+  .time-pill:hover {
+    background: rgba(240, 228, 206, 0.08);
+    border-color: rgba(212, 168, 87, 0.45);
+    transform: translateY(-1px);
+  }
+  .time-pill.selected {
+    background: var(--oro);
+    border-color: var(--oro);
+    color: var(--ottanio-cupo);
+    box-shadow: 0 10px 26px -8px rgba(212, 168, 87, 0.55);
+  }
+  .time-pill.selected .pill-meta { color: var(--ottanio-cupo); opacity: 0.85; }
+
+  /* People stepper */
+  .people-stepper {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(240, 228, 206, 0.04);
+    border: 1px solid rgba(212, 168, 87, 0.20);
+    border-radius: 100px;
+    padding: 6px;
+  }
+  .people-btn {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: var(--magnolia);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .people-btn:hover:not(:disabled) { background: rgba(240, 228, 206, 0.1); color: var(--oro); }
+  .people-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .people-count {
+    min-width: 110px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--magnolia);
+    padding: 0 14px;
+    line-height: 1.1;
+  }
+  .people-count em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--magnolia-soft);
+    display: block;
+    letter-spacing: 0.02em;
+    margin-top: 2px;
+    opacity: 0.75;
+  }
+  .group-notice {
+    margin-top: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--magnolia-soft);
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease, margin-top 0.3s ease;
+    line-height: 1.5;
+  }
+  .group-notice.visible {
+    opacity: 0.92;
+    max-height: 80px;
+    margin-top: 18px;
+  }
+  .group-notice .gold {
+    color: var(--oro);
+    font-style: normal;
+    font-family: 'Cormorant SC', serif;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  /* Submit */
+  .booking-submit-wrap {
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(212, 168, 87, 0.18);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .booking-summary {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--magnolia-soft);
+    text-align: center;
+    min-height: 26px;
+    transition: opacity 0.3s ease;
+    line-height: 1.55;
+  }
+  .booking-summary.empty { opacity: 0.5; }
+  .booking-summary .gold {
+    color: var(--oro);
+    font-style: normal;
+    font-family: 'Cormorant SC', serif;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    font-size: 15px;
+  }
+
+  .booking-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 38px;
+    background: var(--oro);
+    color: var(--ottanio-cupo);
+    text-decoration: none;
+    font-family: 'Cormorant SC', serif;
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 100px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    opacity: 0.4;
+    pointer-events: none;
+    box-shadow: 0 14px 30px rgba(0,0,0,0.4);
+  }
+  .booking-submit.ready { opacity: 1; pointer-events: auto; }
+  .booking-submit.ready:hover {
+    background: var(--magnolia);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+  .booking-submit svg { width: 20px; height: 20px; fill: #25D366; }
+
+  .booking-secondary {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--magnolia-soft);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .booking-secondary.visible { opacity: 0.75; pointer-events: auto; }
+  .booking-secondary a {
+    color: var(--oro);
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(212, 168, 87, 0.5);
+  }
+  .booking-secondary a:hover { color: var(--magnolia); }
+
+  .booking-fallback {
+    margin-top: 32px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(212, 168, 87, 0.10);
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--magnolia-soft);
+    opacity: 0.9;
+  }
+  .booking-fallback a {
+    color: var(--oro);
+    text-decoration: none;
+    margin-left: 6px;
+    font-style: normal;
+    font-family: 'Cormorant SC', serif;
+    font-weight: 500;
+    letter-spacing: 0.10em;
+    font-size: 14px;
+  }
+  .booking-fallback a:hover { color: var(--magnolia); }
+
   /* ==================== STICKY MOBILE CTA ==================== */
   .sticky-cta {
     position: fixed;
@@ -1186,6 +1521,27 @@ gtag('config', 'GA4_ID');
     .closing-banner { padding: 60px 22px; }
     .closing-banner .where { font-size: 12px; letter-spacing: 0.16em; }
 
+    .booking { padding: 64px 18px 76px; }
+    .booking-header { margin-bottom: 36px; }
+    .booking-form { padding: 28px 22px; }
+    .booking-form::before, .booking-form::after { width: 12px; height: 12px; }
+    .booking-step { margin-bottom: 30px; }
+    .booking-step-num { width: 32px; height: 32px; }
+    .booking-step-num svg { width: 15px; height: 15px; }
+    .booking-step-label { font-size: 12px; letter-spacing: 0.18em; }
+    .time-pills { gap: 8px; }
+    .time-pill { padding: 14px 18px; flex-basis: 100%; }
+    .time-pill .pill-title { font-size: 18px; }
+    .time-pill .pill-meta { font-size: 10px; letter-spacing: 0.14em; }
+    .people-btn { width: 40px; height: 40px; font-size: 22px; }
+    .people-count { font-size: 22px; min-width: 90px; }
+    .people-count em { font-size: 13px; }
+    .group-notice { font-size: 14px; }
+    .booking-submit { padding: 16px 28px; font-size: 13px; letter-spacing: 0.12em; }
+    .booking-summary { font-size: 15px; }
+    .booking-summary .gold { font-size: 13px; }
+    .booking-fallback { font-size: 14px; }
+
     footer { font-size: 15px; }
     footer .row { gap: 8px; }
     footer .endorsement { font-size: 11px; letter-spacing: 0.16em; }
@@ -1242,7 +1598,7 @@ gtag('config', 'GA4_ID');
       </div>
 
       <div class="hero-cta-wrap">
-        <a class="cta-whatsapp" href="https://wa.me/393452419263?text=Buongiorno%20Villa%20Luzi%2C%20vorrei%20prenotare%20per%20Il%20Salotto%20dei%20Corsari%20del%202%20giugno.%0A%0ANome%3A%0ANumero%20persone%3A" target="_blank" rel="noopener" data-cta="hero">
+        <a class="cta-whatsapp" href="#prenota" data-cta="hero">
           <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067zm6.067-8.293c-.333-.16-1.973-.973-2.28-1.08-.307-.107-.533-.16-.747.16-.213.32-.853 1.08-1.04 1.293-.187.213-.387.24-.72.08-.333-.16-1.4-.52-2.667-1.653-.987-.88-1.653-1.973-1.853-2.307-.187-.32-.013-.493.147-.653.147-.147.32-.387.493-.573.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.747-1.8-1.027-2.467-.267-.64-.547-.547-.747-.56-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.253 3.44 5.467 4.827.76.32 1.36.52 1.827.667.76.24 1.453.213 2 .133.613-.093 1.973-.8 2.253-1.587.28-.787.28-1.467.187-1.587-.08-.133-.293-.213-.627-.373z"/></svg>
           <span>Prenota su WhatsApp</span>
         </a>
@@ -1320,7 +1676,7 @@ gtag('config', 'GA4_ID');
 
   <!-- MID CTA -->
   <div class="mid-cta">
-    <a class="cta-whatsapp" href="https://wa.me/393452419263?text=Buongiorno%20Villa%20Luzi%2C%20vorrei%20prenotare%20per%20Il%20Salotto%20dei%20Corsari%20del%202%20giugno.%0A%0ANome%3A%0ANumero%20persone%3A" target="_blank" rel="noopener" data-cta="mid">
+    <a class="cta-whatsapp" href="#prenota" data-cta="mid">
       <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067z"/></svg>
       <span>Assicurati un posto</span>
     </a>
@@ -1438,6 +1794,79 @@ gtag('config', 'GA4_ID');
     </div>
   </section>
 
+  <!-- BOOKING FORM -->
+  <section class="booking" id="prenota">
+    <div class="booking-header">
+      <div class="section-eyebrow">
+        <span class="line"></span>
+        <span class="eyebrow">Prenotazione</span>
+        <span class="line"></span>
+      </div>
+      <h2 class="booking-title">Riserva il tuo<br><em>posto.</em></h2>
+      <p class="booking-subtitle">Domenica 2 giugno · Villa Luzi · Treia (MC)</p>
+    </div>
+
+    <form class="booking-form" onsubmit="return false;">
+
+      <div class="booking-step">
+        <div class="booking-step-header">
+          <span class="booking-step-num" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <span class="booking-step-label">L'Esperienza</span>
+        </div>
+        <div class="time-pills" id="time-pills" role="group" aria-label="Scegli esperienza">
+          <button type="button" class="time-pill" data-experience="Pic Nic" data-time="13:00">
+            <span class="pill-title">Pic Nic</span>
+            <span class="pill-meta">dalle 13:00 · €38 a persona · bevuta inclusa</span>
+          </button>
+          <button type="button" class="time-pill" data-experience="Sunset Aperinic" data-time="18:00">
+            <span class="pill-title">Sunset Aperinic</span>
+            <span class="pill-meta">dalle 18:00 · à la carte · drink & arrosticini</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="booking-step">
+        <div class="booking-step-header">
+          <span class="booking-step-num" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </span>
+          <span class="booking-step-label">Coperti</span>
+        </div>
+        <div class="people-stepper">
+          <button type="button" class="people-btn" id="people-minus" aria-label="Diminuisci">−</button>
+          <div class="people-count">
+            <span id="people-num">2</span>
+            <em id="people-word">persone</em>
+          </div>
+          <button type="button" class="people-btn" id="people-plus" aria-label="Aumenta">+</button>
+        </div>
+        <div class="group-notice" id="group-notice">
+          <span class="gold">Gruppo numeroso</span> · Vi ricontatteremo per confermare la disponibilità del giardino.
+        </div>
+      </div>
+
+      <div class="booking-submit-wrap">
+        <div class="booking-summary empty" id="booking-summary">
+          Scegli esperienza e coperti per continuare
+        </div>
+        <a href="#" class="booking-submit" id="booking-submit" target="_blank" rel="noopener" aria-disabled="true" data-cta="booking">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067zm6.067-8.293c-.333-.16-1.973-.973-2.28-1.08-.307-.107-.533-.16-.747.16-.213.32-.853 1.08-1.04 1.293-.187.213-.387.24-.72.08-.333-.16-1.4-.52-2.667-1.653-.987-.88-1.653-1.973-1.853-2.307-.187-.32-.013-.493.147-.653.147-.147.32-.387.493-.573.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.747-1.8-1.027-2.467-.267-.64-.547-.547-.747-.56-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.253 3.44 5.467 4.827.76.32 1.36.52 1.827.667.76.24 1.453.213 2 .133.613-.093 1.973-.8 2.253-1.587.28-.787.28-1.467.187-1.587-.08-.133-.293-.213-.627-.373z"/></svg>
+          <span id="booking-submit-label">Invia richiesta su WhatsApp</span>
+        </a>
+        <div class="booking-secondary" id="booking-secondary">
+          Niente WhatsApp? <a href="#" id="booking-email">Scrivici via email</a>
+        </div>
+      </div>
+
+      <div class="booking-fallback">
+        Preferisci una telefonata?
+        <a href="tel:+393452419263">+39 345 241 9263</a>
+      </div>
+    </form>
+  </section>
+
   <!-- BANNER PRE-FOOTER -->
   <section class="closing-banner">
     <div class="inner">
@@ -1448,7 +1877,7 @@ gtag('config', 'GA4_ID');
       <div class="where">
         <span>Villa Luzi</span><span class="sep">·</span><span>Treia, le Marche</span>
       </div>
-      <a class="cta-whatsapp" href="https://wa.me/393452419263?text=Buongiorno%20Villa%20Luzi%2C%20vorrei%20prenotare%20per%20Il%20Salotto%20dei%20Corsari%20del%202%20giugno.%0A%0ANome%3A%0ANumero%20persone%3A" target="_blank" rel="noopener" data-cta="closing">
+      <a class="cta-whatsapp" href="#prenota" data-cta="closing">
         <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067z"/></svg>
         <span>Prenota il tuo posto</span>
       </a>
@@ -1472,7 +1901,7 @@ gtag('config', 'GA4_ID');
 
 <!-- STICKY MOBILE CTA -->
 <div class="sticky-cta" aria-hidden="false">
-  <a href="https://wa.me/393452419263?text=Buongiorno%20Villa%20Luzi%2C%20vorrei%20prenotare%20per%20Il%20Salotto%20dei%20Corsari%20del%202%20giugno.%0A%0ANome%3A%0ANumero%20persone%3A" target="_blank" rel="noopener" data-cta="sticky">
+  <a href="#prenota" data-cta="sticky">
     <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067z"/></svg>
     <span>Prenota — €38 · 2 giugno</span>
   </a>
@@ -1589,13 +2018,8 @@ gtag('config', 'GA4_ID');
     });
   }
 
-  function buildWhatsappLink(won) {
-    let text;
-    if (won) {
-      text = `Buongiorno Villa Luzi, ho trovato il pappagallo fra le tre carte del Salotto. Codice ${WIN_CODE}. Vorrei prenotare per Il Salotto dei Corsari di domenica 2 giugno (€38 a persona, bevanda inclusa).\n\nNome:\nNumero persone:`;
-    } else {
-      text = `Buongiorno Villa Luzi, vorrei prenotare per Il Salotto dei Corsari di domenica 2 giugno (€38 a persona, bevanda inclusa).\n\nNome:\nNumero persone:`;
-    }
+  function buildWinWhatsappLink() {
+    const text = `Buongiorno Villa Luzi, ho trovato il pappagallo fra le tre carte del Salotto. Codice ${WIN_CODE}. Vorrei prenotare per Il Salotto dei Corsari di domenica 2 giugno (€38 a persona, bevanda inclusa).\n\nNome:\nNumero persone:`;
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
   }
 
@@ -1606,13 +2030,18 @@ gtag('config', 'GA4_ID');
       $codeBox.textContent = WIN_CODE;
       $codeBox.style.display = 'inline-block';
       $ctaLabel.textContent = 'Riscatta su WhatsApp';
+      $ctaWhatsapp.href = buildWinWhatsappLink();
+      $ctaWhatsapp.setAttribute('target', '_blank');
+      $ctaWhatsapp.setAttribute('rel', 'noopener');
     } else {
       $resultTitle.innerHTML = `La carta era un'altra.`;
-      $resultText.textContent = `Il pappagallo è rimasto nascosto, ma il salotto è aperto a tutti. Prenota il tuo posto per il 2 giugno su WhatsApp — €38 a persona, bevanda inclusa.`;
+      $resultText.textContent = `Il pappagallo è rimasto nascosto, ma il salotto è aperto a tutti. Scegli la tua esperienza e prenota qui sotto.`;
       $codeBox.style.display = 'none';
-      $ctaLabel.textContent = 'Prenota su WhatsApp';
+      $ctaLabel.textContent = 'Vai alla prenotazione';
+      $ctaWhatsapp.href = '#prenota';
+      $ctaWhatsapp.removeAttribute('target');
+      $ctaWhatsapp.removeAttribute('rel');
     }
-    $ctaWhatsapp.href = buildWhatsappLink(won);
     $result.classList.add('shown');
   }
 
@@ -1646,6 +2075,104 @@ gtag('config', 'GA4_ID');
       });
     });
   }
+
+  /* ============ BOOKING FORM ============ */
+  const PHONE_NUMBER = '393452419263';
+  const EMAIL_ADDRESS = 'villaluzi1737@gmail.com';
+  const GROUP_THRESHOLD = 12;
+
+  const booking = {
+    experience: null,
+    time: null,
+    people: 2
+  };
+
+  const $pills = document.querySelectorAll('.time-pill');
+  const $peopleNum = document.getElementById('people-num');
+  const $peopleWord = document.getElementById('people-word');
+  const $peopleMinus = document.getElementById('people-minus');
+  const $peoplePlus = document.getElementById('people-plus');
+  const $groupNotice = document.getElementById('group-notice');
+  const $summaryEl = document.getElementById('booking-summary');
+  const $submitEl = document.getElementById('booking-submit');
+  const $submitLabel = document.getElementById('booking-submit-label');
+  const $secondaryEl = document.getElementById('booking-secondary');
+  const $emailEl = document.getElementById('booking-email');
+
+  function isGroup() { return booking.people >= GROUP_THRESHOLD; }
+
+  function renderPeople() {
+    if (isGroup()) {
+      $peopleNum.textContent = GROUP_THRESHOLD + '+';
+      $peopleWord.textContent = 'gruppo numeroso';
+      $groupNotice.classList.add('visible');
+    } else {
+      $peopleNum.textContent = booking.people;
+      $peopleWord.textContent = booking.people === 1 ? 'persona' : 'persone';
+      $groupNotice.classList.remove('visible');
+    }
+    $peopleMinus.disabled = booking.people <= 1;
+    $peoplePlus.disabled = booking.people >= GROUP_THRESHOLD;
+    updateSummary();
+  }
+
+  $pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      $pills.forEach(p => p.classList.remove('selected'));
+      pill.classList.add('selected');
+      booking.experience = pill.dataset.experience;
+      booking.time = pill.dataset.time;
+      updateSummary();
+    });
+  });
+
+  $peopleMinus.addEventListener('click', () => {
+    if (booking.people > 1) { booking.people--; renderPeople(); }
+  });
+  $peoplePlus.addEventListener('click', () => {
+    if (booking.people < GROUP_THRESHOLD) { booking.people++; renderPeople(); }
+  });
+
+  function buildBookingMessage() {
+    if (isGroup()) {
+      return `Buongiorno Villa Luzi, vorrei prenotare per Il Salotto dei Corsari di domenica 2 giugno per un gruppo numeroso (${GROUP_THRESHOLD}+ persone) — esperienza: ${booking.experience} (dalle ${booking.time}). Vi chiedo di ricontattarmi per confermare i dettagli. Grazie!`;
+    }
+    const peopleStr = booking.people === 1 ? '1 persona' : `${booking.people} persone`;
+    return `Buongiorno Villa Luzi, vorrei prenotare per Il Salotto dei Corsari di domenica 2 giugno — esperienza: ${booking.experience} (dalle ${booking.time}), per ${peopleStr}. Grazie!`;
+  }
+
+  function updateSummary() {
+    if (booking.experience && booking.time) {
+      const peopleStr = isGroup()
+        ? `${GROUP_THRESHOLD}+ persone`
+        : (booking.people === 1 ? '1 persona' : `${booking.people} persone`);
+      $summaryEl.innerHTML = `<span class="gold">${booking.experience}</span> · dalle <span class="gold">${booking.time}</span> · <span class="gold">${peopleStr}</span>`;
+      $summaryEl.classList.remove('empty');
+
+      const message = buildBookingMessage();
+      $submitEl.href = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
+      $submitEl.classList.add('ready');
+      $submitEl.removeAttribute('aria-disabled');
+      $submitLabel.textContent = isGroup() ? 'Richiedi info su WhatsApp' : 'Invia richiesta su WhatsApp';
+
+      const subject = isGroup()
+        ? 'Richiesta gruppo · Il Salotto dei Corsari · 2 giugno'
+        : `Prenotazione · ${booking.experience} · 2 giugno · ${peopleStr}`;
+      $emailEl.href = `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+      $secondaryEl.classList.add('visible');
+    } else {
+      $summaryEl.textContent = 'Scegli esperienza e coperti per continuare';
+      $summaryEl.classList.add('empty');
+      $submitEl.classList.remove('ready');
+      $submitEl.setAttribute('aria-disabled', 'true');
+      $submitEl.removeAttribute('href');
+      $submitLabel.textContent = 'Invia richiesta su WhatsApp';
+      $secondaryEl.classList.remove('visible');
+      $emailEl.removeAttribute('href');
+    }
+  }
+
+  renderPeople();
 
   /* ============ CTA TRACKING ============ */
   document.querySelectorAll('[data-cta]').forEach(el => {
