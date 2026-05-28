@@ -828,42 +828,6 @@ gtag('config', 'GA4_ID');
     z-index: 1;
   }
 
-  /* Carta del pappagallo — medaglione oro con illustrazione */
-  .parrot {
-    width: 78px; height: 78px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #f4d99a 0%, #d4a857 45%, #8a6730 100%);
-    position: relative;
-    box-shadow:
-      0 6px 14px rgba(110, 80, 30, 0.5),
-      inset 0 -3px 8px rgba(0,0,0,0.25),
-      inset 0 3px 6px rgba(255,255,255,0.4);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .parrot::before {
-    content: "";
-    position: absolute;
-    inset: 6px;
-    border-radius: 50%;
-    border: 1px dashed rgba(60, 40, 12, 0.55);
-  }
-  .parrot svg {
-    width: 56px;
-    height: 56px;
-    color: #4a2410;
-    position: relative;
-    z-index: 1;
-    filter: drop-shadow(0 1px 0 rgba(255,255,255,0.3));
-  }
-
-  .empty-mark {
-    width: 78px; height: 78px;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0.42;
-    color: var(--ottanio-cupo);
-  }
-  .empty-mark svg { width: 100%; height: 100%; }
-
   .face-back .name {
     font-family: 'Cormorant Garamond', serif;
     font-size: 23px;
@@ -1568,9 +1532,184 @@ gtag('config', 'GA4_ID');
   @media (prefers-reduced-motion: reduce) {
     .card, .result, .urgency-bar .pulse, .include { transition: none; animation: none; }
   }
+
+  /* ==================== CARD ARTWORK ==================== */
+  .card[data-index="0"] .face-front,
+  .card[data-intro-index="0"] .face-front {
+    background: url("./assets/carta-1-front.jpg") center center / cover no-repeat;
+  }
+  .card[data-index="1"] .face-front,
+  .card[data-intro-index="1"] .face-front {
+    background: url("./assets/carta-2-front.jpg") center center / cover no-repeat;
+  }
+  .card[data-index="2"] .face-front,
+  .card[data-intro-index="2"] .face-front {
+    background: url("./assets/carta-3-front.jpg") center center / cover no-repeat;
+  }
+  .face-front .card-crest,
+  .face-front .corner { display: none; }
+  .face-front::before,
+  .face-front::after { display: none; }
+
+  .face-back.reveal-pappagallo {
+    background: url("./assets/reveal-pappagallo.jpg") center center / cover no-repeat;
+  }
+  .face-back.reveal-vento {
+    background: url("./assets/reveal-vento.jpg") center center / cover no-repeat;
+  }
+  .face-back.reveal-nebbia {
+    background: url("./assets/reveal-nebbia.jpg") center center / cover no-repeat;
+  }
+  .face-back.has-reveal-img {
+    padding: 14px 14px 18px;
+    justify-content: flex-end;
+  }
+  .face-back.has-reveal-img::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 52%;
+    background: linear-gradient(180deg, rgba(246, 239, 224, 0) 0%, rgba(246, 239, 224, 0.92) 65%, rgba(236, 223, 198, 0.96) 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .face-back.has-reveal-img .name,
+  .face-back.has-reveal-img .latin { z-index: 1; }
+
+  /* ==================== INTRO POPUP ==================== */
+  .intro-popup {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    padding: 24px;
+  }
+  .intro-popup.shown {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .intro-popup-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(16, 10, 8, 0.86);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+  .intro-popup-inner {
+    position: relative;
+    max-width: 920px;
+    width: 100%;
+    padding: 52px 32px 44px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(20, 52, 56, 0.55) 0%, rgba(10, 26, 28, 0.78) 100%);
+    border: 1px solid rgba(212, 168, 87, 0.32);
+    border-radius: 10px;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+    transform: translateY(20px);
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .intro-popup.shown .intro-popup-inner { transform: translateY(0); }
+  .intro-popup-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: transparent;
+    border: 0;
+    color: var(--magnolia);
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 6px 10px;
+    opacity: 0.55;
+    transition: opacity 0.2s ease;
+  }
+  .intro-popup-close:hover { opacity: 1; }
+  .intro-popup-eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .intro-popup-eyebrow .line {
+    height: 1px;
+    width: 40px;
+    background: rgba(212, 168, 87, 0.5);
+  }
+  .intro-popup-eyebrow .text {
+    font-family: 'Cormorant SC', serif;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    color: var(--oro);
+  }
+  .intro-popup-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.15;
+    color: var(--magnolia);
+    margin-bottom: 8px;
+  }
+  .intro-popup-title em {
+    font-style: italic;
+    color: var(--oro);
+  }
+  .intro-popup-rule {
+    font-family: 'Cormorant SC', serif;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    color: var(--oro);
+    margin-bottom: 32px;
+    opacity: 0.88;
+  }
+  .intro-popup .cards { gap: 22px; }
+  @media (max-width: 640px) {
+    .intro-popup-inner { padding: 40px 18px 30px; }
+    .intro-popup .cards { gap: 12px; }
+    .intro-popup .card { width: 140px; height: 200px; }
+  }
+  @media (max-width: 420px) {
+    .intro-popup .cards { gap: 8px; }
+    .intro-popup .card { width: 96px; height: 138px; }
+  }
 </style>
 </head>
 <body>
+
+<!-- INTRO POPUP -->
+<div class="intro-popup" id="intro-popup" role="dialog" aria-modal="true" aria-labelledby="intro-title" aria-hidden="true">
+  <div class="intro-popup-backdrop" id="intro-backdrop"></div>
+  <div class="intro-popup-inner">
+    <button type="button" class="intro-popup-close" id="intro-close" aria-label="Chiudi">×</button>
+    <div class="intro-popup-eyebrow">
+      <span class="line"></span>
+      <span class="text">Il Salotto dei Corsari</span>
+      <span class="line"></span>
+    </div>
+    <div class="intro-popup-title" id="intro-title">Scegli la tua <em>carta</em>.</div>
+    <div class="intro-popup-rule">Una scelta su quindici nasconde il pappagallo · Una sola volta</div>
+    <div class="cards" id="intro-cards" role="group" aria-label="Tre carte da scoprire">
+      <div class="card" data-intro-index="0" tabindex="0" role="button" aria-label="Scopri la prima carta">
+        <div class="face face-front"></div>
+        <div class="face face-back"></div>
+      </div>
+      <div class="card" data-intro-index="1" tabindex="0" role="button" aria-label="Scopri la seconda carta">
+        <div class="face face-front"></div>
+        <div class="face face-back"></div>
+      </div>
+      <div class="card" data-intro-index="2" tabindex="0" role="button" aria-label="Scopri la terza carta">
+        <div class="face face-front"></div>
+        <div class="face face-back"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- URGENCY BAR -->
 <div class="urgency-bar">
@@ -2013,35 +2152,18 @@ gtag('config', 'GA4_ID');
   const WIN_CODE = 'DRINK-OMAGGIO';
   const WIN_DENOMINATOR = 15;
 
-  const WIN_FACE = `
-    <div class="symbol"><div class="parrot">
-      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M38 14 C 30 14, 24 18, 24 26 C 24 30, 26 32, 30 32"/>
-        <path d="M38 18 Q 46 18 46 24 Q 46 28 40 28 L 36 24"/>
-        <circle cx="34" cy="20" r="1.4" fill="currentColor"/>
-        <path d="M30 32 Q 22 38 24 48 Q 26 54 34 54 L 42 54 Q 50 52 50 44 Q 50 36 42 32"/>
-        <path d="M34 36 Q 40 42 40 52"/>
-        <path d="M36 54 L 32 64 M 40 54 L 42 64 M 44 54 L 48 64"/>
-      </svg>
-    </div></div>
-    <div class="name">Il Pappagallo</div>
-    <div class="latin">psittacus invenisti</div>
-  `;
+  const WIN_FACE = {
+    cls: 'pappagallo',
+    name: 'Il Pappagallo',
+    latin: 'psittacus invenisti'
+  };
 
   const LOSE_FACES = [
-    {
-      symbol: `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 30 Q30 10 50 30 T10 30"/><path d="M15 30 Q30 18 45 30" opacity="0.6"/><path d="M20 30 Q30 24 40 30" opacity="0.4"/></svg>`,
-      name: 'Il Vento',
-      latin: 'ventus abstulit'
-    },
-    {
-      symbol: `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="30" cy="30" r="20" opacity="0.35"/><circle cx="30" cy="30" r="14" opacity="0.5"/><circle cx="30" cy="30" r="8" opacity="0.7"/></svg>`,
-      name: 'La Nebbia',
-      latin: 'nebula celavit'
-    }
+    { cls: 'vento', name: 'Il Vento', latin: 'ventus abstulit' },
+    { cls: 'nebbia', name: 'La Nebbia', latin: 'nebula celavit' }
   ];
 
-  const $cards = document.querySelectorAll('.card');
+  const $cards = document.querySelectorAll('.card[data-index]');
   const $result = document.getElementById('result');
   const $resultTitle = document.getElementById('resultTitle');
   const $resultText = document.getElementById('resultText');
@@ -2051,16 +2173,13 @@ gtag('config', 'GA4_ID');
 
   function fillCardFace(cardEl, isWinner, loseFaceIdx) {
     const back = cardEl.querySelector('.face-back');
-    if (isWinner) {
-      back.innerHTML = WIN_FACE;
-    } else {
-      const f = LOSE_FACES[loseFaceIdx % LOSE_FACES.length];
-      back.innerHTML = `
-        <div class="symbol"><div class="empty-mark">${f.symbol}</div></div>
-        <div class="name">${f.name}</div>
-        <div class="latin">${f.latin}</div>
-      `;
-    }
+    back.classList.remove('reveal-pappagallo', 'reveal-vento', 'reveal-nebbia');
+    const f = isWinner ? WIN_FACE : LOSE_FACES[loseFaceIdx % LOSE_FACES.length];
+    back.classList.add(`reveal-${f.cls}`, 'has-reveal-img');
+    back.innerHTML = `
+      <div class="name">${f.name}</div>
+      <div class="latin">${f.latin}</div>
+    `;
   }
 
   function revealSelected(selectedIdx, won, loseFaceIdx) {
@@ -2244,10 +2363,77 @@ gtag('config', 'GA4_ID');
     });
   });
 
+  /* ============ INTRO POPUP ============ */
+  function initIntroPopup() {
+    const popup = document.getElementById('intro-popup');
+    if (!popup) return;
+    if (sessionStorage.getItem('introShown') === '1') return;
+
+    const closeBtn = document.getElementById('intro-close');
+    const backdrop = document.getElementById('intro-backdrop');
+    const introCards = popup.querySelectorAll('.card[data-intro-index]');
+
+    function openPopup() {
+      popup.classList.add('shown');
+      popup.setAttribute('aria-hidden', 'false');
+      sessionStorage.setItem('introShown', '1');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePopup() {
+      popup.classList.remove('shown');
+      popup.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    setTimeout(openPopup, 3000);
+
+    closeBtn.addEventListener('click', closePopup);
+    backdrop.addEventListener('click', closePopup);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && popup.classList.contains('shown')) closePopup();
+    });
+
+    introCards.forEach(card => {
+      const handleChoice = () => {
+        if (hasPlayed) return;
+        const idx = parseInt(card.dataset.introIndex, 10);
+        if (isNaN(idx)) return;
+        const gameCard = document.querySelector(`.card[data-index="${idx}"]`);
+        if (!gameCard) return;
+        // Run real game logic on the corresponding game card
+        onCardClick({ currentTarget: gameCard });
+        // Mirror flip on the popup card
+        const introBack = card.querySelector('.face-back');
+        const gameBack = gameCard.querySelector('.face-back');
+        introBack.className = gameBack.className;
+        introBack.innerHTML = gameBack.innerHTML;
+        card.classList.add('flipped', 'disabled');
+        if (gameCard.classList.contains('winner-glow')) card.classList.add('winner-glow');
+        introCards.forEach(c => { if (c !== card) c.classList.add('faded', 'disabled'); });
+        // Close popup, then scroll to result
+        setTimeout(() => {
+          closePopup();
+          setTimeout(() => {
+            const result = document.getElementById('result');
+            if (result) result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 350);
+        }, 1800);
+      };
+      card.addEventListener('click', handleChoice);
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleChoice();
+        }
+      });
+    });
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initGame);
+    document.addEventListener('DOMContentLoaded', () => { initGame(); initIntroPopup(); });
   } else {
     initGame();
+    initIntroPopup();
   }
 })();
 </script>
