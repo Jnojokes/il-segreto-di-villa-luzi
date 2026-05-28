@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Cormorant+SC:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <!-- ====================== META PIXEL ====================== -->
-<!-- Sostituire FB_PIXEL_ID con l'ID del Pixel Meta
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -32,12 +31,11 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', 'FB_PIXEL_ID');
+fbq('init', '5285830348309655');
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=FB_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
--->
+src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></noscript>
 
 <!-- ====================== GA4 ====================== -->
 <!-- Sostituire GA4_ID con l'ID misurazione GA4
@@ -2235,10 +2233,8 @@ gtag('config', 'GA4_ID');
     revealSelected(idx, won, loseFaceIdx);
     setTimeout(() => showResult(won), 500);
 
-    /* ====== TRACKING — decommenta a pixel attivo
     if (typeof fbq === 'function') { fbq('trackCustom', 'PlayedCardGame', { won: won }); }
-    if (typeof gtag === 'function') { gtag('event', 'play_game', { won: won }); }
-    */
+    // if (typeof gtag === 'function') { gtag('event', 'play_game', { won: won }); }
   }
 
   function initGame() {
@@ -2355,11 +2351,9 @@ gtag('config', 'GA4_ID');
   document.querySelectorAll('[data-cta]').forEach(el => {
     el.addEventListener('click', () => {
       const where = el.getAttribute('data-cta');
-      /* ====== TRACKING — decommenta a pixel attivo
       if (typeof fbq === 'function') { fbq('track', 'Lead', { content_name: 'WhatsApp ' + where }); }
-      if (typeof gtag === 'function') { gtag('event', 'generate_lead', { source: where }); }
-      if (window.ttq) { ttq.track('ClickButton', { description: 'wa-' + where }); }
-      */
+      // if (typeof gtag === 'function') { gtag('event', 'generate_lead', { source: where }); }
+      // if (window.ttq) { ttq.track('ClickButton', { description: 'wa-' + where }); }
     });
   });
 
