@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2 Giugno · Pic Nic in Villa · Villa Luzi 1737 — Prenota</title>
-<meta name="description" content="Domenica 2 giugno, Villa Luzi (Treia, MC). Pic Nic in due turni: ore 13:00 e ore 18:30 — €38 bevanda inclusa. Cartomante in giardino. Dress code: Pirata Chic. Posti limitati.">
+<meta name="description" content="Martedì 2 giugno, Villa Luzi (Treia, MC). Pic Nic in due turni: ore 13:00 e ore 18:30 — €38 bevanda inclusa. Cartomante in giardino. Dress code: Pirata Chic. Posti limitati.">
 
 <meta property="og:title" content="Il Salotto dei Corsari · 2 giugno 2026 · Villa Luzi">
 <meta property="og:description" content="Pic Nic in Villa, in due turni: ore 13:00 e ore 18:30. €38 a persona, bevanda inclusa. Cartomante in giardino. Dress code Pirata Chic.">
@@ -14,7 +14,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="2 giugno · Pic Nic in Villa · Villa Luzi">
-<meta name="twitter:description" content="€38 a persona, bevanda inclusa. Domenica 2 giugno — Treia, le Marche.">
+<meta name="twitter:description" content="€38 a persona, bevanda inclusa. Martedì 2 giugno — Treia, le Marche.">
 <meta name="twitter:image" content="./assets/locandina_web.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1709,7 +1709,7 @@ gtag('config', 'GA4_ID');
 <!-- URGENCY BAR -->
 <div class="urgency-bar">
   <span class="pulse"></span>
-  <span id="urgencyText">Domenica 2 giugno · Posti limitati · <strong>Prenota ora</strong></span>
+  <span id="urgencyText">Martedì 2 giugno · Posti limitati · <strong>Prenota ora</strong></span>
 </div>
 
 <main>
@@ -1721,6 +1721,10 @@ gtag('config', 'GA4_ID');
         <span class="line"></span>
         <span class="crest">VILLA LUZI · MDCCXXXVII</span>
         <span class="line"></span>
+      </div>
+
+      <div class="hero-frame">
+        <img src="./assets/FLYER_2_GIUGNO_DEF.png" alt="Il Salotto dei Corsari · Pic Nic in Villa · Villa Luzi dal 1737 · Martedì 2 giugno ore 13:00" loading="eager" fetchpriority="high">
       </div>
 
       <div class="hero-caption">
@@ -1948,7 +1952,7 @@ gtag('config', 'GA4_ID');
       <div class="practical-block">
         <div class="h">Quando</div>
         <div class="b">
-          Domenica 2 giugno · ore 13:00
+          Martedì 2 giugno · ore 13:00
           <small>Si arriva all'ora di pranzo, si resta fino al tramonto.</small>
         </div>
       </div>
@@ -1978,7 +1982,7 @@ gtag('config', 'GA4_ID');
         <span class="line"></span>
       </div>
       <h2 class="booking-title">Riserva il tuo<br><em>posto.</em></h2>
-      <p class="booking-subtitle">Domenica 2 giugno · Villa Luzi · Treia (MC)</p>
+      <p class="booking-subtitle">Martedì 2 giugno · Villa Luzi · Treia (MC)</p>
     </div>
 
     <form class="booking-form" onsubmit="return false;">
@@ -2175,7 +2179,7 @@ gtag('config', 'GA4_ID');
   }
 
   function buildWinWhatsappLink() {
-    const text = `Buongiorno Villa Luzi, ho trovato il pappagallo fra le tre carte del Salotto. Codice ${WIN_CODE}. Vorrei prenotare per Il Salotto dei Corsari di domenica 2 giugno (€38 a persona, bevanda inclusa).\n\nNome:\nNumero persone:`;
+    const text = `Buongiorno Villa Luzi, ho trovato il pappagallo fra le tre carte del Salotto. Codice ${WIN_CODE}. Vorrei prenotare per Il Salotto dei Corsari di martedì 2 giugno (€38 a persona, bevanda inclusa).\n\nNome:\nNumero persone:`;
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
   }
 
@@ -2289,10 +2293,10 @@ gtag('config', 'GA4_ID');
 
   function buildBookingMessage() {
     if (isGroup()) {
-      return `Buongiorno Villa Luzi, vorrei prenotare per Il Salotto dei Corsari di domenica 2 giugno per un gruppo numeroso (${GROUP_THRESHOLD}+ persone) — esperienza: ${booking.experience} (dalle ${booking.time}). Vi chiedo di ricontattarmi per confermare i dettagli. Grazie!`;
+      return `Buongiorno Villa Luzi, vorrei prenotare per Il Salotto dei Corsari di martedì 2 giugno per un gruppo numeroso (${GROUP_THRESHOLD}+ persone) — esperienza: ${booking.experience} (dalle ${booking.time}). Vi chiedo di ricontattarmi per confermare i dettagli. Grazie!`;
     }
     const peopleStr = booking.people === 1 ? '1 persona' : `${booking.people} persone`;
-    return `Buongiorno Villa Luzi, vorrei prenotare per Il Salotto dei Corsari di domenica 2 giugno — esperienza: ${booking.experience} (dalle ${booking.time}), per ${peopleStr}. Grazie!`;
+    return `Buongiorno Villa Luzi, vorrei prenotare per Il Salotto dei Corsari di martedì 2 giugno — esperienza: ${booking.experience} (dalle ${booking.time}), per ${peopleStr}. Grazie!`;
   }
 
   function updateSummary() {
