@@ -2178,107 +2178,6 @@ section + section::before {
   .hero-rise > * { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
 
-/* ==================== JUNE EVENT POPUP ==================== */
-.june-popup {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
-  padding: 20px;
-}
-.june-popup.shown { opacity: 1; pointer-events: auto; }
-.june-popup-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(8, 30, 32, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  cursor: pointer;
-}
-.june-popup-inner {
-  position: relative;
-  max-width: 480px;
-  width: 100%;
-  background: var(--ottanio-deep);
-  border: 1px solid rgba(201, 168, 106, 0.30);
-  border-radius: 6px;
-  padding: 18px 18px 24px;
-  text-align: center;
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.65);
-  transform: translateY(20px) scale(0.98);
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.june-popup.shown .june-popup-inner { transform: translateY(0) scale(1); }
-.june-popup-close {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  background: transparent;
-  border: 0;
-  color: var(--avorio);
-  font-size: 26px;
-  line-height: 1;
-  cursor: pointer;
-  padding: 6px 10px;
-  opacity: 0.55;
-  transition: opacity 0.2s ease;
-  z-index: 2;
-}
-.june-popup-close:hover { opacity: 1; }
-.june-popup-poster {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-  border: 1px solid rgba(201, 168, 106, 0.18);
-}
-.june-popup-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-  padding: 14px 32px;
-  background: var(--oro);
-  color: var(--ottanio-deep);
-  text-decoration: none;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  border-radius: 2px;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-.june-popup-cta:hover {
-  background: var(--oro-bright);
-  transform: translateY(-1px);
-}
-.june-popup-cta svg {
-  width: 14px;
-  height: 14px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
-}
-.june-popup-tagline {
-  margin-top: 12px;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 14px;
-  color: var(--whisper);
-  letter-spacing: 0.02em;
-}
-@media (max-width: 480px) {
-  .june-popup-inner { padding: 14px 14px 20px; }
-  .june-popup-cta { padding: 13px 22px; font-size: 11px; letter-spacing: 0.2em; }
-}
-
 </style>
 
 <!-- Meta Pixel Code -->
@@ -2302,22 +2201,6 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
 
 </head>
 <body>
-
-<!-- JUNE EVENT POPUP -->
-<div class="june-popup" id="june-popup" role="dialog" aria-modal="true" aria-labelledby="june-popup-cta" aria-hidden="true">
-  <div class="june-popup-backdrop" id="june-popup-backdrop"></div>
-  <div class="june-popup-inner">
-    <button type="button" class="june-popup-close" id="june-popup-close" aria-label="Chiudi">×</button>
-    <a href="2-giugno.html" class="june-popup-poster-link" id="june-popup-poster-link" aria-label="Scopri l'evento del 2 giugno">
-      <img src="./assets/locandina_popup.jpg" alt="Il Salotto dei Corsari · Pic Nic in Villa · Domenica 2 giugno" class="june-popup-poster" loading="lazy">
-    </a>
-    <a href="2-giugno.html" class="june-popup-cta" id="june-popup-cta" data-cta="june-popup">
-      Scopri l'evento
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </a>
-    <div class="june-popup-tagline">Domenica 2 giugno · Villa Luzi</div>
-  </div>
-</div>
 
 <!-- TOP BAR -->
 <header class="topbar" id="topbar">
@@ -3795,40 +3678,6 @@ renderPeople();
       if (raf === null) raf = requestAnimationFrame(tick);
     }, { passive: true });
   }
-})();
-</script>
-
-<!-- JUNE POPUP -->
-<script>
-(function() {
-  if (sessionStorage.getItem('junePopupShown') === '1') return;
-  const popup = document.getElementById('june-popup');
-  if (!popup) return;
-  const closeBtn = document.getElementById('june-popup-close');
-  const backdrop = document.getElementById('june-popup-backdrop');
-  const cta = document.getElementById('june-popup-cta');
-
-  function openPopup() {
-    popup.classList.add('shown');
-    popup.setAttribute('aria-hidden', 'false');
-    sessionStorage.setItem('junePopupShown', '1');
-  }
-  function closePopup() {
-    popup.classList.remove('shown');
-    popup.setAttribute('aria-hidden', 'true');
-  }
-
-  setTimeout(openPopup, 3000);
-
-  closeBtn.addEventListener('click', closePopup);
-  backdrop.addEventListener('click', closePopup);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && popup.classList.contains('shown')) closePopup();
-  });
-
-  cta.addEventListener('click', () => {
-    if (typeof fbq === 'function') { fbq('trackCustom', 'JunePopupClick'); }
-  });
 })();
 </script>
 
