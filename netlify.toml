@@ -1,0 +1,50 @@
+# ═══════════════════════════════════════════════════════════
+# VILLA LUZI · NETLIFY.TOML
+# Sito statico, nessun build step. URL puliti nativi:
+# ogni route è una cartella con index.html.
+# ═══════════════════════════════════════════════════════════
+
+[build]
+  publish = "."
+
+# ─── Redirect 301 · vecchie URL delle pagine bloccate ───
+# La pagina campagna "2 giugno" vive ora in /esperienze/aperitivi-erba/
+[[redirects]]
+  from = "/2-giugno"
+  to = "/esperienze/aperitivi-erba/"
+  status = 301
+
+[[redirects]]
+  from = "/2-giugno.html"
+  to = "/esperienze/aperitivi-erba/"
+  status = 301
+
+# Normalizza /index.html → / (la landing ristorante, prima alla root,
+# vive ora in /il-segreto/; la root diventa la nuova HOME in Fase 1)
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+# TEMP — Fase 0: la root non ha ancora la nuova HOME (arriva in Fase 1).
+# Regola non forzata: appena esiste /index.html viene ignorata da Netlify.
+# TODO: rimuovere in Fase 1 quando la HOME è pubblicata.
+[[redirects]]
+  from = "/"
+  to = "/il-segreto/"
+  status = 302
+  force = false
+
+# ─── Headers di base ───
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
