@@ -2178,6 +2178,114 @@ section + section::before {
   .hero-rise > * { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
 
+/* ─── Popup porcini ─── */
+.porcini-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 950;
+  background: rgba(8, 30, 32, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+}
+.porcini-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s ease, visibility 0s;
+}
+
+.porcini-card {
+  position: relative;
+  background: var(--avorio);
+  color: var(--ottanio);
+  max-width: 520px;
+  width: 100%;
+  padding: 56px 44px 48px;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(8, 30, 32, 0.5);
+  transform: translateY(12px);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.porcini-overlay.is-visible .porcini-card {
+  transform: translateY(0);
+}
+
+.porcini-kicker {
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  font-weight: 500;
+  color: var(--oro);
+}
+
+.porcini-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--oro);
+  margin: 18px auto;
+}
+
+.porcini-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 38px);
+  font-weight: 600;
+  color: var(--ottanio);
+  margin-bottom: 18px;
+}
+
+.porcini-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  line-height: 1.6;
+  color: rgba(14, 59, 62, 0.8);
+  margin-bottom: 32px;
+}
+
+.porcini-card .hero-cta {
+  margin: 0 auto;
+}
+
+.porcini-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--ottanio);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.porcini-close:hover { color: var(--oro); }
+.porcini-close:focus-visible {
+  outline: 1px solid var(--oro);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .porcini-overlay { padding: 16px; }
+  .porcini-card { padding: 48px 26px 40px; }
+  .porcini-text { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .porcini-overlay,
+  .porcini-card { transition: none; }
+  .porcini-card { transform: none; }
+}
+
 </style>
 
 <!-- Meta Pixel Code -->
@@ -3678,6 +3786,67 @@ renderPeople();
       if (raf === null) raf = requestAnimationFrame(tick);
     }, { passive: true });
   }
+})();
+</script>
+
+<!-- ─── Popup porcini ─── -->
+<div class="porcini-overlay" id="porcini-popup" role="dialog" aria-modal="true" aria-labelledby="porcini-title" hidden>
+  <div class="porcini-card">
+    <button class="porcini-close" type="button" aria-label="Chiudi">&times;</button>
+    <p class="porcini-kicker">DALL'11 AL 14 GIUGNO</p>
+    <div class="porcini-rule"></div>
+    <h3 class="porcini-title" id="porcini-title">La settimana del porcino</h3>
+    <p class="porcini-text">Sono arrivati i funghi porcini freschi, protagonisti dei piatti dello Chef Jan Paul Kana: dall'antipasto alle tagliatelle, fino alla tagliata. Finché la stagione ce li regala.</p>
+    <a class="hero-cta porcini-cta" href="#prenota"><span>Riserva il tuo tavolo</span></a>
+  </div>
+</div>
+
+<script>
+(() => {
+  // Attivo solo fino al 14 giugno 2026 ore 23:59 Europe/Rome (UTC+2, ora legale)
+  const deadline = new Date('2026-06-15T00:00:00+02:00');
+  if (Date.now() >= deadline.getTime()) return;
+
+  const KEY = 'porciniPopupShown';
+  let alreadyShown = false;
+  try { alreadyShown = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+  if (alreadyShown) return;
+
+  const overlay = document.getElementById('porcini-popup');
+  if (!overlay) return;
+  const closeBtn = overlay.querySelector('.porcini-close');
+  const cta = overlay.querySelector('.porcini-cta');
+  let prevFocus = null;
+  let open = false;
+
+  const closePopup = () => {
+    if (!open) return;
+    open = false;
+    overlay.classList.remove('is-visible');
+    setTimeout(() => { overlay.hidden = true; }, 600);
+    if (prevFocus && typeof prevFocus.focus === 'function') prevFocus.focus();
+  };
+
+  const openPopup = () => {
+    try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+    prevFocus = document.activeElement;
+    overlay.hidden = false;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      overlay.classList.add('is-visible');
+      closeBtn.focus();
+    }));
+    open = true;
+  };
+
+  closeBtn.addEventListener('click', closePopup);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closePopup(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePopup(); });
+  // Chiude il popup e lascia allo smooth scroll nativo il viaggio verso #prenota
+  cta.addEventListener('click', closePopup);
+
+  const schedule = () => setTimeout(openPopup, 1500);
+  if (document.readyState === 'complete') schedule();
+  else window.addEventListener('load', schedule, { once: true });
 })();
 </script>
 
