@@ -26,15 +26,6 @@
   status = 301
   force = true
 
-# TEMP — la root non ha ancora la nuova HOME (arriva in Fase 1).
-# Regola non forzata: appena dist/index.html esiste viene ignorata.
-# TODO: rimuovere in Fase 1 quando la HOME è pubblicata.
-[[redirects]]
-  from = "/"
-  to = "/il-segreto/"
-  status = 302
-  force = false
-
 # ─── Headers ───
 [[headers]]
   for = "/assets/*"
