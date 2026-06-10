@@ -15,6 +15,7 @@
 <meta property="og:image" content="https://villaluzi1737.com/assets/cena-in-bianco/CENAINBIANCO_A_notturno_giardino_3x4_web.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="1607">
+<meta property="og:image:alt" content="La facciata illuminata di Villa Luzi di notte, tavola in bianco a lume di candela e pianoforte a coda bianco nel giardino.">
 <meta property="og:url" content="https://villaluzi1737.com/19-giugno.html">
 <meta property="og:locale" content="it_IT">
 
@@ -22,6 +23,7 @@
 <meta name="twitter:title" content="Cena in Bianco · venerdì 19 giugno · Il Segreto, Villa Luzi">
 <meta name="twitter:description" content="Piano live a cena, dj set a seguire. Menù fisso € 50, bevande escluse. Dress code: bianco. Treia, le Marche.">
 <meta name="twitter:image" content="https://villaluzi1737.com/assets/cena-in-bianco/CENAINBIANCO_A_notturno_giardino_3x4_web.jpg">
+<meta name="twitter:image:alt" content="Villa Luzi di notte: tavola in bianco e pianoforte a coda bianco nel giardino.">
 
 <script type="application/ld+json">
 {
@@ -88,6 +90,15 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt=""></noscript>
 
+<noscript>
+<style>
+  /* senza JS: niente countdown morto, tastiera statica con messaggio visibile */
+  .countdown { display: none; }
+  .tastiera .tasto { pointer-events: none; cursor: default; }
+  .nota-esito { opacity: 1; visibility: visible; transform: none; pointer-events: auto; }
+</style>
+</noscript>
+
 <style>
   :root {
     --avorio: #F4ECDC;
@@ -99,12 +110,22 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     --notte: #081E20;
     --oro: #C9A86A;
     --oro-bright: #D9BC82;
-    --oro-ink: #8C6B30;            /* oro leggibile su fondo chiaro */
+    --oro-ink: #7E5F27;            /* oro leggibile su fondo chiaro (AA su avorio) */
     --whisper: rgba(244, 236, 220, 0.78);
-    --whisper-soft: rgba(244, 236, 220, 0.45);
+    --whisper-soft: rgba(244, 236, 220, 0.62);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
 
   html { scroll-behavior: smooth; }
   html, body {
@@ -618,11 +639,12 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   .nota-esito {
     margin-top: 40px;
     opacity: 0;
+    visibility: hidden;
     transform: translateY(8px);
     transition: opacity 0.6s ease, transform 0.6s ease;
     pointer-events: none;
   }
-  .nota-esito.svelata { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .nota-esito.svelata { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
   .nota-esito .frase {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
@@ -921,6 +943,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   footer {
     padding: 46px 28px 60px;
     text-align: center;
+    background: var(--notte);
     color: var(--whisper);
     font-family: 'Cormorant Garamond', serif;
     font-size: 16px;
@@ -1060,10 +1083,10 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
              alt="Locandina della Cena in Bianco: la facciata illuminata di Villa Luzi nella notte, una lunga tavola apparecchiata di bianco a lume di candela e il pianoforte a coda bianco nel giardino. Venerdì 19 giugno, ore 20:30."
              loading="eager" fetchpriority="high">
       </div>
-      <p class="hero-caption">
-        Una sola regola: il bianco.
+      <h1 class="hero-caption">
+        <span class="sr-only">Cena in Bianco · venerdì 19 giugno · Il Segreto, Villa Luzi — </span>Una sola regola: il bianco.
         <span class="place">Treia · Le Marche</span>
-      </p>
+      </h1>
     </div>
   </section>
 
@@ -1076,7 +1099,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
       <div class="unit"><span class="num" id="cdSec">—</span><span class="lbl">Secondi</span></div>
     </div>
     <div class="cta-wrap">
-      <a class="cta-wa" id="ctaHero" href="#" target="_blank" rel="noopener" data-cta="hero">
+      <a class="cta-wa" id="ctaHero" href="https://wa.me/393452419263?text=Ciao%2C%20vorrei%20prenotare%20per%20la%20Cena%20in%20Bianco%20del%2019%20giugno" target="_blank" rel="noopener" data-cta="hero">
         <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067zm6.067-8.293c-.333-.16-1.973-.973-2.28-1.08-.307-.107-.533-.16-.747.16-.213.32-.853 1.08-1.04 1.293-.187.213-.387.24-.72.08-.333-.16-1.4-.52-2.667-1.653-.987-.88-1.653-1.973-1.853-2.307-.187-.32-.013-.493.147-.653.147-.147.32-.387.493-.573.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.747-1.8-1.027-2.467-.267-.64-.547-.547-.747-.56-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.253 3.44 5.467 4.827.76.32 1.36.52 1.827.667.76.24 1.453.213 2 .133.613-.093 1.973-.8 2.253-1.587.28-.787.28-1.467.187-1.587-.08-.133-.293-.213-.627-.373z"/></svg>
         <span>Prenota su WhatsApp</span>
       </a>
@@ -1085,14 +1108,14 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   </section>
 
   <!-- LA SERATA IN DUE TEMPI -->
-  <section aria-label="La serata in due tempi">
+  <div class="serata">
 
     <!-- Tempo I — la cena, ancora nella luce -->
     <article class="tempo tempo-1">
       <div class="tempo-testo">
         <p class="eyebrow">Tempo I · La cena</p>
         <h2>Un pianoforte a coda bianco, nel giardino.</h2>
-        <p>La tavola è apparecchiata di bianco, la luce è quella delle candele. A cena, i white piano cover di Sam Giacomozzi accompagnano il menù fisso dello chef, portata dopo portata.</p>
+        <p>La tavola è apparecchiata di bianco, la luce è quella delle candele. A cena, le white piano cover di Sam Giacomozzi accompagnano il menù fisso dello chef, portata dopo portata.</p>
         <p class="artista">Sam Giacomozzi — pianista e compositore marchigiano, porta il suo pianoforte negli eventi e nei matrimoni di mezzo mondo.<br>
         <a href="https://www.instagram.com/samgiacomozzipiano/" target="_blank" rel="noopener">@samgiacomozzipiano</a></p>
       </div>
@@ -1105,7 +1128,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     </article>
 
     <!-- il colore scende -->
-    <div class="ponte" aria-hidden="true">
+    <div class="ponte">
       <p class="ponte-frase">Poi la luce cala, e il giardino cambia ritmo.</p>
     </div>
 
@@ -1170,7 +1193,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
       <!-- LA NOTA BIANCA -->
       <section class="nota-bianca" id="nota-bianca" aria-label="La nota bianca">
         <h2>La nota bianca.</h2>
-        <p class="regola" id="notaRegola">Suonate i tasti segnati d'oro, da sinistra a destra.</p>
+        <p class="regola" id="notaRegola" aria-live="polite">Suonate i tasti segnati d'oro, da sinistra a destra.</p>
 
         <div class="tastiera" id="tastiera" role="group" aria-label="Tastiera di otto tasti di pianoforte">
           <button type="button" class="tasto segnato" data-nota="0" aria-label="Tasto 1, segnato d'oro"></button>
@@ -1185,7 +1208,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
         <div class="nota-esito" id="notaEsito" aria-live="polite">
           <p class="frase">Il bianco <em>vi dona</em>. Vi aspettiamo il 19.</p>
-          <a class="cta-wa inversa" id="ctaNota" href="#" target="_blank" rel="noopener" data-cta="nota-bianca">
+          <a class="cta-wa inversa" id="ctaNota" href="https://wa.me/393452419263?text=Ciao%2C%20vorrei%20prenotare%20per%20la%20Cena%20in%20Bianco%20del%2019%20giugno" target="_blank" rel="noopener" data-cta="nota-bianca">
             <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067z"/></svg>
             <span>Assicurati un tavolo</span>
           </a>
@@ -1242,10 +1265,10 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
         <form class="booking-form" onsubmit="return false;">
 
           <div class="booking-step">
-            <label class="booking-step-label" for="people-num-input" id="coperti-label">Coperti</label>
+            <span class="booking-step-label" id="coperti-label">Coperti</span>
             <div class="people-stepper" role="group" aria-labelledby="coperti-label">
               <button type="button" class="people-btn" id="people-minus" aria-label="Diminuisci i coperti">−</button>
-              <div class="people-count" id="people-num-input">
+              <div class="people-count" aria-live="polite">
                 <span id="people-num">2</span>
                 <em id="people-word">coperti</em>
               </div>
@@ -1261,15 +1284,15 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
           <div class="booking-submit-wrap">
             <p class="booking-summary" id="booking-summary"></p>
-            <a href="#" class="cta-wa" id="booking-submit" target="_blank" rel="noopener" data-cta="booking">
+            <a href="https://wa.me/393452419263?text=Ciao%2C%20vorrei%20prenotare%20per%20la%20Cena%20in%20Bianco%20del%2019%20giugno" class="cta-wa" id="booking-submit" target="_blank" rel="noopener" data-cta="booking">
               <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067zm6.067-8.293c-.333-.16-1.973-.973-2.28-1.08-.307-.107-.533-.16-.747.16-.213.32-.853 1.08-1.04 1.293-.187.213-.387.24-.72.08-.333-.16-1.4-.52-2.667-1.653-.987-.88-1.653-1.973-1.853-2.307-.187-.32-.013-.493.147-.653.147-.147.32-.387.493-.573.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.747-1.8-1.027-2.467-.267-.64-.547-.547-.747-.56-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.253 3.44 5.467 4.827.76.32 1.36.52 1.827.667.76.24 1.453.213 2 .133.613-.093 1.973-.8 2.253-1.587.28-.787.28-1.467.187-1.587-.08-.133-.293-.213-.627-.373z"/></svg>
               <span>Invia richiesta su WhatsApp</span>
             </a>
-            <p class="booking-email-row">Niente WhatsApp? <a href="#" id="booking-email">Scrivici via email</a></p>
+            <p class="booking-email-row">Niente WhatsApp? <a href="mailto:villaluzi1737@gmail.com?subject=Prenotazione%20%C2%B7%20Cena%20in%20Bianco%20%C2%B7%2019%20giugno" id="booking-email">Scriveteci via email</a></p>
           </div>
 
           <p class="booking-fallback">
-            Preferisci una telefonata?
+            Preferite una telefonata?
             <a href="tel:+393452419263">+39 345 241 9263</a>
           </p>
         </form>
@@ -1279,36 +1302,36 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
       <section class="chiusura">
         <h3>Una sera, un solo colore.<br>Il resto lo fa la musica.</h3>
         <p class="dove"><span>Il Segreto · Villa Luzi</span><span class="sep">·</span><span>Dove il tempo si ferma</span></p>
-        <a class="cta-wa inversa" id="ctaChiusura" href="#" target="_blank" rel="noopener" data-cta="chiusura">
+        <a class="cta-wa inversa" id="ctaChiusura" href="https://wa.me/393452419263?text=Ciao%2C%20vorrei%20prenotare%20per%20la%20Cena%20in%20Bianco%20del%2019%20giugno" target="_blank" rel="noopener" data-cta="chiusura">
           <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067z"/></svg>
           <span>Prenota su WhatsApp</span>
         </a>
       </section>
 
-      <!-- FOOTER -->
-      <footer>
-        <div class="row">
-          <a href="https://wa.me/393452419263" target="_blank" rel="noopener" data-cta="footer">+39 345 241 9263</a>
-          <span class="sep">·</span>
-          <a href="mailto:villaluzi1737@gmail.com">villaluzi1737@gmail.com</a>
-          <span class="sep">·</span>
-          <a href="https://villaluzi1737.it">villaluzi1737.it</a>
-          <span class="sep">·</span>
-          <a href="https://instagram.com/villaluzi1737" target="_blank" rel="noopener">@villaluzi1737</a>
-        </div>
-        <div class="endorsement">Il Segreto · Villa Luzi · Dal 1737 · Cena in Bianco · 19 giugno 2026</div>
-        <div class="vat">P.IVA 02184340434</div>
-      </footer>
-
     </div><!-- /notte-wrap -->
 
-  </section>
+  </div><!-- /serata -->
 
 </main>
 
+<!-- FOOTER -->
+<footer>
+  <div class="row">
+    <a href="https://wa.me/393452419263?text=Ciao%2C%20vorrei%20prenotare%20per%20la%20Cena%20in%20Bianco%20del%2019%20giugno" target="_blank" rel="noopener" data-cta="footer">+39 345 241 9263</a>
+    <span class="sep">·</span>
+    <a href="mailto:villaluzi1737@gmail.com">villaluzi1737@gmail.com</a>
+    <span class="sep">·</span>
+    <a href="https://villaluzi1737.com">villaluzi1737.com</a>
+    <span class="sep">·</span>
+    <a href="https://instagram.com/villaluzi1737" target="_blank" rel="noopener">@villaluzi1737</a>
+  </div>
+  <div class="endorsement">Il Segreto · Villa Luzi · Dal 1737 · Cena in Bianco · 19 giugno 2026</div>
+  <div class="vat">P.IVA 02184340434</div>
+</footer>
+
 <!-- STICKY BOTTOM BAR · solo mobile -->
 <div class="sticky-cta">
-  <a href="#" id="ctaSticky" target="_blank" rel="noopener" data-cta="sticky">
+  <a href="https://wa.me/393452419263?text=Ciao%2C%20vorrei%20prenotare%20per%20la%20Cena%20in%20Bianco%20del%2019%20giugno" id="ctaSticky" target="_blank" rel="noopener" data-cta="sticky">
     <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067z"/></svg>
     <span id="ctaStickyLabel">Venerdì 19 giugno · Prenota il tuo tavolo</span>
   </a>
@@ -1328,8 +1351,8 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   var EVENT_START_UTC = Date.UTC(2026, 5, 19, 18, 30, 0);
   // inizio del 19/6 a Roma (00:00 CEST) = 18/6 22:00 UTC
   var DAY_START_UTC = Date.UTC(2026, 5, 18, 22, 0, 0);
-  // fine della serata: 20/6 ore 04:00 Roma = 02:00 UTC
-  var NIGHT_END_UTC = Date.UTC(2026, 5, 20, 2, 0, 0);
+  // fine della serata: 20/6 ore 01:00 Roma = 19/6 23:00 UTC (coerente con endDate del JSON-LD)
+  var NIGHT_END_UTC = Date.UTC(2026, 5, 19, 23, 0, 0);
 
   function waLink(text) {
     return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text);
@@ -1343,7 +1366,8 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   }
   document.querySelectorAll('[data-cta]').forEach(function (el) {
     el.addEventListener('click', function () {
-      trackCTA(el.getAttribute('data-cta'));
+      var label = el.getAttribute('data-cta');
+      if (label) trackCTA(label); // rimuovendo data-cta si disattiva davvero il tracking
     });
   });
 
@@ -1360,8 +1384,6 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   }
 
   var $topbarText = document.getElementById('topbarText');
-  var $ctaHero = document.getElementById('ctaHero');
-  var $ctaSticky = document.getElementById('ctaSticky');
   var $ctaStickyLabel = document.getElementById('ctaStickyLabel');
 
   function applicaStato() {
@@ -1371,13 +1393,23 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     } else if (stato === 'dopo') {
       $topbarText.innerHTML = 'Grazie a chi c’era. La prossima serata è in arrivo.' +
         '<a href="' + IG_URL + '" target="_blank" rel="noopener">Seguiteci su Instagram</a>';
-      // a evento concluso, le CTA principali portano a Instagram
-      $ctaHero.href = IG_URL;
-      $ctaHero.querySelector('span').textContent = 'Seguici su Instagram';
-      $ctaHero.removeAttribute('data-cta');
-      $ctaSticky.href = IG_URL;
+      // a evento concluso, le CTA portano a Instagram e la prenotazione sparisce
+      ['ctaHero', 'ctaNota', 'ctaChiusura', 'ctaSticky'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.href = IG_URL;
+        el.removeAttribute('data-cta');
+        var sp = el.querySelector('span');
+        if (sp) sp.textContent = 'Seguiteci su Instagram';
+      });
       $ctaStickyLabel.textContent = 'La prossima serata è in arrivo · Instagram';
-      $ctaSticky.removeAttribute('data-cta');
+      var prenota = document.getElementById('prenota');
+      if (prenota) prenota.style.display = 'none';
+      var waFooter = document.querySelector('footer [data-cta="footer"]');
+      if (waFooter) {
+        waFooter.href = 'https://wa.me/' + WA_NUMBER;
+        waFooter.removeAttribute('data-cta');
+      }
     } else {
       $topbarText.innerHTML = 'Venerdì 19 giugno · Cena in Bianco · <strong>Posti limitati</strong>';
     }

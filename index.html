@@ -2286,6 +2286,53 @@ section + section::before {
   .porcini-card { transform: none; }
 }
 
+/* ─── Strip evento · Cena in Bianco 19/6 ─── */
+.evento-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 17px 24px;
+  background: var(--avorio);
+  color: var(--ottanio);
+  text-decoration: none;
+  border-top: 1px solid rgba(201, 168, 106, 0.5);
+  border-bottom: 1px solid rgba(201, 168, 106, 0.5);
+  transition: background 0.3s ease;
+}
+.evento-strip:hover { background: #fdf8ec; }
+.evento-strip-data {
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  font-weight: 500;
+  color: #7E5F27;
+  white-space: nowrap;
+}
+.evento-strip-titolo {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.3;
+}
+.evento-strip-cta {
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.20em;
+  font-weight: 500;
+  color: var(--ottanio);
+  border-bottom: 1px solid var(--oro);
+  padding-bottom: 2px;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .evento-strip { flex-direction: column; gap: 6px; padding: 15px 18px; text-align: center; }
+  .evento-strip-titolo { font-size: 17px; }
+}
+
 </style>
 
 <!-- Meta Pixel Code -->
@@ -2366,6 +2413,13 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
     </div>
   </div>
 </section>
+
+<!-- STRIP EVENTO · Cena in Bianco · 19 giugno -->
+<a class="evento-strip" href="19-giugno.html">
+  <span class="evento-strip-data">Venerdì 19 giugno</span>
+  <span class="evento-strip-titolo">Cena in Bianco — piano live e dj set nel giardino</span>
+  <span class="evento-strip-cta">Scopri la serata →</span>
+</a>
 
 <!-- NARRATIVE -->
 <section class="narrative">
