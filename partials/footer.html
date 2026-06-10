@@ -1,16 +1,20 @@
 <!-- ═══════════════════════════════════════════════════════════
      VILLA LUZI · FOOTER GLOBALE (fonte di verità)
-     Inlinea identico su ogni nuova pagina, prima di </body>.
-     NAP (Nome / Indirizzo / Phone) consistente ovunque.
+     Incluso a build-time da build.js dove le pagine hanno il
+     marker <!━━ @include:footer ━━> (prima di </body>).
+     NAP (Nome / Indirizzo / Phone) consistente ovunque — solo
+     dati canonici (§2 del brief): niente dati inventati.
+     Include il nodo JSON-LD #organization condiviso da tutte
+     le pagine nuove (§5).
      ═══════════════════════════════════════════════════════════ -->
 <footer class="site-footer">
   <div class="footer-top">
 
     <div class="footer-col">
       <a href="/" class="footer-brand-mark" aria-label="Villa Luzi">
-        <img src="/LS-Mark.png" alt="Villa Luzi" />
+        <img src="/assets/img/LS-Mark.png" alt="Villa Luzi" loading="lazy" />
       </a>
-      <p class="footer-brand-tagline">Dove il tempo si ferma — dal 1737.</p>
+      <p class="footer-brand-tagline">Dimora storica del 1737 · Treia, Marche.</p>
       <p class="footer-brand-address">
         Contrada Chiaravalle 49<br/>
         62010 Treia (MC) · Marche · Italia<br/>
@@ -27,53 +31,64 @@
     <div class="footer-col">
       <h4>Villa Luzi</h4>
       <ul>
-        <li><a href="/soggiornare">Hotel · B&amp;B</a></li>
-        <li><a href="/il-segreto">Ristorante</a></li>
-        <li><a href="/esperienze">Esperienze</a></li>
-        <li><a href="/eventi">Eventi</a></li>
-        <li><a href="/offerte">Offerte &amp; Gift</a></li>
-        <li><a href="/journal">Journal</a></li>
+        <li><a href="/soggiornare/">Soggiornare</a></li>
+        <li><a href="/il-segreto/">Il Segreto · Ristorante</a></li>
+        <li><a href="/esperienze/">Esperienze</a></li>
+        <li><a href="/eventi/">Eventi</a></li>
+        <li><a href="/contatti/">Contatti</a></li>
       </ul>
+      <p class="footer-cert">Dimora storica del 1737 · Otto ettari di parco · Ridisegnata nell'Ottocento da Andrea Vici.</p>
     </div>
 
     <div class="footer-col">
-      <h4>Il luogo</h4>
-      <ul>
-        <li><a href="/dove-siamo">Dove siamo</a></li>
-        <li><a href="/dove-siamo/come-arrivare">Come arrivare</a></li>
-        <li><a href="/dove-siamo/trasferimenti">Trasferimenti</a></li>
-        <li><a href="/cosa-fare-a-treia">Cosa fare a Treia</a></li>
-        <li><a href="/chi-siamo">Chi siamo</a></li>
-        <li><a href="/contatti">Contatti</a></li>
-      </ul>
-      <p class="footer-cert">Dimora storica restaurata · Parco di 3 ettari · Cappella privata.</p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Journal</h4>
-      <div class="footer-newsletter">
-        <p>Storie, stagioni e tempo. La nostra corrispondenza, due volte al mese.</p>
-        <!-- TODO: integrazione provider newsletter (Mailchimp / Brevo / ConvertKit) -->
-        <form data-newsletter onsubmit="return false;" novalidate>
-          <input type="email" name="email" placeholder="La tua email" aria-label="Indirizzo email" required />
-          <button type="submit">Iscriviti</button>
-        </form>
-        <p data-newsletter-msg></p>
-      </div>
+      <h4>Arrivare</h4>
+      <p class="footer-brand-address">
+        A 30 minuti da Macerata,<br/>
+        45 da Ancona e da Civitanova,<br/>
+        1 ora dall'aeroporto di Falconara.<br/>
+        Parcheggio gratuito in villa,<br/>
+        segnalato all'arrivo.
+      </p>
     </div>
 
   </div>
 
   <div class="footer-bottom">
     <div class="footer-legal">
-      © 2026 Villa Luzi · ELLE ESSE SNC di Ruggeri e Salemi Luana · <a href="/privacy">Privacy</a> · <a href="/cookie">Cookie</a>
+      © 2026 Villa Luzi
     </div>
-    <div class="footer-vat-line">P.IVA 02184340434 · PEC elleesse@ionospec.it</div>
+    <div class="footer-vat-line">P.IVA 02184340434</div>
   </div>
 </footer>
 
+<!-- Nodo entità condiviso: Organization Villa Luzi 1737 (§5) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://villaluzi1737.it/#organization",
+  "name": "Villa Luzi 1737",
+  "alternateName": "Villa Luzi",
+  "url": "https://villaluzi1737.it/",
+  "logo": "https://villaluzi1737.it/assets/img/LS-Mark.png",
+  "foundingDate": "1737",
+  "telephone": "+39 345 241 9263",
+  "email": "villaluzi1737@gmail.com",
+  "vatID": "02184340434",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Contrada Chiaravalle 49",
+    "addressLocality": "Treia",
+    "addressRegion": "Marche",
+    "postalCode": "62010",
+    "addressCountry": "IT"
+  },
+  "sameAs": ["https://www.instagram.com/villaluzi1737/"]
+}
+</script>
+
 <!-- Sticky mobile CTA (globale, sempre verso prenotazione ristorante) -->
-<a href="/il-segreto#prenota" class="sticky-cta" id="sticky-cta">
+<a href="/il-segreto/#prenota" class="sticky-cta" id="sticky-cta">
   <span>Prenota ora</span>
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
 </a>
