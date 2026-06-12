@@ -45,12 +45,14 @@
     mobileNav.classList.add('open');
     document.body.classList.add('nav-open');
     mobileNav.setAttribute('aria-hidden', 'false');
+    if (burger) burger.setAttribute('aria-expanded', 'true');
   }
   function closeNav() {
     if (!mobileNav) return;
     mobileNav.classList.remove('open');
     document.body.classList.remove('nav-open');
     mobileNav.setAttribute('aria-hidden', 'true');
+    if (burger) burger.setAttribute('aria-expanded', 'false');
   }
 
   if (burger) burger.addEventListener('click', openNav);
@@ -78,8 +80,12 @@
     const route = link.getAttribute('data-route');
     if (!route) return;
     const normalized = route.replace(/\/$/, '') || '/';
-    if (path === normalized || (normalized !== '/' && path.startsWith(normalized + '/'))) {
+    if (path === normalized) {
+      // pagina esatta: l'unico aria-current="page"
       link.setAttribute('aria-current', 'page');
+    } else if (normalized !== '/' && path.startsWith(normalized + '/')) {
+      // sezione antenata della pagina corrente: evidenziata, ma non aria-current
+      link.classList.add('is-section');
     }
   });
 

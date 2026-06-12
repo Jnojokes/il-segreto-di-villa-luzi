@@ -3,9 +3,10 @@
      Incluso a build-time da build.js dove le pagine hanno il
      marker <!━━ @include:header ━━> (fra <body> e il contenuto).
      MAI iniettare via JS: i crawler AI (GPTBot, ClaudeBot,
-     PerplexityBot, ecc.) non eseguono JavaScript.
-     Le voci di menu puntano solo a route pubblicate: aggiungere
-     qui le nuove route a ogni fase (Offerte e Journal in Fase 4).
+     PerplexityBot, ecc.) non eseguono JavaScript — tutte le voci
+     di menu (incluse quelle nei dropdown) sono nel sorgente HTML.
+     I dropdown desktop sono pura CSS (hover + focus-within), il
+     drawer mobile è progressive enhancement (apertura via JS).
      ═══════════════════════════════════════════════════════════ -->
 <header class="topbar" id="topbar">
   <a href="/" class="topbar-mark" aria-label="Villa Luzi · Home">
@@ -13,12 +14,78 @@
   </a>
 
   <nav class="topbar-nav" aria-label="Navigazione principale">
-    <a href="/la-villa/" class="topbar-link" data-route="/la-villa">La Villa</a>
-    <a href="/soggiornare/" class="topbar-link" data-route="/soggiornare">Soggiornare</a>
-    <a href="/il-segreto/" class="topbar-link" data-route="/il-segreto">Ristorante</a>
-    <a href="/esperienze/" class="topbar-link" data-route="/esperienze">Esperienze</a>
-    <a href="/eventi/" class="topbar-link" data-route="/eventi">Eventi</a>
-    <a href="/contatti/" class="topbar-link" data-route="/contatti">Contatti</a>
+
+    <div class="topbar-item has-menu">
+      <a href="/la-villa/" class="topbar-link" data-route="/la-villa">La Villa
+        <svg class="topbar-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="topbar-menu">
+        <a href="/la-villa/" data-route="/la-villa">La Villa</a>
+        <a href="/il-luogo/" data-route="/il-luogo">Il luogo · Treia e le Marche</a>
+        <a href="/journal/" data-route="/journal">Journal</a>
+      </div>
+    </div>
+
+    <div class="topbar-item has-menu">
+      <a href="/soggiornare/" class="topbar-link" data-route="/soggiornare">Soggiornare
+        <svg class="topbar-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="topbar-menu">
+        <a href="/soggiornare/" data-route="/soggiornare">Soggiornare</a>
+        <a href="/soggiornare/camere/" data-route="/soggiornare/camere">Le camere</a>
+        <a href="/soggiornare/camere/room-villa/" data-route="/soggiornare/camere/room-villa">Room Villa</a>
+        <a href="/soggiornare/camere/suite-villa/" data-route="/soggiornare/camere/suite-villa">Suite Villa</a>
+        <a href="/offerte/" data-route="/offerte">Offerte</a>
+      </div>
+    </div>
+
+    <div class="topbar-item has-menu">
+      <a href="/il-segreto/" class="topbar-link" data-route="/il-segreto">Ristorante
+        <svg class="topbar-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="topbar-menu">
+        <a href="/il-segreto/" data-route="/il-segreto">Il Segreto</a>
+        <a href="/il-segreto/menu/" data-route="/il-segreto/menu">Il menu</a>
+      </div>
+    </div>
+
+    <div class="topbar-item has-menu">
+      <a href="/esperienze/" class="topbar-link" data-route="/esperienze">Esperienze
+        <svg class="topbar-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="topbar-menu">
+        <a href="/esperienze/" data-route="/esperienze">Esperienze</a>
+        <a href="/esperienze/aperitivi-in-erba/" data-route="/esperienze/aperitivi-in-erba">Aperitivi in erba</a>
+        <a href="/esperienze/yoga-e-benessere/" data-route="/esperienze/yoga-e-benessere">Yoga e benessere</a>
+        <a href="/esperienze/il-parco/" data-route="/esperienze/il-parco">Il parco</a>
+      </div>
+    </div>
+
+    <div class="topbar-item has-menu">
+      <a href="/eventi/" class="topbar-link" data-route="/eventi">Eventi
+        <svg class="topbar-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="topbar-menu">
+        <a href="/eventi/" data-route="/eventi">Eventi</a>
+        <a href="/eventi/matrimoni/" data-route="/eventi/matrimoni">Matrimoni</a>
+        <a href="/eventi/eventi-privati/" data-route="/eventi/eventi-privati">Eventi privati</a>
+        <a href="/eventi/corporate/" data-route="/eventi/corporate">Corporate</a>
+        <a href="/matrimoni-nelle-marche/" data-route="/matrimoni-nelle-marche">Matrimoni nelle Marche</a>
+      </div>
+    </div>
+
+    <div class="topbar-item has-menu">
+      <a href="/contatti/" class="topbar-link" data-route="/contatti">Contatti
+        <svg class="topbar-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="topbar-menu">
+        <a href="/contatti/" data-route="/contatti">Contatti</a>
+        <a href="/come-arrivare/" data-route="/come-arrivare">Come arrivare</a>
+        <a href="/informazioni-utili/" data-route="/informazioni-utili">Informazioni utili</a>
+        <a href="/faq/" data-route="/faq">FAQ</a>
+      </div>
+    </div>
+
   </nav>
 
   <div class="topbar-actions">
@@ -40,12 +107,54 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
   </button>
   <ul class="mobile-nav-list">
-    <li><a href="/la-villa/" class="mobile-nav-link" data-route="/la-villa">La Villa</a></li>
-    <li><a href="/soggiornare/" class="mobile-nav-link" data-route="/soggiornare">Soggiornare</a></li>
-    <li><a href="/il-segreto/" class="mobile-nav-link" data-route="/il-segreto">Ristorante</a></li>
-    <li><a href="/esperienze/" class="mobile-nav-link" data-route="/esperienze">Esperienze</a></li>
-    <li><a href="/eventi/" class="mobile-nav-link" data-route="/eventi">Eventi</a></li>
-    <li><a href="/contatti/" class="mobile-nav-link" data-route="/contatti">Contatti</a></li>
+    <li class="mobile-nav-group">
+      <a href="/la-villa/" class="mobile-nav-link" data-route="/la-villa">La Villa</a>
+      <ul class="mobile-nav-sub">
+        <li><a href="/il-luogo/" data-route="/il-luogo">Il luogo · Treia e le Marche</a></li>
+        <li><a href="/journal/" data-route="/journal">Journal</a></li>
+      </ul>
+    </li>
+    <li class="mobile-nav-group">
+      <a href="/soggiornare/" class="mobile-nav-link" data-route="/soggiornare">Soggiornare</a>
+      <ul class="mobile-nav-sub">
+        <li><a href="/soggiornare/camere/" data-route="/soggiornare/camere">Le camere</a></li>
+        <li><a href="/soggiornare/camere/room-villa/" data-route="/soggiornare/camere/room-villa">Room Villa</a></li>
+        <li><a href="/soggiornare/camere/suite-villa/" data-route="/soggiornare/camere/suite-villa">Suite Villa</a></li>
+        <li><a href="/offerte/" data-route="/offerte">Offerte</a></li>
+      </ul>
+    </li>
+    <li class="mobile-nav-group">
+      <a href="/il-segreto/" class="mobile-nav-link" data-route="/il-segreto">Ristorante</a>
+      <ul class="mobile-nav-sub">
+        <li><a href="/il-segreto/" data-route="/il-segreto">Il Segreto</a></li>
+        <li><a href="/il-segreto/menu/" data-route="/il-segreto/menu">Il menu</a></li>
+      </ul>
+    </li>
+    <li class="mobile-nav-group">
+      <a href="/esperienze/" class="mobile-nav-link" data-route="/esperienze">Esperienze</a>
+      <ul class="mobile-nav-sub">
+        <li><a href="/esperienze/aperitivi-in-erba/" data-route="/esperienze/aperitivi-in-erba">Aperitivi in erba</a></li>
+        <li><a href="/esperienze/yoga-e-benessere/" data-route="/esperienze/yoga-e-benessere">Yoga e benessere</a></li>
+        <li><a href="/esperienze/il-parco/" data-route="/esperienze/il-parco">Il parco</a></li>
+      </ul>
+    </li>
+    <li class="mobile-nav-group">
+      <a href="/eventi/" class="mobile-nav-link" data-route="/eventi">Eventi</a>
+      <ul class="mobile-nav-sub">
+        <li><a href="/eventi/matrimoni/" data-route="/eventi/matrimoni">Matrimoni</a></li>
+        <li><a href="/eventi/eventi-privati/" data-route="/eventi/eventi-privati">Eventi privati</a></li>
+        <li><a href="/eventi/corporate/" data-route="/eventi/corporate">Corporate</a></li>
+        <li><a href="/matrimoni-nelle-marche/" data-route="/matrimoni-nelle-marche">Matrimoni nelle Marche</a></li>
+      </ul>
+    </li>
+    <li class="mobile-nav-group">
+      <a href="/contatti/" class="mobile-nav-link" data-route="/contatti">Contatti</a>
+      <ul class="mobile-nav-sub">
+        <li><a href="/come-arrivare/" data-route="/come-arrivare">Come arrivare</a></li>
+        <li><a href="/informazioni-utili/" data-route="/informazioni-utili">Informazioni utili</a></li>
+        <li><a href="/faq/" data-route="/faq">FAQ</a></li>
+      </ul>
+    </li>
   </ul>
   <a href="/il-segreto/#prenota" class="mobile-nav-cta">
     <span>Prenota ora</span>
