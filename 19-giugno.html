@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js');</script>
 <title>White Party — venerdì 19 giugno — Il Segreto, Villa Luzi</title>
 <meta name="description" content="Venerdì 19 giugno 2026, ore 20:30 — White Party nel giardino di Villa Luzi, Treia (MC). Cena servita con menù fisso a € 50, piano live di Sam Giacomozzi, dj set di Gianluca Palma. Dress code: total white. Posti limitati.">
 <meta name="theme-color" content="#0E3B3E">
@@ -118,6 +119,11 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     --linea: rgba(23, 52, 48, 0.16);
     /* tonalità champagne, riservate al particellare dello stappo */
     --champagne: #F1E3BE;
+    /* accento oro champagne (White Party): filetti, foil, micro-dettagli */
+    --oro: #B0883C;
+    --oro-soft: #CBA85C;
+    --oro-deep: #8A6A28;
+    --foil: linear-gradient(120deg, #E7C977 0%, #C9A24E 40%, #9E7C2E 100%);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1303,6 +1309,104 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   body.reveal-on .reveal { opacity: 0; transform: translateY(22px); }
   body.reveal-on .reveal.in { opacity: 1; transform: none; }
 
+  /* ============================================================
+     ELEVAZIONE — foil champagne, profondità, micro-interazioni
+     ============================================================ */
+
+  /* Titoli a due voci: la parola in corsivo diventa foil oro */
+  .section-title em {
+    font-style: italic;
+    color: var(--oro-deep);
+    background: var(--foil);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  /* Filetti dell'occhiello e divisori in oro */
+  .section-head .line-pair .line { background: var(--foil); opacity: 0.85; }
+  .atmosfera::before { background: linear-gradient(180deg, var(--oro-soft), transparent); opacity: 0.8; }
+  .chiusura::before { background: linear-gradient(90deg, transparent, var(--oro), transparent); opacity: 0.7; }
+
+  /* Card e form: vetro smerigliato che stacca dal gradiente animato */
+  .artista-card, .cena-prezzo, .dettaglio, .wa-box, .booking-form {
+    background: rgba(255, 255, 255, 0.55);
+    -webkit-backdrop-filter: blur(8px) saturate(1.06);
+    backdrop-filter: blur(8px) saturate(1.06);
+    box-shadow: 0 22px 50px -26px rgba(14, 59, 62, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  }
+  /* angoli delle card in oro */
+  .artista-card::before, .artista-card::after,
+  .booking-form::before, .booking-form::after,
+  .wa-box::before, .wa-box::after { border-color: var(--oro-soft); opacity: 0.78; }
+
+  /* Pulsanti: riflesso champagne che attraversa al passaggio */
+  .cta { position: relative; overflow: hidden; }
+  .cta > svg, .cta > span { position: relative; z-index: 2; }
+  .cta::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(115deg, transparent 30%, rgba(241, 227, 190, 0.42) 50%, transparent 70%);
+    transform: translateX(-130%);
+    transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1; pointer-events: none;
+  }
+  .cta:hover::after { transform: translateX(130%); }
+
+  /* Barra di avanzamento scroll (oro), sopra la topbar */
+  .scroll-progress {
+    position: fixed; top: 0; left: 0;
+    height: 2px; width: 0;
+    z-index: 90; pointer-events: none;
+    background: linear-gradient(90deg, var(--oro-soft), var(--oro), var(--oro-deep));
+    box-shadow: 0 0 8px rgba(176, 136, 60, 0.45);
+  }
+
+  /* —— Conto alla rovescia —— */
+  .countdown-band { background: transparent; text-align: center; padding: 70px 24px 78px; }
+  .countdown-band .section-head { margin-bottom: 30px; }
+  .countdown {
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: clamp(10px, 2.6vw, 26px);
+    margin: 0 auto;
+    min-height: 72px;
+  }
+  .countdown .unit { display: flex; flex-direction: column; align-items: center; min-width: clamp(44px, 12vw, 66px); }
+  .countdown .num {
+    font-family: 'Cinzel', serif; font-weight: 600;
+    font-size: clamp(30px, 6vw, 58px); line-height: 1;
+    color: var(--avorio);
+    font-variant-numeric: tabular-nums; letter-spacing: 0.01em;
+  }
+  .countdown .lbl {
+    margin-top: 12px;
+    font-family: 'Cinzel', serif; font-weight: 500;
+    font-size: clamp(8px, 1.1vw, 10px); letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--velo-soft);
+  }
+  .countdown .sep {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(26px, 5vw, 50px); line-height: 1;
+    color: var(--oro); opacity: 0.8; padding-top: 2px;
+  }
+  .countdown-note {
+    margin-top: 26px;
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(16px, 1.8vw, 20px); color: var(--velo);
+  }
+
+  /* Entrata orchestrata dell'hero (solo se l'utente non riduce il movimento) */
+  @media (prefers-reduced-motion: no-preference) {
+    html.js .hero-top > * { opacity: 0; transform: translateY(16px); animation: heroIn 0.95s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+    html.js .hero-top > *:nth-child(1) { animation-delay: 0.20s; }
+    html.js .hero-top > *:nth-child(2) { animation-delay: 0.34s; }
+    html.js .hero-top > *:nth-child(3) { animation-delay: 0.48s; }
+    html.js .hero-top > *:nth-child(4) { animation-delay: 0.62s; }
+  }
+  @keyframes heroIn { to { opacity: 1; transform: none; } }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -1314,6 +1418,9 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
 <!-- SFONDO a gradiente animato (toni White Party, dietro ai contenuti) -->
 <div class="bg-anim" aria-hidden="true"></div>
+
+<!-- BARRA DI AVANZAMENTO scroll (oro) -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
 <!-- SCINTILLIO leggero allo scroll (toni bianco/argento) -->
 <canvas class="sparkle-layer" id="sparkleCanvas" aria-hidden="true"></canvas>
@@ -1370,6 +1477,15 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
       </div>
     </div>
     <span class="hero-cue" aria-hidden="true"></span>
+  </section>
+
+  <!-- ============ CONTO ALLA ROVESCIA ============ -->
+  <section class="countdown-band" id="countdownBand" aria-label="Conto alla rovescia all'inizio della serata">
+    <div class="section-head">
+      <span class="line-pair" aria-hidden="true"><span class="line"></span><span class="eyebrow">Si avvicina</span><span class="line"></span></span>
+    </div>
+    <div class="countdown" id="heroCountdown" role="timer" aria-live="off" aria-atomic="true"></div>
+    <p class="countdown-note">all'inizio della serata — venerdì 19 giugno, ore 20:30.</p>
   </section>
 
   <!-- ============ ATMOSFERA ============ -->
@@ -2136,7 +2252,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
   // toni bianco/argento (prefisso rgba, l'alpha si aggiunge a runtime).
   // argento un filo profondo così lo scintillio si percepisce anche sul bianco.
-  var TINTE = ['rgba(255,255,255,', 'rgba(192,196,201,', 'rgba(168,176,183,', 'rgba(214,206,180,'];
+  var TINTE = ['rgba(255,255,255,', 'rgba(192,196,201,', 'rgba(168,176,183,', 'rgba(216,184,118,'];
   var sparks = [];
   var MAX = 16;          // tetto duro: scintillio non invasivo
   var running = false;
@@ -2238,6 +2354,57 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 
   els.forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+<!-- ============ AVANZAMENTO SCROLL + CONTO ALLA ROVESCIA ============ -->
+<script>
+(function () {
+  'use strict';
+
+  /* —— Barra di avanzamento allo scroll —— */
+  var bar = document.getElementById('scrollProgress');
+  if (bar) {
+    var ticking = false;
+    var update = function () {
+      var doc = document.documentElement;
+      var max = (doc.scrollHeight - doc.clientHeight) || 1;
+      var p = Math.min(1, Math.max(0, (window.scrollY || doc.scrollTop || 0) / max));
+      bar.style.width = (p * 100).toFixed(2) + '%';
+      ticking = false;
+    };
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  }
+
+  /* —— Conto alla rovescia all'inizio della serata —— */
+  var cd = document.getElementById('heroCountdown');
+  if (cd) {
+    var TARGET = Date.parse('2026-06-19T20:30:00+02:00');
+    var band = document.getElementById('countdownBand');
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    var unit = function (v, l) {
+      return '<span class="unit"><span class="num">' + pad(v) + '</span><span class="lbl">' + l + '</span></span>';
+    };
+    var SEP = '<span class="sep" aria-hidden="true">:</span>';
+    var tick = function () {
+      if (isNaN(TARGET)) { if (band) band.setAttribute('hidden', ''); return false; }
+      var diff = TARGET - Date.now();
+      if (diff <= 0) { if (band) band.setAttribute('hidden', ''); return false; }
+      var s = Math.floor(diff / 1000);
+      var d = Math.floor(s / 86400); s -= d * 86400;
+      var h = Math.floor(s / 3600); s -= h * 3600;
+      var m = Math.floor(s / 60); s -= m * 60;
+      cd.innerHTML = unit(d, 'Giorni') + SEP + unit(h, 'Ore') + SEP + unit(m, 'Minuti') + SEP + unit(s, 'Secondi');
+      return true;
+    };
+    if (tick()) {
+      var id = setInterval(function () { if (!tick()) clearInterval(id); }, 1000);
+    }
+  }
 })();
 </script>
 
