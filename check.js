@@ -127,7 +127,11 @@ for (const file of collect(DIST).sort()) {
       errors.push(`<title> fuori pattern "{Pagina} · Villa Luzi 1737 · Treia, Marche": "${title}"`);
     }
     const descTag = (html.match(/<meta[^>]*name=["']description["'][^>]*>/i) || [])[0];
-    const desc = descTag ? (descTag.match(/content=["']([^"']*)["']/i) || [])[1] : undefined;
+    // Cattura il valore di content fino alla virgoletta DELLO STESSO tipo che
+    // l'ha aperto (backreference \1): così un apostrofo letterale dentro un
+    // attributo fra doppi apici — es. "ritiri d'impresa" — non tronca il match.
+    const descMatch = descTag && descTag.match(/content=(["'])([\s\S]*?)\1/i);
+    const desc = descMatch ? descMatch[2] : undefined;
     if (desc == null) errors.push('meta description assente');
     else if (desc.length < 150 || desc.length > 160) {
       errors.push(`meta description di ${desc.length} caratteri (attesi 150–160)`);
