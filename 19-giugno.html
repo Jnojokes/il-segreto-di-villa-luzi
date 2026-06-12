@@ -6,7 +6,7 @@
 <script>document.documentElement.classList.add('js');</script>
 <title>White Party — venerdì 19 giugno — Il Segreto, Villa Luzi</title>
 <meta name="description" content="Venerdì 19 giugno 2026, ore 20:30 — White Party nel giardino di Villa Luzi, Treia (MC). Cena servita con menù fisso a € 50, piano live di Sam Giacomozzi, dj set di Gianluca Palma. Dress code: total white. Posti limitati.">
-<meta name="theme-color" content="#0E3B3E">
+<meta name="theme-color" content="#0E1C28">
 <link rel="canonical" href="https://villaluzi1737.com/19-giugno.html">
 <link rel="icon" type="image/png" href="/assets/img/LS-Icon.png">
 
@@ -104,26 +104,32 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
 <style>
   :root {
-    /* brand scuro: ora riservato a bottoni e velature sulle foto */
-    --ottanio: #0E3B3E;
-    --ottanio-deep: #0A2D2F;
-    --notte: #081E20;
-    /* White Party: fondo bianco pieno, testo in inchiostro scuro leggibile */
-    --avorio: #173430;
-    --avorio-warm: #173430;
-    --rosa-rame: #A65A40;
-    --bianco: #FFFFFF;
-    --velo: rgba(23, 52, 48, 0.74);
-    --velo-soft: rgba(23, 52, 48, 0.48);
-    --velo-faint: rgba(23, 52, 48, 0.10);
-    --linea: rgba(23, 52, 48, 0.16);
-    /* tonalità champagne, riservate al particellare dello stappo */
+    /* ===== WHITE PARTY — palette centralizzata ===== */
+    --bianco: #FDFCF8;        /* superfici principali: bianco caldo luminoso */
+    --avorio: #F4EFE6;        /* sezioni alternate: differenza appena percettibile */
+    --notte: #0E1C28;         /* hero e fasce scure */
+    --notte-prof: #08131C;    /* punto piu profondo del gradient hero */
+    --notte-rgb: 14, 28, 40;  /* per velature e ombre notturne */
+    --notte-prof-rgb: 8, 19, 28;
+    --oro: #C9A24B;           /* accento: hairline, filetti, parole in corsivo */
+    --oro-soft: #E3C98F;      /* glow e dettagli tenui */
+    --oro-deep: #A07E32;      /* foil profondo, oro su chiaro */
+    --ink: #1C2A33;           /* testo su chiaro */
+    /* derivati su --ink: testo attenuato e filetti su fondo chiaro */
+    --velo: rgba(28, 42, 51, 0.74);
+    --velo-soft: rgba(28, 42, 51, 0.46);
+    --velo-faint: rgba(28, 42, 51, 0.10);
+    --linea: rgba(28, 42, 51, 0.14);
+    --linea-oro: rgba(201, 162, 75, 0.40);   /* hairline champagne (card e bottoni su chiaro) */
+    /* dettagli champagne */
     --champagne: #F1E3BE;
-    /* accento oro champagne (White Party): filetti, foil, micro-dettagli */
-    --oro: #B0883C;
-    --oro-soft: #CBA85C;
-    --oro-deep: #8A6A28;
     --foil: linear-gradient(120deg, #E7C977 0%, #C9A24E 40%, #9E7C2E 100%);
+    --rosa-rame: #B26A4A;     /* riservato ai messaggi d'errore */
+    /* ===== Bottone pill bianco: token sovrascritti per contesto ===== */
+    --cta-bg: var(--bianco);
+    --cta-fg: var(--notte);
+    --cta-bd: var(--linea-oro);
+    --cta-sh: 0 16px 40px -18px rgba(var(--notte-rgb), 0.34), 0 3px 12px rgba(var(--notte-rgb), 0.10);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -141,7 +147,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   html { scroll-behavior: smooth; }
   html, body {
     background: var(--bianco);
-    color: var(--avorio);
+    color: var(--ink);
     font-family: 'Inter', system-ui, sans-serif;
     font-weight: 300;
     line-height: 1.6;
@@ -164,7 +170,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   main { position: relative; z-index: 2; }
 
   a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-    outline: 2px solid var(--avorio);
+    outline: 2px solid var(--ink);
     outline-offset: 3px;
   }
 
@@ -175,7 +181,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-size: 12px;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--velo-soft);
+    color: var(--oro);
   }
   .section-head { text-align: center; max-width: 720px; margin: 0 auto 52px; padding: 0 24px; }
   .section-head .line-pair {
@@ -194,7 +200,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-weight: 400;
     font-size: clamp(32px, 4.6vw, 50px);
     line-height: 1.12;
-    color: var(--avorio);
+    color: var(--ink);
     margin-top: 6px;
   }
   .section-title em { font-style: italic; }
@@ -217,7 +223,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     justify-content: space-between;
     gap: 16px;
     padding: 14px 24px;
-    background: linear-gradient(180deg, rgba(8, 30, 32, 0.85) 0%, rgba(8, 30, 32, 0) 100%);
+    background: linear-gradient(180deg, rgba(var(--notte-rgb), 0.85) 0%, rgba(var(--notte-rgb), 0) 100%);
     transition: background 0.4s ease, padding 0.4s ease;
     /* in cima la barra sta sopra la foto scura dell'hero: testo chiaro */
     --velo: rgba(255, 255, 255, 0.82);
@@ -227,9 +233,9 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     background: rgba(255, 255, 255, 0.94);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(23, 52, 48, 0.10);
+    border-bottom: 1px solid rgba(28, 42, 51, 0.10);
     /* scorrendo la barra è bianca sopra i contenuti: testo scuro */
-    --velo: rgba(23, 52, 48, 0.72);
+    --velo: rgba(28, 42, 51, 0.72);
   }
   .topbar-mark { display: inline-flex; align-items: center; text-decoration: none; }
   .topbar-mark img {
@@ -254,18 +260,25 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--ottanio);
+    color: var(--notte);
     background: var(--bianco);
     text-decoration: none;
     padding: 11px 22px;
+    border: 1px solid transparent;
     border-radius: 999px;
-    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 10px 26px -12px rgba(0, 0, 0, 0.5), 0 0 18px rgba(227, 201, 143, 0.16);
+    transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
     white-space: nowrap;
   }
-  .topbar-cta:hover { transform: translateY(-1px); }
-  /* sopra il bianco un pill chiaro sparirebbe: diventa scuro */
-  .topbar.scrolled .topbar-cta { background: var(--ottanio); color: var(--bianco); }
-  .topbar.scrolled .topbar-cta:hover { background: var(--ottanio-deep); }
+  .topbar-cta:hover { background: var(--oro); color: var(--notte); border-color: var(--oro); transform: translateY(-1px); }
+  /* barra bianca: il pill resta bianco ma con hairline oro per non sparire */
+  .topbar.scrolled .topbar-cta {
+    background: var(--bianco);
+    color: var(--notte);
+    border-color: var(--linea-oro);
+    box-shadow: 0 12px 28px -16px rgba(var(--notte-rgb), 0.42);
+  }
+  .topbar.scrolled .topbar-cta:hover { background: var(--oro); color: var(--notte); border-color: var(--oro); }
 
   /* ==================== HERO ==================== */
   .hero {
@@ -275,7 +288,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     overflow: hidden;
     display: flex;
     /* l'hero resta una foto scura: testo chiaro solo qui dentro */
-    --avorio: #FFFFFF;
+    --ink: #FFFFFF;
     --velo: rgba(255, 255, 255, 0.82);
     --velo-soft: rgba(255, 255, 255, 0.58);
     --linea: rgba(255, 255, 255, 0.18);
@@ -295,8 +308,9 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(8, 30, 32, 0.72) 0%, rgba(8, 30, 32, 0.18) 30%, rgba(8, 30, 32, 0.10) 55%, rgba(8, 30, 32, 0.82) 100%),
-      radial-gradient(ellipse 90% 60% at 50% 110%, rgba(8, 30, 32, 0.55) 0%, transparent 60%);
+      radial-gradient(58% 42% at 50% 30%, rgba(227, 201, 143, 0.16) 0%, transparent 62%),
+      linear-gradient(180deg, rgba(var(--notte-rgb), 0.86) 0%, rgba(var(--notte-rgb), 0.30) 32%, rgba(var(--notte-rgb), 0.38) 58%, rgba(var(--notte-prof-rgb), 0.94) 100%),
+      radial-gradient(ellipse 92% 64% at 50% 112%, rgba(var(--notte-prof-rgb), 0.70) 0%, transparent 62%);
     pointer-events: none;
   }
   .hero-canvas {
@@ -313,7 +327,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     pointer-events: none;
     z-index: 5;
     opacity: 0;
-    background: radial-gradient(circle at var(--flash-x, 50%) var(--flash-y, 30%), rgba(255, 255, 255, 0.6) 0%, rgba(244, 236, 220, 0.18) 30%, transparent 60%);
+    background: radial-gradient(circle at var(--flash-x, 50%) var(--flash-y, 30%), rgba(255, 255, 255, 0.6) 0%, rgba(253, 252, 248, 0.18) 30%, transparent 60%);
   }
   .hero-flash.on { animation: flash 0.7s ease-out forwards; }
   @keyframes flash {
@@ -356,7 +370,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     letter-spacing: 0.10em;
     text-transform: uppercase;
     color: var(--bianco);
-    text-shadow: 0 2px 30px rgba(8, 30, 32, 0.55);
+    text-shadow: 0 2px 30px rgba(var(--notte-rgb), 0.55);
   }
   .hero-data {
     margin-top: 18px;
@@ -365,7 +379,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-size: clamp(13px, 1.8vw, 16px);
     letter-spacing: 0.30em;
     text-transform: uppercase;
-    color: var(--avorio);
+    color: var(--ink);
   }
   .hero-sub {
     margin: 20px auto 0;
@@ -375,7 +389,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-size: clamp(18px, 2.2vw, 23px);
     line-height: 1.5;
     color: var(--velo);
-    text-shadow: 0 1px 16px rgba(8, 30, 32, 0.6);
+    text-shadow: 0 1px 16px rgba(var(--notte-rgb), 0.6);
   }
 
   .hero-bottom { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 14px; }
@@ -383,23 +397,25 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 19px;
-    color: var(--avorio);
+    color: var(--ink);
     opacity: 0;
     transform: translateY(6px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
   .hero.is-popped .hero-aperta { opacity: 1; transform: translateY(0); }
 
+  /* ===== Sistema pill bianco unico (varianti via token --cta-*) ===== */
   .cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
     padding: 18px 38px;
-    background: var(--ottanio);
-    color: var(--bianco);
+    /* default = variante su fondo chiaro: bianco + hairline oro + ombra diffusa */
+    background: var(--cta-bg);
+    color: var(--cta-fg);
     text-decoration: none;
-    border: none;
+    border: 1px solid var(--cta-bd);
     border-radius: 999px;
     font-family: 'Inter', system-ui, sans-serif;
     font-weight: 500;
@@ -407,22 +423,31 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     letter-spacing: 0.20em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
-    box-shadow: 0 12px 30px rgba(14, 59, 62, 0.28);
+    transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+    box-shadow: var(--cta-sh);
   }
-  .cta:hover { background: var(--ottanio-deep); transform: translateY(-2px); }
-  /* sull'hero (foto scura) il pulsante resta chiaro per staccare bene */
-  .hero .cta { background: var(--bianco); color: var(--ottanio); box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45); }
-  .hero .cta:hover { background: var(--bianco); }
+  /* hover: inversione raffinata -> oro champagne, testo notte */
+  .cta:hover {
+    --cta-bg: var(--oro);
+    --cta-fg: var(--notte);
+    --cta-bd: var(--oro);
+    transform: translateY(-2px);
+  }
+  /* variante su fondo scuro (hero, fasce immagine): niente bordo, glow morbido */
+  .hero .cta {
+    --cta-bd: transparent;
+    --cta-sh: 0 18px 44px -14px rgba(0, 0, 0, 0.55), 0 0 26px rgba(227, 201, 143, 0.18);
+  }
   .cta svg { width: 19px; height: 19px; flex: none; }
-  .cta.wa svg { fill: #25D366; }
+  /* icona WhatsApp: niente verde, segue il colore del testo (notte, oro su hover) */
+  .cta.wa svg { fill: currentColor; }
   .cta.ghost {
     background: transparent;
-    color: var(--avorio);
+    color: var(--ink);
     box-shadow: none;
     border: 1px solid var(--velo-soft);
   }
-  .cta.ghost:hover { border-color: var(--avorio); background: rgba(244, 236, 220, 0.07); }
+  .cta.ghost:hover { border-color: var(--ink); background: rgba(253, 252, 248, 0.07); }
 
   .hero-cta {
     opacity: 0.35;
@@ -481,7 +506,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   }
   .press-ring .ring-track {
     fill: none;
-    stroke: rgba(244, 236, 220, 0.22);
+    stroke: rgba(253, 252, 248, 0.22);
     stroke-width: 2;
   }
   .press-ring .ring-fill {
@@ -500,8 +525,8 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 17px;
-    color: var(--avorio);
-    text-shadow: 0 1px 10px rgba(8, 30, 32, 0.85);
+    color: var(--ink);
+    text-shadow: 0 1px 10px rgba(var(--notte-rgb), 0.85);
     white-space: nowrap;
     pointer-events: none;
     opacity: 0;
@@ -533,7 +558,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
   /* —— Atmosfera —— */
   .atmosfera {
-    background: transparent;
+    background: var(--avorio);
     text-align: center;
   }
   .atmosfera::before {
@@ -554,10 +579,10 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     line-height: 1.65;
     color: var(--velo);
   }
-  .atmosfera-body .accent { color: var(--avorio); font-style: normal; }
+  .atmosfera-body .accent { color: var(--ink); font-style: normal; }
 
   /* —— Programma —— */
-  .programma { background: var(--ottanio); padding-top: 40px; }
+  .programma { background: var(--oro); padding-top: 40px; }
   .timeline {
     max-width: 680px;
     margin: 0 auto;
@@ -576,7 +601,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-size: 13px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--avorio);
+    color: var(--ink);
     text-align: right;
     padding-top: 5px;
   }
@@ -600,7 +625,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     width: 9px; height: 9px;
     margin-top: 10px;
     transform: rotate(45deg);
-    background: var(--avorio);
+    background: var(--ink);
     flex: none;
   }
   .tappa-corpo { padding-bottom: 44px; }
@@ -609,7 +634,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-family: 'Cormorant Garamond', serif;
     font-weight: 500;
     font-size: clamp(21px, 2.4vw, 26px);
-    color: var(--avorio);
+    color: var(--ink);
     line-height: 1.2;
     margin-bottom: 6px;
   }
@@ -634,7 +659,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   .artista-card {
     border: 1px solid var(--linea);
     border-radius: 6px;
-    background: linear-gradient(180deg, rgba(244, 236, 220, 0.045) 0%, rgba(244, 236, 220, 0.015) 100%);
+    background: linear-gradient(180deg, rgba(253, 252, 248, 0.045) 0%, rgba(253, 252, 248, 0.015) 100%);
     padding: 44px 36px 38px;
     text-align: center;
     position: relative;
@@ -665,14 +690,14 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-size: 11px;
     letter-spacing: 0.30em;
     text-transform: uppercase;
-    color: var(--rosa-rame);
+    color: var(--oro);
     margin-bottom: 14px;
   }
   .artista-nome {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 500;
     font-size: clamp(26px, 3vw, 32px);
-    color: var(--avorio);
+    color: var(--ink);
     line-height: 1.15;
     margin-bottom: 14px;
   }
@@ -690,15 +715,15 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-weight: 400;
     font-size: 12px;
     letter-spacing: 0.12em;
-    color: var(--avorio);
+    color: var(--ink);
     text-decoration: none;
     border-bottom: 1px dotted var(--velo-soft);
     padding-bottom: 2px;
   }
-  .artista-ig:hover { color: var(--ottanio); border-color: var(--avorio); }
+  .artista-ig:hover { color: var(--oro); border-color: var(--ink); }
 
   /* —— La cena —— */
-  .cena { background: transparent; }
+  .cena { background: var(--avorio); }
   .cena-testo {
     max-width: 620px;
     margin: 0 auto 56px;
@@ -709,7 +734,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     line-height: 1.65;
     color: var(--velo);
   }
-  .cena-testo .accent { color: var(--avorio); font-style: normal; }
+  .cena-testo .accent { color: var(--ink); font-style: normal; }
   .cena-prezzo {
     max-width: 460px;
     margin: 0 auto 56px;
@@ -717,7 +742,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     border-radius: 6px;
     padding: 34px 30px 30px;
     text-align: center;
-    background: linear-gradient(180deg, rgba(244, 236, 220, 0.05), rgba(244, 236, 220, 0.02));
+    background: linear-gradient(180deg, rgba(253, 252, 248, 0.05), rgba(253, 252, 248, 0.02));
   }
   .cena-prezzo .stamp {
     font-family: 'Cinzel', serif;
@@ -725,7 +750,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-size: 11px;
     letter-spacing: 0.30em;
     text-transform: uppercase;
-    color: var(--velo-soft);
+    color: var(--oro);
     margin-bottom: 14px;
   }
   .cena-prezzo .cifra {
@@ -733,7 +758,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-weight: 500;
     font-size: clamp(38px, 5vw, 46px);
     line-height: 1.1;
-    color: var(--avorio);
+    color: var(--ink);
   }
   .cena-prezzo .cifra small {
     display: block;
@@ -776,11 +801,11 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     position: absolute;
     left: 0; right: 0; bottom: 0;
     padding: 18px 16px 14px;
-    background: linear-gradient(180deg, transparent, rgba(8, 30, 32, 0.78));
+    background: linear-gradient(180deg, transparent, rgba(var(--notte-rgb), 0.78));
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 15px;
-    color: var(--avorio);
+    color: var(--ink);
     text-align: center;
   }
   .cena-nota {
@@ -804,7 +829,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   .dettaglio {
     border: 1px solid var(--linea);
     border-radius: 4px;
-    background: rgba(244, 236, 220, 0.03);
+    background: rgba(253, 252, 248, 0.03);
     padding: 26px 18px 22px;
     text-align: center;
     transition: border-color 0.4s ease;
@@ -816,13 +841,13 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-size: 10px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: var(--rosa-rame);
+    color: var(--oro);
     margin-bottom: 10px;
   }
   .dettaglio .val {
     font-family: 'Cormorant Garamond', serif;
     font-size: 17px;
-    color: var(--avorio);
+    color: var(--ink);
     line-height: 1.45;
   }
   .dettaglio .val em { font-style: italic; color: var(--velo); font-size: 15px; display: block; margin-top: 4px; }
@@ -832,7 +857,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     padding: 0;
     background: var(--notte);
     /* foto con velatura scura: la frase resta in bianco */
-    --avorio: #FFFFFF;
+    --ink: #FFFFFF;
     position: relative;
     height: clamp(320px, 55vh, 560px);
     overflow: hidden;
@@ -847,7 +872,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(10, 45, 47, 0.9) 0%, rgba(8, 30, 32, 0.15) 35%, rgba(8, 30, 32, 0.15) 65%, rgba(8, 30, 32, 0.92) 100%);
+    background: linear-gradient(180deg, rgba(var(--notte-rgb), 0.9) 0%, rgba(var(--notte-rgb), 0.15) 35%, rgba(var(--notte-rgb), 0.15) 65%, rgba(var(--notte-rgb), 0.92) 100%);
   }
   .respiro-frase {
     position: absolute;
@@ -860,20 +885,20 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: clamp(19px, 2.6vw, 26px);
-    color: var(--avorio);
-    text-shadow: 0 1px 18px rgba(8, 30, 32, 0.7);
+    color: var(--ink);
+    text-shadow: 0 1px 18px rgba(var(--notte-rgb), 0.7);
     text-align: center;
   }
 
   /* —— Prenotazione —— */
   .booking {
-    background: transparent;
+    background: var(--avorio);
     scroll-margin-top: 40px;
   }
   .booking-form {
     max-width: 640px;
     margin: 0 auto;
-    background: rgba(244, 236, 220, 0.04);
+    background: rgba(253, 252, 248, 0.04);
     border: 1px solid var(--linea);
     border-radius: 8px;
     padding: 44px 40px;
@@ -907,7 +932,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-size: 12px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--avorio);
+    color: var(--ink);
     margin-bottom: 12px;
   }
   .campo-label .fac {
@@ -922,10 +947,10 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   .campo {
     width: 100%;
     padding: 15px 18px;
-    background: rgba(244, 236, 220, 0.05);
+    background: rgba(253, 252, 248, 0.05);
     border: 1px solid var(--linea);
     border-radius: 4px;
-    color: var(--avorio);
+    color: var(--ink);
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
     letter-spacing: 0.02em;
@@ -933,15 +958,15 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   .campo::placeholder { color: var(--velo-soft); font-style: italic; }
   .campo:focus {
     outline: none;
-    border-color: var(--avorio);
-    background: rgba(244, 236, 220, 0.08);
+    border-color: var(--ink);
+    background: rgba(253, 252, 248, 0.08);
   }
   textarea.campo { min-height: 88px; resize: vertical; }
 
   .people-stepper {
     display: inline-flex;
     align-items: center;
-    background: rgba(244, 236, 220, 0.05);
+    background: rgba(253, 252, 248, 0.05);
     border: 1px solid var(--linea);
     border-radius: 100px;
     padding: 6px;
@@ -951,7 +976,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     border-radius: 50%;
     background: transparent;
     border: none;
-    color: var(--avorio);
+    color: var(--ink);
     font-family: 'Cormorant Garamond', serif;
     font-size: 26px;
     cursor: pointer;
@@ -961,7 +986,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     justify-content: center;
     line-height: 1;
   }
-  .people-btn:hover:not(:disabled) { background: rgba(244, 236, 220, 0.12); }
+  .people-btn:hover:not(:disabled) { background: rgba(253, 252, 248, 0.12); }
   .people-btn:disabled { opacity: 0.3; cursor: not-allowed; }
   .people-count {
     min-width: 104px;
@@ -969,7 +994,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-family: 'Cormorant Garamond', serif;
     font-size: 25px;
     font-weight: 500;
-    color: var(--avorio);
+    color: var(--ink);
     padding: 0 12px;
     line-height: 1.1;
   }
@@ -1014,7 +1039,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   .booking-alt {
     margin-top: 24px;
     padding-top: 22px;
-    border-top: 1px solid rgba(244, 236, 220, 0.10);
+    border-top: 1px solid rgba(253, 252, 248, 0.10);
     text-align: center;
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
@@ -1022,11 +1047,11 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     color: var(--velo);
   }
   .booking-alt a {
-    color: var(--avorio);
+    color: var(--ink);
     text-decoration: none;
     border-bottom: 1px dotted var(--velo-soft);
   }
-  .booking-alt a:hover { color: var(--ottanio); }
+  .booking-alt a:hover { color: var(--oro); }
 
   /* esito dopo l'invio */
   .form-esito { display: none; text-align: center; }
@@ -1035,7 +1060,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-family: 'Cormorant Garamond', serif;
     font-weight: 500;
     font-size: clamp(24px, 3vw, 30px);
-    color: var(--avorio);
+    color: var(--ink);
     margin-bottom: 12px;
   }
   .form-esito .testo {
@@ -1062,7 +1087,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-family: 'Cormorant Garamond', serif;
     font-weight: 500;
     font-size: clamp(24px, 3vw, 30px);
-    color: var(--avorio);
+    color: var(--ink);
     margin-bottom: 10px;
   }
   .location-info .indirizzo {
@@ -1079,12 +1104,12 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-size: 12px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--avorio);
+    color: var(--ink);
     text-decoration: none;
     border-bottom: 1px dotted var(--velo-soft);
     padding-bottom: 3px;
   }
-  .location-info .maps-link:hover { color: var(--ottanio); border-color: var(--avorio); }
+  .location-info .maps-link:hover { color: var(--oro); border-color: var(--ink); }
   .location-mappa {
     border: 1px solid var(--linea);
     border-radius: 6px;
@@ -1119,7 +1144,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-style: italic;
     font-weight: 300;
     font-size: clamp(26px, 4vw, 38px);
-    color: var(--avorio);
+    color: var(--ink);
     line-height: 1.35;
     max-width: 640px;
     margin: 0 auto 26px;
@@ -1158,9 +1183,9 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   footer a {
     color: var(--velo);
     text-decoration: none;
-    border-bottom: 1px dotted rgba(23, 52, 48, 0.32);
+    border-bottom: 1px dotted rgba(28, 42, 51, 0.32);
   }
-  footer a:hover { color: var(--avorio); }
+  footer a:hover { color: var(--ink); }
   footer .endorsement {
     margin-top: 22px;
     font-family: 'Cinzel', serif;
@@ -1190,17 +1215,19 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     gap: 10px;
     width: 100%;
     padding: 16px 20px;
-    background: var(--ottanio);
-    color: var(--bianco);
+    background: var(--bianco);
+    color: var(--notte);
     text-decoration: none;
+    border: 1px solid var(--linea-oro);
     border-radius: 999px;
     font-family: 'Inter', system-ui, sans-serif;
     font-weight: 500;
     font-size: 12px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    box-shadow: 0 10px 26px rgba(14, 59, 62, 0.30), 0 0 0 1px rgba(23, 52, 48, 0.08);
+    box-shadow: 0 12px 30px -10px rgba(var(--notte-rgb), 0.40), 0 2px 8px rgba(var(--notte-rgb), 0.12);
   }
+  .sticky-cta a:hover { background: var(--oro); color: var(--notte); border-color: var(--oro); }
 
   /* ==================== RESPONSIVE ==================== */
   @media (max-width: 880px) {
@@ -1235,42 +1262,6 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     .location-mappa iframe { height: 260px; }
   }
 
-  /* —— CTA WhatsApp (numero persone) —— */
-  .whatsapp-cta { background: transparent; text-align: center; }
-  .wa-box {
-    max-width: 460px;
-    margin: 0 auto;
-    border: 1px solid var(--linea);
-    border-radius: 8px;
-    padding: 36px 32px 34px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    align-items: stretch;
-  }
-  .wa-box::before {
-    content: "";
-    position: absolute;
-    top: 8px; left: 8px;
-    width: 16px; height: 16px;
-    border: 1px solid var(--velo-soft);
-    border-right: none; border-bottom: none;
-    opacity: 0.55;
-  }
-  .wa-box::after {
-    content: "";
-    position: absolute;
-    bottom: 8px; right: 8px;
-    width: 16px; height: 16px;
-    border: 1px solid var(--velo-soft);
-    border-left: none; border-top: none;
-    opacity: 0.55;
-  }
-  .wa-box .campo-gruppo { margin-bottom: 0; text-align: left; }
-  .wa-box .campo { text-align: center; }
-  .wa-box .cta { align-self: center; }
-
   /* —— Scintillio leggero allo scroll —— */
   .sparkle-layer {
     position: fixed;
@@ -1290,9 +1281,9 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     z-index: 0;
     pointer-events: none;
     background:
-      radial-gradient(42% 48% at 22% 28%, rgba(241, 233, 214, 0.55) 0%, transparent 70%),
-      radial-gradient(46% 52% at 78% 72%, rgba(224, 233, 238, 0.60) 0%, transparent 72%),
-      linear-gradient(135deg, #ffffff 0%, #f6f1e7 38%, #edf0f3 70%, #ffffff 100%);
+      radial-gradient(46% 52% at 20% 26%, rgba(227, 201, 143, 0.20) 0%, transparent 70%),
+      radial-gradient(50% 56% at 80% 74%, rgba(244, 239, 230, 0.60) 0%, transparent 72%),
+      linear-gradient(135deg, #FDFCF8 0%, #F7F2E8 42%, #FBF7EC 72%, #FFFFFF 100%);
     animation: bgDrift 30s ease-in-out infinite alternate;
     will-change: transform;
   }
@@ -1327,18 +1318,19 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   .atmosfera::before { background: linear-gradient(180deg, var(--oro-soft), transparent); opacity: 0.8; }
   .chiusura::before { background: linear-gradient(90deg, transparent, var(--oro), transparent); opacity: 0.7; }
 
-  /* Card e form: vetro smerigliato che stacca dal gradiente animato */
-  .artista-card, .cena-prezzo, .dettaglio, .wa-box, .booking-form {
-    background: rgba(255, 255, 255, 0.55);
-    -webkit-backdrop-filter: blur(8px) saturate(1.06);
-    backdrop-filter: blur(8px) saturate(1.06);
-    box-shadow: 0 22px 50px -26px rgba(14, 59, 62, 0.25),
-                inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  /* Card e form: lino bianco caldo su avorio, hairline champagne, ombra morbida diffusa */
+  .artista-card, .cena-prezzo, .dettaglio, .booking-form {
+    background: var(--bianco);
+    border-color: var(--linea-oro);
+    -webkit-backdrop-filter: blur(6px) saturate(1.04);
+    backdrop-filter: blur(6px) saturate(1.04);
+    box-shadow: 0 30px 64px -32px rgba(var(--notte-rgb), 0.30),
+                0 8px 22px -16px rgba(var(--notte-rgb), 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
   }
   /* angoli delle card in oro */
   .artista-card::before, .artista-card::after,
-  .booking-form::before, .booking-form::after,
-  .wa-box::before, .wa-box::after { border-color: var(--oro-soft); opacity: 0.78; }
+  .booking-form::before, .booking-form::after { border-color: var(--oro-soft); opacity: 0.85; }
 
   /* Pulsanti: riflesso champagne che attraversa al passaggio */
   .cta { position: relative; overflow: hidden; }
@@ -1359,7 +1351,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     height: 2px; width: 0;
     z-index: 90; pointer-events: none;
     background: linear-gradient(90deg, var(--oro-soft), var(--oro), var(--oro-deep));
-    box-shadow: 0 0 8px rgba(176, 136, 60, 0.45);
+    box-shadow: 0 0 8px rgba(201, 162, 75, 0.45);
   }
 
   /* —— Conto alla rovescia —— */
@@ -1377,7 +1369,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   .countdown .num {
     font-family: 'Cinzel', serif; font-weight: 600;
     font-size: clamp(30px, 6vw, 58px); line-height: 1;
-    color: var(--avorio);
+    color: var(--ink);
     font-variant-numeric: tabular-nums; letter-spacing: 0.01em;
   }
   .countdown .lbl {
@@ -1559,26 +1551,6 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
         <p class="lbl">La cena</p>
         <p class="val">Menù fisso € 50<em>bevande escluse</em></p>
       </div>
-    </div>
-  </section>
-
-  <!-- ============ CTA WHATSAPP (numero persone) ============ -->
-  <section class="whatsapp-cta" id="partecipa" aria-label="Scrivici su WhatsApp per partecipare">
-    <div class="section-head">
-      <span class="line-pair" aria-hidden="true"><span class="line"></span><span class="eyebrow">Partecipa</span><span class="line"></span></span>
-      <h2 class="section-title">Scrivici e <em>tieni il bianco.</em></h2>
-      <p class="section-sub">Diteci in quanti sarete: vi rispondiamo su WhatsApp, in giornata.</p>
-    </div>
-    <div class="wa-box">
-      <div class="campo-gruppo">
-        <label class="campo-label" for="waPersone">Numero di persone</label>
-        <input type="number" class="campo" id="waPersone" name="persone" min="1" max="50" step="1"
-               inputmode="numeric" value="2" placeholder="Es. 2">
-      </div>
-      <a class="cta wa" id="ctaWaPersone" href="https://wa.me/393452419263" target="_blank" rel="noopener" data-cta="wa-persone">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067zm6.067-8.293c-.333-.16-1.973-.973-2.28-1.08-.307-.107-.533-.16-.747.16-.213.32-.853 1.08-1.04 1.293-.187.213-.387.24-.72.08-.333-.16-1.4-.52-2.667-1.653-.987-.88-1.653-1.973-1.853-2.307-.187-.32-.013-.493.147-.653.147-.147.32-.387.493-.573.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.747-1.8-1.027-2.467-.267-.64-.547-.547-.747-.56-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.253 3.44 5.467 4.827.76.32 1.36.52 1.827.667.76.24 1.453.213 2 .133.613-.093 1.973-.8 2.253-1.587.28-.787.28-1.467.187-1.587-.08-.133-.293-.213-.627-.373z"/></svg>
-        <span>Scrivici su WhatsApp</span>
-      </a>
     </div>
   </section>
 
@@ -1823,21 +1795,6 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     var el = document.getElementById(id);
     if (el && !dopo) el.href = waLink(WA_BASE);
   });
-
-  /* ---- CTA "numero di persone" → messaggio precompilato ---- */
-  var $waPersone = document.getElementById('waPersone');
-  var $ctaWaPersone = document.getElementById('ctaWaPersone');
-  if ($waPersone && $ctaWaPersone) {
-    var WA_PARTECIPA = 'Ciao! Sono interessato a partecipare al White Party del 19 giugno a Villa Luzi. Saremo in ';
-    var aggiornaWaPersone = function () {
-      var n = parseInt($waPersone.value, 10);
-      if (!n || n < 1) n = 1;
-      var parola = n === 1 ? 'persona' : 'persone';
-      $ctaWaPersone.href = waLink(WA_PARTECIPA + n + ' ' + parola + '.');
-    };
-    $waPersone.addEventListener('input', aggiornaWaPersone);
-    aggiornaWaPersone();
-  }
 
   /* ============================================================
      LO STAPPO — Pointer Events, canvas, niente librerie.
@@ -2335,7 +2292,6 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     '.lineup .section-head', '.lineup-grid',
     '.cena .section-head', '.cena-testo', '.cena-prezzo', '.cena-nota',
     '.dettagli-grid',
-    '.whatsapp-cta .section-head', '.wa-box',
     '.booking .section-head', '.booking-form',
     '.location .section-head', '.location-inner',
     '.chiusura h2', '.chiusura .dove'
