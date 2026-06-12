@@ -103,17 +103,19 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
 <style>
   :root {
+    /* brand scuro: ora riservato a bottoni e velature sulle foto */
     --ottanio: #0E3B3E;
     --ottanio-deep: #0A2D2F;
     --notte: #081E20;
-    --avorio: #F4ECDC;
-    --avorio-warm: #ECE2CF;
-    --rosa-rame: #D49785;
+    /* White Party: fondo bianco pieno, testo in inchiostro scuro leggibile */
+    --avorio: #173430;
+    --avorio-warm: #173430;
+    --rosa-rame: #A65A40;
     --bianco: #FFFFFF;
-    --velo: rgba(244, 236, 220, 0.78);
-    --velo-soft: rgba(244, 236, 220, 0.52);
-    --velo-faint: rgba(244, 236, 220, 0.16);
-    --linea: rgba(244, 236, 220, 0.18);
+    --velo: rgba(23, 52, 48, 0.74);
+    --velo-soft: rgba(23, 52, 48, 0.48);
+    --velo-faint: rgba(23, 52, 48, 0.10);
+    --linea: rgba(23, 52, 48, 0.16);
     /* tonalità champagne, riservate al particellare dello stappo */
     --champagne: #F1E3BE;
   }
@@ -132,7 +134,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
   html { scroll-behavior: smooth; }
   html, body {
-    background: var(--notte);
+    background: var(--bianco);
     color: var(--avorio);
     font-family: 'Inter', system-ui, sans-serif;
     font-weight: 300;
@@ -211,13 +213,17 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     padding: 14px 24px;
     background: linear-gradient(180deg, rgba(8, 30, 32, 0.85) 0%, rgba(8, 30, 32, 0) 100%);
     transition: background 0.4s ease, padding 0.4s ease;
+    /* in cima la barra sta sopra la foto scura dell'hero: testo chiaro */
+    --velo: rgba(255, 255, 255, 0.82);
   }
   .topbar.scrolled {
     padding: 10px 24px;
-    background: rgba(8, 30, 32, 0.94);
+    background: rgba(255, 255, 255, 0.94);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(244, 236, 220, 0.08);
+    border-bottom: 1px solid rgba(23, 52, 48, 0.10);
+    /* scorrendo la barra è bianca sopra i contenuti: testo scuro */
+    --velo: rgba(23, 52, 48, 0.72);
   }
   .topbar-mark { display: inline-flex; align-items: center; text-decoration: none; }
   .topbar-mark img {
@@ -243,14 +249,17 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ottanio);
-    background: var(--avorio);
+    background: var(--bianco);
     text-decoration: none;
     padding: 11px 22px;
     border-radius: 999px;
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
     white-space: nowrap;
   }
-  .topbar-cta:hover { background: var(--bianco); transform: translateY(-1px); }
+  .topbar-cta:hover { transform: translateY(-1px); }
+  /* sopra il bianco un pill chiaro sparirebbe: diventa scuro */
+  .topbar.scrolled .topbar-cta { background: var(--ottanio); color: var(--bianco); }
+  .topbar.scrolled .topbar-cta:hover { background: var(--ottanio-deep); }
 
   /* ==================== HERO ==================== */
   .hero {
@@ -259,6 +268,11 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     min-height: 100svh;
     overflow: hidden;
     display: flex;
+    /* l'hero resta una foto scura: testo chiaro solo qui dentro */
+    --avorio: #FFFFFF;
+    --velo: rgba(255, 255, 255, 0.82);
+    --velo-soft: rgba(255, 255, 255, 0.58);
+    --linea: rgba(255, 255, 255, 0.18);
   }
   .hero-bg, .hero-bg img {
     position: absolute;
@@ -376,8 +390,8 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     justify-content: center;
     gap: 12px;
     padding: 18px 38px;
-    background: var(--avorio);
-    color: var(--ottanio);
+    background: var(--ottanio);
+    color: var(--bianco);
     text-decoration: none;
     border: none;
     border-radius: 999px;
@@ -388,9 +402,12 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     text-transform: uppercase;
     cursor: pointer;
     transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
-    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 12px 30px rgba(14, 59, 62, 0.28);
   }
-  .cta:hover { background: var(--bianco); transform: translateY(-2px); }
+  .cta:hover { background: var(--ottanio-deep); transform: translateY(-2px); }
+  /* sull'hero (foto scura) il pulsante resta chiaro per staccare bene */
+  .hero .cta { background: var(--bianco); color: var(--ottanio); box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45); }
+  .hero .cta:hover { background: var(--bianco); }
   .cta svg { width: 19px; height: 19px; flex: none; }
   .cta.wa svg { fill: #25D366; }
   .cta.ghost {
@@ -510,7 +527,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
   /* —— Atmosfera —— */
   .atmosfera {
-    background: var(--ottanio);
+    background: var(--bianco);
     text-align: center;
   }
   .atmosfera::before {
@@ -600,7 +617,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   }
 
   /* —— Lineup —— */
-  .lineup { background: linear-gradient(180deg, var(--ottanio) 0%, var(--ottanio-deep) 100%); }
+  .lineup { background: var(--bianco); }
   .lineup-grid {
     max-width: 880px;
     margin: 0 auto;
@@ -672,10 +689,10 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     border-bottom: 1px dotted var(--velo-soft);
     padding-bottom: 2px;
   }
-  .artista-ig:hover { color: var(--bianco); border-color: var(--avorio); }
+  .artista-ig:hover { color: var(--ottanio); border-color: var(--avorio); }
 
   /* —— La cena —— */
-  .cena { background: var(--ottanio-deep); }
+  .cena { background: var(--bianco); }
   .cena-testo {
     max-width: 620px;
     margin: 0 auto 56px;
@@ -770,7 +787,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   }
 
   /* —— Dettagli —— */
-  .dettagli { background: var(--ottanio-deep); padding-top: 30px; }
+  .dettagli { background: var(--bianco); padding-top: 30px; }
   .dettagli-grid {
     max-width: 880px;
     margin: 0 auto;
@@ -808,6 +825,8 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   .respiro-visivo {
     padding: 0;
     background: var(--notte);
+    /* foto con velatura scura: la frase resta in bianco */
+    --avorio: #FFFFFF;
     position: relative;
     height: clamp(320px, 55vh, 560px);
     overflow: hidden;
@@ -842,7 +861,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
   /* —— Prenotazione —— */
   .booking {
-    background: linear-gradient(180deg, var(--notte) 0%, var(--ottanio) 100%);
+    background: var(--bianco);
     scroll-margin-top: 40px;
   }
   .booking-form {
@@ -1001,7 +1020,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     text-decoration: none;
     border-bottom: 1px dotted var(--velo-soft);
   }
-  .booking-alt a:hover { color: var(--bianco); }
+  .booking-alt a:hover { color: var(--ottanio); }
 
   /* esito dopo l'invio */
   .form-esito { display: none; text-align: center; }
@@ -1024,7 +1043,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   .form-nojs { display: none; text-align: center; }
 
   /* —— Location —— */
-  .location { background: var(--ottanio); }
+  .location { background: var(--bianco); }
   .location-inner {
     max-width: 880px;
     margin: 0 auto;
@@ -1059,7 +1078,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     border-bottom: 1px dotted var(--velo-soft);
     padding-bottom: 3px;
   }
-  .location-info .maps-link:hover { color: var(--bianco); border-color: var(--avorio); }
+  .location-info .maps-link:hover { color: var(--ottanio); border-color: var(--avorio); }
   .location-mappa {
     border: 1px solid var(--linea);
     border-radius: 6px;
@@ -1076,7 +1095,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
   /* —— Chiusura —— */
   .chiusura {
-    background: var(--ottanio);
+    background: var(--bianco);
     text-align: center;
     padding-top: 40px;
   }
@@ -1114,7 +1133,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   footer {
     padding: 52px 28px 60px;
     text-align: center;
-    background: var(--notte);
+    background: var(--bianco);
     color: var(--velo);
     font-family: 'Cormorant Garamond', serif;
     font-size: 16px;
@@ -1133,7 +1152,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   footer a {
     color: var(--velo);
     text-decoration: none;
-    border-bottom: 1px dotted rgba(244, 236, 220, 0.35);
+    border-bottom: 1px dotted rgba(23, 52, 48, 0.32);
   }
   footer a:hover { color: var(--avorio); }
   footer .endorsement {
@@ -1153,7 +1172,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     bottom: 0; left: 0; right: 0;
     z-index: 60;
     padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-    background: linear-gradient(180deg, rgba(8, 30, 32, 0) 0%, rgba(8, 30, 32, 0.9) 30%, rgba(8, 30, 32, 0.98) 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.92) 30%, rgba(255, 255, 255, 0.99) 100%);
     display: none;
     pointer-events: none;
   }
@@ -1165,8 +1184,8 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     gap: 10px;
     width: 100%;
     padding: 16px 20px;
-    background: var(--avorio);
-    color: var(--ottanio);
+    background: var(--ottanio);
+    color: var(--bianco);
     text-decoration: none;
     border-radius: 999px;
     font-family: 'Inter', system-ui, sans-serif;
@@ -1174,7 +1193,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     font-size: 12px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(244, 236, 220, 0.25);
+    box-shadow: 0 10px 26px rgba(14, 59, 62, 0.30), 0 0 0 1px rgba(23, 52, 48, 0.08);
   }
 
   /* ==================== RESPONSIVE ==================== */
@@ -1210,18 +1229,67 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     .location-mappa iframe { height: 260px; }
   }
 
+  /* —— CTA WhatsApp (numero persone) —— */
+  .whatsapp-cta { background: var(--bianco); text-align: center; }
+  .wa-box {
+    max-width: 460px;
+    margin: 0 auto;
+    border: 1px solid var(--linea);
+    border-radius: 8px;
+    padding: 36px 32px 34px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: stretch;
+  }
+  .wa-box::before {
+    content: "";
+    position: absolute;
+    top: 8px; left: 8px;
+    width: 16px; height: 16px;
+    border: 1px solid var(--velo-soft);
+    border-right: none; border-bottom: none;
+    opacity: 0.55;
+  }
+  .wa-box::after {
+    content: "";
+    position: absolute;
+    bottom: 8px; right: 8px;
+    width: 16px; height: 16px;
+    border: 1px solid var(--velo-soft);
+    border-left: none; border-top: none;
+    opacity: 0.55;
+  }
+  .wa-box .campo-gruppo { margin-bottom: 0; text-align: left; }
+  .wa-box .campo { text-align: center; }
+  .wa-box .cta { align-self: center; }
+
+  /* —— Scintillio leggero allo scroll —— */
+  .sparkle-layer {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+  }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition: none !important; animation: none !important; }
+    .sparkle-layer { display: none; }
   }
 </style>
 </head>
 <body>
 
+<!-- SCINTILLIO leggero allo scroll (toni bianco/argento) -->
+<canvas class="sparkle-layer" id="sparkleCanvas" aria-hidden="true"></canvas>
+
 <!-- TOPBAR -->
 <header class="topbar" id="topbar">
   <a class="topbar-mark" href="index.html" aria-label="Il Segreto — Villa Luzi, torna alla pagina principale">
-    <img src="il-segreto-logo.png" alt="Il Segreto — Villa Luzi" width="1320" height="1275">
+    <img src="LS-Mark.png" alt="Il Segreto — Villa Luzi" width="795" height="576">
   </a>
   <p class="topbar-date" id="topbarDate">White Party — venerdì 19 giugno — posti limitati</p>
   <a class="topbar-cta" href="#prenota" data-cta="topbar">Prenota</a>
@@ -1261,7 +1329,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
         <!-- Variante A/B della headline di supporto: aggiungere ?v=b all'URL della campagna -->
         <p class="hero-sub" id="heroSub"
            data-variante-b="La notte più chiara dell'estate. Il giardino di Villa Luzi si veste di bianco.">
-          Una sola sera, un solo colore. Cena d'autore, piano live e dj set nel giardino della villa.</p>
+          Cena d'autore, piano live e dj set nel giardino della villa.</p>
       </div>
       <div class="hero-bottom">
         <p class="hero-aperta" id="heroAperta" aria-live="polite">La serata è aperta.</p>
@@ -1283,40 +1351,6 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
       Le tavole vestono il lino, le luci si abbassano, gli ospiti arrivano in bianco.
       <span class="accent">Il resto lo fanno il cielo di Treia, un calice freddo e la musica dal vivo.</span>
     </p>
-  </section>
-
-  <!-- ============ PROGRAMMA ============ -->
-  <section class="programma" aria-label="Il programma della serata">
-    <div class="section-head">
-      <span class="line-pair" aria-hidden="true"><span class="line"></span><span class="eyebrow">La serata</span><span class="line"></span></span>
-      <h2 class="section-title">Tre tempi, <em>una notte.</em></h2>
-    </div>
-    <div class="timeline">
-      <div class="tappa">
-        <p class="tappa-ora">Ore 20:30</p>
-        <div class="tappa-asse"><span class="tappa-punto" aria-hidden="true"></span></div>
-        <div class="tappa-corpo">
-          <h3 class="tappa-titolo">L'arrivo</h3>
-          <p class="tappa-testo">Il benvenuto nel giardino, quando la luce comincia a cadere e la villa si accende.</p>
-        </div>
-      </div>
-      <div class="tappa">
-        <p class="tappa-ora">A cena</p>
-        <div class="tappa-asse"><span class="tappa-punto" aria-hidden="true"></span></div>
-        <div class="tappa-corpo">
-          <h3 class="tappa-titolo">Il pianoforte</h3>
-          <p class="tappa-testo">Cena servita al tavolo, accompagnata dal piano a coda di Sam Giacomozzi, portata dopo portata.</p>
-        </div>
-      </div>
-      <div class="tappa">
-        <p class="tappa-ora">Dopo cena</p>
-        <div class="tappa-asse"><span class="tappa-punto" aria-hidden="true"></span></div>
-        <div class="tappa-corpo">
-          <h3 class="tappa-titolo">La consolle</h3>
-          <p class="tappa-testo">Il dj set di Gianluca Palma prende il passo della notte, finché la notte tiene.</p>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- ============ LINEUP ============ -->
@@ -1355,23 +1389,6 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
       <p class="cifra">€ 50 a persona<small>menù fisso pensato per la serata</small></p>
       <p class="condizioni">Bevande escluse — posti limitati</p>
     </div>
-    <div class="piatti">
-      <figure>
-        <img src="dish-tartare.png" width="1080" height="1350" loading="lazy"
-             alt="Tartare dello chef Jan Paul Kana, impiattata su fondo chiaro.">
-        <figcaption>Un assaggio della cucina dello chef</figcaption>
-      </figure>
-      <figure>
-        <img src="dish-carre.jpg" width="1127" height="1400" loading="lazy"
-             alt="Carré servito con verdure di stagione, dalla cucina di Jan Paul Kana.">
-        <figcaption>La mano è quella di Jan Paul Kana</figcaption>
-      </figure>
-      <figure>
-        <img src="dish-marchigiana.jpg" width="1127" height="1400" loading="lazy"
-             alt="Piatto di carne marchigiana della cucina di Villa Luzi.">
-        <figcaption>Le Marche, servite al tavolo</figcaption>
-      </figure>
-    </div>
     <p class="cena-nota">Le portate della serata saranno annunciate nei prossimi giorni.</p>
   </section>
 
@@ -1394,6 +1411,26 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
         <p class="lbl">La cena</p>
         <p class="val">Menù fisso € 50<em>bevande escluse</em></p>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA WHATSAPP (numero persone) ============ -->
+  <section class="whatsapp-cta" id="partecipa" aria-label="Scrivici su WhatsApp per partecipare">
+    <div class="section-head">
+      <span class="line-pair" aria-hidden="true"><span class="line"></span><span class="eyebrow">Partecipa</span><span class="line"></span></span>
+      <h2 class="section-title">Scrivici e <em>tieni il bianco.</em></h2>
+      <p class="section-sub">Diteci in quanti sarete: vi rispondiamo su WhatsApp, in giornata.</p>
+    </div>
+    <div class="wa-box">
+      <div class="campo-gruppo">
+        <label class="campo-label" for="waPersone">Numero di persone</label>
+        <input type="number" class="campo" id="waPersone" name="persone" min="1" max="50" step="1"
+               inputmode="numeric" value="2" placeholder="Es. 2">
+      </div>
+      <a class="cta wa" id="ctaWaPersone" href="https://wa.me/393452419263" target="_blank" rel="noopener" data-cta="wa-persone">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067zm6.067-8.293c-.333-.16-1.973-.973-2.28-1.08-.307-.107-.533-.16-.747.16-.213.32-.853 1.08-1.04 1.293-.187.213-.387.24-.72.08-.333-.16-1.4-.52-2.667-1.653-.987-.88-1.653-1.973-1.853-2.307-.187-.32-.013-.493.147-.653.147-.147.32-.387.493-.573.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.747-1.8-1.027-2.467-.267-.64-.547-.547-.747-.56-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.253 3.44 5.467 4.827.76.32 1.36.52 1.827.667.76.24 1.453.213 2 .133.613-.093 1.973-.8 2.253-1.587.28-.787.28-1.467.187-1.587-.08-.133-.293-.213-.627-.373z"/></svg>
+        <span>Scrivici su WhatsApp</span>
+      </a>
     </div>
   </section>
 
@@ -1638,6 +1675,21 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     var el = document.getElementById(id);
     if (el && !dopo) el.href = waLink(WA_BASE);
   });
+
+  /* ---- CTA "numero di persone" → messaggio precompilato ---- */
+  var $waPersone = document.getElementById('waPersone');
+  var $ctaWaPersone = document.getElementById('ctaWaPersone');
+  if ($waPersone && $ctaWaPersone) {
+    var WA_PARTECIPA = 'Ciao! Sono interessato a partecipare al White Party del 19 giugno a Villa Luzi. Saremo in ';
+    var aggiornaWaPersone = function () {
+      var n = parseInt($waPersone.value, 10);
+      if (!n || n < 1) n = 1;
+      var parola = n === 1 ? 'persona' : 'persone';
+      $ctaWaPersone.href = waLink(WA_PARTECIPA + n + ' ' + parola + '.');
+    };
+    $waPersone.addEventListener('input', aggiornaWaPersone);
+    aggiornaWaPersone();
+  }
 
   /* ============================================================
      LO STAPPO — Pointer Events, canvas, niente librerie.
@@ -2023,6 +2075,101 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
       '&body=' + encodeURIComponent(messaggioWa(nome, $note.value.trim()));
   });
 
+})();
+</script>
+
+<!-- ============ SCINTILLIO ALLO SCROLL ============
+     Canvas leggero, niente librerie. Poche particelle, opacità bassa,
+     toni bianco/argento. Disattivato con prefers-reduced-motion. -->
+<script>
+(function () {
+  'use strict';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var canvas = document.getElementById('sparkleCanvas');
+  if (!canvas || !canvas.getContext) return;
+
+  var ctx = canvas.getContext('2d');
+  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+  var W = 0, H = 0;
+
+  function resize() {
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = Math.round(W * DPR);
+    canvas.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  // toni bianco/argento (prefisso rgba, l'alpha si aggiunge a runtime).
+  // argento un filo profondo così lo scintillio si percepisce anche sul bianco.
+  var TINTE = ['rgba(255,255,255,', 'rgba(192,196,201,', 'rgba(168,176,183,', 'rgba(214,206,180,'];
+  var sparks = [];
+  var MAX = 16;          // tetto duro: scintillio non invasivo
+  var running = false;
+  var last = 0;
+
+  function spawn(x, y) {
+    if (sparks.length >= MAX) return;
+    sparks.push({
+      x: x, y: y,
+      r: 0.8 + Math.random() * 1.7,
+      vita: 0.9 + Math.random() * 0.8,
+      eta: 0,
+      max: 0.18 + Math.random() * 0.24,   // opacità di picco bassa
+      col: TINTE[(Math.random() * TINTE.length) | 0]
+    });
+  }
+
+  function disegna(s) {
+    var t = s.eta / s.vita;                  // 0..1
+    var a = Math.sin(Math.PI * t) * s.max;   // dissolve in entrata/uscita
+    if (a <= 0) return;
+    var R = s.r * (1 + t * 0.6);
+    var g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, R * 4);
+    g.addColorStop(0, s.col + a.toFixed(3) + ')');
+    g.addColorStop(1, s.col + '0)');
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, R * 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = s.col + Math.min(1, a * 1.6).toFixed(3) + ')';
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, R * 0.6, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function loop(t) {
+    var dt = Math.min(0.05, (t - last) / 1000);
+    last = t;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (var i = sparks.length - 1; i >= 0; i--) {
+      var s = sparks[i];
+      s.eta += dt;
+      if (s.eta >= s.vita) { sparks.splice(i, 1); continue; }
+      disegna(s);
+    }
+    if (sparks.length) { requestAnimationFrame(loop); }
+    else { running = false; ctx.clearRect(0, 0, canvas.width, canvas.height); }
+  }
+
+  function start() {
+    if (!running) { running = true; last = performance.now(); requestAnimationFrame(loop); }
+  }
+
+  // attivazione allo scroll, con throttle su requestAnimationFrame
+  var tick = false;
+  window.addEventListener('scroll', function () {
+    if (tick) return;
+    tick = true;
+    requestAnimationFrame(function () {
+      tick = false;
+      var n = 1 + (Math.random() * 2 | 0);   // 1-2 scintille per evento
+      for (var k = 0; k < n; k++) spawn(Math.random() * W, Math.random() * H);
+      start();
+    });
+  }, { passive: true });
 })();
 </script>
 
