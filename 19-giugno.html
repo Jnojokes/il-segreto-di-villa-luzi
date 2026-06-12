@@ -7,7 +7,7 @@
 <meta name="description" content="Venerdì 19 giugno 2026, ore 20:30 — White Party nel giardino di Villa Luzi, Treia (MC). Cena servita con menù fisso a € 50, piano live di Sam Giacomozzi, dj set di Gianluca Palma. Dress code: total white. Posti limitati.">
 <meta name="theme-color" content="#0E3B3E">
 <link rel="canonical" href="https://villaluzi1737.com/19-giugno.html">
-<link rel="icon" type="image/png" href="LS-Icon.png">
+<link rel="icon" type="image/png" href="/assets/img/LS-Icon.png">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Il Segreto — Villa Luzi">
@@ -527,7 +527,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
   /* —— Atmosfera —— */
   .atmosfera {
-    background: var(--bianco);
+    background: transparent;
     text-align: center;
   }
   .atmosfera::before {
@@ -617,7 +617,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   }
 
   /* —— Lineup —— */
-  .lineup { background: var(--bianco); }
+  .lineup { background: transparent; }
   .lineup-grid {
     max-width: 880px;
     margin: 0 auto;
@@ -692,7 +692,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   .artista-ig:hover { color: var(--ottanio); border-color: var(--avorio); }
 
   /* —— La cena —— */
-  .cena { background: var(--bianco); }
+  .cena { background: transparent; }
   .cena-testo {
     max-width: 620px;
     margin: 0 auto 56px;
@@ -787,7 +787,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   }
 
   /* —— Dettagli —— */
-  .dettagli { background: var(--bianco); padding-top: 30px; }
+  .dettagli { background: transparent; padding-top: 30px; }
   .dettagli-grid {
     max-width: 880px;
     margin: 0 auto;
@@ -861,7 +861,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
   /* —— Prenotazione —— */
   .booking {
-    background: var(--bianco);
+    background: transparent;
     scroll-margin-top: 40px;
   }
   .booking-form {
@@ -1043,7 +1043,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   .form-nojs { display: none; text-align: center; }
 
   /* —— Location —— */
-  .location { background: var(--bianco); }
+  .location { background: transparent; }
   .location-inner {
     max-width: 880px;
     margin: 0 auto;
@@ -1095,7 +1095,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
   /* —— Chiusura —— */
   .chiusura {
-    background: var(--bianco);
+    background: transparent;
     text-align: center;
     padding-top: 40px;
   }
@@ -1133,7 +1133,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   footer {
     padding: 52px 28px 60px;
     text-align: center;
-    background: var(--bianco);
+    background: transparent;
     color: var(--velo);
     font-family: 'Cormorant Garamond', serif;
     font-size: 16px;
@@ -1230,7 +1230,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   }
 
   /* —— CTA WhatsApp (numero persone) —— */
-  .whatsapp-cta { background: var(--bianco); text-align: center; }
+  .whatsapp-cta { background: transparent; text-align: center; }
   .wa-box {
     max-width: 460px;
     margin: 0 auto;
@@ -1274,6 +1274,35 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     pointer-events: none;
     z-index: 3;
   }
+
+  /* —— Sfondo a gradiente animato (toni White Party) ——
+     Layer fisso dietro ai contenuti; le sezioni sono trasparenti
+     così il gradiente respira sotto. Animazione su transform (GPU). */
+  .bg-anim {
+    position: fixed;
+    inset: -40%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(42% 48% at 22% 28%, rgba(241, 233, 214, 0.55) 0%, transparent 70%),
+      radial-gradient(46% 52% at 78% 72%, rgba(224, 233, 238, 0.60) 0%, transparent 72%),
+      linear-gradient(135deg, #ffffff 0%, #f6f1e7 38%, #edf0f3 70%, #ffffff 100%);
+    animation: bgDrift 30s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @keyframes bgDrift {
+    from { transform: translate3d(-2.5%, -2%, 0) scale(1.12) rotate(-1.2deg); }
+    to   { transform: translate3d(2.5%, 2%, 0) scale(1.22) rotate(1.2deg); }
+  }
+
+  /* —— Comparsa morbida allo scroll (attivata via JS, gated) —— */
+  .reveal {
+    transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+                transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  body.reveal-on .reveal { opacity: 0; transform: translateY(22px); }
+  body.reveal-on .reveal.in { opacity: 1; transform: none; }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -1283,13 +1312,16 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 </head>
 <body>
 
+<!-- SFONDO a gradiente animato (toni White Party, dietro ai contenuti) -->
+<div class="bg-anim" aria-hidden="true"></div>
+
 <!-- SCINTILLIO leggero allo scroll (toni bianco/argento) -->
 <canvas class="sparkle-layer" id="sparkleCanvas" aria-hidden="true"></canvas>
 
 <!-- TOPBAR -->
 <header class="topbar" id="topbar">
   <a class="topbar-mark" href="index.html" aria-label="Il Segreto — Villa Luzi, torna alla pagina principale">
-    <img src="LS-Mark.png" alt="Il Segreto — Villa Luzi" width="795" height="576">
+    <img src="/assets/img/LS-Mark.png" alt="Il Segreto — Villa Luzi" width="795" height="576">
   </a>
   <p class="topbar-date" id="topbarDate">White Party — venerdì 19 giugno — posti limitati</p>
   <a class="topbar-cta" href="#prenota" data-cta="topbar">Prenota</a>
@@ -1544,7 +1576,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 <!-- FOOTER -->
 <footer>
   <div class="footer-mark">
-    <img src="LS-Mark.png" alt="Il monogramma LS di Villa Luzi" width="795" height="576" loading="lazy">
+    <img src="/assets/img/LS-Mark.png" alt="Il monogramma LS di Villa Luzi" width="795" height="576" loading="lazy">
   </div>
   <div class="row">
     <a href="https://wa.me/393452419263" target="_blank" rel="noopener" id="footerWa" data-cta="footer">+39 345 241 9263</a>
@@ -2170,6 +2202,42 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
       start();
     });
   }, { passive: true });
+})();
+</script>
+
+<!-- ============ COMPARSA MORBIDA ALLO SCROLL ============
+     Le sezioni salgono e si dissolvono entrando in vista.
+     Gated: solo con IntersectionObserver e senza prefers-reduced-motion. -->
+<script>
+(function () {
+  'use strict';
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var sel = [
+    '.atmosfera .section-head', '.atmosfera-body',
+    '.lineup .section-head', '.lineup-grid',
+    '.cena .section-head', '.cena-testo', '.cena-prezzo', '.cena-nota',
+    '.dettagli-grid',
+    '.whatsapp-cta .section-head', '.wa-box',
+    '.booking .section-head', '.booking-form',
+    '.location .section-head', '.location-inner',
+    '.chiusura h2', '.chiusura .dove'
+  ].join(', ');
+
+  var els = [].slice.call(document.querySelectorAll(sel));
+  if (!els.length) return;
+
+  document.body.classList.add('reveal-on');
+  els.forEach(function (el) { el.classList.add('reveal'); });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  els.forEach(function (el) { io.observe(el); });
 })();
 </script>
 
