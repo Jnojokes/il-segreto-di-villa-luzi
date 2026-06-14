@@ -20,13 +20,10 @@
   status = 301
 
 # ─── URL pulito · landing evento "White Party" ───
-# La pagina è la cartella /19-giugno/ (index.html), servita nativamente come le altre route.
-# Il vecchio /19-giugno.html (destinazione campagna Meta) ora non esiste più come file:
-# questo 301 reindirizza i click esistenti all'URL pulito.
-[[redirects]]
-  from = "/19-giugno.html"
-  to = "/19-giugno"
-  status = 301
+# Nessun redirect: la pagina è servita come file statico a entrambi gli URL.
+#   /19-giugno      → cartella 19-giugno/index.html (URL pulito, convenzione del sito)
+#   /19-giugno.html → alias emesso da build.js (stessa sorgente), per i click già in
+#                     circolazione dalla campagna Meta. Il canonical punta a /19-giugno.
 
 # Normalizza /index.html → /
 [[redirects]]
