@@ -7,18 +7,18 @@
 <title>White Party — venerdì 19 giugno — Il Segreto, Villa Luzi</title>
 <meta name="description" content="Venerdì 19 giugno 2026, ore 20:30 — White Party nel giardino di Villa Luzi, Treia (MC). Cena servita con menù fisso a € 45, piano live di Sam Giacomozzi, dj set di Gianluca Palma. Dress code: total white. Posti limitati.">
 <meta name="theme-color" content="#0E1C28">
-<link rel="canonical" href="https://villaluzi1737.com/19-giugno.html">
+<link rel="canonical" href="https://villaluzi1737.com/19-giugno">
 <link rel="icon" type="image/png" href="/assets/img/LS-Icon.png">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Il Segreto — Villa Luzi">
 <meta property="og:title" content="White Party — venerdì 19 giugno — Il Segreto, Villa Luzi">
-<meta property="og:description" content="Una sola sera, un solo colore. Cena d'autore, piano live e dj set nel giardino di Villa Luzi. Menù fisso € 45, bevande escluse. Dress code: total white. Posti limitati, su prenotazione.">
+<meta property="og:description" content="Cena d'autore, piano live e dj set nel giardino di Villa Luzi. Menù fisso € 45, bevande escluse. Dress code: total white. Posti limitati, su prenotazione.">
 <meta property="og:image" content="https://villaluzi1737.com/assets/whiteparty/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Un uomo in camicia bianca alza una bottiglia di champagne davanti a Villa Luzi illuminata, la sera del White Party.">
-<meta property="og:url" content="https://villaluzi1737.com/19-giugno.html">
+<meta property="og:url" content="https://villaluzi1737.com/19-giugno">
 <meta property="og:locale" content="it_IT">
 
 <meta name="twitter:card" content="summary_large_image">
@@ -56,7 +56,7 @@
     "price": "45",
     "priceCurrency": "EUR",
     "availability": "https://schema.org/InStock",
-    "url": "https://villaluzi1737.com/19-giugno.html",
+    "url": "https://villaluzi1737.com/19-giugno",
     "validFrom": "2026-06-11"
   },
   "performer": [
@@ -768,6 +768,15 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     color: var(--velo);
     margin-top: 8px;
   }
+  /* Value stack: la serata inclusa nei € 45, prima delle esclusioni (A3) */
+  .cena-prezzo .cena-include {
+    margin-top: 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(16px, 1.9vw, 18px);
+    line-height: 1.55;
+    color: var(--velo);
+  }
   .cena-prezzo .condizioni {
     margin-top: 18px;
     padding-top: 16px;
@@ -1029,6 +1038,26 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     gap: 14px;
     text-align: center;
   }
+  /* Submit e WhatsApp: co-primari, stessa larghezza (A1) */
+  .cta-block { width: 100%; max-width: 340px; }
+  /* separatore "oppure" fra le due CTA del modulo */
+  .oppure {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 340px;
+    color: var(--velo-soft);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+  }
+  .oppure::before, .oppure::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--linea);
+  }
   .campo-errore {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
@@ -1158,7 +1187,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     color: var(--velo);
     margin-bottom: 34px;
   }
-  .chiusura .dove .sep { margin: 0 12px; opacity: 0.55; font-size: 9px; vertical-align: 2px; }
+  .chiusura .dove .sep { margin: 0 10px; opacity: 0.5; }
 
   /* ==================== FOOTER ==================== */
   footer {
@@ -1197,37 +1226,69 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   }
   footer .vat { margin-top: 12px; font-size: 11px; letter-spacing: 0.15em; opacity: 0.7; font-family: 'Inter', system-ui, sans-serif; }
 
-  /* ==================== STICKY BOTTOM BAR (mobile) ==================== */
+  /* ==================== STICKY BOTTOM BAR (mobile + slim su desktop) ==================== */
+  /* Nascosta a riposo (fuori dallo schermo): JS aggiunge .visibile dopo l'hero
+     e la ritira quando #prenota o il footer entrano in vista. */
   .sticky-cta {
     position: fixed;
     bottom: 0; left: 0; right: 0;
     z-index: 60;
     padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.92) 30%, rgba(255, 255, 255, 0.99) 100%);
-    display: none;
     pointer-events: none;
+    transform: translateY(130%);
+    visibility: hidden;   /* fuori dal tab order quando ritirata */
+    transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s linear 0.45s;
   }
-  .sticky-cta a {
+  .sticky-cta.visibile {
+    transform: translateY(0);
+    visibility: visible;
+    transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s linear 0s;
+  }
+  .sticky-cta-inner {
+    display: flex;
+    gap: 10px;
+    max-width: 460px;   /* slim e centrata su desktop */
+    margin: 0 auto;
+  }
+  .sticky-btn {
     pointer-events: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    width: 100%;
-    padding: 16px 20px;
-    background: var(--bianco);
-    color: var(--notte);
+    gap: 9px;
+    padding: 15px 20px;
     text-decoration: none;
-    border: 1px solid var(--linea-oro);
     border-radius: 999px;
     font-family: 'Inter', system-ui, sans-serif;
     font-weight: 500;
     font-size: 12px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
+    white-space: nowrap;
     box-shadow: 0 12px 30px -10px rgba(var(--notte-rgb), 0.40), 0 2px 8px rgba(var(--notte-rgb), 0.12);
+    transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
   }
-  .sticky-cta a:hover { background: var(--oro); color: var(--notte); border-color: var(--oro); }
+  .sticky-btn-primary {
+    flex: 1 1 auto;
+    background: var(--bianco);
+    color: var(--notte);
+    border: 1px solid var(--linea-oro);
+  }
+  .sticky-btn-primary:hover { background: var(--oro); color: var(--notte); border-color: var(--oro); }
+  /* WhatsApp in palette brand (ottanio pieno), niente verde: si distingue dal pill chiaro */
+  .sticky-btn-wa {
+    flex: 0 0 auto;
+    background: var(--notte);
+    color: var(--bianco);
+    border: 1px solid var(--notte);
+  }
+  .sticky-btn-wa svg { width: 20px; height: 20px; fill: currentColor; flex: none; }
+  .sticky-btn-wa:hover { background: var(--oro); color: var(--notte); border-color: var(--oro); }
+  @media (max-width: 420px) {
+    .sticky-wa-label { display: none; }   /* su schermi stretti la WhatsApp resta solo icona */
+    .sticky-btn { padding: 15px 16px; }
+  }
 
   /* ==================== RESPONSIVE ==================== */
   @media (max-width: 880px) {
@@ -1246,8 +1307,6 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   }
 
   @media (max-width: 767px) {
-    body { padding-bottom: 86px; }
-    .sticky-cta { display: block; }
     section { padding: 72px 20px; }
     .topbar { padding: 12px 16px; }
     .topbar-date { display: none; }
@@ -1460,10 +1519,10 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
         <!-- Variante A/B della headline di supporto: aggiungere ?v=b all'URL della campagna -->
         <p class="hero-sub" id="heroSub"
            data-variante-b="La notte più chiara dell'estate. Il giardino di Villa Luzi si veste di bianco.">
-          Cena d'autore, piano live e dj set nel giardino della villa.</p>
+          Cena d'autore, calici freddi, piano live e dj set nel giardino della villa.</p>
       </div>
       <div class="hero-bottom">
-        <p class="hero-aperta" id="heroAperta" aria-live="polite">La serata è aperta.</p>
+        <p class="hero-aperta" id="heroAperta" aria-live="polite">Le prenotazioni sono aperte.</p>
         <a class="cta hero-cta" id="ctaHero" href="#prenota" data-cta="hero">Prenota il tavolo</a>
         <p class="cta-helper">Posti limitati — risposta in giornata</p>
       </div>
@@ -1509,7 +1568,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
       <article class="artista-card">
         <p class="artista-ruolo">Dj set — dopo cena</p>
         <h3 class="artista-nome">Gianluca Palma</h3>
-        <p class="artista-bio">Quando i tavoli si alzano, la consolle entra in scena e il giardino cambia ritmo. Elegante anche a volume alto, fino a notte.</p>
+        <p class="artista-bio">Quando i tavoli si alzano, la consolle prende il giardino e si balla. Elegante anche a volume alto, fino a notte.</p>
       </article>
     </div>
   </section>
@@ -1525,11 +1584,12 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
       un menù pensato per la sera d'estate, servito al tavolo, nel giardino.
     </p>
     <div class="cena-prezzo">
-      <p class="stamp">Il menù della serata</p>
-      <p class="cifra">€ 45 a persona<small>menù fisso pensato per la serata</small></p>
-      <p class="condizioni">Bevande escluse — posti limitati</p>
+      <p class="stamp">La serata, servita al tavolo</p>
+      <p class="cifra">€ 45 a persona</p>
+      <p class="cena-include">Cena d'autore di Jan Paul Kana, piano live di Sam Giacomozzi e dj set di Gianluca Palma. Nel giardino della villa.</p>
+      <p class="condizioni">Menù fisso — bevande escluse — posti limitati, su prenotazione</p>
     </div>
-    <p class="cena-nota">Le portate della serata saranno annunciate nei prossimi giorni.</p>
+    <p class="cena-nota">Il menù è fisso: le portate della serata saranno annunciate a breve.</p>
   </section>
 
   <!-- ============ DETTAGLI ============ -->
@@ -1597,8 +1657,16 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
         </div>
         <div class="booking-submit-wrap">
           <p class="campo-errore" id="formErrore" aria-live="polite"></p>
-          <button type="submit" class="cta" id="formSubmit">Richiedi il tavolo</button>
+          <button type="submit" class="cta cta-block" id="formSubmit">Richiedi il tavolo</button>
           <p class="cta-helper">Nessun pagamento online — si salda al ristorante</p>
+          <div class="oppure" aria-hidden="true"><span>oppure</span></div>
+          <a class="cta cta-block wa" id="ctaFormWa"
+             href="https://wa.me/393452419263?text=Ciao!%20Vorrei%20prenotare%20un%20tavolo%20per%20il%20White%20Party%20del%2019%20giugno"
+             target="_blank" rel="noopener" data-cta="whatsapp_form">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067zm6.067-8.293c-.333-.16-1.973-.973-2.28-1.08-.307-.107-.533-.16-.747.16-.213.32-.853 1.08-1.04 1.293-.187.213-.387.24-.72.08-.333-.16-1.4-.52-2.667-1.653-.987-.88-1.653-1.973-1.853-2.307-.187-.32-.013-.493.147-.653.147-.147.32-.387.493-.573.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.747-1.8-1.027-2.467-.267-.64-.547-.547-.747-.56-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.253 3.44 5.467 4.827.76.32 1.36.52 1.827.667.76.24 1.453.213 2 .133.613-.093 1.973-.8 2.253-1.587.28-.787.28-1.467.187-1.587-.08-.133-.293-.213-.627-.373z"/></svg>
+            <span>Scrivici su WhatsApp</span>
+          </a>
+          <p class="cta-helper">Ti rispondiamo in giornata.</p>
         </div>
       </form>
 
@@ -1651,8 +1719,8 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
   <!-- ============ CHIUSURA ============ -->
   <section class="chiusura">
-    <h2>Una sera, un solo colore.<br>Il resto lo fa la musica.</h2>
-    <p class="dove"><span>Il Segreto — Villa Luzi</span><span class="sep" aria-hidden="true">◆</span><span>Dove il tempo si ferma</span></p>
+    <h2>Tutti in bianco, in giardino.<br>Il resto lo fa la musica.</h2>
+    <p class="dove"><span>Il Segreto — Villa Luzi</span><span class="sep" aria-hidden="true">—</span><span>Dove il tempo si ferma</span></p>
     <a class="cta wa" id="ctaChiusura" href="https://wa.me/393452419263" target="_blank" rel="noopener" data-cta="chiusura">
       <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067z"/></svg>
       <span>Prenota su WhatsApp</span>
@@ -1668,22 +1736,27 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   </div>
   <div class="row">
     <a href="https://wa.me/393452419263" target="_blank" rel="noopener" id="footerWa" data-cta="footer">+39 345 241 9263</a>
-    <span class="sep" aria-hidden="true">◆</span>
     <a href="mailto:villaluzi1737@gmail.com">villaluzi1737@gmail.com</a>
-    <span class="sep" aria-hidden="true">◆</span>
     <a href="https://villaluzi1737.com">villaluzi1737.com</a>
-    <span class="sep" aria-hidden="true">◆</span>
     <a href="https://instagram.com/villaluzi1737" target="_blank" rel="noopener">@villaluzi1737</a>
   </div>
   <div class="endorsement">Il Segreto — Villa Luzi — Dal 1737 — White Party, 19 giugno 2026</div>
   <div class="vat">P.IVA 02184340434</div>
 </footer>
 
-<!-- STICKY BOTTOM BAR (solo mobile) -->
-<div class="sticky-cta">
-  <a href="#prenota" id="ctaSticky">
-    <span id="ctaStickyLabel">Venerdì 19 giugno — Prenota il tavolo</span>
-  </a>
+<!-- STICKY BOTTOM BAR (mobile + slim su desktop) -->
+<div class="sticky-cta" id="stickyCta" aria-hidden="true">
+  <div class="sticky-cta-inner">
+    <a href="#prenota" class="sticky-btn sticky-btn-primary" id="ctaSticky" data-cta="sticky">
+      <span id="ctaStickyLabel">Prenota il tavolo</span>
+    </a>
+    <a href="https://wa.me/393452419263?text=Ciao!%20Vorrei%20prenotare%20un%20tavolo%20per%20il%20White%20Party%20del%2019%20giugno"
+       class="sticky-btn sticky-btn-wa" id="ctaStickyWa" target="_blank" rel="noopener"
+       data-cta="sticky_whatsapp" aria-label="Scrivici su WhatsApp">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067zm6.067-8.293c-.333-.16-1.973-.973-2.28-1.08-.307-.107-.533-.16-.747.16-.213.32-.853 1.08-1.04 1.293-.187.213-.387.24-.72.08-.333-.16-1.4-.52-2.667-1.653-.987-.88-1.653-1.973-1.853-2.307-.187-.32-.013-.493.147-.653.147-.147.32-.387.493-.573.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.747-1.8-1.027-2.467-.267-.64-.547-.547-.747-.56-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.253 3.44 5.467 4.827.76.32 1.36.52 1.827.667.76.24 1.453.213 2 .133.613-.093 1.973-.8 2.253-1.587.28-.787.28-1.467.187-1.587-.08-.133-.293-.213-.627-.373z"/></svg>
+      <span class="sticky-wa-label">WhatsApp</span>
+    </a>
+  </div>
 </div>
 
 <script>
@@ -1760,7 +1833,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   }, { passive: true });
 
   /* ============ STATO PAGINA (pre / dopo) ============ */
-  // Per provare a mano: 19-giugno.html?stato=dopo
+  // Per provare a mano: /19-giugno?stato=dopo
   var simulato = new URLSearchParams(location.search).get('stato');
   var dopo = simulato === 'dopo' || (simulato !== 'pre' && Date.now() > NIGHT_END_UTC);
 
@@ -1776,6 +1849,9 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     }
     document.getElementById('ctaStickyLabel').textContent = 'La prossima serata è in arrivo — Instagram';
     document.getElementById('ctaSticky').href = IG_URL;
+    document.getElementById('ctaSticky').removeAttribute('data-cta');
+    var stickyWaDopo = document.getElementById('ctaStickyWa');
+    if (stickyWaDopo) stickyWaDopo.style.display = 'none';
     var prenota = document.getElementById('prenota');
     if (prenota) prenota.style.display = 'none';
     ['ctaHero', 'ctaChiusura'].forEach(function (id) {
@@ -1791,7 +1867,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   }
 
   /* ============ CTA WHATSAPP ============ */
-  ['ctaChiusura', 'footerWa', 'ctaEsitoWa'].forEach(function (id) {
+  ['ctaChiusura', 'footerWa', 'ctaEsitoWa', 'ctaFormWa', 'ctaStickyWa'].forEach(function (id) {
     var el = document.getElementById(id);
     if (el && !dopo) el.href = waLink(WA_BASE);
   });
@@ -2360,6 +2436,63 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     if (tick()) {
       var id = setInterval(function () { if (!tick()) clearInterval(id); }, 1000);
     }
+  }
+})();
+</script>
+
+<!-- ============ STICKY CTA — comparsa dopo l'hero, ritirata su #prenota e footer ============
+     Niente sovrapposizioni: la barra appare solo quando l'hero è fuori vista e
+     si ritira appena il modulo di prenotazione o il footer entrano in viewport. -->
+<script>
+(function () {
+  'use strict';
+  var sticky = document.getElementById('stickyCta');
+  if (!sticky) return;
+
+  var hero = document.getElementById('hero');
+  var prenota = document.getElementById('prenota');
+  var footer = document.querySelector('footer');
+
+  var heroVisibile = true;   // all'avvio siamo sull'hero
+  var zonaForm = false;      // #prenota o footer in vista
+
+  function aggiorna() {
+    var mostra = !heroVisibile && !zonaForm;
+    sticky.classList.toggle('visibile', mostra);
+    sticky.setAttribute('aria-hidden', mostra ? 'false' : 'true');
+  }
+
+  if ('IntersectionObserver' in window) {
+    if (hero) {
+      new IntersectionObserver(function (entries) {
+        heroVisibile = entries[0].isIntersecting;
+        aggiorna();
+      }, { threshold: 0 }).observe(hero);
+    } else {
+      heroVisibile = false;
+    }
+
+    var zonaEls = [prenota, footer].filter(Boolean);
+    if (zonaEls.length) {
+      var stato = new WeakMap();
+      var ioZona = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { stato.set(e.target, e.isIntersecting); });
+        zonaForm = zonaEls.some(function (el) { return stato.get(el); });
+        aggiorna();
+      }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+      zonaEls.forEach(function (el) { ioZona.observe(el); });
+    }
+    aggiorna();
+  } else {
+    // fallback senza IntersectionObserver: stima su scroll
+    var onScroll = function () {
+      heroVisibile = window.scrollY < window.innerHeight * 0.75;
+      var docH = document.documentElement.scrollHeight;
+      zonaForm = (window.scrollY + window.innerHeight) > (docH - 220);
+      aggiorna();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
 })();
 </script>

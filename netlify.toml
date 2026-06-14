@@ -19,6 +19,22 @@
   to = "/esperienze/aperitivi-in-erba/2-giugno-2026/"
   status = 301
 
+# ─── URL pulito · landing evento "White Party" (19 giugno) ───
+# /19-giugno serve il file 19-giugno.html senza redirect visibile (rewrite 200).
+[[redirects]]
+  from = "/19-giugno"
+  to = "/19-giugno.html"
+  status = 200
+
+# Il vecchio .html (destinazione campagna Meta) viene canonicalizzato sul pulito.
+# force = true: scatta anche se il file esiste; il rewrite 200 qui sopra è terminale,
+# quindi non si crea loop.
+[[redirects]]
+  from = "/19-giugno.html"
+  to = "/19-giugno"
+  status = 301
+  force = true
+
 # Normalizza /index.html → /
 [[redirects]]
   from = "/index.html"
