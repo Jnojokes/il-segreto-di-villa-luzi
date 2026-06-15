@@ -933,6 +933,57 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     opacity: 0.55;
     pointer-events: none;
   }
+  /* —— "Come funziona": tre passi sopra il form —— */
+  .come-funziona {
+    margin-bottom: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--linea);
+  }
+  .come-funziona .cf-titolo {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--oro);
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .come-funziona .cf-passi {
+    list-style: none;
+    counter-reset: passo;
+    display: grid;
+    gap: 14px;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .come-funziona .cf-passi li {
+    counter-increment: passo;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--velo);
+  }
+  .come-funziona .cf-passi li::before {
+    content: counter(passo);
+    flex: none;
+    width: 28px; height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--oro-deep);
+    border: 1px solid var(--linea-oro);
+    border-radius: 50%;
+    align-self: center;
+  }
+
   .campo-gruppo { margin-bottom: 26px; }
   .campo-label {
     display: block;
@@ -1519,12 +1570,12 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
         <!-- Variante A/B della headline di supporto: aggiungere ?v=b all'URL della campagna -->
         <p class="hero-sub" id="heroSub"
            data-variante-b="La notte più chiara dell'estate. Il giardino di Villa Luzi si veste di bianco.">
-          Cena d'autore, calici freddi, piano live e dj set nel giardino della villa.</p>
+          La sera in cui il giardino si veste di bianco. Cena servita, calici freddi, piano live e dj set.</p>
       </div>
       <div class="hero-bottom">
-        <p class="hero-aperta" id="heroAperta" aria-live="polite">Le prenotazioni sono aperte.</p>
+        <p class="hero-aperta" id="heroAperta" aria-live="polite">Una sola serata. I tavoli del giardino sono pochi.</p>
         <a class="cta hero-cta" id="ctaHero" href="#prenota" data-cta="hero">Prenota il tavolo</a>
-        <p class="cta-helper">Posti limitati — risposta in giornata</p>
+        <p class="cta-helper">Risposta in giornata</p>
       </div>
     </div>
     <span class="hero-cue" aria-hidden="true"></span>
@@ -1533,7 +1584,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   <!-- ============ CONTO ALLA ROVESCIA ============ -->
   <section class="countdown-band" id="countdownBand" aria-label="Conto alla rovescia all'inizio della serata">
     <div class="section-head">
-      <span class="line-pair" aria-hidden="true"><span class="line"></span><span class="eyebrow">Si avvicina</span><span class="line"></span></span>
+      <span class="line-pair" aria-hidden="true"><span class="line"></span><span class="eyebrow">Manca poco</span><span class="line"></span></span>
     </div>
     <div class="countdown" id="heroCountdown" role="timer" aria-live="off" aria-atomic="true"></div>
     <p class="countdown-note">all'inizio della serata — venerdì 19 giugno, ore 20:30.</p>
@@ -1568,7 +1619,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
       <article class="artista-card">
         <p class="artista-ruolo">Dj set — dopo cena</p>
         <h3 class="artista-nome">Gianluca Palma</h3>
-        <p class="artista-bio">Quando i tavoli si alzano, la consolle prende il giardino e si balla. Elegante anche a volume alto, fino a notte.</p>
+        <p class="artista-bio">Dj e selector dietro il progetto Spaghetti a Detroit, dove il gusto italiano incontra il groove di Detroit. Dopo cena la serata passa nelle sue mani, fino a tardi.</p>
       </article>
     </div>
   </section>
@@ -1581,15 +1632,15 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     </div>
     <p class="cena-testo">
       In cucina c'è <span class="accent">Jan Paul Kana</span>, Responsabile Regionale dei Cuochi delle Marche:
-      un menù pensato per la sera d'estate, servito al tavolo, nel giardino.
+      un menù pensato per la sera d'estate, nel giardino.
     </p>
     <div class="cena-prezzo">
-      <p class="stamp">La serata, servita al tavolo</p>
+      <p class="stamp">Si entra per cena, si resta per la musica</p>
       <p class="cifra">€ 45 a persona</p>
-      <p class="cena-include">Cena d'autore di Jan Paul Kana, piano live di Sam Giacomozzi e dj set di Gianluca Palma. Nel giardino della villa.</p>
-      <p class="condizioni">Menù fisso — bevande escluse — posti limitati, su prenotazione</p>
+      <p class="cena-include">Una sera intera: cena d'autore di Jan Paul Kana servita al tavolo, piano live di Sam Giacomozzi e poi il dj set di Gianluca Palma fino a notte.</p>
+      <p class="condizioni">Menù fisso, bevande escluse. Posti limitati, su prenotazione.</p>
     </div>
-    <p class="cena-nota">Il menù è fisso: le portate della serata saranno annunciate a breve.</p>
+    <p class="cena-nota">Le portate saranno annunciate a breve.</p>
   </section>
 
   <!-- ============ DETTAGLI ============ -->
@@ -1630,6 +1681,14 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     </div>
 
     <div class="booking-form">
+      <div class="come-funziona">
+        <p class="cf-titolo">Come funziona</p>
+        <ol class="cf-passi">
+          <li>Lasciate nome e contatto.</li>
+          <li>Vi confermiamo in giornata, anche via WhatsApp.</li>
+          <li>Venite in bianco.</li>
+        </ol>
+      </div>
       <form id="formPrenota" class="form-railing" novalidate>
         <div class="campo-gruppo">
           <label class="campo-label" for="campoNome">A nome di</label>
@@ -1664,9 +1723,9 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
              href="https://wa.me/393452419263?text=Ciao!%20Vorrei%20prenotare%20un%20tavolo%20per%20il%20White%20Party%20del%2019%20giugno"
              target="_blank" rel="noopener" data-cta="whatsapp_form">
             <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067zm6.067-8.293c-.333-.16-1.973-.973-2.28-1.08-.307-.107-.533-.16-.747.16-.213.32-.853 1.08-1.04 1.293-.187.213-.387.24-.72.08-.333-.16-1.4-.52-2.667-1.653-.987-.88-1.653-1.973-1.853-2.307-.187-.32-.013-.493.147-.653.147-.147.32-.387.493-.573.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.747-1.8-1.027-2.467-.267-.64-.547-.547-.747-.56-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.253 3.44 5.467 4.827.76.32 1.36.52 1.827.667.76.24 1.453.213 2 .133.613-.093 1.973-.8 2.253-1.587.28-.787.28-1.467.187-1.587-.08-.133-.293-.213-.627-.373z"/></svg>
-            <span>Scrivici su WhatsApp</span>
+            <span>Scriveteci su WhatsApp</span>
           </a>
-          <p class="cta-helper">Ti rispondiamo in giornata.</p>
+          <p class="cta-helper">Vi rispondiamo in giornata.</p>
         </div>
       </form>
 
@@ -1719,7 +1778,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
 
   <!-- ============ CHIUSURA ============ -->
   <section class="chiusura">
-    <h2>Tutti in bianco, in giardino.<br>Il resto lo fa la musica.</h2>
+    <h2>Tutti in bianco, calici alti.<br>Il resto lo fa la musica.</h2>
     <p class="dove"><span>Il Segreto — Villa Luzi</span><span class="sep" aria-hidden="true">—</span><span>Dove il tempo si ferma</span></p>
     <a class="cta wa" id="ctaChiusura" href="https://wa.me/393452419263" target="_blank" rel="noopener" data-cta="chiusura">
       <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067z"/></svg>
@@ -1752,7 +1811,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     </a>
     <a href="https://wa.me/393452419263?text=Ciao!%20Vorrei%20prenotare%20un%20tavolo%20per%20il%20White%20Party%20del%2019%20giugno"
        class="sticky-btn sticky-btn-wa" id="ctaStickyWa" target="_blank" rel="noopener"
-       data-cta="sticky_whatsapp" aria-label="Scrivici su WhatsApp">
+       data-cta="sticky_whatsapp" aria-label="Scriveteci su WhatsApp">
       <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067zm6.067-8.293c-.333-.16-1.973-.973-2.28-1.08-.307-.107-.533-.16-.747.16-.213.32-.853 1.08-1.04 1.293-.187.213-.387.24-.72.08-.333-.16-1.4-.52-2.667-1.653-.987-.88-1.653-1.973-1.853-2.307-.187-.32-.013-.493.147-.653.147-.147.32-.387.493-.573.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.747-1.8-1.027-2.467-.267-.64-.547-.547-.747-.56-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.253 3.44 5.467 4.827.76.32 1.36.52 1.827.667.76.24 1.453.213 2 .133.613-.093 1.973-.8 2.253-1.587.28-.787.28-1.467.187-1.587-.08-.133-.293-.213-.627-.373z"/></svg>
       <span class="sticky-wa-label">WhatsApp</span>
     </a>
@@ -1814,16 +1873,36 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   }
 
   /* ============ MISURAZIONE ============ */
-  function trackCTA(label) {
-    if (typeof fbq === 'function') {
-      fbq('track', 'Contact', { content_name: 'White Party ' + label });
-    }
+  function track(evento, params) {
+    if (typeof fbq === 'function') fbq('track', evento, params);
   }
+
+  // Lead su TUTTI i link WhatsApp: la maggior parte delle prenotazioni passa di qui,
+  // quindi va contato come conversione (la campagna ottimizza per Lead). method=whatsapp
+  // distingue questo Lead da quello del form in reporting.
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (this.href && this.href.indexOf('wa.me') === -1) return; // href cambiato (stato "dopo")
+      track('Lead', { content_name: 'White Party 19 giugno', method: 'whatsapp' });
+    });
+  });
+
+  // Contact sulle altre CTA tracciate (es. "Prenota" che porta al form): engagement,
+  // non conversione. I link wa.me si saltano: sparano già Lead qui sopra.
   document.querySelectorAll('[data-cta]').forEach(function (el) {
+    if (el.matches && el.matches('a[href*="wa.me"]')) return;
     el.addEventListener('click', function () {
       var label = el.getAttribute('data-cta');
-      if (label) trackCTA(label);
+      if (label) track('Contact', { content_name: 'White Party ' + label });
     });
+  });
+
+  // Basso volume: telefono ed email come Contact.
+  document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
+    a.addEventListener('click', function () { track('Contact', { method: 'phone' }); });
+  });
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+    a.addEventListener('click', function () { track('Contact', { method: 'email' }); });
   });
 
   /* ============ TOPBAR ============ */
@@ -2239,7 +2318,12 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     });
 
     if (typeof fbq === 'function') {
-      fbq('track', 'Lead', { content_name: 'White Party — form prenotazione' });
+      fbq('track', 'Lead', {
+        content_name: 'White Party 19 giugno',
+        method: 'form',
+        value: 45 * persone,
+        currency: 'EUR'
+      });
     }
 
     $esitoWa.href = waLink(messaggioWa(nome, note));
