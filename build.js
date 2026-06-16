@@ -79,17 +79,6 @@ function walk(srcDir, outDir, isRoot) {
 fs.rmSync(DIST, { recursive: true, force: true });
 walk(ROOT, DIST, true);
 
-// Alias di compatibilità per la landing evento "White Party":
-// un'unica sorgente (19-giugno/index.html → URL pulito /19-giugno) servita anche
-// come /19-giugno.html, vecchia destinazione della campagna Meta. Due URL, stesso file.
-const eventoSrc = path.join(DIST, '19-giugno', 'index.html');
-const eventoAlias = path.join(DIST, '19-giugno.html');
-if (fs.existsSync(eventoSrc)) {
-  fs.copyFileSync(eventoSrc, eventoAlias);
-  copied++;
-  console.log('alias evento → dist/19-giugno.html (= 19-giugno/index.html)');
-}
-
 if (failed) {
   console.error('build FALLITA: marker non risolti.');
   process.exit(1);

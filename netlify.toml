@@ -20,10 +20,16 @@
   status = 301
 
 # ─── URL pulito · landing evento "White Party" ───
-# Nessun redirect: la pagina è servita come file statico a entrambi gli URL.
-#   /19-giugno      → cartella 19-giugno/index.html (URL pulito, convenzione del sito)
-#   /19-giugno.html → alias emesso da build.js (stessa sorgente), per i click già in
-#                     circolazione dalla campagna Meta. Il canonical punta a /19-giugno.
+# La pagina vive SOLO come cartella 19-giugno/index.html (URL pulito /19-giugno,
+# convenzione del sito). Il vecchio /19-giugno.html (destinazione campagna Meta)
+# viene reindirizzato con force=true: la regola ha precedenza sulla gestione
+# automatica dei .html di Netlify, quindi è deterministica. Niente file .html a root
+# → nessuna ambiguità con la cartella.
+[[redirects]]
+  from = "/19-giugno.html"
+  to = "/19-giugno"
+  status = 301
+  force = true
 
 # Normalizza /index.html → /
 [[redirects]]
