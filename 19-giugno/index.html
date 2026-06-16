@@ -1154,6 +1154,14 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     height: 1px;
     background: var(--linea);
   }
+  /* Unica CTA WhatsApp di prenotazione (niente più form) */
+  .booking-cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+  }
   .campo-errore {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
@@ -1741,75 +1749,26 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     <div class="section-head">
       <span class="line-pair" aria-hidden="true"><span class="line"></span><span class="eyebrow">Prenotazione</span><span class="line"></span></span>
       <h2 class="section-title">Il vostro tavolo, <em>in bianco.</em></h2>
-      <p class="section-sub">Lasciate nome e recapito: vi rispondiamo in giornata per confermare.</p>
+      <p class="section-sub">Scriveteci su WhatsApp: vi rispondiamo in giornata per confermare.</p>
     </div>
 
     <div class="booking-form">
       <div class="come-funziona">
         <p class="cf-titolo">Come funziona</p>
         <ol class="cf-passi">
-          <li>Lasciate nome e contatto.</li>
-          <li>Vi confermiamo in giornata, anche via WhatsApp.</li>
+          <li>Scriveteci su WhatsApp.</li>
+          <li>Vi confermiamo in giornata.</li>
           <li>Venite in bianco.</li>
         </ol>
       </div>
-      <form id="formPrenota" class="form-railing" novalidate>
-        <div class="campo-gruppo">
-          <label class="campo-label" for="campoNome">A nome di</label>
-          <input type="text" class="campo" id="campoNome" name="nome" autocomplete="name" maxlength="60" placeholder="Il vostro nome" required>
-        </div>
-        <div class="campo-gruppo">
-          <label class="campo-label" for="campoTelefono">Telefono</label>
-          <input type="tel" class="campo" id="campoTelefono" name="telefono" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="Il numero su cui richiamarvi" required>
-        </div>
-        <div class="campo-gruppo">
-          <span class="campo-label" id="copertiLabel">In quanti sarete</span>
-          <div class="people-stepper" role="group" aria-labelledby="copertiLabel">
-            <button type="button" class="people-btn" id="peopleMinus" aria-label="Diminuisci le persone">−</button>
-            <div class="people-count" aria-live="polite">
-              <span id="peopleNum">2</span>
-              <em id="peopleWord">persone</em>
-            </div>
-            <button type="button" class="people-btn" id="peoplePlus" aria-label="Aumenta le persone">+</button>
-          </div>
-          <p class="gruppo-nota" id="gruppoNota">Siete in più di dodici? Scriveteci su WhatsApp: il giardino sa fare spazio.</p>
-        </div>
-        <div class="campo-gruppo">
-          <label class="campo-label" for="campoNote">Note <span class="fac">(facoltative)</span></label>
-          <textarea class="campo" id="campoNote" name="note" maxlength="240" placeholder="Allergie, intolleranze, richieste particolari"></textarea>
-        </div>
-        <div class="booking-submit-wrap">
-          <p class="campo-errore" id="formErrore" aria-live="polite"></p>
-          <button type="submit" class="cta cta-block" id="formSubmit">Richiedi il tavolo</button>
-          <p class="cta-helper">Nessun pagamento online — si salda al ristorante</p>
-          <div class="oppure" aria-hidden="true"><span>oppure</span></div>
-          <a class="cta cta-block wa" id="ctaFormWa"
-             href="https://wa.me/393452419263?text=Ciao!%20Vorrei%20prenotare%20un%20tavolo%20per%20il%20White%20Party%20del%2019%20giugno"
-             target="_blank" rel="noopener" data-cta="whatsapp_form">
-            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067zm6.067-8.293c-.333-.16-1.973-.973-2.28-1.08-.307-.107-.533-.16-.747.16-.213.32-.853 1.08-1.04 1.293-.187.213-.387.24-.72.08-.333-.16-1.4-.52-2.667-1.653-.987-.88-1.653-1.973-1.853-2.307-.187-.32-.013-.493.147-.653.147-.147.32-.387.493-.573.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.747-1.8-1.027-2.467-.267-.64-.547-.547-.747-.56-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.253 3.44 5.467 4.827.76.32 1.36.52 1.827.667.76.24 1.453.213 2 .133.613-.093 1.973-.8 2.253-1.587.28-.787.28-1.467.187-1.587-.08-.133-.293-.213-.627-.373z"/></svg>
-            <span>Scriveteci su WhatsApp</span>
-          </a>
-          <p class="cta-helper">Vi rispondiamo in giornata.</p>
-        </div>
-      </form>
-
-      <!-- esito: appare dopo l'invio -->
-      <div class="form-esito" id="formEsito" aria-live="polite">
-        <p class="titolo">Richiesta ricevuta.</p>
-        <p class="testo" id="esitoTesto">Vi rispondiamo in giornata per confermare il tavolo. Se preferite fare prima, c'è WhatsApp.</p>
-        <a class="cta wa" id="ctaEsitoWa" href="https://wa.me/393452419263" target="_blank" rel="noopener" data-cta="form-esito">
+      <div class="booking-cta-wrap">
+        <a class="cta cta-block wa" id="ctaPrenotaWa"
+           href="https://wa.me/393452419263?text=Ciao!%20Vorrei%20prenotare%20un%20tavolo%20per%20il%20White%20Party%20del%2019%20giugno"
+           target="_blank" rel="noopener">
           <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067zm6.067-8.293c-.333-.16-1.973-.973-2.28-1.08-.307-.107-.533-.16-.747.16-.213.32-.853 1.08-1.04 1.293-.187.213-.387.24-.72.08-.333-.16-1.4-.52-2.667-1.653-.987-.88-1.653-1.973-1.853-2.307-.187-.32-.013-.493.147-.653.147-.147.32-.387.493-.573.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.747-1.8-1.027-2.467-.267-.64-.547-.547-.747-.56-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.253 3.44 5.467 4.827.76.32 1.36.52 1.827.667.76.24 1.453.213 2 .133.613-.093 1.973-.8 2.253-1.587.28-.787.28-1.467.187-1.587-.08-.133-.293-.213-.627-.373z"/></svg>
-          <span>Conferma su WhatsApp</span>
-        </a>
-      </div>
-
-      <!-- senza JS il form non può inviare: si va dritti a WhatsApp -->
-      <div class="form-nojs">
-        <p class="section-sub" style="margin-bottom:22px;">Per prenotare scriveteci su WhatsApp: rispondiamo in giornata.</p>
-        <a class="cta wa" href="https://wa.me/393452419263?text=Ciao!%20Vorrei%20prenotare%20un%20tavolo%20per%20il%20White%20Party%20del%2019%20giugno" target="_blank" rel="noopener">
-          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667z"/></svg>
           <span>Prenota su WhatsApp</span>
         </a>
+        <p class="cta-helper">Vi rispondiamo in giornata per confermare. Nessun pagamento online, si salda al ristorante.</p>
       </div>
 
       <p class="booking-alt">
@@ -2010,7 +1969,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
   }
 
   /* ============ CTA WHATSAPP ============ */
-  ['ctaChiusura', 'footerWa', 'ctaEsitoWa', 'ctaFormWa', 'ctaStickyWa'].forEach(function (id) {
+  ['ctaChiusura', 'footerWa', 'ctaStickyWa', 'ctaPrenotaWa'].forEach(function (id) {
     var el = document.getElementById(id);
     if (el && !dopo) el.href = waLink(WA_BASE);
   });
@@ -2304,105 +2263,20 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1" alt
     }, { passive: true });
   }
 
-  /* ============ FORM PRENOTAZIONE ============ */
-  var MAX_PERSONE = 12;
-  var persone = 2;
-
-  var $num = document.getElementById('peopleNum');
-  var $word = document.getElementById('peopleWord');
-  var $minus = document.getElementById('peopleMinus');
-  var $plus = document.getElementById('peoplePlus');
-  var $gruppoNota = document.getElementById('gruppoNota');
-  var $form = document.getElementById('formPrenota');
-  var $nome = document.getElementById('campoNome');
-  var $telefono = document.getElementById('campoTelefono');
-  var $note = document.getElementById('campoNote');
-  var $errore = document.getElementById('formErrore');
-  var $esito = document.getElementById('formEsito');
-  var $esitoWa = document.getElementById('ctaEsitoWa');
-  var $email = document.getElementById('bookingEmail');
-
-  function personeStr() {
-    return persone + ' ' + (persone === 1 ? 'persona' : 'persone');
-  }
-
-  function aggiornaStepper() {
-    $num.textContent = persone;
-    $word.textContent = persone === 1 ? 'persona' : 'persone';
-    $minus.disabled = persone <= 1;
-    $plus.disabled = persone >= MAX_PERSONE;
-    $gruppoNota.classList.toggle('visibile', persone >= MAX_PERSONE);
-  }
-  $minus.addEventListener('click', function () { if (persone > 1) { persone--; aggiornaStepper(); } });
-  $plus.addEventListener('click', function () { if (persone < MAX_PERSONE) { persone++; aggiornaStepper(); } });
-  aggiornaStepper();
-
-  function messaggioWa(nome, note) {
-    var msg = WA_BASE + ' — ' + personeStr() + ', a nome ' + nome;
-    if (note) msg += '. Note: ' + note;
-    return msg;
-  }
-
-  function inviaLead(dati) {
-    if (!LEAD_ENDPOINT) return;
-    try {
-      // text/plain evita il preflight CORS (compatibile con Google Apps Script)
-      fetch(LEAD_ENDPOINT, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(dati)
-      }).catch(function () { /* il lead non deve mai bloccare l'utente: c'è WhatsApp */ });
-    } catch (e) { /* idem */ }
-  }
-
-  $form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var nome = $nome.value.trim();
-    var telefono = $telefono.value.trim();
-    var note = $note.value.trim();
-
-    if (!nome) { $errore.textContent = 'Ci serve un nome per il tavolo.'; $nome.focus(); return; }
-    if (!/^[+\d][\d\s.\/-]{5,}$/.test(telefono)) {
-      $errore.textContent = 'Controllate il numero di telefono: serve per confermarvi il tavolo.';
-      $telefono.focus();
-      return;
-    }
-    $errore.textContent = '';
-
-    inviaLead({
-      evento: 'white-party-19-giugno-2026',
-      pagina: location.pathname,
-      nome: nome,
-      telefono: telefono,
-      persone: persone,
-      note: note,
-      utm: utm,
-      inviato: new Date().toISOString()
-    });
-
+  /* ============ PRENOTAZIONE — unica CTA WhatsApp ============ */
+  // Niente più form: si prenota su WhatsApp. La conversione della campagna (Lead)
+  // ora coincide col click sulla CTA WhatsApp di prenotazione, sparato una sola
+  // volta per sessione. In stato "dopo" non si prenota, quindi non scatta.
+  var leadInviato = false;
+  function segnaLeadWhatsApp() {
+    if (leadInviato || dopo) return;
+    leadInviato = true;
     if (typeof fbq === 'function') {
-      fbq('track', 'Lead', {
-        content_name: 'White Party 19 giugno',
-        method: 'form',
-        value: 45 * persone,
-        currency: 'EUR'
-      });
+      fbq('track', 'Lead', { content_name: 'White Party 19 giugno', method: 'whatsapp' });
     }
-
-    $esitoWa.href = waLink(messaggioWa(nome, note));
-    $form.style.display = 'none';
-    $esito.classList.add('visibile');
-    $esito.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  });
-
-  // anche la mail di riserva viaggia con i dettagli
-  $form.addEventListener('input', function () {
-    var nome = $nome.value.trim() || 'da definire';
-    $email.href = 'mailto:' + EMAIL +
-      '?subject=' + encodeURIComponent('Prenotazione White Party — 19 giugno') +
-      '&body=' + encodeURIComponent(messaggioWa(nome, $note.value.trim()));
-  });
+  }
+  var $prenotaWa = document.getElementById('ctaPrenotaWa');
+  if ($prenotaWa) $prenotaWa.addEventListener('click', segnaLeadWhatsApp);
 
 })();
 </script>
