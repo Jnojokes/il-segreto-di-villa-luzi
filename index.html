@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/css/site.css" />
+<link rel="stylesheet" href="/assets/css/home.css" />
 
 <!-- JSON-LD · WebSite (l'Organization è iniettata dal footer, qui solo il riferimento) -->
 <script type="application/ld+json">
@@ -34,42 +35,56 @@
 }
 </script>
 </head>
-<body>
+<body class="home">
+<!-- Loader cinematografico (visibile solo con JS; si solleva da solo via CSS) -->
+<div class="home-loader" aria-hidden="true">
+  <div class="loader-inner">
+    <span class="loader-word">Villa Luzi</span>
+    <span class="loader-bar"><span class="loader-fill"></span></span>
+    <span class="loader-count">0%</span>
+  </div>
+</div>
 <!-- @include:header -->
 <main>
 
+<!-- atmosfera home: aurora che respira + polvere luminosa (decorativa, dietro al contenuto) -->
+<div class="home-atmos" aria-hidden="true"></div>
+
 <!-- ═════ HERO ═════ -->
 <section class="hero" aria-label="Villa Luzi · dimora storica a Treia">
-  <video class="hero-bg-img" autoplay muted loop playsinline poster="/assets/video/home-hero-poster.webp"><source src="/assets/video/home-hero.webm" type="video/webm" /><source src="/assets/video/home-hero.mp4" type="video/mp4" /></video>
-  <div class="hero-bg-overlay"></div>
-  <div class="hero-inner">
-    <div class="hero-eyebrow">
-      <span class="line" aria-hidden="true"></span>
-      <span class="eyebrow">Treia · Marche · dal 1737</span>
-      <span class="line" aria-hidden="true"></span>
+  <div class="hero-stage">
+    <img class="hero-poster" src="/assets/video/home-hero-poster.webp" alt="La palazzina padronale di Villa Luzi e gli otto ettari di parco a Treia, nelle Marche, visti dal grande prato all'inglese" fetchpriority="high" decoding="async" />
+    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-vignette" aria-hidden="true"></div>
+    <div class="hero-meta-top" aria-hidden="true">
+      <span>Treia · Marche</span>
+      <span class="hero-meta-mid">Dimora storica</span>
+      <span>Est. 1737</span>
     </div>
-    <h1 class="hero-title">
-      Villa Luzi
-      <em>dimora del Settecento</em>
-    </h1>
-    <div class="hero-divider" aria-hidden="true"></div>
-    <p class="hero-tagline">Otto ettari di parco, una palazzina padronale e una tavola che porta un nome: Il Segreto.</p>
-    <p class="hero-meta">
-      Soggiorno <span class="sep">·</span> Ristorante <span class="sep">·</span> Esperienze <span class="sep">·</span> Eventi
-    </p>
-    <div class="hero-ctas">
-      <a href="/soggiornare/" class="btn"><span>Soggiorna in villa</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
-      <a href="/il-segreto/#prenota" class="btn-ghost"><span>Prenota un tavolo</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
+    <div class="hero-inner">
+      <div class="hero-kicker"><span class="hero-dot" aria-hidden="true"></span>Una dimora del Settecento nelle Marche</div>
+      <h1 class="hero-title">Villa Luzi<em>dimora del Settecento</em></h1>
+      <p class="hero-tagline">Otto ettari di parco, una palazzina padronale e una tavola che porta un nome: <span>Il Segreto</span>.</p>
+      <div class="hero-ctas">
+        <a href="/soggiornare/" class="btn"><span>Soggiorna in villa</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/il-segreto/#prenota" class="hero-textlink"><span>Prenota un tavolo</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
     </div>
+    <span class="hero-vlabel" aria-hidden="true">Est. MDCCXXXVII</span>
+    <a class="home-scrollcue" href="#scopri" aria-label="Scorri per scoprire">
+      <span>Scorri</span>
+      <span class="scrollcue-rail" aria-hidden="true"></span>
+    </a>
   </div>
 </section>
 
 <!-- ═════ LEAD · apertura answer-ready ═════ -->
-<section aria-label="Che cos'è Villa Luzi">
+<section id="scopri" aria-label="Che cos'è Villa Luzi">
   <div class="container-narrow reveal" style="text-align:center;">
     <div class="section-eyebrow center">
       <span class="line" aria-hidden="true"></span>
@@ -135,6 +150,21 @@
   </div>
 </section>
 
+<!-- ═════ TEMPO SOSPESO · sezione scroll-pinned (scrub vanilla) ═════ -->
+<section class="home-pin" aria-label="Il tempo a Villa Luzi">
+  <div class="home-pin-stage">
+    <p class="home-pin-line">
+      <span>Una</span> <span>dimora</span> <span>del</span> <span>1737.</span>
+      <span>Otto</span> <span>ettari,</span> <span>ventuno</span> <span>luoghi,</span>
+      <span>un</span> <span>solo</span> <span class="accent">tempo:</span> <span class="accent">il&nbsp;vostro.</span>
+    </p>
+    <a href="/la-villa/" class="home-pin-cta">La storia della dimora
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+    <span class="home-pin-bar" aria-hidden="true"></span>
+  </div>
+</section>
+
 <!-- ═════ I QUATTRO MONDI · tile-grid ═════ -->
 <section class="info" aria-label="Soggiorno, ristorante, esperienze, eventi">
   <div class="container">
@@ -151,49 +181,74 @@
         o <a href="mailto:villaluzi1737@gmail.com">villaluzi1737@gmail.com</a>.
       </p>
     </div>
-    <div class="tile-grid reveal">
-      <a class="tile" href="/soggiornare/">
+    <div class="tile-grid cols-4 reveal">
+      <a class="tile" href="/soggiornare/" data-tilt>
         <div class="tile-media">
           <img src="/assets/img/covers/soggiornare.webp" alt="Camera matrimoniale con volta affrescata, parati decorati, como con specchiera, ritratto ovale dorato e copriletto azzurro chiaro" loading="lazy" decoding="async" />
           <span class="photo-frame" aria-hidden="true"></span>
+          <span class="tile-sheen" aria-hidden="true"></span>
         </div>
         <div class="tile-body">
-          <div class="tile-eyebrow">01 · Soggiorno</div>
+          <div class="tile-top"><span class="tile-index">01</span><span class="tile-chip">Soggiorno</span></div>
           <h3 class="tile-title">Soggiornare <em>in dimora</em></h3>
           <p class="tile-desc">Le Room Villa, camere nella palazzina padronale, e la Suite Villa, un mini-appartamento. Il parco comincia oltre la soglia.</p>
+          <div class="tile-meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 18v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5M3 18v-3M21 18v-3M7 11V8a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3"/></svg>Room &amp; Suite</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Su prenotazione</span>
+          </div>
+          <span class="tile-cta">Scopri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
         </div>
       </a>
-      <a class="tile" href="/il-segreto/">
+      <a class="tile" href="/il-segreto/" data-tilt>
         <div class="tile-media">
-          <img src="/assets/img/dish-tartare.png" alt="Tartare impiattata al ristorante Il Segreto di Villa Luzi" loading="lazy" />
+          <video class="tile-vid" autoplay muted loop playsinline data-autoplay poster="/assets/img/covers/menu.webp"><source src="/assets/video/hero-bg.webm" type="video/webm" /><source src="/assets/video/hero-bg.mp4" type="video/mp4" /></video>
           <span class="photo-frame" aria-hidden="true"></span>
+          <span class="tile-sheen" aria-hidden="true"></span>
+          <span class="tile-flag">In evidenza</span>
         </div>
         <div class="tile-body">
-          <div class="tile-eyebrow">02 · Ristorante</div>
+          <div class="tile-top"><span class="tile-index">02</span><span class="tile-chip">Ristorante</span></div>
           <h3 class="tile-title">Il Segreto <em>· cucina marchigiana</em></h3>
           <p class="tile-desc">La cucina italiana contemporanea dello chef Jan Paul Kana, Responsabile Regionale dei Cuochi delle Marche. Solo su prenotazione.</p>
+          <div class="tile-meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3v8a3 3 0 0 0 6 0V3M8 3v18M19 3c-1.4 1-2 3-2 6s.6 4 2 5v7"/></svg>Da giovedì a domenica</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Su prenotazione</span>
+          </div>
+          <span class="tile-cta">Scopri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
         </div>
       </a>
-      <a class="tile" href="/esperienze/">
+      <a class="tile" href="/esperienze/" data-tilt>
         <div class="tile-media">
           <img src="/assets/img/covers/esperienze.webp" alt="Donna in accappatoio sulla terrazza panoramica di Villa Luzi con calice in mano, affacciata sulle colline marchigiane punteggiate di cipressi" loading="lazy" decoding="async" />
           <span class="photo-frame" aria-hidden="true"></span>
+          <span class="tile-sheen" aria-hidden="true"></span>
         </div>
         <div class="tile-body">
-          <div class="tile-eyebrow">03 · Esperienze</div>
+          <div class="tile-top"><span class="tile-index">03</span><span class="tile-chip">Esperienze</span></div>
           <h3 class="tile-title">Esperienze <em>nel parco</em></h3>
           <p class="tile-desc">Il format Aperitivi in erba: pic nic e pomeriggi a tema tra Bosco, Fontana e vialetti. L'edizione del 2 giugno 2026: Il Salotto dei Corsari.</p>
+          <div class="tile-meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21c0-6 3-12 9-15-1 7-4 12-9 15Z"/><path d="M12 21c0-4-2-8-6-10"/></svg>Otto ettari</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="1"/><path d="M4 9h16M8 3v4M16 3v4"/></svg>A calendario</span>
+          </div>
+          <span class="tile-cta">Scopri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
         </div>
       </a>
-      <a class="tile" href="/eventi/">
+      <a class="tile" href="/eventi/" data-tilt>
         <div class="tile-media">
-          <img src="/assets/img/covers/eventi.webp" alt="Tavolo rotondo apparecchiato in bianco con calici di cristallo, sottopiatti in vetro e alto centrotavola di rose ed eucalipto, nella sala in pietra" loading="lazy" decoding="async" />
+          <video class="tile-vid" autoplay muted loop playsinline data-autoplay poster="/assets/img/covers/eventi.webp"><source src="/assets/video/band-matrimoni.mp4" type="video/mp4" /></video>
           <span class="photo-frame" aria-hidden="true"></span>
+          <span class="tile-sheen" aria-hidden="true"></span>
         </div>
         <div class="tile-body">
-          <div class="tile-eyebrow">04 · Eventi</div>
+          <div class="tile-top"><span class="tile-index">04</span><span class="tile-chip">Eventi</span></div>
           <h3 class="tile-title">Eventi <em>privati</em></h3>
           <p class="tile-desc">Matrimoni, ricorrenze e giornate aziendali tra il Salone del primo piano (~250 mq), la Limonaia, la Chiesa e il parco.</p>
+          <div class="tile-meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/></svg>Salone ~250 mq</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.5-7 10-7 10Z"/></svg>Matrimoni &amp; corporate</span>
+          </div>
+          <span class="tile-cta">Scopri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
         </div>
       </a>
     </div>
@@ -239,5 +294,6 @@
 </main>
 <!-- @include:footer -->
 <script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/home.js" defer></script>
 </body>
 </html>

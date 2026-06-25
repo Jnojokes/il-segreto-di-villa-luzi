@@ -192,4 +192,81 @@
       try { v.pause(); v.removeAttribute('autoplay'); } catch (e) {}
     });
   }
+
+  // ─── "WOW" layer · aurora + polvere + tilt card su tutte le pagine ───
+  // (la home ha le proprie versioni in home.js: qui la saltiamo per non duplicare)
+  if (!document.body.classList.contains('home')) {
+    // Aurora che respira (decorativa, dietro al contenuto)
+    var wowAtmos = document.createElement('div');
+    wowAtmos.className = 'wow-atmos';
+    wowAtmos.setAttribute('aria-hidden', 'true');
+    document.body.insertBefore(wowAtmos, document.body.firstChild);
+
+    // Polvere luminosa (solo se non reduced-motion / save-data)
+    if (!reduceMotion && !saveData) {
+      var wc = document.createElement('canvas');
+      wc.className = 'wow-dust';
+      wc.setAttribute('aria-hidden', 'true');
+      wowAtmos.appendChild(wc);
+      var wctx = wc.getContext('2d');
+      var wdpr = Math.min(window.devicePixelRatio || 1, 2);
+      var wW = 0, wH = 0, wmotes = [];
+      var WT = ['201,168,106', '234,114,117', '244,236,220'];
+      var wrand = function (a, b) { return a + (b - a) * Math.random(); };
+      var wbuild = function () {
+        wW = window.innerWidth; wH = window.innerHeight;
+        wc.width = wW * wdpr; wc.height = wH * wdpr;
+        wc.style.width = wW + 'px'; wc.style.height = wH + 'px';
+        wctx.setTransform(wdpr, 0, 0, wdpr, 0, 0);
+        var n = Math.min(50, Math.round((wW * wH) / 30000));
+        wmotes = [];
+        for (var i = 0; i < n; i++) wmotes.push({ x: Math.random() * wW, y: Math.random() * wH, r: wrand(0.5, 1.7), vy: wrand(-0.14, -0.04), vx: wrand(-0.1, 0.1), a: wrand(0.1, 0.45), tw: wrand(0.004, 0.013), ph: Math.random() * 6.28, t: WT[(Math.random() * WT.length) | 0] });
+      };
+      var wrun = true;
+      var wframe = function () {
+        if (!wrun) return;
+        wctx.clearRect(0, 0, wW, wH);
+        for (var i = 0; i < wmotes.length; i++) {
+          var m = wmotes[i];
+          m.x += m.vx; m.y += m.vy; m.ph += m.tw;
+          if (m.y < -6) { m.y = wH + 6; m.x = Math.random() * wW; }
+          if (m.x < -6) m.x = wW + 6; else if (m.x > wW + 6) m.x = -6;
+          var al = m.a * (0.55 + 0.45 * Math.sin(m.ph));
+          wctx.beginPath();
+          wctx.arc(m.x, m.y, m.r, 0, 6.2832);
+          wctx.fillStyle = 'rgba(' + m.t + ',' + al.toFixed(3) + ')';
+          wctx.shadowBlur = m.r * 4; wctx.shadowColor = 'rgba(' + m.t + ',' + (al * 0.8).toFixed(3) + ')';
+          wctx.fill();
+        }
+        wctx.shadowBlur = 0;
+        requestAnimationFrame(wframe);
+      };
+      wbuild();
+      requestAnimationFrame(wframe);
+      var wrt;
+      window.addEventListener('resize', function () { clearTimeout(wrt); wrt = setTimeout(wbuild, 200); }, { passive: true });
+      document.addEventListener('visibilitychange', function () { wrun = !document.hidden; if (wrun) requestAnimationFrame(wframe); });
+    }
+
+    // Tilt 3D + riflesso delle card (solo puntatore fine, no reduced-motion)
+    if (!reduceMotion && window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      document.querySelectorAll('.tile').forEach(function (card) {
+        var raf = null, rect = null;
+        card.addEventListener('pointerenter', function () { rect = card.getBoundingClientRect(); });
+        card.addEventListener('pointermove', function (e) {
+          if (!rect) rect = card.getBoundingClientRect();
+          var px = (e.clientX - rect.left) / rect.width, py = (e.clientY - rect.top) / rect.height;
+          if (raf) return;
+          raf = requestAnimationFrame(function () {
+            card.style.setProperty('--ry', ((px - 0.5) * 9).toFixed(2) + 'deg');
+            card.style.setProperty('--rx', ((0.5 - py) * 9).toFixed(2) + 'deg');
+            card.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+            card.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+            raf = null;
+          });
+        });
+        card.addEventListener('pointerleave', function () { rect = null; card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg'); });
+      });
+    }
+  }
 })();

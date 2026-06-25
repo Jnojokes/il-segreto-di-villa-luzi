@@ -47,6 +47,21 @@
   to = "/eventi/la-domenica/"
   status = 301
 
+# ─── Redirect 301 · Matrimoni promossa a sezione di primo livello ───
+# Spostata da /eventi/matrimoni/ a /matrimoni/ (link vecchi, anche dalla
+# pagina bloccata Il Segreto, restano funzionanti).
+[[redirects]]
+  from = "/eventi/matrimoni/"
+  to = "/matrimoni/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/eventi/matrimoni"
+  to = "/matrimoni/"
+  status = 301
+  force = true
+
 # Normalizza /index.html → /
 [[redirects]]
   from = "/index.html"

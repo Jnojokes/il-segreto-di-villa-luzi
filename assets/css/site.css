@@ -519,7 +519,7 @@ body.nav-open { overflow: hidden; }
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  filter: saturate(0.92) brightness(0.55);
+  filter: saturate(0.98) brightness(0.72);
 }
 .hero-bg-overlay {
   position: absolute;
@@ -527,7 +527,7 @@ body.nav-open { overflow: hidden; }
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(8,30,32,0.55) 0%, rgba(8,30,32,0.35) 35%, rgba(8,30,32,0.55) 65%, rgba(8,30,32,0.92) 100%);
+    linear-gradient(180deg, rgba(8,30,32,0.42) 0%, rgba(8,30,32,0.16) 40%, rgba(8,30,32,0.32) 72%, rgba(8,30,32,0.82) 100%);
 }
 
 .hero-inner {
@@ -955,6 +955,10 @@ body.nav-open { overflow: hidden; }
 }
 @media (max-width: 980px) { .tile-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .tile-grid { grid-template-columns: 1fr; } }
+/* Variante "tutte in una riga" (home): 4 colonne, collassano sul piccolo */
+.tile-grid.cols-4 { grid-template-columns: repeat(4, 1fr); gap: 18px; }
+@media (max-width: 1024px) { .tile-grid.cols-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .tile-grid.cols-4 { grid-template-columns: 1fr; } }
 
 .tile {
   display: flex;
@@ -974,11 +978,13 @@ body.nav-open { overflow: hidden; }
   background: var(--ottanio-deep);
   overflow: hidden;
 }
-.tile-media img {
+.tile-media img,
+.tile-media video {
   width: 100%; height: 100%; object-fit: cover;
   transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.tile:hover .tile-media img { transform: scale(1.04); }
+.tile:hover .tile-media img,
+.tile:hover .tile-media video { transform: scale(1.04); }
 .tile-body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 10px; }
 .tile-eyebrow {
   font-family: 'Inter', sans-serif;
@@ -1864,6 +1870,17 @@ body.nav-open { overflow: hidden; }
 .block-head h2 em { font-style: italic; color: var(--oro); }
 .block-head p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(17px, 1.8vw, 21px); color: var(--whisper); }
 
+/* Link di testo del contenuto senza classe: colore brand (oro), mai il blu
+   di default del browser. Scoping a `main section` per NON toccare breadcrumb,
+   .btn/.btn-ghost, .tile, .link-arrow (che hanno classi proprie). */
+main section a:not([class]) {
+  color: var(--oro);
+  text-decoration: none;
+  border-bottom: 1px solid var(--oro-soft);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+main section a:not([class]):hover { color: var(--avorio); border-bottom-color: var(--avorio); }
+
 /* link inline dentro i nuovi blocchi (coerenti col resto del sito) */
 .editorial-feature-text a, .media-band-text a, .offset-text a,
 .timeline-body a, .pillar p a, .quote-text a, .cta-split-sub a {
@@ -1884,7 +1901,94 @@ body.nav-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal-group > * { opacity: 1 !important; transform: none !important; transition: none !important; }
   .marquee-track { animation: none !important; transform: none !important; }
-  .gallery-mosaic img, .offset-media img, .feature-card-media img, .tile-media img { transition: none !important; }
+  .gallery-mosaic img, .offset-media img, .feature-card-media img, .tile-media img, .tile-media video { transition: none !important; }
   [data-parallax] { transform: none !important; }
   html { scroll-behavior: auto; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   "WOW" DESIGN LAYER · lo stile della home portato su TUTTE le pagine
+   non bloccate (le bloccate non caricano questo foglio). Accento
+   corallo, card di cristallo + tilt 3D, aurora, polvere, stat-strip
+   cristallo. NON include l'hero-scroll (resta in home.css/home.js).
+   La home ha le sue versioni più specifiche in home.css (vincono);
+   site.js evita di duplicare aurora/polvere/tilt sulla home.
+   ════════════════════════════════════════════════════════════════ */
+:root {
+  --corallo: #EA7275;
+  --corallo-deep: #d85f62;
+  --corallo-soft: rgba(234, 114, 117, 0.55);
+  --corallo-faint: rgba(234, 114, 117, 0.16);
+  --corallo-glow: rgba(234, 114, 117, 0.22);
+  --crystal: rgba(244, 236, 220, 0.055);
+  --crystal-strong: rgba(244, 236, 220, 0.09);
+  --crystal-edge: rgba(244, 236, 220, 0.16);
+  --ease-wow: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* aurora che respira + polvere (iniettate da site.js come .wow-atmos) */
+.wow-atmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.wow-atmos::before {
+  content: ''; position: absolute; inset: -25%;
+  background:
+    radial-gradient(38% 48% at 16% 20%, rgba(201, 168, 106, 0.14), transparent 62%),
+    radial-gradient(34% 42% at 84% 26%, var(--corallo-glow), transparent 60%),
+    radial-gradient(46% 46% at 62% 82%, rgba(234, 114, 117, 0.08), transparent 66%),
+    radial-gradient(60% 60% at 40% 100%, rgba(14, 59, 62, 0.5), transparent 72%);
+  filter: blur(30px) saturate(1.05);
+  animation: wow-aurora 32s ease-in-out infinite alternate;
+}
+@keyframes wow-aurora { 0% { transform: translate3d(-2%, -1%, 0) scale(1.02); } 100% { transform: translate3d(2.5%, 2%, 0) scale(1.09); } }
+.wow-dust { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* contenuto sopra l'atmosfera (la home gestisce il proprio z-index) */
+body:not(.home) main { position: relative; z-index: 1; }
+
+/* accento corallo: punto negli occhielli, hover dei link, bagliore CTA */
+.section-eyebrow .eyebrow::before {
+  content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--corallo); margin-right: 10px; vertical-align: middle; box-shadow: 0 0 8px var(--corallo-soft);
+}
+main section a:not([class]):hover { color: var(--corallo); border-bottom-color: var(--corallo-soft); }
+.link-arrow:hover { color: var(--corallo); }
+.btn { transition: background 0.4s ease, color 0.4s ease, box-shadow 0.5s ease, transform 0.4s var(--ease-wow); }
+.btn:hover { box-shadow: 0 0 0 1px var(--corallo-soft), 0 16px 40px -18px var(--corallo-glow); }
+
+/* CARD DI CRISTALLO · tutte le .tile (tilt 3D: vars --rx/--ry/--mx/--my da site.js) */
+.tile-grid { perspective: 1300px; }
+.tile {
+  position: relative;
+  background: linear-gradient(165deg, var(--crystal-strong) 0%, rgba(10, 45, 47, 0.5) 100%);
+  border: 1px solid var(--crystal-edge);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.5s var(--ease-wow), box-shadow 0.6s ease, border-color 0.6s ease;
+  box-shadow: 0 24px 60px -44px rgba(0, 0, 0, 0.7);
+}
+.tile:hover {
+  border-color: var(--corallo-soft);
+  box-shadow: 0 50px 110px -44px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--corallo-faint), 0 0 60px -20px var(--corallo-glow);
+}
+.tile::after {
+  content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none; border-radius: inherit;
+  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 0%), rgba(244, 236, 220, 0.10), transparent 60%);
+  opacity: 0; transition: opacity 0.4s ease;
+}
+.tile:hover::after { opacity: 1; }
+.tile .photo-frame { transition: inset 0.6s var(--ease-wow), border-color 0.6s ease; }
+.tile:hover .photo-frame { border-color: var(--corallo-soft); }
+
+/* STAT-STRIP cristallo + corallo */
+.stat-strip {
+  background: linear-gradient(160deg, var(--crystal-strong), var(--crystal));
+  border: 1px solid var(--crystal-edge); border-top: 1px solid var(--corallo-soft);
+  border-radius: 8px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); overflow: hidden;
+}
+.stat { transition: background 0.5s ease; }
+.stat:hover { background: rgba(234, 114, 117, 0.05); }
+
+@media (prefers-reduced-motion: reduce) {
+  .wow-atmos::before { animation: none !important; }
+  .wow-dust { display: none; }
+  .tile { transform: none !important; }
 }
