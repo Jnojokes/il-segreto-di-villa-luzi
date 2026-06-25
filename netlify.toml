@@ -19,17 +19,33 @@
   to = "/esperienze/aperitivi-in-erba/2-giugno-2026/"
   status = 301
 
-# ─── URL pulito · landing evento "White Party" ───
-# La pagina vive SOLO come cartella 19-giugno/index.html (URL pulito /19-giugno,
-# convenzione del sito). Il vecchio /19-giugno.html (destinazione campagna Meta)
-# viene reindirizzato con force=true: la regola ha precedenza sulla gestione
-# automatica dei .html di Netlify, quindi è deterministica. Niente file .html a root
-# → nessuna ambiguità con la cartella.
+# ─── Redirect 301 · vecchi URL della landing evento "White Party" ───
+# La pagina è stata spostata sotto /eventi/white-party/ come pagina d'archivio.
+# I vecchi URL (incluso /19-giugno.html, destinazione campagna Meta) vengono
+# reindirizzati con force=true: la regola ha precedenza sulla gestione automatica
+# dei .html di Netlify, quindi è deterministica.
 [[redirects]]
-  from = "/19-giugno.html"
-  to = "/19-giugno"
+  from = "/19-giugno"
+  to = "/eventi/white-party/"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/19-giugno.html"
+  to = "/eventi/white-party/"
+  status = 301
+  force = true
+
+# ─── Redirect 301 · vecchi URL "White Party — la lista" e "La Domenica" ───
+[[redirects]]
+  from = "/white-party-lista.html"
+  to = "/eventi/white-party/lista/"
+  status = 301
+
+[[redirects]]
+  from = "/la-domenica.html"
+  to = "/eventi/la-domenica/"
+  status = 301
 
 # Normalizza /index.html → /
 [[redirects]]

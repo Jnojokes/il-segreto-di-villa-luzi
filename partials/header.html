@@ -8,6 +8,10 @@
      I dropdown desktop sono pura CSS (hover + focus-within), il
      drawer mobile è progressive enhancement (apertura via JS).
      ═══════════════════════════════════════════════════════════ -->
+<!-- Progressive enhancement: segna che il JS è attivo, così i blocchi
+     .reveal partono nascosti SOLO con JS (a JS spento restano visibili).
+     Non inietta contenuti: la navbar resta interamente nel sorgente. -->
+<script>document.documentElement.classList.add('has-js');</script>
 <header class="topbar" id="topbar">
   <a href="/" class="topbar-mark" aria-label="Villa Luzi · Home">
     <img src="/assets/img/LS-Mark.png" alt="Villa Luzi" />

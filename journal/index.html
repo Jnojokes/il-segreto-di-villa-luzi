@@ -11,7 +11,7 @@
 <meta property="og:site_name" content="Villa Luzi 1737" />
 <meta property="og:title" content="Journal · Villa Luzi 1737 · Treia, Marche" />
 <meta property="og:description" content="Le storie di Villa Luzi: i ventuno luoghi della dimora del 1737, la cucina marchigiana del Segreto e il territorio intorno a Treia, nelle Marche." />
-<meta property="og:image" content="https://villaluzi1737.it/assets/img/chef-villa-luzi.png" />
+<meta property="og:image" content="https://villaluzi1737.it/assets/img/covers/journal.webp" />
 <meta property="og:locale" content="it_IT" />
 <meta property="og:url" content="https://villaluzi1737.it/journal/" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -68,6 +68,7 @@
 
 <!-- ═════ HERO ═════ -->
 <section class="hero hero--compact" aria-label="Il journal di Villa Luzi">
+  <img class="hero-bg-img" src="/assets/img/covers/journal.webp" alt="Il tempietto neoclassico del parco con statua seduta tra le colonne corinzie, immerso nella vegetazione accanto a una vasca d'acqua" fetchpriority="high" decoding="async" />
   <div class="hero-bg-overlay"></div>
   <div class="hero-inner">
     <div class="hero-eyebrow">
@@ -119,63 +120,68 @@
   </div>
 </section>
 
-<!-- ═════ GLI ARTICOLI · tile-grid ═════ -->
-<section class="info" aria-label="Gli articoli del journal">
-  <div class="container">
-    <div class="info-header reveal">
-      <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">Da leggere</span><span class="line" aria-hidden="true"></span></div>
-      <h2>Le <em>storie</em></h2>
-      <p class="prose" style="margin-top:18px;max-width:620px;margin-left:auto;margin-right:auto;text-align:center;">
-        Due racconti per cominciare: la mappa dei ventuno luoghi che fanno da indirizzo a ogni cosa in
-        villa, e la cucina del ristorante Il Segreto. Altri seguiranno, sempre a partire da ciò che a
-        Villa Luzi esiste davvero.
-      </p>
+<!-- ═════ GLI ARTICOLI · card-offset (zig-zag) ═════ -->
+<section aria-label="Gli articoli del journal">
+  <div class="block-head reveal">
+    <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">Da leggere</span><span class="line" aria-hidden="true"></span></div>
+    <h2>Le <em>storie</em></h2>
+  </div>
+  <div class="container reveal">
+    <div class="offset-row">
+      <div class="offset-media">
+        <img src="/assets/img/covers/i-ventuno-luoghi.webp" alt="I ventuno luoghi del parco di Villa Luzi, dal Loggiato alla Segreta, fra gli otto ettari di giardino" loading="lazy" decoding="async" />
+      </div>
+      <div class="offset-panel">
+        <div class="offset-eyebrow">01 · Il parco</div>
+        <h3 class="offset-title">I ventuno <em>luoghi</em></h3>
+        <p class="offset-text">Dal Loggiato alla Segreta, dal Bosco al Vialetto: la mappa dei nomi con cui in villa si dà appuntamento, eredità di un disegno del Settecento ancora in uso.</p>
+        <a href="/journal/i-ventuno-luoghi/" class="link-arrow"><span>Leggi il racconto</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
     </div>
-    <div class="tile-grid reveal">
-      <a class="tile" href="/journal/i-ventuno-luoghi/">
-        <div class="tile-media">
-          <img src="/assets/img/chef-villa-luzi.png" alt="Lo chef del Segreto regge una sfera di vetro con dentro Villa Luzi e i suoi otto ettari di parco" loading="lazy" />
-          <span class="photo-frame" aria-hidden="true"></span>
-        </div>
-        <div class="tile-body">
-          <div class="tile-eyebrow">Il parco · La mappa</div>
-          <h3 class="tile-title">I ventuno <em>luoghi</em></h3>
-          <p class="tile-desc">Dal Loggiato alla Segreta, dal Bosco al Vialetto Amore: la mappa dei nomi con cui in villa si dà appuntamento.</p>
-        </div>
-      </a>
-      <a class="tile" href="/journal/cucina-del-segreto/">
-        <div class="tile-media">
-          <img src="/assets/img/dish-marchigiana.jpg" alt="Piatto della cucina marchigiana contemporanea del ristorante Il Segreto di Villa Luzi" loading="lazy" />
-          <span class="photo-frame" aria-hidden="true"></span>
-        </div>
-        <div class="tile-body">
-          <div class="tile-eyebrow">Il ristorante · La cucina</div>
-          <h3 class="tile-title">La cucina <em>del Segreto</em></h3>
-          <p class="tile-desc">Lo chef Jan Paul Kana, Responsabile Regionale dei Cuochi delle Marche, e una carta che va dall'aperitivo ai dolci.</p>
-        </div>
-      </a>
-      <div class="tile" aria-hidden="false">
-        <div class="tile-media">
-          <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,rgba(201,168,106,.16) 0%,transparent 60%),linear-gradient(135deg,#081E20 0%,#0E3B3E 100%);"></div>
-          <span class="photo-frame" aria-hidden="true"></span>
-        </div>
-        <div class="tile-body">
-          <div class="tile-eyebrow">In arrivo</div>
-          <h3 class="tile-title">Altre <em>storie</em></h3>
-          <p class="tile-desc">Il journal crescerà con nuovi racconti della villa e del territorio [DA CONFERMARE: prossimi temi del journal]. Intanto si seguono su <a href="https://www.instagram.com/villaluzi1737/" target="_blank" rel="noopener">@villaluzi1737</a>.</p>
-        </div>
+    <div class="offset-row">
+      <div class="offset-media">
+        <img src="/assets/img/covers/cucina-del-segreto.webp" alt="Un piatto della cucina marchigiana contemporanea del ristorante Il Segreto di Villa Luzi" loading="lazy" decoding="async" />
+      </div>
+      <div class="offset-panel">
+        <div class="offset-eyebrow">02 · Il ristorante</div>
+        <h3 class="offset-title">La cucina <em>del Segreto</em></h3>
+        <p class="offset-text">Lo chef Jan Paul Kana, Responsabile Regionale dei Cuochi delle Marche, e una carta che va dall'aperitivo ai dolci: la cucina del ristorante <a href="/il-segreto/">Il Segreto</a>.</p>
+        <a href="/journal/cucina-del-segreto/" class="link-arrow"><span>Leggi il racconto</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═════ CLOSING ═════ -->
-<section class="closing" aria-label="Invito">
-  <div class="reveal">
-    <h2 class="closing-title">Una casa che ha storie.</h2>
-    <p class="closing-sub">Si leggono qui, si vivono in villa:<br/>fra i ventuno luoghi del parco e la tavola del Segreto.</p>
-    <p class="closing-meta">Treia · Marche · dal 1737</p>
-    <div class="closing-ctas">
+<!-- ═════ ATMOSFERA · pull-gallery ═════ -->
+<section aria-label="La tavola del Segreto">
+  <div class="block-head reveal">
+    <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">Atmosfera</span><span class="line" aria-hidden="true"></span></div>
+    <h2>La tavola <em>del Segreto</em></h2>
+  </div>
+  <div class="pull-gallery reveal">
+    <figure><img src="/assets/img/gallery/menu/1.webp" alt="Un piatto della carta del ristorante Il Segreto di Villa Luzi" loading="lazy" decoding="async" /></figure>
+    <figure><img src="/assets/img/gallery/menu/2.webp" alt="Una portata della cucina marchigiana contemporanea del Segreto" loading="lazy" decoding="async" /></figure>
+    <figure><img src="/assets/img/gallery/menu/3.webp" alt="Un piatto impiattato della carta del Segreto a Villa Luzi" loading="lazy" decoding="async" /></figure>
+    <figure><img src="/assets/img/gallery/menu/4.webp" alt="Un dettaglio di una portata del ristorante Il Segreto" loading="lazy" decoding="async" /></figure>
+    <figure><img src="/assets/img/gallery/menu/5.webp" alt="Una preparazione della cucina dello chef Jan Paul Kana al Segreto" loading="lazy" decoding="async" /></figure>
+    <figure><img src="/assets/img/gallery/menu/6.webp" alt="Un dolce della carta del ristorante Il Segreto di Villa Luzi" loading="lazy" decoding="async" /></figure>
+  </div>
+</section>
+
+<!-- ═════ CLOSING · cta-split-image ═════ -->
+<section class="cta-split" aria-label="Invito">
+  <div class="cta-split-media">
+    <img src="/assets/img/covers/journal.webp" alt="Il tempietto neoclassico del parco di Villa Luzi con statua seduta tra le colonne corinzie, immerso nella vegetazione accanto a una vasca d'acqua" loading="lazy" decoding="async" />
+  </div>
+  <div class="cta-split-panel">
+    <div class="eyebrow" style="margin-bottom:18px">Treia · Marche · dal 1737</div>
+    <h2 class="cta-split-title">Una casa che ha storie</h2>
+    <p class="cta-split-sub">Si leggono qui, si vivono in villa: fra i ventuno luoghi del parco e la tavola del <a href="/il-segreto/">Segreto</a>.</p>
+    <div class="cta-split-ctas">
       <a href="/la-villa/" class="btn"><span>La Villa</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>

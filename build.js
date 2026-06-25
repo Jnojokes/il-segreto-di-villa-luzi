@@ -24,6 +24,9 @@ const SKIP_ROOT = new Set([
   '.git', '.gitignore', '.claude', '.agents', 'dist', 'partials', 'Tappe',
   'build.js', 'check.js', 'netlify.toml', 'skills-lock.json',
   'package.json', 'package-lock.json',
+  'CONSEGNA_DEV',            // sorgente media (35 GB): non pubblicare in dist/
+  'PROMPT_CHECK_IMPLEMENTAZIONE.md', 'REPORT_CHECK.md', // documenti di lavoro
+  'PROMPT_BLOCCHI_DINAMICI.md', 'REPORT_BLOCCHI.md',    // documenti di lavoro
 ]);
 const SKIP_ANY = new Set(['.DS_Store', 'node_modules']);
 const SKIP_ROOT_PATTERNS = [/^Screenshot /];

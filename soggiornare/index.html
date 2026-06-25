@@ -81,6 +81,8 @@
 
   <!-- ═════ HERO COMPATTO ═════ -->
   <section class="hero hero--compact" aria-label="Soggiornare a Villa Luzi">
+  <img class="hero-bg-img" src="/assets/img/heroes/soggiornare.webp" alt="Salone barocco con soffitto affrescato, lampadario di cristallo, specchiere dorate e sedie tappezzate in rosa disposte simmetricamente" fetchpriority="high" decoding="async" />
+  <div class="hero-bg-overlay"></div>
     <div class="hero-inner">
       <div class="hero-eyebrow">
         <span class="line" aria-hidden="true"></span>
@@ -155,25 +157,69 @@
     </div>
   </section>
 
-  <!-- ═════ LE DUE TIPOLOGIE ═════ -->
+  <!-- ═════ IL SOGGIORNO IN CIFRE · stat-strip ═════ -->
+  <section aria-label="Il soggiorno in cifre">
+    <div class="container">
+      <div class="block-head reveal">
+        <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">Una casa, non un albergo</span><span class="line" aria-hidden="true"></span></div>
+        <h2>Il soggiorno <em>in cifre</em></h2>
+      </div>
+      <div class="stat-strip reveal">
+        <div class="stat"><div class="stat-num" data-count="1737">1737</div><div class="stat-label">La dimora dal</div></div>
+        <div class="stat"><div class="stat-num" data-count="8">8</div><div class="stat-label">Ettari di parco</div></div>
+        <div class="stat"><div class="stat-num" data-count="2">2</div><div class="stat-label">Tipologie di stanza</div></div>
+        <div class="stat"><div class="stat-num" data-count="30">30</div><div class="stat-label">Minuti da Macerata</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ LA GIORNATA IN VILLA · editorial-feature full-bleed ═════ -->
+  <section class="editorial-feature editorial-feature--bottom reveal" aria-label="La giornata in villa">
+    <div class="editorial-feature-media">
+      <img src="/assets/img/covers/soggiornare.webp" alt="Camera matrimoniale con volta affrescata, parati decorati, comò con specchiera, ritratto ovale dorato e copriletto azzurro chiaro" loading="lazy" decoding="async" data-parallax="0.08" />
+    </div>
+    <div class="editorial-feature-panel">
+      <div class="editorial-feature-kicker">La giornata in villa</div>
+      <h2 class="editorial-feature-title">Dal Parco 1 <em>alla Segreta</em></h2>
+      <p class="editorial-feature-text">
+        La giornata comincia sul Parco 1, il parco antistante la residenza del B&amp;B: è la prima
+        cosa che si attraversa uscendo dalla porta di casa. La mattina passa dal loggiato, l'esterno
+        del ristorante, con l'acqua della fontana come unico rumore di fondo, e gli otto ettari
+        intorno aperti in tutte le direzioni.
+      </p>
+      <p class="editorial-feature-text">
+        Nel pomeriggio si entra nel bosco, dove il verde spontaneo incornicia il giardino
+        all'italiana; si percorre il vialetto dell'Amore o si sale alla Segreta, il patio rialzato
+        della villa. La sera comincia al bar o davanti alla limonaia e — nei giorni di apertura —
+        finisce alla tavola del <a href="/il-segreto/">Segreto</a>, senza riprendere l'auto: il
+        ristorante è in villa.
+      </p>
+      <a href="/esperienze/" class="link-arrow">
+        <span>Il calendario delle esperienze nel parco</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═════ LE DUE TIPOLOGIE · tile-grid ═════ -->
   <section class="info" aria-label="Camere e suite">
     <div class="container">
       <div class="info-header reveal">
-        <div class="section-eyebrow center"><span class="line"></span><span class="eyebrow">Le stanze</span><span class="line"></span></div>
-        <h2>Due modi di <em>abitare</em> la villa.</h2>
+        <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">Le stanze</span><span class="line" aria-hidden="true"></span></div>
+        <h2>Due modi di <em>abitare</em> la villa</h2>
         <p class="prose" style="margin-top:18px;max-width:640px;margin-left:auto;margin-right:auto;text-align:center;">
           La palazzina padronale è la residenza del B&amp;B: scale, soffitti e proporzioni sono
           quelli di una casa nobiliare marchigiana, non di un albergo. Davanti alla residenza
-          si apre il Parco 1, quello dove la giornata comincia e finisce.
-          Due le tipologie tra cui scegliere — le camere e il mini-appartamento —
-          entrambe dentro la dimora, con il Parco 1 davanti alla porta.
+          si apre il Parco 1, quello dove la giornata comincia e finisce. Due le tipologie tra cui
+          scegliere — le camere e il mini-appartamento — entrambe dentro la dimora, con il Parco 1
+          davanti alla porta.
         </p>
       </div>
 
       <div class="tile-grid tile-grid--two reveal" style="margin-top:48px">
         <a href="/soggiornare/camere/room-villa/" class="tile">
           <div class="tile-media">
-            <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0a2d2f 0%,#0E3B3E 50%,#081E20 100%);"></div>
+            <img src="/assets/img/covers/room-villa.webp" alt="Camera doppia classica con letto in noce, copriletto chiaro, comò con specchiera e ritratto ovale dorato alla parete" loading="lazy" decoding="async" />
             <span class="photo-frame" aria-hidden="true"></span>
           </div>
           <div class="tile-body">
@@ -184,7 +230,7 @@
         </a>
         <a href="/soggiornare/camere/suite-villa/" class="tile">
           <div class="tile-media">
-            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 35% 40%,rgba(201,168,106,.18) 0%,transparent 60%),linear-gradient(135deg,#0E3B3E 0%,#081E20 100%);"></div>
+            <img src="/assets/img/covers/suite-villa.webp" alt="Ampia suite con mobili veneziani laccati verde acqua e dorature, letto, divano e toeletta presso la finestra" loading="lazy" decoding="async" />
             <span class="photo-frame" aria-hidden="true"></span>
           </div>
           <div class="tile-body">
@@ -220,183 +266,32 @@
     </div>
   </section>
 
-  <!-- ═════ LA GIORNATA IN VILLA · mattino ═════ -->
-  <section aria-label="La giornata in villa · il mattino">
-    <div class="container">
-      <div class="split">
-        <div class="split-media reveal">
-          <div style="aspect-ratio:4/5;background:radial-gradient(ellipse at 50% 30%,rgba(201,168,106,.16) 0%,transparent 55%),linear-gradient(180deg,#0a2d2f 0%,#081E20 100%);"></div>
-          <span class="photo-frame" aria-hidden="true"></span>
-        </div>
-        <div class="reveal">
-          <div class="section-eyebrow"><span class="line"></span><span class="eyebrow">La giornata in villa · I</span></div>
-          <h2 class="split-title">Il mattino, <em>sul Parco 1</em>.</h2>
-          <div class="split-body">
-            <p>
-              La giornata comincia sul <span class="accent">Parco 1</span>, il parco antistante la
-              residenza del B&amp;B: è la prima cosa che si attraversa uscendo
-              dalla porta di casa.
-            </p>
-            <p>
-              La mattina passa dal <span class="accent">loggiato</span>, l'esterno del ristorante,
-              con l'acqua della <span class="accent">fontana</span> come unico rumore di fondo.
-              Da lì il parco si apre in tutte le direzioni: il
-              <span class="accent">vialetto d'ingresso</span>, gli otto ettari intorno,
-              e nessun orario da rincorrere.
-            </p>
-          </div>
-          <a href="https://wa.me/393452419263" target="_blank" rel="noopener" class="link-arrow">
-            <span>Chiedi disponibilità su WhatsApp</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
+  <!-- ═════ LA DIMORA · gallery-mosaic ═════ -->
+  <section aria-label="La dimora e il parco in immagini">
+    <div class="block-head reveal">
+      <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">La dimora</span><span class="line" aria-hidden="true"></span></div>
+      <h2>Dove si <em>soggiorna</em></h2>
+    </div>
+    <div class="gallery-mosaic reveal">
+      <figure class="g-big"><img src="/assets/img/gallery/soggiornare/1.webp" alt="Salone della dimora con soffitto affrescato, lampadario di cristallo e sedute tappezzate disposte simmetricamente" loading="lazy" decoding="async" /></figure>
+      <figure class="g-wide"><img src="/assets/img/gallery/soggiornare/2.webp" alt="Camera della palazzina padronale con copriletto chiaro, comò con specchiera e finestra affacciata sul parco" loading="lazy" decoding="async" /></figure>
+      <figure class="g-tall"><img src="/assets/img/gallery/soggiornare/3.webp" alt="Dettaglio degli arredi d'epoca della residenza, fra legni intagliati e dorature" loading="lazy" decoding="async" /></figure>
+      <figure class="g-tall"><img src="/assets/img/gallery/soggiornare/4.webp" alt="Angolo di una camera con specchiera dorata e tessuti chiari nella luce naturale" loading="lazy" decoding="async" /></figure>
+      <figure><img src="/assets/img/gallery/soggiornare/5.webp" alt="Scorcio degli ambienti comuni della palazzina padronale verso il parco" loading="lazy" decoding="async" /></figure>
+      <figure><img src="/assets/img/gallery/soggiornare/6.webp" alt="Dettaglio di parete e arredo della dimora, fra parati decorati e mobili d'epoca" loading="lazy" decoding="async" /></figure>
     </div>
   </section>
 
-  <!-- ═════ LA GIORNATA IN VILLA · pomeriggio e sera ═════ -->
-  <section aria-label="La giornata in villa · pomeriggio e sera" style="padding-top:0">
-    <div class="container">
-      <div class="split reverse">
-        <div class="split-media reveal">
-          <div style="aspect-ratio:4/5;background:radial-gradient(ellipse at 60% 60%,rgba(212,151,133,.12) 0%,transparent 55%),linear-gradient(180deg,#0E3B3E 0%,#081E20 100%);"></div>
-          <span class="photo-frame" aria-hidden="true"></span>
-        </div>
-        <div class="reveal">
-          <div class="section-eyebrow"><span class="line"></span><span class="eyebrow">La giornata in villa · II</span></div>
-          <h2 class="split-title">Dal bosco <em>alla Segreta</em>.</h2>
-          <div class="split-body">
-            <p>
-              Nel pomeriggio si entra nel <span class="accent">bosco</span>, dove il verde
-              spontaneo incornicia il <span class="accent">giardino all'italiana</span>; si
-              percorre il <span class="accent">vialetto dell'Amore</span>, o si sale alla
-              <span class="accent">Segreta</span>, il patio rialzato della villa.
-            </p>
-            <p>
-              La mappa del parco comprende anche la <span class="accent">pool</span> e il
-              <span class="accent">pool bar</span>. La sera comincia al
-              <span class="accent">bar</span> o davanti alla <span class="accent">limonaia</span>,
-              e — nei giorni di apertura — finisce alla tavola del
-              <a href="/il-segreto/" style="color:var(--oro);text-decoration:none;border-bottom:1px solid var(--oro-soft)">Segreto</a>,
-              senza riprendere l'auto: il ristorante è in villa.
-            </p>
-          </div>
-          <a href="/esperienze/" class="link-arrow">
-            <span>Il calendario delle esperienze</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
+  <!-- ═════ CLOSING · cta-split-image ═════ -->
+  <section class="cta-split" aria-label="Richiedi disponibilità">
+    <div class="cta-split-media">
+      <img src="/assets/img/gallery/soggiornare/2.webp" alt="Camera della palazzina padronale con copriletto chiaro, comò con specchiera e finestra affacciata sul parco di Villa Luzi" loading="lazy" decoding="async" />
     </div>
-  </section>
-
-  <!-- ═════ INFORMAZIONI PRATICHE ═════ -->
-  <section class="info" aria-label="Informazioni pratiche">
-    <div class="container">
-      <div class="info-header reveal">
-        <div class="section-eyebrow center"><span class="line"></span><span class="eyebrow">Pratico</span><span class="line"></span></div>
-        <h2>Informazioni <em>pratiche</em>.</h2>
-        <p class="prose" style="margin-top:18px;max-width:620px;margin-left:auto;margin-right:auto;text-align:center;">
-          Quello che serve sapere prima di mettersi in viaggio verso Treia.
-          Per tutto il resto c'è un numero di telefono a cui risponde la casa.
-        </p>
-      </div>
-      <div class="info-grid cols-3 reveal">
-        <div class="info-cell">
-          <div class="label">Prenotazioni</div>
-          <h3>Dirette, personali</h3>
-          <p>Si prenota parlando direttamente con la casa. Telefono e WhatsApp
-          <a href="tel:+393452419263">+39 345 241 9263</a> ·
-          <a href="https://wa.me/393452419263" target="_blank" rel="noopener">scrivici su WhatsApp</a> ·
-          <a href="mailto:villaluzi1737@gmail.com">villaluzi1737@gmail.com</a>.</p>
-        </div>
-        <div class="info-cell">
-          <div class="label">Check-in · Check-out</div>
-          <h3>All'arrivo, di persona</h3>
-          <p>[DA CONFERMARE: orari di check-in e check-out]. L'accoglienza è gestita direttamente dalla casa: segnalateci l'orario previsto di arrivo e troverete qualcuno ad aspettarvi.</p>
-        </div>
-        <div class="info-cell">
-          <div class="label">Parcheggio</div>
-          <h3>Gratuito, in villa</h3>
-          <p>Il parcheggio è gratuito, all'interno della proprietà, ed è segnalato all'arrivo: si lascia l'auto e non la si riprende fino alla partenza.</p>
-        </div>
-        <div class="info-cell">
-          <div class="label">Distanze</div>
-          <h3>Nel cuore delle Marche</h3>
-          <p>30 minuti da Macerata · 45 minuti da Ancona e da Civitanova · 1 ora dall'aeroporto di Falconara. La villa è in aperta campagna, nel comune di Treia.</p>
-        </div>
-        <div class="info-cell">
-          <div class="label">Ristorante in villa</div>
-          <h3>Il Segreto</h3>
-          <p>Giovedì–sabato solo cena (19:30–22:30); domenica pranzo (12:30–14:30) e cena. Sempre e solo su prenotazione: <a href="/il-segreto/#prenota">prenota un tavolo</a> prima di scendere.</p>
-        </div>
-        <div class="info-cell">
-          <div class="label">Indirizzo</div>
-          <h3>Contrada Chiaravalle 49</h3>
-          <p>62010 Treia (MC) · Marche · Italia ·
-          <a href="https://maps.google.com/?q=Contrada+Chiaravalle+49,+62010+Treia+MC" target="_blank" rel="noopener">apri in Google Maps</a> per impostare il navigatore.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════ CROSS-LINK ═════ -->
-  <section aria-label="Vivere la villa oltre il soggiorno">
-    <div class="container">
-      <div class="info-header reveal">
-        <div class="section-eyebrow center"><span class="line"></span><span class="eyebrow">Oltre la camera</span><span class="line"></span></div>
-        <h2>Il soggiorno è <em>l'inizio</em>.</h2>
-        <p class="prose" style="margin-top:18px;max-width:620px;margin-left:auto;margin-right:auto;text-align:center;">
-          Chi dorme in villa ha la tavola, il calendario e gli spazi della dimora a pochi passi
-          dalla propria porta: una cena al Segreto, un pomeriggio nel parco durante un format
-          della casa, un sopralluogo per l'evento che verrà.
-        </p>
-      </div>
-      <div class="tile-grid reveal" style="margin-top:48px">
-        <a href="/il-segreto/" class="tile">
-          <div class="tile-media">
-            <img src="/assets/img/dish-marchigiana.jpg" alt="Piatto di cucina marchigiana del ristorante Il Segreto di Villa Luzi" loading="lazy" />
-            <span class="photo-frame" aria-hidden="true"></span>
-          </div>
-          <div class="tile-body">
-            <span class="tile-eyebrow">Ristorante</span>
-            <h3 class="tile-title">Il <em>Segreto</em></h3>
-            <p class="tile-desc">La cucina italiana contemporanea e marchigiana dello chef Jan Paul Kana, in villa. Solo su prenotazione.</p>
-          </div>
-        </a>
-        <a href="/esperienze/" class="tile">
-          <div class="tile-media">
-            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 40%,rgba(201,168,106,.18) 0%,transparent 60%),linear-gradient(135deg,#081E20 0%,#0E3B3E 100%);"></div>
-            <span class="photo-frame" aria-hidden="true"></span>
-          </div>
-          <div class="tile-body">
-            <span class="tile-eyebrow">Esperienze</span>
-            <h3 class="tile-title">Il calendario <em>della villa</em></h3>
-            <p class="tile-desc">I format della casa nel parco, a partire dagli Aperitivi in erba. Le date escono qui, una alla volta.</p>
-          </div>
-        </a>
-        <a href="/eventi/" class="tile">
-          <div class="tile-media">
-            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(212,151,133,.12) 0%,transparent 55%),linear-gradient(135deg,#0a2d2f 0%,#081E20 100%);"></div>
-            <span class="photo-frame" aria-hidden="true"></span>
-          </div>
-          <div class="tile-body">
-            <span class="tile-eyebrow">Eventi</span>
-            <h3 class="tile-title">Spazi <em>per eventi</em></h3>
-            <p class="tile-desc">Saloni, loggiato, limonaia e parco per matrimoni, eventi privati e corporate. La villa si presta intera.</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════ CLOSING ═════ -->
-  <section class="closing" aria-label="Richiedi disponibilità">
-    <div class="reveal">
-      <h2 class="closing-title">Restate una notte.</h2>
-      <p class="closing-sub">Scriveteci la data e il numero di ospiti:<br/>vi rispondiamo personalmente.</p>
-      <p class="closing-meta">Villa Luzi 1737 · Treia · Marche</p>
-      <div class="closing-ctas">
+    <div class="cta-split-panel">
+      <div class="eyebrow" style="margin-bottom:18px">Contrada Chiaravalle 49 · Treia (MC)</div>
+      <h2 class="cta-split-title">Restate una notte</h2>
+      <p class="cta-split-sub">Scriveteci la data e il numero di ospiti: vi rispondiamo personalmente, con la tavola del <a href="/il-segreto/">Segreto</a> e il calendario degli <a href="/eventi/">eventi</a> a pochi passi dalla porta.</p>
+      <div class="cta-split-ctas">
         <a href="https://wa.me/393452419263" target="_blank" rel="noopener" class="btn"><span>Scrivici su WhatsApp</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>

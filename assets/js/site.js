@@ -9,8 +9,23 @@
 (function () {
   'use strict';
 
-  // ─── Scroll reveal ───
-  if ('IntersectionObserver' in window) {
+  // ─── Preferenze utente: niente moto / risparmio dati ───
+  const reduceMotion = window.matchMedia
+    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    : false;
+  const saveData = navigator.connection && navigator.connection.saveData === true;
+
+  // ─── Scroll reveal (+ stagger per .reveal-group) ───
+  // Imposta la cadenza dei figli dei gruppi (CSS usa --reveal-i)
+  document.querySelectorAll('.reveal-group').forEach((group) => {
+    Array.prototype.forEach.call(group.children, (child, i) => {
+      child.style.setProperty('--reveal-i', i);
+    });
+  });
+  const revealEls = document.querySelectorAll('.reveal, .reveal-group');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach((el) => el.classList.add('visible'));
+  } else {
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -20,11 +35,9 @@
           }
         });
       },
-      { threshold: 0.15, rootMargin: '-50px' }
+      { threshold: 0.12, rootMargin: '-40px' }
     );
-    document.querySelectorAll('.reveal').forEach((el) => obs.observe(el));
-  } else {
-    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+    revealEls.forEach((el) => obs.observe(el));
   }
 
   // ─── Topbar scrolled state ───
@@ -98,4 +111,85 @@
       if (msg) msg.textContent = 'Grazie. Le scriveremo presto.';
     });
   });
+
+  // ─── Counter animato (stat-strip) ───
+  // Il valore reale è già nel testo HTML (fallback senza JS / reduced-motion).
+  const counters = document.querySelectorAll('[data-count]');
+  if (counters.length) {
+    const runCount = (el) => {
+      const target = parseFloat(el.getAttribute('data-count'));
+      if (isNaN(target)) return;
+      if (reduceMotion) { el.textContent = String(target); return; }
+      const dur = 1500;
+      let startTs = null;
+      const tick = (now) => {
+        if (startTs === null) startTs = now;
+        const t = Math.min(1, (now - startTs) / dur);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = String(Math.round(target * eased));
+        if (t < 1) requestAnimationFrame(tick);
+        else el.textContent = String(target);
+      };
+      requestAnimationFrame(tick);
+    };
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      counters.forEach(runCount);
+    } else {
+      const cObs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { runCount(e.target); cObs.unobserve(e.target); } });
+      }, { threshold: 0.5 });
+      counters.forEach((el) => cObs.observe(el));
+    }
+  }
+
+  // ─── Parallax leggero (solo transform, niente CLS) ───
+  const parallaxEls = document.querySelectorAll('[data-parallax]');
+  if (parallaxEls.length && !reduceMotion) {
+    let ticking = false;
+    const update = () => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      parallaxEls.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -40 || r.top > vh + 40) return;
+        const speed = parseFloat(el.getAttribute('data-parallax')) || 0.12;
+        const center = r.top + r.height / 2 - vh / 2;
+        let shift = -center * speed;
+        if (shift > 26) shift = 26; else if (shift < -26) shift = -26;
+        // scale baseline 1.08 = headroom così i bordi non si scoprono mai
+        el.style.transform = 'translate3d(0,' + shift.toFixed(1) + 'px,0) scale(1.08)';
+      });
+      ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  }
+
+  // ─── Marquee: duplica i nodi una volta per un loop continuo ───
+  if (!reduceMotion) {
+    document.querySelectorAll('.marquee-track').forEach((track) => {
+      const items = Array.prototype.slice.call(track.children);
+      items.forEach((node) => {
+        const clone = node.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+      });
+    });
+  }
+
+  // ─── Guardia autoplay video (reduced-motion / save-data → solo poster) ───
+  document.querySelectorAll('video[data-autoplay]').forEach((v) => {
+    if (reduceMotion || saveData) { v.removeAttribute('autoplay'); try { v.pause(); } catch (e) {} return; }
+    v.muted = true;
+    const p = v.play();
+    if (p && p.catch) p.catch(() => {});
+  });
+  // Ferma anche i video con autoplay nativo (es. hero) quando si preferisce ridurre il moto
+  if (reduceMotion) {
+    document.querySelectorAll('video.hero-bg-img, .media-band-bg video, .editorial-feature-media video').forEach((v) => {
+      try { v.pause(); v.removeAttribute('autoplay'); } catch (e) {}
+    });
+  }
 })();
