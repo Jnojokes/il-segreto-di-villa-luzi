@@ -22,6 +22,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/css/site.css?v=3" />
 <link rel="stylesheet" href="/assets/css/home.css?v=3" />
+<link rel="stylesheet" href="/assets/css/orb.css?v=3" />
 
 <!-- JSON-LD · WebSite (l'Organization è iniettata dal footer, qui solo il riferimento) -->
 <script type="application/ld+json">
@@ -67,7 +68,7 @@
       <h1 class="hero-title">Villa Luzi<em>dimora del Settecento</em></h1>
       <p class="hero-tagline">Otto ettari di parco, una palazzina padronale e una tavola che porta un nome: <span>Il Segreto</span>.</p>
       <div class="hero-ctas">
-        <a href="/soggiornare/" class="btn"><span>Soggiorna in villa</span>
+        <a href="/il-segreto/" class="btn"><span>Scopri Il Segreto</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
         <a href="/il-segreto/#prenota" class="hero-textlink"><span>Prenota un tavolo</span>
@@ -100,12 +101,37 @@
       </p>
       <p>
         Si trova in Contrada Chiaravalle 49, a 30 minuti da Macerata e 45 da Ancona.
-        Si <a href="/soggiornare/" style="color:var(--oro);text-decoration:none;border-bottom:1px solid var(--oro-soft);">dorme in villa</a>,
-        si <a href="/il-segreto/#prenota" style="color:var(--oro);text-decoration:none;border-bottom:1px solid var(--oro-soft);">cena su prenotazione</a>,
-        si torna per le <a href="/esperienze/" style="color:var(--oro);text-decoration:none;border-bottom:1px solid var(--oro-soft);">esperienze nel parco</a>.
+        Si dorme in villa,
+        si <a href="/il-segreto/#prenota">cena su prenotazione</a>,
+        si torna per le <a href="/esperienze/">esperienze nel parco</a>.
       </p>
     </div>
   </div>
+</section>
+
+<!-- ═════ ORB · la sfera dei mondi della villa ═════ -->
+<section class="orb-section" aria-labelledby="orb-title">
+  <div class="orb-bg" aria-hidden="true"></div>
+  <div class="orb-head">
+    <span class="orb-eyebrow"><span class="line" aria-hidden="true"></span>I mondi della villa<span class="line" aria-hidden="true"></span></span>
+    <h2 class="orb-title" id="orb-title">Esplora le <em>anime</em> di Villa Luzi</h2>
+    <p class="orb-lead">Una sola dimora, tanti modi di viverla. Ruota la sfera o tocca un mondo per entrarci.</p>
+  </div>
+
+  <div class="orb-stage">
+    <!-- Lista reale: senza JS / con reduced-motion resta una griglia
+         accessibile; orb.js la dispone sulla sfera. Stessa lista del concierge. -->
+    <ul class="orb-world" aria-label="I mondi di Villa Luzi">
+      <li><a class="orb-node" href="/il-segreto/" data-primary><span class="orb-dot" aria-hidden="true"></span><span class="orb-label">Il Segreto · Ristorante</span></a></li>
+      <li><a class="orb-node" href="/il-segreto/" data-concierge="domenica"><span class="orb-dot" aria-hidden="true"></span><span class="orb-label">La Domenica al Segreto</span></a></li>
+      <li><a class="orb-node" href="/il-segreto/" data-concierge="domenica"><span class="orb-dot" aria-hidden="true"></span><span class="orb-label">Aperitivo in piscina</span></a></li>
+      <li><a class="orb-node" href="/esperienze/" data-concierge="wellness"><span class="orb-dot" aria-hidden="true"></span><span class="orb-label">Wellness e massaggi</span></a></li>
+      <li><a class="orb-node" href="/esperienze/"><span class="orb-dot" aria-hidden="true"></span><span class="orb-label">Esperienze</span></a></li>
+      <li><a class="orb-node" href="/eventi/" data-concierge="evento"><span class="orb-dot" aria-hidden="true"></span><span class="orb-label">Eventi &amp; Matrimoni</span></a></li>
+      <li><a class="orb-node" href="/offerte/" data-concierge="gift"><span class="orb-dot" aria-hidden="true"></span><span class="orb-label">Gift card</span></a></li>
+    </ul>
+  </div>
+  <p class="orb-hint" aria-hidden="true">Trascina per ruotare · tocca un mondo</p>
 </section>
 
 <!-- ═════ LE ANIME · PILLARS ═════ -->
@@ -113,13 +139,13 @@
   <div class="container">
     <div class="block-head reveal">
       <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">Un ecosistema, non un resort</span><span class="line" aria-hidden="true"></span></div>
-      <h2>Una casa del Settecento, <em>quattro anime</em></h2>
+      <h2>Una dimora del Settecento, <em>quattro anime</em></h2>
     </div>
     <div class="pillars reveal-group">
       <div class="pillar">
         <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/></svg></div>
         <h3>Una <em>dimora</em></h3>
-        <p>La palazzina padronale del 1737, ridisegnata nell'Ottocento da Andrea Vici per il marchese Nicola Luzi: si dorme nelle <a href="/soggiornare/">camere della residenza</a>, il parco comincia oltre la soglia.</p>
+        <p>La palazzina padronale del 1737, ridisegnata nell'Ottocento da Andrea Vici per il marchese Nicola Luzi: si dorme nelle camere della residenza, il parco comincia oltre la soglia.</p>
       </div>
       <div class="pillar">
         <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 4h12l-6 8v6"/><path d="M9 18h6"/></svg></div>
@@ -142,7 +168,7 @@
   </div>
   <div class="media-band-inner">
     <div class="media-band-eyebrow">Treia · Marche · dal 1737</div>
-    <h2 class="media-band-title">Non un resort, <em>una casa</em></h2>
+    <h2 class="media-band-title">Non un resort, <em>una dimora</em></h2>
     <p class="media-band-text">Le quattro anime condividono lo stesso parco, la stessa cucina e lo stesso passo lento. Tutta la <a href="/la-villa/">storia della dimora</a> in una pagina.</p>
     <a href="/la-villa/" class="btn"><span>La villa</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -165,14 +191,14 @@
   </div>
 </section>
 
-<!-- ═════ I QUATTRO MONDI · tile-grid ═════ -->
-<section class="info" aria-label="Soggiorno, ristorante, esperienze, eventi">
+<!-- ═════ I TRE MONDI · tile-grid ═════ -->
+<section class="info" aria-label="Ristorante, esperienze, eventi">
   <div class="container">
     <div class="info-header reveal">
-      <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">Quattro modi di vivere la villa</span><span class="line" aria-hidden="true"></span></div>
-      <h2>I quattro <em>mondi</em></h2>
+      <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">Tre modi di vivere la villa</span><span class="line" aria-hidden="true"></span></div>
+      <h2>I tre <em>mondi</em></h2>
       <p class="prose" style="margin-top:18px;max-width:640px;margin-left:auto;margin-right:auto;text-align:center;">
-        Si dorme nelle camere della palazzina padronale, si cena al Segreto — con una
+        Si cena al Segreto — con una
         <a href="/il-segreto/menu/">carta</a> che va dall'Aperitivo agli Antipasti, dai Primi
         alle Pizze, dai Fritti alle Carni al Taglio, fino ai Dolci — si passa un pomeriggio
         sull'erba con gli <a href="/esperienze/aperitivi-in-erba/2-giugno-2026/">Aperitivi in erba</a>,
@@ -181,24 +207,7 @@
         o <a href="mailto:villaluzi1737@gmail.com">villaluzi1737@gmail.com</a>.
       </p>
     </div>
-    <div class="tile-grid cols-4 reveal">
-      <a class="tile" href="/soggiornare/" data-tilt>
-        <div class="tile-media">
-          <img src="/assets/img/covers/soggiornare.webp" alt="Camera matrimoniale con volta affrescata, parati decorati, como con specchiera, ritratto ovale dorato e copriletto azzurro chiaro" loading="lazy" decoding="async" />
-          <span class="photo-frame" aria-hidden="true"></span>
-          <span class="tile-sheen" aria-hidden="true"></span>
-        </div>
-        <div class="tile-body">
-          <div class="tile-top"><span class="tile-index">01</span><span class="tile-chip">Soggiorno</span></div>
-          <h3 class="tile-title">Soggiornare <em>in dimora</em></h3>
-          <p class="tile-desc">Le Room Villa, camere nella palazzina padronale, e la Suite Villa, un mini-appartamento. Il parco comincia oltre la soglia.</p>
-          <div class="tile-meta">
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 18v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5M3 18v-3M21 18v-3M7 11V8a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3"/></svg>Room &amp; Suite</span>
-            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Su prenotazione</span>
-          </div>
-          <span class="tile-cta">Scopri <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
-        </div>
-      </a>
+    <div class="tile-grid cols-3 reveal">
       <a class="tile" href="/il-segreto/" data-tilt>
         <div class="tile-media">
           <video class="tile-vid" autoplay muted loop playsinline data-autoplay poster="/assets/img/covers/menu.webp"><source src="/assets/video/hero-bg.webm" type="video/webm" /><source src="/assets/video/hero-bg.mp4" type="video/mp4" /></video>
@@ -207,7 +216,7 @@
           <span class="tile-flag">In evidenza</span>
         </div>
         <div class="tile-body">
-          <div class="tile-top"><span class="tile-index">02</span><span class="tile-chip">Ristorante</span></div>
+          <div class="tile-top"><span class="tile-index">01</span><span class="tile-chip">Ristorante</span></div>
           <h3 class="tile-title">Il Segreto <em>· cucina marchigiana</em></h3>
           <p class="tile-desc">La cucina italiana contemporanea dello chef Jan Paul Kana, Responsabile Regionale dei Cuochi delle Marche. Solo su prenotazione.</p>
           <div class="tile-meta">
@@ -224,7 +233,7 @@
           <span class="tile-sheen" aria-hidden="true"></span>
         </div>
         <div class="tile-body">
-          <div class="tile-top"><span class="tile-index">03</span><span class="tile-chip">Esperienze</span></div>
+          <div class="tile-top"><span class="tile-index">02</span><span class="tile-chip">Esperienze</span></div>
           <h3 class="tile-title">Esperienze <em>nel parco</em></h3>
           <p class="tile-desc">Il format Aperitivi in erba: pic nic e pomeriggi a tema tra Bosco, Fontana e vialetti. L'edizione del 2 giugno 2026: Il Salotto dei Corsari.</p>
           <div class="tile-meta">
@@ -241,7 +250,7 @@
           <span class="tile-sheen" aria-hidden="true"></span>
         </div>
         <div class="tile-body">
-          <div class="tile-top"><span class="tile-index">04</span><span class="tile-chip">Eventi</span></div>
+          <div class="tile-top"><span class="tile-index">03</span><span class="tile-chip">Eventi</span></div>
           <h3 class="tile-title">Eventi <em>privati</em></h3>
           <p class="tile-desc">Matrimoni, ricorrenze e giornate aziendali tra il Salone del primo piano (~250 mq), la Limonaia, la Chiesa e il parco.</p>
           <div class="tile-meta">
@@ -266,7 +275,7 @@
       <div class="stat"><div class="stat-num" data-count="1737">1737</div><div class="stat-label">Anno di fondazione</div></div>
       <div class="stat"><div class="stat-num" data-count="8">8</div><div class="stat-label">Ettari di parco</div></div>
       <div class="stat"><div class="stat-num" data-count="21">21</div><div class="stat-label">Luoghi nominati</div></div>
-      <div class="stat"><div class="stat-num" data-count="4">4</div><div class="stat-label">Anime della casa</div></div>
+      <div class="stat"><div class="stat-num" data-count="4">4</div><div class="stat-label">Anime della dimora</div></div>
     </div>
   </div>
 </section>
@@ -281,7 +290,7 @@
     <h2 class="cta-split-title">Restate.</h2>
     <p class="cta-split-sub">Una notte nella palazzina, una cena al <a href="/il-segreto/#prenota">Segreto</a>, un pomeriggio sull'erba del parco.</p>
     <div class="cta-split-ctas">
-      <a href="/soggiornare/" class="btn"><span>Soggiornare</span>
+      <a href="/il-segreto/" class="btn"><span>Scopri Il Segreto</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
       <a href="/contatti/" class="btn-ghost"><span>Contatti e mappa</span>
@@ -295,5 +304,6 @@
 <!-- @include:footer -->
 <script src="/assets/js/site.js?v=3" defer></script>
 <script src="/assets/js/home.js?v=3" defer></script>
+<script src="/assets/js/orb.js?v=3" defer></script>
 </body>
 </html>

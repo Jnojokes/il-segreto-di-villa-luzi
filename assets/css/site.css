@@ -5,6 +5,15 @@
    /il-segreto e campagna /esperienze/aperitivi-erba) NON
    linkano questo foglio — mantengono i loro stili inline.
    ─────────────────────────────────────────────────────────
+   PALETTE · BASE PANNA chiara, con CORALLO come colore di
+   azione/contrasto. Ottanio/oro restano accenti. NAVBAR e
+   FOOTER restano scuri (ottanio/verde-notte): sono il "chrome".
+   Anche le fasce immersive (hero, info, faq, closing,
+   editorial-feature, media-band, cta-split, offset-panel,
+   site-footer, wow-atmos) restano su fondo scuro con testo
+   avorio/whisper. Tutto il resto del contenuto vive su panna
+   con testo inchiostro e link corallo.
+   ─────────────────────────────────────────────────────────
    NOMI DA RIFATTORIZZARE GLOBALMENTE (cerca/sostituisci):
    - "Il Segreto"  → nome ristorante (in revisione lato cliente).
      Lo slug della route /il-segreto NON va rinominato senza
@@ -22,6 +31,16 @@
   --avorio-warm: #ece2cf;
   --rosa-rame: #D49785;
   --inchiostro: #1A1A1A;
+  /* base panna chiara */
+  --panna: #F3ECDF;
+  --panna-warm: #EAE0CE;
+  --panna-deep: #E2D6C0;
+  --ink-soft: rgba(26, 26, 26, 0.66);
+  --ink-faint: rgba(26, 26, 26, 0.14);
+  /* glassmorphism (panna traslucida) */
+  --glass-bg: rgba(243, 236, 223, 0.62);
+  --glass-edge: rgba(255, 255, 255, 0.55);
+  --glass-solid: rgba(243, 236, 223, 0.95);
   --whisper: rgba(244, 236, 220, 0.65);
   --whisper-soft: rgba(244, 236, 220, 0.4);
   --whisper-faint: rgba(244, 236, 220, 0.15);
@@ -42,8 +61,8 @@ html { scroll-behavior: smooth; }
 img, svg { display: block; max-width: 100%; }
 
 body {
-  background: var(--ottanio);
-  color: var(--avorio);
+  background: var(--panna);
+  color: var(--inchiostro);
   font-family: 'Inter', sans-serif;
   font-weight: 300;
   line-height: 1.6;
@@ -52,7 +71,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-::selection { background: var(--oro); color: var(--ottanio); }
+::selection { background: var(--corallo); color: var(--panna); }
 
 /* Microtype safety */
 .micro {
@@ -109,7 +128,7 @@ body::before {
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.05;
-  color: var(--avorio);
+  color: var(--inchiostro);
 }
 .display em { font-style: italic; color: var(--oro); font-weight: 400; }
 
@@ -117,7 +136,7 @@ h1, h2, h3, h4 {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
   letter-spacing: -0.01em;
-  color: var(--avorio);
+  color: var(--inchiostro);
   line-height: 1.1;
 }
 h1 em, h2 em, h3 em, h4 em { font-style: italic; color: var(--oro); font-weight: 400; }
@@ -605,7 +624,7 @@ body.nav-open { overflow: hidden; }
   font-style: italic;
   font-size: clamp(20px, 2vw, 26px);
   line-height: 1.55;
-  color: var(--avorio);
+  color: var(--inchiostro);
   font-weight: 300;
   max-width: 760px;
   margin: 0 auto;
@@ -625,17 +644,17 @@ body.nav-open { overflow: hidden; }
   font-weight: 300;
   font-size: 16px;
   line-height: 1.8;
-  color: var(--avorio);
+  color: var(--inchiostro);
 }
 .prose p { margin-bottom: 1.2em; }
 .prose p:last-child { margin-bottom: 0; }
 .prose a {
-  color: var(--oro);
+  color: var(--corallo-deep);
   text-decoration: none;
-  border-bottom: 1px solid var(--oro-soft);
+  border-bottom: 1px solid var(--corallo-soft);
   transition: color 0.3s ease, border-color 0.3s ease;
 }
-.prose a:hover { color: var(--avorio); border-bottom-color: var(--avorio); }
+.prose a:hover { color: var(--corallo); border-bottom-color: var(--corallo); }
 .prose h2 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(28px, 3.4vw, 44px);
@@ -655,7 +674,7 @@ body.nav-open { overflow: hidden; }
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: 22px;
-  color: var(--whisper);
+  color: var(--ink-soft);
   line-height: 1.55;
 }
 
@@ -667,8 +686,8 @@ body.nav-open { overflow: hidden; }
   align-items: center;
   gap: 14px;
   padding: 18px 34px;
-  background: var(--oro);
-  color: var(--ottanio);
+  background: var(--corallo);
+  color: var(--inchiostro);   /* AA: panna su corallo = 2.5 (fail); inchiostro = 5.9 */
   text-decoration: none;
   font-family: 'Inter', sans-serif;
   font-size: 12px;
@@ -686,7 +705,7 @@ body.nav-open { overflow: hidden; }
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--avorio);
+  background: var(--corallo-deep);
   transform: translateX(-100%);
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 0;
@@ -700,7 +719,7 @@ body.nav-open { overflow: hidden; }
   align-items: center;
   gap: 12px;
   padding: 16px 28px;
-  color: var(--avorio);
+  color: var(--inchiostro);
   text-decoration: none;
   font-family: 'Inter', sans-serif;
   font-size: 12px;
@@ -708,12 +727,12 @@ body.nav-open { overflow: hidden; }
   text-transform: uppercase;
   font-weight: 400;
   border-radius: 100px;
-  border: 1px solid var(--whisper-soft);
+  border: 1px solid var(--ink-faint);
   background: transparent;
   cursor: pointer;
   transition: all 0.4s ease;
 }
-.btn-ghost:hover { border-color: var(--oro); color: var(--oro); }
+.btn-ghost:hover { border-color: var(--corallo); color: var(--corallo); }
 .btn-ghost svg { width: 16px; height: 16px; }
 
 .link-arrow {
@@ -724,7 +743,7 @@ body.nav-open { overflow: hidden; }
   font-size: 11px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--oro);
+  color: var(--corallo-deep);
   text-decoration: none;
   font-weight: 500;
   transition: gap 0.3s ease, color 0.3s ease;
@@ -749,21 +768,21 @@ body.nav-open { overflow: hidden; }
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--whisper-soft);
+  color: var(--ink-soft);
 }
 .breadcrumb a {
-  color: var(--whisper);
+  color: var(--ink-soft);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: color 0.3s ease, border-color 0.3s ease;
 }
-.breadcrumb a:hover { color: var(--oro); border-bottom-color: var(--oro); }
+.breadcrumb a:hover { color: var(--corallo-deep); border-bottom-color: var(--corallo-deep); }
 .breadcrumb li + li::before {
   content: '·';
   margin-right: 8px;
-  color: var(--whisper-faint);
+  color: var(--ink-faint);
 }
-.breadcrumb li[aria-current="page"] { color: var(--oro); }
+.breadcrumb li[aria-current="page"] { color: var(--inchiostro); }
 
 /* ═══════════════════════════════════════════════════════════
    INFO-GRID / INFO-CELL · griglie dense informative
@@ -859,20 +878,20 @@ body.nav-open { overflow: hidden; }
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  color: var(--avorio);
-  border: 1px solid var(--whisper-faint);
+  color: var(--inchiostro);
+  border: 1px solid var(--ink-faint);
   border-radius: 6px;
   overflow: hidden;
-  background: rgba(244,236,220,0.025);
+  background: rgba(26,26,26,0.025);
   transition: border-color 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.feature-card:hover { border-color: var(--oro); transform: translateY(-4px); }
+.feature-card:hover { border-color: var(--corallo-soft); transform: translateY(-4px); }
 
 .feature-card-media {
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: var(--ottanio-deep);
+  background: var(--panna-warm);
 }
 .feature-card-media img {
   width: 100%;
@@ -925,7 +944,7 @@ body.nav-open { overflow: hidden; }
   font-style: italic;
   font-size: 18px;
   line-height: 1.5;
-  color: var(--whisper);
+  color: var(--ink-soft);
 }
 .feature-card-arrow {
   display: inline-flex;
@@ -964,18 +983,18 @@ body.nav-open { overflow: hidden; }
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  color: var(--avorio);
-  background: rgba(244,236,220,0.03);
-  border: 1px solid var(--whisper-faint);
+  color: var(--inchiostro);
+  background: rgba(26,26,26,0.03);
+  border: 1px solid var(--ink-faint);
   border-radius: 6px;
   overflow: hidden;
   transition: border-color 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.tile:hover { border-color: var(--oro); transform: translateY(-3px); }
+.tile:hover { border-color: var(--corallo-soft); transform: translateY(-3px); }
 .tile-media {
   position: relative;
   aspect-ratio: 4 / 3;
-  background: var(--ottanio-deep);
+  background: var(--panna-warm);
   overflow: hidden;
 }
 .tile-media img,
@@ -1005,7 +1024,7 @@ body.nav-open { overflow: hidden; }
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: 16px;
-  color: var(--whisper);
+  color: var(--ink-soft);
   line-height: 1.5;
 }
 
@@ -1055,12 +1074,12 @@ body.nav-open { overflow: hidden; }
   font-weight: 300;
   font-size: clamp(18px, 1.6vw, 22px);
   line-height: 1.55;
-  color: var(--whisper);
+  color: var(--ink-soft);
   margin-bottom: 32px;
 }
 .split-body p { margin-bottom: 1em; }
 .split-body .accent {
-  color: var(--avorio);
+  color: var(--inchiostro);
   font-style: normal;
   font-family: 'Playfair Display', serif;
 }
@@ -1445,22 +1464,24 @@ body.nav-open { overflow: hidden; }
 .form-field input,
 .form-field textarea,
 .form-field select {
-  background: rgba(244,236,220,0.03);
-  border: 1px solid var(--whisper-faint);
+  background: rgba(26,26,26,0.03);
+  border: 1px solid var(--ink-faint);
   border-radius: 6px;
   padding: 14px 18px;
-  color: var(--avorio);
+  color: var(--inchiostro);
   font-family: 'Inter', sans-serif;
   font-size: 15px;
   font-weight: 300;
   transition: border-color 0.3s ease, background 0.3s ease;
 }
+.form-field input::placeholder,
+.form-field textarea::placeholder { color: var(--ink-soft); }
 .form-field input:focus,
 .form-field textarea:focus,
 .form-field select:focus {
   outline: none;
-  border-color: var(--oro);
-  background: rgba(244,236,220,0.05);
+  border-color: var(--corallo);
+  background: rgba(26,26,26,0.05);
 }
 .form-field textarea { min-height: 140px; resize: vertical; }
 
@@ -1468,15 +1489,15 @@ body.nav-open { overflow: hidden; }
    NOTICE · placeholder per TODO / integrazioni in attesa
    ═══════════════════════════════════════════════════════════ */
 .notice-placeholder {
-  border: 1px dashed var(--whisper-soft);
+  border: 1px dashed var(--ink-faint);
   border-radius: 8px;
   padding: 32px;
   text-align: center;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: 17px;
-  color: var(--whisper);
-  background: rgba(244,236,220,0.02);
+  color: var(--ink-soft);
+  background: rgba(26,26,26,0.02);
 }
 .notice-placeholder strong {
   font-family: 'Inter', sans-serif;
@@ -1601,7 +1622,7 @@ body.nav-open { overflow: hidden; }
 }
 .gallery-mosaic figure {
   position: relative; margin: 0; overflow: hidden; border-radius: 4px;
-  background: var(--ottanio-deep);
+  background: var(--panna-warm);
 }
 .gallery-mosaic img {
   width: 100%; height: 100%; object-fit: cover;
@@ -1677,8 +1698,8 @@ body.nav-open { overflow: hidden; }
 .stat-strip {
   display: grid; grid-template-columns: repeat(4, 1fr);
   max-width: var(--maxw); margin: 0 auto;
-  border-top: 1px solid var(--whisper-faint);
-  border-bottom: 1px solid var(--whisper-faint);
+  border-top: 1px solid var(--ink-faint);
+  border-bottom: 1px solid var(--ink-faint);
 }
 .stat-strip.cols-3 { grid-template-columns: repeat(3, 1fr); }
 .stat {
@@ -1686,17 +1707,17 @@ body.nav-open { overflow: hidden; }
 }
 .stat + .stat::before {
   content: ''; position: absolute; left: 0; top: 28px; bottom: 28px;
-  width: 1px; background: var(--whisper-faint);
+  width: 1px; background: var(--ink-faint);
 }
 .stat-num {
   font-family: 'Playfair Display', serif; font-weight: 400;
   font-size: clamp(40px, 5.5vw, 76px); line-height: 1; color: var(--oro);
   letter-spacing: -0.02em; margin-bottom: 12px;
 }
-.stat-num .suffix, .stat-num .prefix { color: var(--avorio); font-size: 0.5em; font-style: italic; }
+.stat-num .suffix, .stat-num .prefix { color: var(--inchiostro); font-size: 0.5em; font-style: italic; }
 .stat-label {
   font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.24em;
-  text-transform: uppercase; color: var(--whisper);
+  text-transform: uppercase; color: var(--ink-soft);
 }
 @media (max-width: 760px) {
   .stat-strip, .stat-strip.cols-3 { grid-template-columns: repeat(2, 1fr); }
@@ -1727,12 +1748,12 @@ body.nav-open { overflow: hidden; }
 .timeline-body { padding-top: 6px; }
 .timeline-body h3 {
   font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.2vw, 27px);
-  font-weight: 400; color: var(--avorio); margin-bottom: 10px;
+  font-weight: 400; color: var(--inchiostro); margin-bottom: 10px;
 }
 .timeline-body h3 em { font-style: italic; color: var(--oro); }
 .timeline-body p {
   font-family: 'Inter', sans-serif; font-weight: 300; font-size: 15px;
-  line-height: 1.75; color: var(--whisper);
+  line-height: 1.75; color: var(--ink-soft);
 }
 .timeline-step-media {
   margin-top: 16px; border-radius: 4px; overflow: hidden; position: relative;
@@ -1762,15 +1783,15 @@ body.nav-open { overflow: hidden; }
 }
 .quote-text {
   font-family: 'Cormorant Garamond', serif; font-style: italic;
-  font-size: clamp(24px, 3.2vw, 40px); line-height: 1.35; color: var(--avorio);
+  font-size: clamp(24px, 3.2vw, 40px); line-height: 1.35; color: var(--inchiostro);
   font-weight: 300; margin-bottom: 26px;
 }
 .quote-text em { color: var(--oro); }
 .quote-cite {
   font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.24em;
-  text-transform: uppercase; color: var(--oro);
+  text-transform: uppercase; color: var(--corallo-deep);
 }
-.quote-cite span { display: block; color: var(--whisper); letter-spacing: 0.12em; margin-top: 6px; text-transform: none; font-size: 13px; }
+.quote-cite span { display: block; color: var(--ink-soft); letter-spacing: 0.12em; margin-top: 6px; text-transform: none; font-size: 13px; }
 @media (max-width: 700px) {
   .quote-feature { grid-template-columns: 1fr; gap: 32px; }
   .quote-portrait { max-width: 220px; aspect-ratio: 3/4; }
@@ -1822,9 +1843,9 @@ body.nav-open { overflow: hidden; }
   color: var(--oro);
 }
 .pillar-icon svg { width: 26px; height: 26px; }
-.pillar h3 { font-family: 'Playfair Display', serif; font-size: clamp(22px, 2.2vw, 28px); font-weight: 400; color: var(--avorio); margin-bottom: 12px; }
+.pillar h3 { font-family: 'Playfair Display', serif; font-size: clamp(22px, 2.2vw, 28px); font-weight: 400; color: var(--inchiostro); margin-bottom: 12px; }
 .pillar h3 em { font-style: italic; color: var(--oro); }
-.pillar p { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 15px; line-height: 1.7; color: var(--whisper); }
+.pillar p { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 15px; line-height: 1.7; color: var(--ink-soft); }
 @media (max-width: 760px) { .pillars { grid-template-columns: 1fr; gap: 40px; max-width: 420px; } }
 
 /* ───────────────────────────────────────────────
@@ -1855,7 +1876,7 @@ body.nav-open { overflow: hidden; }
 .marquee { position: relative; overflow: hidden; padding: 0; --marquee-dur: 48s; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
 .marquee-track { display: flex; gap: 18px; width: max-content; animation: marquee-scroll var(--marquee-dur) linear infinite; }
 .marquee:hover .marquee-track, .marquee:focus-within .marquee-track { animation-play-state: paused; }
-.marquee figure { margin: 0; flex: 0 0 auto; width: clamp(220px, 26vw, 360px); aspect-ratio: 3/2; overflow: hidden; border-radius: 4px; position: relative; background: var(--ottanio-deep); }
+.marquee figure { margin: 0; flex: 0 0 auto; width: clamp(220px, 26vw, 360px); aspect-ratio: 3/2; overflow: hidden; border-radius: 4px; position: relative; background: var(--panna-warm); }
 .marquee figure img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.92); }
 @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
@@ -1868,29 +1889,55 @@ body.nav-open { overflow: hidden; }
 .block-head { text-align: center; max-width: 720px; margin: 0 auto 56px; }
 .block-head h2 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 4.2vw, 52px); font-weight: 400; letter-spacing: -0.01em; margin-bottom: 14px; }
 .block-head h2 em { font-style: italic; color: var(--oro); }
-.block-head p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(17px, 1.8vw, 21px); color: var(--whisper); }
+.block-head p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(17px, 1.8vw, 21px); color: var(--ink-soft); }
 
 /* Link di testo del contenuto senza classe: colore brand (oro), mai il blu
    di default del browser. Scoping a `main section` per NON toccare breadcrumb,
    .btn/.btn-ghost, .tile, .link-arrow (che hanno classi proprie). */
 main section a:not([class]) {
-  color: var(--oro);
+  color: var(--corallo-deep);
   text-decoration: none;
-  border-bottom: 1px solid var(--oro-soft);
+  border-bottom: 1px solid var(--corallo-soft);
   transition: color 0.3s ease, border-color 0.3s ease;
 }
-main section a:not([class]):hover { color: var(--avorio); border-bottom-color: var(--avorio); }
+main section a:not([class]):hover { color: var(--corallo); border-bottom-color: var(--corallo); }
 
-/* link inline dentro i nuovi blocchi (coerenti col resto del sito) */
-.editorial-feature-text a, .media-band-text a, .offset-text a,
-.timeline-body a, .pillar p a, .quote-text a, .cta-split-sub a {
+/* link inline dentro i blocchi su FASCE SCURE (restano oro→avorio) */
+.editorial-feature-text a, .media-band-text a, .offset-text a, .cta-split-sub a {
   color: var(--oro); text-decoration: none;
   border-bottom: 1px solid var(--oro-soft);
   transition: color 0.3s ease, border-color 0.3s ease;
 }
-.editorial-feature-text a:hover, .media-band-text a:hover, .offset-text a:hover,
-.timeline-body a:hover, .pillar p a:hover, .quote-text a:hover, .cta-split-sub a:hover {
+.editorial-feature-text a:hover, .media-band-text a:hover, .offset-text a:hover, .cta-split-sub a:hover {
   color: var(--avorio); border-bottom-color: var(--avorio);
+}
+/* link inline dentro i blocchi su PANNA (corallo come azione) */
+.timeline-body a, .pillar p a, .quote-text a {
+  color: var(--corallo-deep); text-decoration: none;
+  border-bottom: 1px solid var(--corallo-soft);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.timeline-body a:hover, .pillar p a:hover, .quote-text a:hover {
+  color: var(--corallo); border-bottom-color: var(--corallo);
+}
+
+/* ─── REGOLA SCOPED CRITICA ──────────────────────────────────
+   Su PANNA il default di .btn-ghost/.link-arrow è scuro (inchiostro/
+   corallo): DENTRO le fasce scure devono tornare chiari (avorio/oro)
+   per restare leggibili. (.btn corallo va bene anche su scuro.) */
+.hero .btn-ghost, .closing .btn-ghost, .media-band .btn-ghost,
+.cta-split .btn-ghost, .editorial-feature .btn-ghost, .offset-panel .btn-ghost {
+  color: var(--avorio);
+  border-color: var(--whisper-soft);
+}
+.hero .btn-ghost:hover, .closing .btn-ghost:hover, .media-band .btn-ghost:hover,
+.cta-split .btn-ghost:hover, .editorial-feature .btn-ghost:hover, .offset-panel .btn-ghost:hover {
+  color: var(--oro);
+  border-color: var(--oro);
+}
+.hero .link-arrow, .closing .link-arrow, .media-band .link-arrow,
+.cta-split .link-arrow, .editorial-feature .link-arrow, .offset-panel .link-arrow {
+  color: var(--oro);
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1920,9 +1967,11 @@ main section a:not([class]):hover { color: var(--avorio); border-bottom-color: v
   --corallo-soft: rgba(234, 114, 117, 0.55);
   --corallo-faint: rgba(234, 114, 117, 0.16);
   --corallo-glow: rgba(234, 114, 117, 0.22);
-  --crystal: rgba(244, 236, 220, 0.055);
-  --crystal-strong: rgba(244, 236, 220, 0.09);
-  --crystal-edge: rgba(244, 236, 220, 0.16);
+  /* Cristallo su PANNA: il vetro avorio sparirebbe sul chiaro,
+     quindi il cristallo diventa una velatura d'inchiostro + lume bianco. */
+  --crystal: rgba(26, 26, 26, 0.035);
+  --crystal-strong: rgba(255, 255, 255, 0.55);
+  --crystal-edge: rgba(26, 26, 26, 0.12);
   --ease-wow: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -1934,7 +1983,7 @@ main section a:not([class]):hover { color: var(--avorio); border-bottom-color: v
     radial-gradient(38% 48% at 16% 20%, rgba(201, 168, 106, 0.14), transparent 62%),
     radial-gradient(34% 42% at 84% 26%, var(--corallo-glow), transparent 60%),
     radial-gradient(46% 46% at 62% 82%, rgba(234, 114, 117, 0.08), transparent 66%),
-    radial-gradient(60% 60% at 40% 100%, rgba(14, 59, 62, 0.5), transparent 72%);
+    radial-gradient(60% 60% at 40% 100%, rgba(14, 59, 62, 0.06), transparent 72%);
   filter: blur(30px) saturate(1.05);
   animation: wow-aurora 32s ease-in-out infinite alternate;
 }
@@ -1957,21 +2006,21 @@ main section a:not([class]):hover { color: var(--corallo); border-bottom-color: 
 .tile-grid { perspective: 1300px; }
 .tile {
   position: relative;
-  background: linear-gradient(165deg, var(--crystal-strong) 0%, rgba(10, 45, 47, 0.5) 100%);
+  background: linear-gradient(165deg, var(--crystal-strong) 0%, rgba(255, 255, 255, 0.30) 100%);
   border: 1px solid var(--crystal-edge);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   transform-style: preserve-3d;
   transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
   transition: transform 0.5s var(--ease-wow), box-shadow 0.6s ease, border-color 0.6s ease;
-  box-shadow: 0 24px 60px -44px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 24px 60px -44px rgba(26, 26, 26, 0.30);
 }
 .tile:hover {
   border-color: var(--corallo-soft);
-  box-shadow: 0 50px 110px -44px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--corallo-faint), 0 0 60px -20px var(--corallo-glow);
+  box-shadow: 0 50px 110px -44px rgba(26, 26, 26, 0.38), 0 0 0 1px var(--corallo-faint), 0 0 60px -20px var(--corallo-glow);
 }
 .tile::after {
   content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none; border-radius: inherit;
-  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 0%), rgba(244, 236, 220, 0.10), transparent 60%);
+  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 0%), var(--corallo-faint), transparent 60%);
   opacity: 0; transition: opacity 0.4s ease;
 }
 .tile:hover::after { opacity: 1; }

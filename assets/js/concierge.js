@@ -81,15 +81,13 @@
       g_ora_benessere: { kind: 'gift', price: 85, label: { it: 'Un’ora di benessere', en: 'An hour of wellness' } },
       g_aperitivo_due: { kind: 'gift', price: null, noteKey: 'sumisura', label: { it: 'Aperitivo al tramonto per due', en: 'Sunset aperitif for two' } },
       g_libero: { kind: 'gift', price: null, freeValue: [50, 100, 150], label: { it: 'A valore libero', en: 'Open value' } },
-      // Mondi (interest con deep link reale)
-      i_soggiorno: { kind: 'interest', label: { it: 'Un soggiorno in villa', en: 'A stay at the villa' }, name: { it: 'un soggiorno in villa', en: 'a stay at the villa' }, bullet: { it: 'Soggiorno in villa', en: 'A stay at the villa' }, link: '/soggiornare/' },
+      // Mondi (interest con deep link reale) — solo evento e matrimonio
       i_eventi: { kind: 'interest', label: { it: 'Un evento privato', en: 'A private event' }, name: { it: 'un evento privato in villa', en: 'a private event at the villa' }, bullet: { it: 'Evento privato', en: 'Private event' }, link: '/eventi/' },
       i_matrimonio: { kind: 'interest', label: { it: 'Un matrimonio', en: 'A wedding' }, name: { it: 'un matrimonio in villa', en: 'a wedding at the villa' }, bullet: { it: 'Matrimonio', en: 'Wedding' }, link: '/matrimoni/' }
     },
 
     // ─── Mappa "Esplorare": i mondi della villa con i link reali ────
     worlds: [
-      { href: '/soggiornare/', t: { it: 'Soggiornare', en: 'Stay' }, s: { it: 'Room e Suite Villa', en: 'Room & Suite Villa' } },
       { href: '/il-segreto/', t: { it: 'Il Segreto · Ristorante', en: 'Il Segreto · Restaurant' }, s: { it: 'Il menù d’autore', en: 'The signature menù' } },
       { href: '/esperienze/', t: { it: 'Esperienze', en: 'Experiences' }, s: { it: 'Aperitivi, yoga, il parco', en: 'Aperitifs, yoga, the park' } },
       { href: '/eventi/', t: { it: 'Eventi', en: 'Events' }, s: { it: 'Privati e corporate', en: 'Private & corporate' } },
@@ -100,13 +98,18 @@
 
     // ─── Scelte dello Step 1 (intenzioni) e sezioni che attivano ────
     intents: [
-      { key: 'domenica', label: { it: 'Una Domenica al Segreto', en: 'A Sunday at Il Segreto' }, sub: { it: 'Pranzo e piscina, la luce lunga', en: 'Lunch and pool, the long light' } },
-      { key: 'aperitivo', label: { it: 'Un aperitivo in piscina', en: 'An aperitif by the pool' }, sub: { it: 'L’ora dorata a bordo vasca', en: 'The golden hour poolside' } },
+      { key: 'domenica', label: { it: 'Una Domenica al Segreto', en: 'A Sunday at Il Segreto' }, sub: { it: 'Pranzo, piscina e l’aperitivo', en: 'Lunch, pool and the aperitif' } },
       { key: 'wellness', label: { it: 'Benessere e massaggi', en: 'Wellness & massage' }, sub: { it: 'Mani sapienti, tempo per sé', en: 'Skilled hands, time for yourself' } },
-      { key: 'soggiorno', label: { it: 'Un soggiorno in villa', en: 'A stay at the villa' }, sub: { it: 'Dormire dentro al 1737', en: 'Sleeping inside the 1737' } },
       { key: 'evento', label: { it: 'Un evento o un matrimonio', en: 'An event or a wedding' }, sub: { it: 'La dimora tutta per voi', en: 'The residence, all yours' } },
       { key: 'gift', label: { it: 'Un regalo', en: 'A gift' }, sub: { it: 'Regalare un’estate', en: 'Gifting a summer' } },
       { key: 'esplorare', label: { it: 'Solo esplorare la villa', en: 'Just explore the villa' }, sub: { it: 'Lasciatevi guidare', en: 'Let yourself be guided' } }
+    ],
+
+    // ─── Testi del toast d'ingresso (rotazione, niente emoji) ───────
+    toasts: [
+      { intent: null, text: { it: 'Esplora il ristorante', en: 'Explore the restaurant' } },
+      { intent: 'domenica', text: { it: 'Scopri la Domenica al Segreto', en: 'Discover Sunday at Il Segreto' } },
+      { intent: 'wellness', text: { it: 'Un’ora tutta per te', en: 'An hour all for you' } }
     ],
 
     // ─── Lead-in del messaggio per tipologia (selezione singola) ────
@@ -137,6 +140,7 @@
       it: {
         launcherLabel: 'Concierge', launcherSub: 'Ti guido io',
         kicker: 'Villa Luzi 1737', dialogName: 'Concierge', close: 'Chiudi',
+        minimize: 'Riduci', expand: 'Riapri', toastDismiss: 'Più tardi',
         back: 'Indietro', start: 'Cominciamo', toDetails: 'Avanti',
         toSummary: 'La tua selezione', toMessage: 'Prepara il messaggio',
         add: 'Aggiungi', added: 'Aggiunto', hold: 'Tienimi un posto', held: 'Tenuto',
@@ -158,6 +162,7 @@
       en: {
         launcherLabel: 'Concierge', launcherSub: 'Let me guide you',
         kicker: 'Villa Luzi 1737', dialogName: 'Concierge', close: 'Close',
+        minimize: 'Minimize', expand: 'Reopen', toastDismiss: 'Later',
         back: 'Back', start: 'Let’s begin', toDetails: 'Continue',
         toSummary: 'Your selection', toMessage: 'Prepare the message',
         add: 'Add', added: 'Added', hold: 'Hold a spot', held: 'Held',
@@ -186,6 +191,7 @@
     spark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 3l1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7z" stroke-linejoin="round"/></svg>',
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-11" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>',
+    minimize: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 14l6 5 6-5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 7h12" stroke-linecap="round"/></svg>',
     arrowR: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     arrowL: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M19 12H5M11 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>',
@@ -198,8 +204,9 @@
   /* ════════════════════════════════════════════════════════════════
      STATO + PERSISTENZA
      ════════════════════════════════════════════════════════════════ */
-  var SS_KEY = 'vl_concierge';   // sessionStorage: selezione + step
-  var LANG_KEY = 'vl_lang';      // localStorage: preferenza lingua
+  var SS_KEY = 'vl_concierge';        // sessionStorage: selezione + step + view
+  var TOAST_KEY = 'vl_concierge_toast'; // sessionStorage: invito già mostrato
+  var LANG_KEY = 'vl_lang';           // localStorage: preferenza lingua
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -209,6 +216,7 @@
   var state = {
     lang: 'it',
     step: 0,
+    view: 'closed', // 'closed' | 'open' | 'min'  (persistito tra le pagine)
     intents: [],   // chiavi intenzione selezionate
     items: [],     // { key, meta:{date,people,value} }
     note: ''
@@ -224,6 +232,7 @@
         if (d && typeof d === 'object') {
           if (d.lang === 'it' || d.lang === 'en') state.lang = d.lang;
           if (typeof d.step === 'number') state.step = Math.max(0, Math.min(4, d.step));
+          if (d.view === 'open' || d.view === 'min' || d.view === 'closed') state.view = d.view;
           if (Array.isArray(d.intents)) state.intents = d.intents.filter(function (k) { return CONFIG.intents.some(function (i) { return i.key === k; }); });
           if (Array.isArray(d.items)) state.items = d.items.filter(function (it) { return it && CONFIG.catalog[it.key]; }).map(function (it) { return { key: it.key, meta: it.meta || {} }; });
           if (typeof d.note === 'string') state.note = d.note;
@@ -233,7 +242,7 @@
     pruneItems(); // auto-guarigione di uno stato salvato incoerente
   }
   function saveState() {
-    safeSet(window.sessionStorage, SS_KEY, JSON.stringify({ lang: state.lang, step: state.step, intents: state.intents, items: state.items, note: state.note }));
+    safeSet(window.sessionStorage, SS_KEY, JSON.stringify({ lang: state.lang, step: state.step, view: state.view, intents: state.intents, items: state.items, note: state.note }));
     safeSet(window.localStorage, LANG_KEY, state.lang);
   }
 
@@ -254,19 +263,20 @@
     saveState(); syncBadge();
   }
   // Una voce è "raggiungibile" solo se la sua intenzione è ancora attiva.
-  // I pacchetti sono condivisi tra domenica/aperitivo/wellness: restano finché
-  // almeno una delle tre è selezionata. Evita che voci scartate (deselezione
-  // di un'intenzione allo Step 1) finiscano comunque nel messaggio a Sonia.
+  // L'aperitivo è ora un SOTTO-elemento della Domenica (gated da 'domenica').
+  // I pacchetti sono condivisi tra domenica/wellness: restano finché almeno
+  // una delle due è selezionata. Evita che voci scartate (deselezione di
+  // un'intenzione allo Step 1) finiscano comunque nel messaggio a Sonia.
   function isKeyAllowed(key) {
     var c = CONFIG.catalog[key]; if (!c) return false;
     var has = function (k) { return state.intents.indexOf(k) !== -1; };
     switch (c.kind) {
       case 'domenica': return has('domenica');
-      case 'aperitivo': return has('aperitivo');
+      case 'aperitivo': return has('domenica');
       case 'wellness': return has('wellness');
-      case 'package': return has('domenica') || has('aperitivo') || has('wellness');
+      case 'package': return has('domenica') || has('wellness');
       case 'gift': return has('gift');
-      case 'interest': return key === 'i_soggiorno' ? has('soggiorno') : has('evento');
+      case 'interest': return has('evento'); // solo i_eventi / i_matrimonio
     }
     return false;
   }
@@ -405,9 +415,10 @@
   /* ════════════════════════════════════════════════════════════════
      RIFERIMENTI + CHROME del pannello
      ════════════════════════════════════════════════════════════════ */
-  var launcher, panel, backdrop, badgeEl;
-  var elBody, elFoot, elProgress, elName, elKicker, langBtns = {}, closeBtn;
+  var launcher, panel, backdrop, badgeEl, toastEl;
+  var elBody, elFoot, elProgress, elName, elKicker, langBtns = {}, closeBtn, minBtn, handleBtn;
   var lastFocus = null;
+  var toastTimer = null;
 
   function syncBadge() {
     if (!badgeEl) return;
@@ -433,9 +444,13 @@
       langBtns[lng] = b; langWrap.appendChild(b);
     });
 
-    closeBtn = el('button', { class: 'vlc-close', type: 'button', 'aria-label': t('close'), html: ICON.close, onclick: close });
+    minBtn = el('button', { class: 'vlc-head-btn vlc-min', type: 'button', 'aria-label': t('minimize'), title: t('minimize'), html: ICON.minimize, onclick: minimize });
+    closeBtn = el('button', { class: 'vlc-head-btn vlc-close', type: 'button', 'aria-label': t('close'), html: ICON.close, onclick: close });
 
-    var head = el('div', { class: 'vlc-head' }, [titles, langWrap, closeBtn]);
+    var head = el('div', { class: 'vlc-head' }, [titles, langWrap, minBtn, closeBtn]);
+
+    // handle mobile: tap per collassare → barra; tap di nuovo per riaprire
+    handleBtn = el('button', { class: 'vlc-handle', type: 'button', 'aria-label': t('minimize'), onclick: toggleMin });
 
     elProgress = el('div', { class: 'vlc-progress', 'aria-hidden': 'true' });
     for (var i = 0; i < 5; i++) elProgress.appendChild(el('span'));
@@ -443,6 +458,7 @@
     elBody = el('div', { class: 'vlc-body', tabindex: '-1' });
     elFoot = el('div', { class: 'vlc-foot' });
 
+    panel.appendChild(handleBtn);
     panel.appendChild(head);
     panel.appendChild(elProgress);
     panel.appendChild(elBody);
@@ -531,18 +547,17 @@
     elBody.appendChild(stepHeading('s2eyebrow', 's2title', 's2lede'));
     var has = function (k) { return state.intents.indexOf(k) !== -1; };
     if (has('domenica')) elBody.appendChild(sectionDomenica());
-    if (has('aperitivo')) elBody.appendChild(sectionAperitivo());
     if (has('wellness')) elBody.appendChild(sectionWellness());
-    if (has('domenica') || has('aperitivo') || has('wellness')) elBody.appendChild(sectionPackages());
-    if (has('soggiorno') || has('evento')) elBody.appendChild(sectionStay(has));
+    if (has('domenica') || has('wellness')) elBody.appendChild(sectionPackages());
+    if (has('evento')) elBody.appendChild(sectionStay(has));
     if (has('gift')) elBody.appendChild(sectionGift());
     if (has('esplorare') || state.intents.length === 0) elBody.appendChild(sectionExplore());
     elFoot.appendChild(backBtn(function () { go(1); }));
     elFoot.appendChild(primaryBtn(t('toSummary'), function () { go(3); }, ICON.arrowR));
   }
 
-  function sectionWrap(titleKey, descText) {
-    var sec = el('section', { class: 'vlc-section' });
+  function sectionWrap(titleKey, descText, extraClass) {
+    var sec = el('section', { class: 'vlc-section' + (extraClass ? ' ' + extraClass : '') });
     sec.appendChild(el('h3', { class: 'vlc-section-head', text: t(titleKey) }));
     if (descText) sec.appendChild(el('p', { class: 'vlc-section-desc', text: descText }));
     return sec;
@@ -609,16 +624,13 @@
       priceTag('domenica'),
       addButton('domenica', { getMeta: getMeta })
     ]));
-    return sec;
-  }
-
-  function sectionAperitivo() {
-    var c = CONFIG.catalog.aperitivo;
-    var sec = sectionWrap('secAperitivo', L(c.desc));
+    // L'Aperitivo in piscina è ora un SOTTO-elemento della Domenica:
+    // placeholder "Tienimi un posto", nessun prezzo.
+    var a = CONFIG.catalog.aperitivo;
     sec.appendChild(el('div', { class: 'vlc-card' }, [
       el('div', { class: 'vlc-card-body' }, [
-        el('div', { class: 'vlc-card-title', text: L(c.label) }),
-        el('div', { class: 'vlc-card-meta', text: L(CONFIG.priceNote.placeholder).replace(/^./, function (s) { return s.toUpperCase(); }) + '.' })
+        el('div', { class: 'vlc-card-title', text: L(a.label) }),
+        el('div', { class: 'vlc-card-meta', text: L(a.desc) })
       ]),
       addButton('aperitivo', { hold: true })
     ]));
@@ -649,13 +661,14 @@
   function sectionStay(has) {
     var sec = sectionWrap('secStay', null);
     var keys = [];
-    if (has('soggiorno')) keys.push('i_soggiorno');
+    // solo 'evento': eventi privati e matrimoni (il soggiorno non è più un'intenzione)
     if (has('evento')) { keys.push('i_eventi'); keys.push('i_matrimonio'); }
     keys.forEach(function (k) {
       var c = CONFIG.catalog[k];
       var body = el('div', { class: 'vlc-card-body' }, [
         el('div', { class: 'vlc-card-title', text: L(c.label) }),
-        el('a', { class: 'vlc-deeplink', href: c.link, html: '<span>' + t('openDetail') + '</span>' + ICON.arrowR, 'data-cta': 'concierge-deeplink', onclick: function () { close(); } })
+        // dock non-modale: navigando minimizziamo (riappare sulla pagina di arrivo)
+        el('a', { class: 'vlc-deeplink', href: c.link, html: '<span>' + t('openDetail') + '</span>' + ICON.arrowR, 'data-cta': 'concierge-deeplink', onclick: function () { minimize(); } })
       ]);
       sec.appendChild(el('div', { class: 'vlc-card' }, [body, addButton(k)]));
     });
@@ -663,7 +676,7 @@
   }
 
   function sectionGift() {
-    var sec = sectionWrap('secGift', null);
+    var sec = sectionWrap('secGift', null, 'vlc-section--gift');
     ['g_domenica_due', 'g_ora_benessere', 'g_aperitivo_due'].forEach(function (k) { sec.appendChild(cardRow(k)); });
     // valore libero con select
     var c = CONFIG.catalog.g_libero;
@@ -686,7 +699,7 @@
     var sec = sectionWrap('secExplore', null);
     var grid = el('div', { class: 'vlc-worlds' });
     CONFIG.worlds.forEach(function (w) {
-      grid.appendChild(el('a', { class: 'vlc-world', href: w.href, 'data-cta': 'concierge-world', onclick: function () { close(); } }, [
+      grid.appendChild(el('a', { class: 'vlc-world', href: w.href, 'data-cta': 'concierge-world', onclick: function () { minimize(); } }, [
         document.createTextNode(L(w.t)),
         el('span', { text: L(w.s) })
       ]));
@@ -802,6 +815,8 @@
     if (elKicker) elKicker.textContent = t('kicker');
     if (elName) elName.textContent = t('dialogName');
     if (closeBtn) closeBtn.setAttribute('aria-label', t('close'));
+    if (minBtn) { minBtn.setAttribute('aria-label', t('minimize')); minBtn.setAttribute('title', t('minimize')); }
+    if (handleBtn) handleBtn.setAttribute('aria-label', state.view === 'min' ? t('expand') : t('minimize'));
     if (launcher) updateLauncherText();
     render();
   }
@@ -815,71 +830,143 @@
   }
 
   /* ════════════════════════════════════════════════════════════════
-     APERTURA / CHIUSURA + FOCUS TRAP
+     APERTURA / CHIUSURA / MINIMIZZA — DOCK NON-MODALE
+     Il pannello è un dock: la pagina dietro resta scrollabile e
+     cliccabile. Niente backdrop dimmerante, niente scroll-lock,
+     niente focus-trap, niente aria-modal. Usa role="complementary".
      ════════════════════════════════════════════════════════════════ */
-  var isOpen = false;
-  var inertedNodes = [];
-  // Rende inerte il resto della pagina mentre il dialog aria-modal è aperto:
-  // hardening per AT datate/browse-mode (aria-modal copre già gli SR moderni).
-  function setBackgroundInert(on) {
-    if (on) {
-      inertedNodes = [];
-      Array.prototype.forEach.call(document.body.children, function (node) {
-        if (node === launcher || node === panel || node === backdrop) return;
-        if (node.nodeType !== 1 || node.hasAttribute('inert')) return;
-        try { node.inert = true; inertedNodes.push(node); } catch (e) {}
-      });
-    } else {
-      inertedNodes.forEach(function (node) { try { node.inert = false; } catch (e) {} });
-      inertedNodes = [];
-    }
-  }
-  function open() {
-    if (isOpen) return;
-    isOpen = true;
-    lastFocus = document.activeElement;
-    buildChrome();
-    panel.setAttribute('lang', state.lang); // pronuncia SR corretta per la lingua attiva
-    // rendi visibile il pannello PRIMA del render, così il focus al titolo
-    // dello step non cade su un elemento ancora visibility:hidden.
-    document.body.classList.add('vlc-open');
-    backdrop.classList.add('is-open');
-    panel.classList.add('is-open');
-    panel.setAttribute('aria-hidden', 'false');
-    launcher.setAttribute('aria-expanded', 'true');
-    setBackgroundInert(true);
-    render();
-    document.addEventListener('keydown', onKeydown, true);
-  }
-  function close() {
-    if (!isOpen) return;
-    isOpen = false;
-    document.body.classList.remove('vlc-open');
-    backdrop.classList.remove('is-open');
-    panel.classList.remove('is-open');
-    panel.setAttribute('aria-hidden', 'true');
-    launcher.setAttribute('aria-expanded', 'false');
-    setBackgroundInert(false);
-    document.removeEventListener('keydown', onKeydown, true);
-    if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} }
-    else if (launcher) launcher.focus();
+  var built = false;     // chrome costruito una sola volta per pagina
+  var keydownBound = false;
+
+  // true se siamo sotto il breakpoint del bottom sheet collassabile
+  function isMobile() {
+    return !!(window.matchMedia && window.matchMedia('(max-width: 720px)').matches);
   }
 
-  function focusables() {
-    return Array.prototype.filter.call(
-      panel.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'),
-      function (n) { return n.offsetParent !== null || n === document.activeElement; }
-    );
+  // applica lo stato visuale corrente (open/min/closed) alle classi/ARIA
+  function applyView() {
+    if (!panel) return;
+    var open = state.view === 'open';
+    var min = state.view === 'min';
+    panel.classList.toggle('is-open', open || min); // mobile: 'min' resta visibile come barra
+    panel.classList.toggle('is-min', min);
+    // Il pannello ha contenuto interattivo visibile quando è aperto, oppure
+    // quando è minimizzato su mobile (resta la barra con header + handle).
+    var interactiveVisible = open || (min && isMobile());
+    panel.setAttribute('aria-hidden', interactiveVisible ? 'false' : 'true');
+    // launcher: visibile quando chiuso o minimizzato; arretra quando aperto.
+    if (launcher) {
+      launcher.classList.toggle('is-hidden', open);
+      launcher.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    if (handleBtn) handleBtn.setAttribute('aria-label', min ? t('expand') : t('minimize'));
   }
+
+  function bindKeys() {
+    if (keydownBound) return;
+    document.addEventListener('keydown', onKeydown, true);
+    keydownBound = true;
+  }
+  function unbindKeys() {
+    if (!keydownBound) return;
+    document.removeEventListener('keydown', onKeydown, true);
+    keydownBound = false;
+  }
+
+  // Apre il dock (non-modale). Se intentKey è valido, preseleziona quel
+  // mondo e porta allo Step 2; open()/open(null) apre allo Step 0.
+  function open(intentKey) {
+    dismissToast(true); // l'invito non serve più una volta dentro
+    if (typeof intentKey === 'string' && CONFIG.intents.some(function (i) { return i.key === intentKey; })) {
+      if (state.intents.indexOf(intentKey) === -1) state.intents.push(intentKey);
+      state.step = 2;
+    }
+    lastFocus = document.activeElement;
+    if (!built) { buildChrome(); built = true; }
+    panel.setAttribute('lang', state.lang); // pronuncia SR corretta per la lingua attiva
+    state.view = 'open';
+    saveState();
+    applyView();
+    render(); // imposta anche il focus al titolo dello step (preventScroll)
+    bindKeys();
+  }
+
+  // Minimizza: nasconde il pannello (desktop) / collassa a barra (mobile),
+  // lasciando il launcher. Lo stato è persistito e si riapre dopo MPA.
+  function minimize() {
+    state.view = 'min';
+    saveState();
+    applyView();
+    unbindKeys();
+    if (launcher && launcher.focus) { try { launcher.focus({ preventScroll: true }); } catch (e) { try { launcher.focus(); } catch (e2) {} } }
+  }
+
+  function close() {
+    state.view = 'closed';
+    saveState();
+    applyView();
+    unbindKeys();
+    if (lastFocus && lastFocus.focus && document.contains(lastFocus)) { try { lastFocus.focus({ preventScroll: true }); } catch (e) {} }
+    else if (launcher && launcher.focus) { try { launcher.focus({ preventScroll: true }); } catch (e) {} }
+  }
+
+  // handle mobile: collassa↔riapri
+  function toggleMin() {
+    if (state.view === 'min') { open(); }
+    else { minimize(); }
+  }
+
+  // Esc = minimizza/chiudi. Nessun focus-trap: la pagina dietro resta
+  // navigabile da tastiera (dock non-modale).
   function onKeydown(e) {
-    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
-    if (e.key !== 'Tab') return;
-    var f = focusables();
-    if (!f.length) { e.preventDefault(); return; }
-    var first = f[0], last = f[f.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    else if (!panel.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+    if (e.key === 'Escape' && state.view === 'open') {
+      // se l'ospite ha già una selezione, "Esc" minimizza (non perde nulla);
+      // altrimenti chiude. In entrambi i casi non blocca la pagina.
+      e.preventDefault();
+      if (state.items.length) minimize(); else close();
+    }
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+     TOAST D'INGRESSO — una volta per sessione
+     Desktop: invito centrato e prominente. Mobile: sobrio in basso.
+     Testo a rotazione, dismissibile; il clic apre il concierge sul tema.
+     ════════════════════════════════════════════════════════════════ */
+  function pickToast() {
+    var arr = CONFIG.toasts;
+    // rotazione "stabile" nell'arco della sessione: dipende dal giorno+ora
+    var idx = (new Date().getHours() + new Date().getDate()) % arr.length;
+    return arr[idx];
+  }
+
+  function openToast() {
+    if (!toastEl) return;
+    if (reduceMotion) return;                 // niente comparse animate
+    if (state.view !== 'closed') return;      // se già dentro, niente invito
+    if (safeGet(window.sessionStorage, TOAST_KEY)) return; // una volta per sessione
+    safeSet(window.sessionStorage, TOAST_KEY, '1');
+
+    var pick = pickToast();
+    toastEl.textContent = '';
+    var card = el('div', { class: 'vlc-toast-inner' }, [
+      el('div', { class: 'vlc-toast-kicker', text: t('kicker') }),
+      el('div', { class: 'vlc-toast-text', text: L(pick.text) }),
+      el('div', { class: 'vlc-toast-actions' }, [
+        el('button', { class: 'vlc-toast-open', type: 'button', html: '<span>' + t('openDetail') + '</span>' + ICON.arrowR, onclick: function () { open(pick.intent || null); } }),
+        el('button', { class: 'vlc-toast-dismiss', type: 'button', text: t('toastDismiss'), onclick: function () { dismissToast(); } })
+      ])
+    ]);
+    toastEl.appendChild(card);
+    // ~2s dopo il load
+    toastTimer = window.setTimeout(function () { toastEl.classList.add('is-on'); }, 2000);
+  }
+
+  function dismissToast(immediate) {
+    if (toastTimer) { window.clearTimeout(toastTimer); toastTimer = null; }
+    if (toastEl) {
+      toastEl.classList.remove('is-on');
+      if (immediate) toastEl.hidden = true;
+    }
   }
 
   /* ════════════════════════════════════════════════════════════════
@@ -888,28 +975,72 @@
   function init() {
     launcher = document.getElementById('vlc-launcher');
     panel = document.getElementById('vlc-panel');
-    backdrop = document.getElementById('vlc-backdrop');
-    if (!launcher || !panel || !backdrop) return; // pagina senza wiring: niente concierge
+    backdrop = document.getElementById('vlc-backdrop'); // facoltativo (neutralizzato)
+    if (!launcher || !panel) return; // pagina senza wiring: niente concierge
+
+    // Toast d'ingresso: l'elemento non è nel markup statico → lo creiamo qui
+    // (solo con JS attivo, quindi nessun rischio per il no-JS).
+    toastEl = document.getElementById('vlc-toast');
+    if (!toastEl) {
+      toastEl = el('div', { class: 'vlc-toast', id: 'vlc-toast', role: 'status', 'aria-live': 'polite', hidden: 'hidden' });
+      document.body.appendChild(toastEl);
+    }
 
     document.documentElement.classList.add('vlc-ready'); // assorbe la sticky-cta esistente
     loadState();
 
+    // DOCK NON-MODALE: garantisci la semantica corretta a prescindere dal
+    // markup statico. role="complementary" + aria-label, MAI aria-modal.
+    panel.setAttribute('role', 'complementary');
+    panel.setAttribute('aria-label', t('kicker') + ' · ' + t('dialogName'));
+    panel.removeAttribute('aria-modal');
+    // il launcher non apre più un "dialog" modale ma mostra una region
+    // complementare: allinea l'ARIA (aria-expanded basta, niente haspopup).
+    launcher.removeAttribute('aria-haspopup');
+
     // mostra gli elementi (erano [hidden] per il no-JS) e gestiscili via classi
-    launcher.hidden = false; backdrop.hidden = false; panel.hidden = false;
+    launcher.hidden = false; panel.hidden = false;
+    if (backdrop) backdrop.hidden = false;
+    if (toastEl) toastEl.hidden = false;
 
     badgeEl = launcher.querySelector('.vlc-badge');
     updateLauncherText();
     syncBadge();
 
-    launcher.addEventListener('click', open);
-    backdrop.addEventListener('click', close);
+    launcher.addEventListener('click', function () { open(); });
 
-    // se l'ospite stava a metà flusso su un'altra pagina, lo step è salvato;
-    // ma il pannello resta CHIUSO al caricamento (apertura solo su click).
+    // RIAPERTURA NELLO STESSO STATO (MPA): se l'ospite aveva il dock aperto
+    // o minimizzato su un'altra pagina, lo ripristiniamo al load. Solo lo
+    // stato 'closed' lascia il launcher da solo.
+    if (state.view === 'open') {
+      if (!built) { buildChrome(); built = true; }
+      panel.setAttribute('lang', state.lang);
+      applyView();
+      render();      // riapre allo step salvato; focus leggero al titolo
+      bindKeys();
+    } else if (state.view === 'min') {
+      if (!built) { buildChrome(); built = true; }
+      panel.setAttribute('lang', state.lang);
+      applyView();   // mobile: barra collassata; desktop: solo launcher
+    } else {
+      applyView();   // closed: solo launcher
+      // invito iniziale (una volta per sessione)
+      openToast();
+    }
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
+
+  /* ════════════════════════════════════════════════════════════════
+     API PUBBLICA — contratto con l'orb / altri trigger
+     ════════════════════════════════════════════════════════════════ */
+  window.VLConcierge = {
+    open: function (intentKey) { open(typeof intentKey === 'string' ? intentKey : null); },
+    openToast: function () { openToast(); },
+    minimize: function () { minimize(); },
+    close: function () { close(); }
+  };
 
   function todayStr() {
     var d = new Date();
