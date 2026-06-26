@@ -22,7 +22,7 @@ const DIST = path.join(ROOT, 'dist');
 // SKIP_ROOT vale solo al primo livello della repo; SKIP_ANY a ogni profondità.
 const SKIP_ROOT = new Set([
   '.git', '.gitignore', '.claude', '.agents', 'dist', 'partials', 'Tappe',
-  'build.js', 'check.js', 'serve.js', 'netlify.toml', 'skills-lock.json',
+  'build.js', 'check.js', 'serve.js', 'netlify.toml', 'vercel.json', 'skills-lock.json',
   'package.json', 'package-lock.json',
   'CONSEGNA_DEV',            // sorgente media (35 GB): non pubblicare in dist/
   'PROMPT_CHECK_IMPLEMENTAZIONE.md', 'REPORT_CHECK.md', // documenti di lavoro

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "node build.js",
+  "outputDirectory": "dist",
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/2-giugno.html", "destination": "/esperienze/aperitivi-in-erba/2-giugno-2026/", "permanent": true },
+    { "source": "/2-giugno", "destination": "/esperienze/aperitivi-in-erba/2-giugno-2026/", "permanent": true },
+    { "source": "/19-giugno", "destination": "/eventi/white-party/", "permanent": true },
+    { "source": "/19-giugno.html", "destination": "/eventi/white-party/", "permanent": true },
+    { "source": "/white-party-lista.html", "destination": "/eventi/white-party/lista/", "permanent": true },
+    { "source": "/la-domenica.html", "destination": "/eventi/la-domenica/", "permanent": true },
+    { "source": "/eventi/matrimoni", "destination": "/matrimoni/", "permanent": true },
+    { "source": "/eventi/matrimoni/", "destination": "/matrimoni/", "permanent": true }
+  ],
+  "headers": [
+    { "source": "/assets/img/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
+    { "source": "/assets/video/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
+    { "source": "/assets/css/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
+    { "source": "/assets/js/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
+    { "source": "/(.*)", "headers": [
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] }
+  ]
+}
