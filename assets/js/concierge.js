@@ -2,7 +2,7 @@
    VILLA LUZI · CONCIERGE.JS
    Esperienza guidata, deterministica, bilingue IT/EN. Accompagna
    l'ospite tra i mondi della villa, gli fa "tenere" ciò che gli piace
-   e converte tutto in un unico messaggio WhatsApp per Sonia.
+   e converte tutto in un'unica richiesta (WhatsApp per il ristorante).
 
    - Vanilla puro, zero dipendenze, IIFE come site.js.
    - Nessun backend: tutta la logica è qui, i dati nel CONFIG.
@@ -88,6 +88,7 @@
 
     // ─── Mappa "Esplorare": i mondi della villa con i link reali ────
     worlds: [
+      { href: '/la-villa/', t: { it: 'La Villa', en: 'The Villa' }, s: { it: 'La dimora del 1737', en: 'The 1737 residence' } },
       { href: '/il-segreto/', t: { it: 'Il Segreto · Ristorante', en: 'Il Segreto · Restaurant' }, s: { it: 'Il menù d’autore', en: 'The signature menù' } },
       { href: '/esperienze/', t: { it: 'Esperienze', en: 'Experiences' }, s: { it: 'Aperitivi, yoga, il parco', en: 'Aperitifs, yoga, the park' } },
       { href: '/eventi/', t: { it: 'Eventi', en: 'Events' }, s: { it: 'Privati e corporate', en: 'Private & corporate' } },
@@ -124,8 +125,8 @@
 
     // ─── Frammenti del messaggio (modificabili) ────────────────────
     msg: {
-      it: { from: 'Ciao Sonia, scrivo da ' , arrange: 'Vorrei organizzare:', note: 'Note: ', thanks: 'Grazie.', empty: 'Vorrei conoscere meglio la villa.' },
-      en: { from: 'Hello Sonia, I’m writing from ', arrange: 'I’d like to arrange:', note: 'Note: ', thanks: 'Thank you.', empty: 'I’d like to get to know the villa better.' }
+      it: { from: 'Buongiorno, scrivo da ' , arrange: 'Vorrei organizzare:', note: 'Note: ', thanks: 'Grazie.', empty: 'Vorrei conoscere meglio la villa.' },
+      en: { from: 'Hello, I’m writing from ', arrange: 'I’d like to arrange:', note: 'Note: ', thanks: 'Thank you.', empty: 'I’d like to get to know the villa better.' }
     },
 
     // ─── Testi non-prezzo ──────────────────────────────────────────
@@ -138,46 +139,46 @@
     // ─── Stringhe d'interfaccia ────────────────────────────────────
     ui: {
       it: {
-        launcherLabel: 'Concierge', launcherSub: 'Ti guido io',
+        launcherLabel: 'Concierge', launcherSub: 'Da dove cominciamo?',
         kicker: 'Villa Luzi 1737', dialogName: 'Concierge', close: 'Chiudi',
         minimize: 'Riduci', expand: 'Riapri', toastDismiss: 'Più tardi',
         back: 'Indietro', start: 'Cominciamo', toDetails: 'Avanti',
-        toSummary: 'La tua selezione', toMessage: 'Prepara il messaggio',
+        toSummary: 'La tua selezione', toMessage: 'Prepara la richiesta',
         add: 'Aggiungi', added: 'Aggiunto', hold: 'Tienimi un posto', held: 'Tenuto',
         remove: 'Rimuovi',
         s0title: 'Il lusso è il tempo.', s0lede: 'Da dove cominciamo?',
         s1eyebrow: 'Passo 1 · L’intenzione', s1title: 'Cosa vi attira?', s1lede: 'Scegliete pure più di una cosa.',
-        s2eyebrow: 'Passo 2 · I dettagli', s2title: 'Tenete ciò che vi piace', s2lede: 'Aggiungete alla vostra selezione: ne parlerete con Sonia in un solo messaggio.',
-        s3eyebrow: 'Passo 3 · La vostra selezione', s3title: 'Pronti per Sonia', s3lede: 'Modificate pure, poi aggiungete una nota.',
-        s4eyebrow: 'Passo 4 · Su WhatsApp', s4title: 'Scrivici per il tuo posto', s4lede: 'Questo è il messaggio che arriverà a Sonia.',
+        s2eyebrow: 'Passo 2 · I dettagli', s2title: 'Tenete ciò che vi piace', s2lede: 'Aggiungete alla vostra selezione: la invierete in un solo messaggio.',
+        s3eyebrow: 'Passo 3 · La vostra selezione', s3title: 'La vostra richiesta', s3lede: 'Modificate pure, poi aggiungete una nota.',
+        s4eyebrow: 'Passo 4 · L’invio', s4title: 'Inviate la richiesta', s4lede: 'Questo è il messaggio che invierete.',
         secDomenica: 'La Domenica al Segreto', secAperitivo: 'L’aperitivo in piscina', secWellness: 'Benessere e massaggi',
-        secPackages: 'I pacchetti', secGift: 'Le gift card dell’estate', secStay: 'Soggiorno, eventi, matrimoni', secExplore: 'I mondi della villa',
+        secPackages: 'I pacchetti', secGift: 'Le gift card dell’estate', secStay: 'Eventi e matrimoni', secExplore: 'I mondi della villa',
         instead: 'anziché', fieldDate: 'Data', fieldPeople: 'Persone', fieldValue: 'Importo',
-        noteLabel: 'Aggiungi una nota per Sonia', notePlaceholder: 'Es. arriviamo nel pomeriggio…',
+        noteLabel: 'Aggiungi una nota', notePlaceholder: 'Es. arriviamo nel pomeriggio…',
         empty: 'La selezione è ancora vuota. Tornate indietro e tenete ciò che vi attira — anche una cosa sola.',
-        msgLabel: 'Il tuo messaggio', whatsapp: 'Scrivici per il tuo posto',
+        msgLabel: 'Il tuo messaggio', whatsapp: 'Invia richiesta',
         copy: 'Copia messaggio', copied: 'Copiato', emailBtn: 'Email', phoneBtn: 'Telefono',
         warm: 'Ti aspettiamo in dimora.', giftCta: 'Regala un’estate', openDetail: 'Scopri'
       },
       en: {
-        launcherLabel: 'Concierge', launcherSub: 'Let me guide you',
+        launcherLabel: 'Concierge', launcherSub: 'Where shall we begin?',
         kicker: 'Villa Luzi 1737', dialogName: 'Concierge', close: 'Close',
         minimize: 'Minimize', expand: 'Reopen', toastDismiss: 'Later',
         back: 'Back', start: 'Let’s begin', toDetails: 'Continue',
-        toSummary: 'Your selection', toMessage: 'Prepare the message',
+        toSummary: 'Your selection', toMessage: 'Prepare the request',
         add: 'Add', added: 'Added', hold: 'Hold a spot', held: 'Held',
         remove: 'Remove',
         s0title: 'Time is the real luxury.', s0lede: 'Where shall we begin?',
         s1eyebrow: 'Step 1 · Your intention', s1title: 'What draws you in?', s1lede: 'Feel free to pick more than one.',
-        s2eyebrow: 'Step 2 · The details', s2title: 'Keep what you like', s2lede: 'Add to your selection — you’ll share it all with Sonia in a single message.',
-        s3eyebrow: 'Step 3 · Your selection', s3title: 'Ready for Sonia', s3lede: 'Edit freely, then add a note.',
-        s4eyebrow: 'Step 4 · On WhatsApp', s4title: 'Save your place', s4lede: 'This is the message that will reach Sonia.',
+        s2eyebrow: 'Step 2 · The details', s2title: 'Keep what you like', s2lede: 'Add to your selection — you’ll send it all in a single message.',
+        s3eyebrow: 'Step 3 · Your selection', s3title: 'Your request', s3lede: 'Edit freely, then add a note.',
+        s4eyebrow: 'Step 4 · Sending', s4title: 'Send your request', s4lede: 'This is the message you’ll send.',
         secDomenica: 'Sunday at Il Segreto', secAperitivo: 'The aperitif by the pool', secWellness: 'Wellness & massage',
-        secPackages: 'The packages', secGift: 'Summer gift cards', secStay: 'Stay, events, weddings', secExplore: 'The villa’s worlds',
+        secPackages: 'The packages', secGift: 'Summer gift cards', secStay: 'Events & weddings', secExplore: 'The villa’s worlds',
         instead: 'instead of', fieldDate: 'Date', fieldPeople: 'Guests', fieldValue: 'Amount',
-        noteLabel: 'Add a note for Sonia', notePlaceholder: 'E.g. we arrive in the afternoon…',
+        noteLabel: 'Add a note', notePlaceholder: 'E.g. we arrive in the afternoon…',
         empty: 'Your selection is still empty. Go back and keep what draws you — even just one thing.',
-        msgLabel: 'Your message', whatsapp: 'Save your place',
+        msgLabel: 'Your message', whatsapp: 'Send request',
         copy: 'Copy message', copied: 'Copied', emailBtn: 'Email', phoneBtn: 'Call',
         warm: 'We’ll be expecting you.', giftCta: 'Gift a summer', openDetail: 'Discover'
       }
@@ -266,7 +267,7 @@
   // L'aperitivo è ora un SOTTO-elemento della Domenica (gated da 'domenica').
   // I pacchetti sono condivisi tra domenica/wellness: restano finché almeno
   // una delle due è selezionata. Evita che voci scartate (deselezione di
-  // un'intenzione allo Step 1) finiscano comunque nel messaggio a Sonia.
+  // un'intenzione allo Step 1) finiscano comunque nella richiesta.
   function isKeyAllowed(key) {
     var c = CONFIG.catalog[key]; if (!c) return false;
     var has = function (k) { return state.intents.indexOf(k) !== -1; };
@@ -549,7 +550,7 @@
     if (has('domenica')) elBody.appendChild(sectionDomenica());
     if (has('wellness')) elBody.appendChild(sectionWellness());
     if (has('domenica') || has('wellness')) elBody.appendChild(sectionPackages());
-    if (has('evento')) elBody.appendChild(sectionStay(has));
+    if (has('evento')) elBody.appendChild(sectionStay());
     if (has('gift')) elBody.appendChild(sectionGift());
     if (has('esplorare') || state.intents.length === 0) elBody.appendChild(sectionExplore());
     elFoot.appendChild(backBtn(function () { go(1); }));
@@ -658,20 +659,26 @@
     return sec;
   }
 
-  function sectionStay(has) {
-    var sec = sectionWrap('secStay', null);
-    var keys = [];
-    // solo 'evento': eventi privati e matrimoni (il soggiorno non è più un'intenzione)
-    if (has('evento')) { keys.push('i_eventi'); keys.push('i_matrimonio'); }
-    keys.forEach(function (k) {
-      var c = CONFIG.catalog[k];
-      var body = el('div', { class: 'vlc-card-body' }, [
-        el('div', { class: 'vlc-card-title', text: L(c.label) }),
-        // dock non-modale: navigando minimizziamo (riappare sulla pagina di arrivo)
-        el('a', { class: 'vlc-deeplink', href: c.link, html: '<span>' + t('openDetail') + '</span>' + ICON.arrowR, 'data-cta': 'concierge-deeplink', onclick: function () { minimize(); } })
-      ]);
-      sec.appendChild(el('div', { class: 'vlc-card' }, [body, addButton(k)]));
+  // Eventi e matrimoni NON finiscono nel messaggio WhatsApp: portano al FORM
+  // della pagina giusta (deep-link alla sezione #richiesta). Minimizziamo così
+  // la pagina d'arrivo è subito usabile; lo stato resta in sessionStorage.
+  function sectionStay() {
+    var sec = sectionWrap('secStay', state.lang === 'it'
+      ? 'Per eventi e matrimoni raccogliamo i dettagli con un modulo: vi portiamo alla pagina giusta.'
+      : 'For events and weddings we collect the details with a form: we’ll take you to the right page.');
+    var dests = [
+      { href: '/matrimoni/#richiesta', t: { it: 'Matrimonio', en: 'Wedding' }, s: { it: 'La dimora tutta per voi', en: 'The residence, all yours' } },
+      { href: '/eventi/eventi-privati/#richiesta', t: { it: 'Evento privato', en: 'Private event' }, s: { it: 'Feste e ricorrenze', en: 'Parties & celebrations' } },
+      { href: '/eventi/#richiesta', t: { it: 'Evento aziendale', en: 'Corporate event' }, s: { it: 'Giornate d’impresa', en: 'Company days' } }
+    ];
+    var grid = el('div', { class: 'vlc-worlds' });
+    dests.forEach(function (d) {
+      grid.appendChild(el('a', { class: 'vlc-world', href: d.href, 'data-cta': 'concierge-event-form', onclick: function () { minimize(); } }, [
+        document.createTextNode(L(d.t)),
+        el('span', { text: L(d.s) })
+      ]));
     });
+    sec.appendChild(grid);
     return sec;
   }
 
@@ -1024,8 +1031,8 @@
       applyView();   // mobile: barra collassata; desktop: solo launcher
     } else {
       applyView();   // closed: solo launcher
-      // invito iniziale (una volta per sessione)
-      openToast();
+      // L'invito è ora il launcher stesso (frase-CTA centrata in basso):
+      // niente toast centrato che coprirebbe hero/globo della home.
     }
   }
 

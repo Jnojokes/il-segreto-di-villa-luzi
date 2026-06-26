@@ -85,7 +85,7 @@
       Compleanni <span class="sep">·</span> Anniversari <span class="sep">·</span> Feste private
     </p>
     <div class="hero-ctas">
-      <a href="/contatti/" class="btn"><span>Raccontateci la festa</span>
+      <a href="#richiesta" class="btn"><span>Raccontateci la festa</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
       <a href="https://wa.me/393452419263" class="btn-ghost" target="_blank" rel="noopener"><span>Scrivici su WhatsApp</span>
@@ -248,6 +248,37 @@
   </div>
 </section>
 
+<!-- ═════ RICHIESTA · form lead ═════ -->
+<section class="lead-section" id="richiesta" aria-label="Richiedi informazioni per la tua festa privata">
+  <div class="container-narrow reveal">
+    <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">La richiesta</span><span class="line" aria-hidden="true"></span></div>
+    <h2 style="text-align:center">Raccontateci la <em>festa</em></h2>
+    <p class="lead-intro">Una data, un&rsquo;occasione, un numero indicativo di invitati: vi ricontattiamo per il sopralluogo e una proposta su misura.</p>
+    <form class="lead-form" novalidate data-lead-context="evento-privato" data-lead-success="Grazie: la vostra richiesta è arrivata. Vi ricontattiamo al più presto.">
+      <div class="lead-grid">
+        <div class="lead-field"><label for="lf-nome">Nome e cognome</label><input id="lf-nome" name="nome" type="text" autocomplete="name" maxlength="60" required></div>
+        <div class="lead-field"><label for="lf-email">Email</label><input id="lf-email" name="email" type="email" autocomplete="email" maxlength="90" required></div>
+        <div class="lead-field"><label for="lf-tel">Telefono</label><input id="lf-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required></div>
+        <div class="lead-field"><label for="lf-data">Data o periodo</label><input id="lf-data" name="data" type="text" maxlength="40" placeholder="Es. settembre 2026"></div>
+        <div class="lead-field"><label for="lf-tipo">Tipo di evento</label><select id="lf-tipo" name="tipo">
+          <option value="evento-privato" selected>Evento privato</option>
+          <option value="matrimonio">Matrimonio</option>
+          <option value="corporate">Evento aziendale</option>
+        </select></div>
+        <div class="lead-field"><label for="lf-ospiti">Numero di ospiti</label><input id="lf-ospiti" name="ospiti" type="number" min="1" max="600" inputmode="numeric"></div>
+      </div>
+      <div class="lead-field lead-field--full"><label for="lf-msg">Messaggio</label><textarea id="lf-msg" name="messaggio" maxlength="1200" placeholder="L&rsquo;occasione, lo stile, ciò che immaginate…"></textarea></div>
+      <label class="lead-consent"><input type="checkbox" name="consenso" required><span>Acconsento al trattamento dei dati per essere ricontattato su questa richiesta. <a href="/informazioni-utili/">Informativa</a>.</span></label>
+      <div class="lead-hp" aria-hidden="true"><label>Lascia vuoto questo campo<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <button type="submit" class="btn lead-submit"><span>Invia richiesta</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+      <p class="lead-status" role="status" aria-live="polite"></p>
+      <p class="lead-fallback">Preferite scrivere a voce? <a href="https://wa.me/393452419263" target="_blank" rel="noopener">WhatsApp</a> · <a href="tel:+393452419263">+39 345 241 9263</a> · <a href="mailto:villaluzi1737@gmail.com">villaluzi1737@gmail.com</a></p>
+    </form>
+  </div>
+</section>
+
 <!-- ═════ CTA-SPLIT · invito ═════ -->
 <section class="cta-split" aria-label="Richiedi informazioni per la tua festa privata">
   <div class="cta-split-media">
@@ -258,7 +289,7 @@
     <h2 class="cta-split-title">Una data, una festa</h2>
     <p class="cta-split-sub">Ditecela: il modo giusto di festeggiarla — nella saletta, nel salone del primo piano o sull&rsquo;erba del parco — lo troviamo insieme. Gli altri formati di evento sono nelle pagine <a href="/matrimoni/">matrimoni</a> e <a href="/eventi/corporate/">corporate</a>.</p>
     <div class="cta-split-ctas">
-      <a href="/contatti/" class="btn"><span>Raccontateci la festa</span>
+      <a href="#richiesta" class="btn"><span>Raccontateci la festa</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
       <a href="https://wa.me/393452419263" class="btn-ghost" target="_blank" rel="noopener"><span>Scrivici su WhatsApp</span>
@@ -271,5 +302,6 @@
 </main>
 <!-- @include:footer -->
 <script src="/assets/js/site.js?v=3" defer></script>
+<script src="/assets/js/lead-form.js?v=3" defer></script>
 </body>
 </html>

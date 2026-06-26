@@ -30,8 +30,8 @@
   --vlc-ottanio: #0E3B3E;
   --vlc-ottanio-deep: #0a2d2f;
   --vlc-verde-notte: #081E20;
-  --vlc-oro: #C9A86A;
-  --vlc-oro-soft: #b89855;
+  --vlc-oro: #C9A079;
+  --vlc-oro-soft: #b8935f;
   --vlc-avorio: #F4ECDC;
   --vlc-corallo: #EA7275;
   --vlc-corallo-deep: #d85f62;
@@ -64,17 +64,17 @@ html.vlc-ready .sticky-cta { display: none !important; }
 .vlc-toast[hidden] { display: none !important; }
 
 /* ════════════════════════════════════════════════════════════════
-   LAUNCHER (persistente, discreto, in basso a destra)
+   LAUNCHER — invito (frase-CTA) CENTRATO in basso, non un bottone d'angolo
    ════════════════════════════════════════════════════════════════ */
 .vlc-launcher {
   position: fixed;
-  right: 20px;
-  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  bottom: calc(22px + env(safe-area-inset-bottom, 0px));
   z-index: 130;
   display: inline-flex;
   align-items: center;
-  gap: 11px;
-  padding: 13px 20px 13px 16px;
+  gap: 12px;
+  padding: 12px 24px 12px 16px;
   font-family: var(--vlc-sans);
   color: var(--vlc-ink);
   background: var(--vlc-glass);
@@ -84,7 +84,7 @@ html.vlc-ready .sticky-cta { display: none !important; }
   border-radius: 100px;
   cursor: pointer;
   box-shadow: 0 24px 64px -28px rgba(26, 26, 26, 0.30);
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
   transition: transform 0.5s var(--vlc-ease), box-shadow 0.5s var(--vlc-ease), border-color 0.5s var(--vlc-ease);
 }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
@@ -92,7 +92,7 @@ html.vlc-ready .sticky-cta { display: none !important; }
 }
 .vlc-launcher:hover,
 .vlc-launcher:focus-visible {
-  transform: translateY(-2px);
+  transform: translateX(-50%) translateY(-2px);
   border-color: var(--vlc-corallo-soft);
   box-shadow:
     0 28px 70px -28px rgba(26, 26, 26, 0.34),
@@ -114,15 +114,15 @@ html.vlc-ready .sticky-cta { display: none !important; }
 .vlc-launcher:hover .vlc-launcher-icon { color: var(--vlc-corallo-deep); border-color: var(--vlc-corallo-soft); }
 .vlc-launcher-icon svg { width: 17px; height: 17px; }
 
-.vlc-launcher-text { display: flex; flex-direction: column; line-height: 1.1; text-align: left; }
+.vlc-launcher-text { display: flex; flex-direction: column; line-height: 1.08; text-align: left; }
 .vlc-launcher-label {
-  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500;
-  color: var(--vlc-ink);
+  font-size: 9.5px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 600;
+  color: var(--vlc-corallo-deep);
 }
 .vlc-launcher-sub {
   font-family: var(--vlc-cormorant);
-  font-size: 13px; font-style: italic; letter-spacing: 0.01em;
-  color: var(--vlc-ink-soft); margin-top: 2px;
+  font-size: 16px; font-style: italic; letter-spacing: 0.01em;
+  color: var(--vlc-ink); margin-top: 1px;
 }
 
 .vlc-badge {
@@ -141,15 +141,15 @@ html.vlc-ready .sticky-cta { display: none !important; }
 }
 .vlc-badge.is-on { display: inline-flex; }
 
-/* Quando il dock è aperto, il launcher arretra (resta il pannello). */
+/* Quando il pannello è aperto, l'invito arretra (resta il pannello). */
 .vlc-launcher.is-hidden {
   opacity: 0; visibility: hidden; pointer-events: none;
-  transform: translateY(8px);
+  transform: translateX(-50%) translateY(10px);
 }
 
 @media (max-width: 540px) {
-  .vlc-launcher { padding: 12px; gap: 0; }
-  .vlc-launcher-text { display: none; }      /* su schermi stretti: solo l'icona */
+  .vlc-launcher { padding: 11px 18px 11px 14px; gap: 10px; max-width: calc(100vw - 28px); }
+  .vlc-launcher-sub { font-size: 15px; }    /* la frase resta visibile anche su mobile */
   .vlc-launcher-icon { width: 26px; height: 26px; }
 }
 
@@ -162,36 +162,41 @@ html.vlc-ready .sticky-cta { display: none !important; }
 }
 
 /* ════════════════════════════════════════════════════════════════
-   PANNELLO — DOCK non-modale (desktop)
-   Agganciato a destra a ~1/4 viewport, full-height. NIENTE scroll-lock
-   sul body: la pagina dietro resta navigabile.
+   PANNELLO — popover che si espande dal CENTRO-BASSO (desktop), non a lato.
+   Non-modale: la pagina dietro resta scrollabile e cliccabile (così il
+   concierge può accompagnare l'ospite mentre esplora le pagine).
    ════════════════════════════════════════════════════════════════ */
 .vlc-panel {
   position: fixed;
-  top: 0; right: 0; bottom: 0;
+  left: 50%;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   z-index: 945;
-  width: clamp(340px, 25vw, 440px);
+  width: clamp(340px, 94vw, 480px);
   max-width: 100vw;
+  max-height: min(82vh, 760px);
   display: flex; flex-direction: column;
   font-family: var(--vlc-sans);
   color: var(--vlc-ink);
   background: var(--vlc-glass);
-  -webkit-backdrop-filter: blur(20px) saturate(1.25);
-  backdrop-filter: blur(20px) saturate(1.25);
-  border-left: 1px solid var(--vlc-glass-edge);
-  box-shadow: -30px 0 80px -30px rgba(26, 26, 26, 0.30);
-  transform: translateX(104%);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+  backdrop-filter: blur(24px) saturate(1.3);
+  border: 1px solid var(--vlc-glass-edge);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 44px 100px -34px rgba(26, 26, 26, 0.42);
+  transform: translateX(-50%) translateY(140%);
   visibility: hidden;
   transition: transform 0.6s var(--vlc-ease), visibility 0.6s var(--vlc-ease);
   overscroll-behavior: contain;
 }
+.vlc-panel .vlc-body { min-height: 0; }   /* abilita lo scroll interno con max-height */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .vlc-panel { background: var(--vlc-glass-solid); }
 }
-.vlc-panel.is-open { transform: translateX(0); visibility: visible; }
+.vlc-panel.is-open { transform: translateX(-50%) translateY(0); visibility: visible; }
 
-/* MINIMIZZATO (desktop): il pannello sparisce, resta il launcher. */
-.vlc-panel.is-min { transform: translateX(104%); visibility: hidden; }
+/* MINIMIZZATO (desktop): il pannello sparisce, resta l'invito. */
+.vlc-panel.is-min { transform: translateX(-50%) translateY(140%); visibility: hidden; }
 
 /* ─── Header del pannello ─────────────────────────────────────── */
 .vlc-head {
@@ -641,11 +646,12 @@ html.vlc-ready .sticky-cta { display: none !important; }
   .vlc-add,
   .vlc-head-btn,
   .vlc-progress span { transition: opacity 0.2s linear !important; }
-  .vlc-panel { transform: none !important; opacity: 0; }
-  .vlc-panel.is-open { transform: none !important; opacity: 1; }
-  .vlc-panel.is-min { transform: none !important; opacity: 0; }
+  .vlc-panel { transform: translateX(-50%) !important; opacity: 0; visibility: hidden; }
+  .vlc-panel.is-open { transform: translateX(-50%) !important; opacity: 1; visibility: visible; }
+  .vlc-panel.is-min { transform: translateX(-50%) !important; opacity: 0; visibility: hidden; }
   @media (max-width: 720px) {
-    .vlc-panel.is-min { opacity: 1; }
+    .vlc-panel { transform: none !important; }       /* bottom sheet: nessun translateX */
+    .vlc-panel.is-min { opacity: 1; visibility: visible; }
   }
   .vlc-toast { transform: translate(-50%, -50%) !important; }
   @media (max-width: 720px) { .vlc-toast { transform: none !important; } }

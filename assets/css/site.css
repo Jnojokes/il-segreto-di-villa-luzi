@@ -24,9 +24,12 @@
   --ottanio: #0E3B3E;
   --ottanio-deep: #0a2d2f;
   --verde-notte: #081E20;
-  --oro: #C9A86A;
-  --oro-soft: #b89855;
-  --oro-bright: #d4b576;
+  /* Oro ritarato: champagne rose-gold, più caldo — sta in palette col
+     corallo/rosa. Resta accento del "chrome" (navbar/footer) e delle
+     emphasi in corsivo; CTA primaria = corallo. */
+  --oro: #C9A079;
+  --oro-soft: #b8935f;
+  --oro-bright: #d8b486;
   --avorio: #F4ECDC;
   --avorio-warm: #ece2cf;
   --rosa-rame: #D49785;
@@ -112,7 +115,7 @@ body::before {
 .section-eyebrow .line {
   width: 30px;
   height: 1px;
-  background: var(--oro);
+  background: var(--corallo-soft);   /* corpo: hairline corallo, non oro */
 }
 .section-eyebrow.center { justify-content: center; width: 100%; }
 
@@ -2001,6 +2004,71 @@ main section a:not([class]):hover { color: var(--corallo); border-bottom-color: 
 .link-arrow:hover { color: var(--corallo); }
 .btn { transition: background 0.4s ease, color 0.4s ease, box-shadow 0.5s ease, transform 0.4s var(--ease-wow); }
 .btn:hover { box-shadow: 0 0 0 1px var(--corallo-soft), 0 16px 40px -18px var(--corallo-glow); }
+
+/* ════════════════════════════════════════════════════════════════
+   LEAD FORM — richiesta contatti per EVENTI e MATRIMONI (corpo panna).
+   Pattern zero-backend (assets/js/lead-form.js). Il ristorante resta su
+   WhatsApp. Primaria = corallo; campi su bianco tenue, focus corallo.
+   ════════════════════════════════════════════════════════════════ */
+.lead-section { padding: 120px 24px; background: var(--panna); }
+.lead-section .container-narrow { max-width: 760px; margin: 0 auto; }
+.lead-intro {
+  text-align: center; max-width: 560px; margin: 14px auto 40px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.24rem; font-style: italic; line-height: 1.5; color: var(--ink-soft);
+}
+.lead-form { display: block; }
+.lead-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px;
+}
+.lead-field { display: flex; flex-direction: column; gap: 7px; }
+.lead-field--full { margin-top: 16px; }
+.lead-field label {
+  font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+}
+.lead-field input,
+.lead-field select,
+.lead-field textarea {
+  font-family: 'Inter', sans-serif; font-size: 15px; color: var(--inchiostro);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--ink-faint); border-radius: 12px;
+  padding: 13px 14px; width: 100%;
+  -webkit-appearance: none; appearance: none;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.lead-field textarea { resize: vertical; min-height: 110px; line-height: 1.5; }
+.lead-field input:focus,
+.lead-field select:focus,
+.lead-field textarea:focus {
+  outline: none; border-color: var(--corallo); background: #fff;
+  box-shadow: 0 0 0 3px var(--corallo-faint);
+}
+.lead-consent {
+  display: flex; align-items: flex-start; gap: 11px; margin: 22px 0 6px;
+  font-family: 'Inter', sans-serif; font-size: 13.5px; color: var(--ink-soft); line-height: 1.5;
+}
+.lead-consent input { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 2px; accent-color: var(--corallo); }
+.lead-consent a { color: var(--corallo-deep); }
+/* honeypot anti-spam: fuori schermo, non focusabile da tastiera */
+.lead-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.lead-submit { margin-top: 20px; }
+.lead-status {
+  margin-top: 16px; font-family: 'Inter', sans-serif; font-size: 14px; min-height: 1.2em;
+}
+.lead-status.is-error { color: var(--corallo-deep); }
+.lead-status.is-ok {
+  color: var(--ottanio); font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic; font-size: 1.18rem;
+}
+.lead-fallback {
+  margin-top: 18px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--ink-soft);
+}
+.lead-fallback a { color: var(--corallo-deep); }
+@media (max-width: 600px) {
+  .lead-section { padding: 84px 18px; }
+  .lead-grid { grid-template-columns: 1fr; }
+}
 
 /* CARD DI CRISTALLO · tutte le .tile (tilt 3D: vars --rx/--ry/--mx/--my da site.js) */
 .tile-grid { perspective: 1300px; }

@@ -6,10 +6,12 @@
      (quindi no-JS = lista/griglia accessibile, vedi orb.css).
    - JS = upgrade: dispone i nodi sulla sfera (distribuzione di
      Fibonacci) e li anima.
-   - Click su nodo con data-concierge: se window.VLConcierge esiste →
-     preventDefault + apre il concierge su quell'intenzione; altrimenti
-     lascia navigare l'href reale (no-JS safe). Nodi senza data-concierge
-     navigano normalmente.
+   - I nodi sono NAVIGAZIONE PURA verso le sezioni reali del sito: il
+     clic naviga (con la transizione di transition.js). Nessun concierge.
+   - Hover (puntatore fine): apre una "card" con l'anteprima foto della
+     sezione (data-cover). Su touch / reduced-motion: solo il tap che naviga.
+   - Base/piedistallo (CSS) che regge la sfera mentre ruota, e pulviscolo
+     sognante attorno (canvas, stesso RAF della sfera).
    - Pausa su visibilitychange / quando fuori viewport.
    - prefers-reduced-motion / Save-Data / no-3D → resta griglia statica.
    ═══════════════════════════════════════════════════════════════════ */
@@ -25,19 +27,9 @@
   var nodes = Array.prototype.slice.call(world.querySelectorAll('.orb-node'));
   if (!nodes.length) return;
 
-  /* ── 1) Concierge wiring — vale SEMPRE, anche in modalità griglia ── */
-  nodes.forEach(function (a) {
-    var intent = a.getAttribute('data-concierge');
-    if (!intent) return; // nodi deep-link puri: navigazione normale
-    a.addEventListener('click', function (e) {
-      var C = window.VLConcierge;
-      if (C && typeof C.open === 'function') {
-        e.preventDefault();
-        C.open(intent);
-      }
-      /* altrimenti: lasciamo navigare l'href reale (fallback no-JS) */
-    });
-  });
+  /* ── 1) I nodi sono NAVIGAZIONE PURA verso le sezioni reali della villa:
+     nessun trigger del concierge. Il clic naviga normalmente (con la
+     transizione di pagina gestita da transition.js). ── */
 
   /* ── 2) Guardie: quando NON attivare la sfera (resta griglia) ── */
   var reduceMotion = false;
@@ -64,6 +56,13 @@
   if (reduceMotion || saveData || !supports3D) {
     return; // upgrade non applicato → griglia statica del CSS
   }
+
+  // puntatore fine (mouse/trackpad) con hover: abilita l'anteprima foto.
+  var finePointer = false;
+  try {
+    finePointer = window.matchMedia &&
+      window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  } catch (e) {}
 
   /* ── 3) Disposizione sferica (spirale di Fibonacci) ── */
   var N = nodes.length;
@@ -100,6 +99,105 @@
 
   /* ── 5) Attiva la modalità sfera (CSS) ── */
   stage.classList.add('is-orb');
+
+  /* ── 5a) ANTEPRIMA FOTO al hover: una "card" che si apre al centro della
+     sfera (scala + fade). Solo puntatore fine; su touch resta il tap. ── */
+  var preview = null, previewImg = null, previewCap = null, previewKey = '';
+  function showPreview(cover, label) {
+    if (!preview || !cover) return;
+    if (previewKey !== cover) {
+      previewKey = cover;
+      previewImg.src = cover;
+      previewImg.alt = 'Anteprima · ' + label;
+      previewCap.textContent = label;
+    }
+    preview.classList.add('is-on');
+  }
+  function hidePreview() { if (preview) preview.classList.remove('is-on'); }
+  if (finePointer) {
+    preview = document.createElement('div');
+    preview.className = 'orb-preview';
+    preview.setAttribute('aria-hidden', 'true');
+    previewImg = document.createElement('img');
+    previewImg.setAttribute('loading', 'lazy');
+    previewImg.setAttribute('decoding', 'async');
+    previewImg.alt = '';
+    var pFrame = document.createElement('span');
+    pFrame.className = 'orb-preview-frame';
+    pFrame.setAttribute('aria-hidden', 'true');
+    previewCap = document.createElement('span');
+    previewCap.className = 'orb-preview-cap';
+    preview.appendChild(previewImg);
+    preview.appendChild(pFrame);
+    preview.appendChild(previewCap);
+    stage.appendChild(preview);
+    nodes.forEach(function (a) {
+      var cover = a.getAttribute('data-cover');
+      if (!cover) return;
+      var lab = (a.querySelector('.orb-label') || a).textContent;
+      a.addEventListener('pointerenter', function () { showPreview(cover, lab); });
+      a.addEventListener('pointerleave', hidePreview);
+      a.addEventListener('focus', function () { showPreview(cover, lab); });
+      a.addEventListener('blur', hidePreview);
+    });
+  }
+
+  /* ── 5b) PULVISCOLO SOGNANTE attorno alla sfera: canvas decorativo dietro
+     ai nodi, animato nello STESSO RAF della sfera. Cap sul numero, DPR cap 2,
+     deriva lenta verso l'alto + twinkle morbido. Si crea solo qui (sfera
+     attiva ⇒ già escluso reduced-motion / Save-Data). ── */
+  var dust = document.createElement('canvas');
+  dust.className = 'orb-dust';
+  dust.setAttribute('aria-hidden', 'true');
+  stage.insertBefore(dust, stage.firstChild);
+  var dctx = dust.getContext('2d');
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var DW = 0, DH = 0, motes = [];
+  var DUST_PALETTE = ['201,160,121', '234,114,117', '244,236,220']; // oro · corallo · avorio
+  function sizeDust() {
+    if (!dctx) return;
+    DW = dust.clientWidth || stage.clientWidth || 560;
+    DH = dust.clientHeight || stage.clientHeight || 560;
+    dust.width = Math.round(DW * dpr);
+    dust.height = Math.round(DH * dpr);
+    dctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function seedDust() {
+    sizeDust();
+    var n = Math.min(70, Math.round((DW * DH) / 6500));
+    motes = [];
+    for (var i = 0; i < n; i++) {
+      motes.push({
+        x: Math.random() * DW, y: Math.random() * DH,
+        r: 0.6 + Math.random() * 2.0,
+        vx: (Math.random() - 0.5) * 0.16,
+        vy: -0.04 - Math.random() * 0.15,
+        a: 0.10 + Math.random() * 0.32,
+        tw: 0.005 + Math.random() * 0.02, ph: Math.random() * 6.2832,
+        t: DUST_PALETTE[(Math.random() * DUST_PALETTE.length) | 0]
+      });
+    }
+  }
+  function drawDust() {
+    if (!dctx) return;
+    dctx.clearRect(0, 0, DW, DH);
+    for (var i = 0; i < motes.length; i++) {
+      var m = motes[i];
+      m.x += m.vx; m.y += m.vy; m.ph += m.tw;
+      if (m.y < -6) { m.y = DH + 6; m.x = Math.random() * DW; }
+      if (m.x < -6) m.x = DW + 6; else if (m.x > DW + 6) m.x = -6;
+      var al = m.a * (0.55 + 0.45 * Math.sin(m.ph));
+      if (al <= 0.003) continue;
+      dctx.beginPath();
+      dctx.arc(m.x, m.y, m.r, 0, 6.2832);
+      dctx.fillStyle = 'rgba(' + m.t + ',' + al.toFixed(3) + ')';
+      dctx.shadowBlur = m.r * 5;
+      dctx.shadowColor = 'rgba(' + m.t + ',' + (al * 0.8).toFixed(3) + ')';
+      dctx.fill();
+    }
+    dctx.shadowBlur = 0;
+  }
+  seedDust();
 
   /* ── 6) Interazione: drag (pointer) + hover slow-down ── */
   function onPointerDown(e) {
@@ -203,6 +301,8 @@
       nodes[i].style.pointerEvents = depth < -0.55 ? 'none' : 'auto';
     }
 
+    drawDust(); // pulviscolo attorno alla sfera (stesso frame)
+
     rafId = requestAnimationFrame(render);
   }
 
@@ -234,11 +334,11 @@
     io.observe(stage);
   }
 
-  /* ── 9) Resize: ricalcola il raggio ── */
+  /* ── 9) Resize: ricalcola il raggio + riadatta il pulviscolo ── */
   var rT = 0;
   window.addEventListener('resize', function () {
     clearTimeout(rT);
-    rT = setTimeout(computeRadius, 150);
+    rT = setTimeout(function () { computeRadius(); seedDust(); }, 150);
   });
 
   // via
