@@ -230,6 +230,7 @@
         }
       } catch (e) {}
     }
+    pruneItems(); // auto-guarigione di uno stato salvato incoerente
   }
   function saveState() {
     safeSet(window.sessionStorage, SS_KEY, JSON.stringify({ lang: state.lang, step: state.step, intents: state.intents, items: state.items, note: state.note }));
@@ -251,6 +252,28 @@
   function removeItem(key) {
     state.items = state.items.filter(function (it) { return it.key !== key; });
     saveState(); syncBadge();
+  }
+  // Una voce è "raggiungibile" solo se la sua intenzione è ancora attiva.
+  // I pacchetti sono condivisi tra domenica/aperitivo/wellness: restano finché
+  // almeno una delle tre è selezionata. Evita che voci scartate (deselezione
+  // di un'intenzione allo Step 1) finiscano comunque nel messaggio a Sonia.
+  function isKeyAllowed(key) {
+    var c = CONFIG.catalog[key]; if (!c) return false;
+    var has = function (k) { return state.intents.indexOf(k) !== -1; };
+    switch (c.kind) {
+      case 'domenica': return has('domenica');
+      case 'aperitivo': return has('aperitivo');
+      case 'wellness': return has('wellness');
+      case 'package': return has('domenica') || has('aperitivo') || has('wellness');
+      case 'gift': return has('gift');
+      case 'interest': return key === 'i_soggiorno' ? has('soggiorno') : has('evento');
+    }
+    return false;
+  }
+  function pruneItems() {
+    var before = state.items.length;
+    state.items = state.items.filter(function (it) { return isKeyAllowed(it.key); });
+    if (state.items.length !== before) { saveState(); syncBadge(); }
   }
 
   /* ════════════════════════════════════════════════════════════════
@@ -498,6 +521,7 @@
     if (i === -1) state.intents.push(key); else state.intents.splice(i, 1);
     btn.setAttribute('aria-pressed', i === -1 ? 'true' : 'false');
     saveState();
+    if (i !== -1) pruneItems(); // deselezione: togli le voci ormai irraggiungibili
     var next = elFoot.querySelector('.vlc-next');
     if (next) next.disabled = state.intents.length === 0;
   }
@@ -631,7 +655,7 @@
       var c = CONFIG.catalog[k];
       var body = el('div', { class: 'vlc-card-body' }, [
         el('div', { class: 'vlc-card-title', text: L(c.label) }),
-        el('a', { class: 'vlc-deeplink', href: c.link, html: '<span>' + t('openDetail') + '</span>' + ICON.arrowR, 'data-cta': 'concierge-deeplink' })
+        el('a', { class: 'vlc-deeplink', href: c.link, html: '<span>' + t('openDetail') + '</span>' + ICON.arrowR, 'data-cta': 'concierge-deeplink', onclick: function () { close(); } })
       ]);
       sec.appendChild(el('div', { class: 'vlc-card' }, [body, addButton(k)]));
     });
@@ -662,7 +686,7 @@
     var sec = sectionWrap('secExplore', null);
     var grid = el('div', { class: 'vlc-worlds' });
     CONFIG.worlds.forEach(function (w) {
-      grid.appendChild(el('a', { class: 'vlc-world', href: w.href, 'data-cta': 'concierge-world' }, [
+      grid.appendChild(el('a', { class: 'vlc-world', href: w.href, 'data-cta': 'concierge-world', onclick: function () { close(); } }, [
         document.createTextNode(L(w.t)),
         el('span', { text: L(w.s) })
       ]));
@@ -772,6 +796,7 @@
   function setLang(lng) {
     if (lng !== 'it' && lng !== 'en') return;
     state.lang = lng; saveState();
+    if (panel) panel.setAttribute('lang', state.lang);
     if (langBtns.it) langBtns.it.setAttribute('aria-pressed', lng === 'it' ? 'true' : 'false');
     if (langBtns.en) langBtns.en.setAttribute('aria-pressed', lng === 'en' ? 'true' : 'false');
     if (elKicker) elKicker.textContent = t('kicker');
@@ -793,11 +818,28 @@
      APERTURA / CHIUSURA + FOCUS TRAP
      ════════════════════════════════════════════════════════════════ */
   var isOpen = false;
+  var inertedNodes = [];
+  // Rende inerte il resto della pagina mentre il dialog aria-modal è aperto:
+  // hardening per AT datate/browse-mode (aria-modal copre già gli SR moderni).
+  function setBackgroundInert(on) {
+    if (on) {
+      inertedNodes = [];
+      Array.prototype.forEach.call(document.body.children, function (node) {
+        if (node === launcher || node === panel || node === backdrop) return;
+        if (node.nodeType !== 1 || node.hasAttribute('inert')) return;
+        try { node.inert = true; inertedNodes.push(node); } catch (e) {}
+      });
+    } else {
+      inertedNodes.forEach(function (node) { try { node.inert = false; } catch (e) {} });
+      inertedNodes = [];
+    }
+  }
   function open() {
     if (isOpen) return;
     isOpen = true;
     lastFocus = document.activeElement;
     buildChrome();
+    panel.setAttribute('lang', state.lang); // pronuncia SR corretta per la lingua attiva
     // rendi visibile il pannello PRIMA del render, così il focus al titolo
     // dello step non cade su un elemento ancora visibility:hidden.
     document.body.classList.add('vlc-open');
@@ -805,6 +847,7 @@
     panel.classList.add('is-open');
     panel.setAttribute('aria-hidden', 'false');
     launcher.setAttribute('aria-expanded', 'true');
+    setBackgroundInert(true);
     render();
     document.addEventListener('keydown', onKeydown, true);
   }
@@ -816,6 +859,7 @@
     panel.classList.remove('is-open');
     panel.setAttribute('aria-hidden', 'true');
     launcher.setAttribute('aria-expanded', 'false');
+    setBackgroundInert(false);
     document.removeEventListener('keydown', onKeydown, true);
     if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} }
     else if (launcher) launcher.focus();

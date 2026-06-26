@@ -27,6 +27,7 @@ const SKIP_ROOT = new Set([
   'CONSEGNA_DEV',            // sorgente media (35 GB): non pubblicare in dist/
   'PROMPT_CHECK_IMPLEMENTAZIONE.md', 'REPORT_CHECK.md', // documenti di lavoro
   'PROMPT_BLOCCHI_DINAMICI.md', 'REPORT_BLOCCHI.md',    // documenti di lavoro
+  'PROMPT_AI_CONCIERGE.md', 'REPORT_AI_CONCIERGE.md',   // documenti di lavoro
 ]);
 const SKIP_ANY = new Set(['.DS_Store', 'node_modules']);
 const SKIP_ROOT_PATTERNS = [/^Screenshot /];

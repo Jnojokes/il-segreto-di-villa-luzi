@@ -3813,5 +3813,27 @@ renderPeople();
 })();
 </script>
 
+<!-- ═══════════════════════════════════════════════════════════
+     CONCIERGE + TRANSIZIONE DI PAGINA — wiring manuale (pagina
+     standalone, non usa i partial né site.css/site.js).
+     I file concierge.css/.js sono autosufficienti. La sticky-cta
+     inline qui sopra viene assorbita da html.vlc-ready (un solo
+     controllo fluttuante). Progressive enhancement: [hidden] a JS
+     spento. Non tocca lo script/JSON-LD/sticky inline esistenti.
+     ═══════════════════════════════════════════════════════════ -->
+<link rel="stylesheet" href="/assets/css/concierge.css?v=3" />
+<button class="vlc-launcher" id="vlc-launcher" type="button" hidden aria-haspopup="dialog" aria-controls="vlc-panel" aria-expanded="false" aria-label="Concierge · Villa Luzi">
+  <span class="vlc-launcher-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3l1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7z" stroke-linejoin="round"/></svg></span>
+  <span class="vlc-launcher-text">
+    <span class="vlc-launcher-label">Concierge</span>
+    <span class="vlc-launcher-sub">Ti guido io</span>
+  </span>
+  <span class="vlc-badge" aria-hidden="true"></span>
+</button>
+<div class="vlc-backdrop" id="vlc-backdrop" hidden></div>
+<aside class="vlc-panel" id="vlc-panel" role="dialog" aria-modal="true" aria-label="Concierge · Villa Luzi" aria-hidden="true" hidden></aside>
+<script src="/assets/js/concierge.js?v=3" defer></script>
+<script src="/assets/js/transition.js?v=3" defer></script>
+
 </body>
 </html>

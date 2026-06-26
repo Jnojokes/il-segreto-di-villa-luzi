@@ -31,12 +31,9 @@
   var VEIL = 'radial-gradient(125% 120% at 50% 42%, #0E3B3E 0%, #0a2d2f 46%, #081E20 100%)';
   var NAV_KEY = 'vl_nav'; // flag sessionStorage: "arrivo da navigazione interna"
 
-  /* ─── Preferenze utente ─────────────────────────────────────── */
-  var reduceMotion = window.matchMedia
-    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    : false;
-  var saveData = navigator.connection && navigator.connection.saveData === true;
-  var lite = reduceMotion || saveData; // modalità sobria: solo dissolvenza
+  /* ─── Preferenze utente (rilette live: possono cambiare a runtime) ─ */
+  function reduceNow() { return window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false; }
+  function liteNow() { return reduceNow() || (navigator.connection && navigator.connection.saveData === true); }
 
   /* sessionStorage tollerante (private mode) ------------------------ */
   function flagSet() { try { sessionStorage.setItem(NAV_KEY, '1'); } catch (e) {} }
@@ -47,7 +44,7 @@
   var overlay = null, canvas = null, ctx = null;
   var dpr = Math.min(window.devicePixelRatio || 1, 2);
   var W = 0, H = 0, motes = [];
-  var raf = 0, running = false;
+  var raf = 0, running = false, animToken = 0; // animToken invalida i loop superati
 
   function buildOverlay() {
     if (overlay) return;
@@ -144,16 +141,16 @@
     buildOverlay();
     overlay.style.visibility = 'visible';
 
-    if (lite) { // sobrio: solo dissolvenza del velo
+    if (liteNow()) { // sobrio: solo dissolvenza del velo
       animateVeil(0, 1, DUR_FADE, function () { go(); });
       return;
     }
 
     seed();
-    running = true;
+    var token = ++animToken; running = true; // invalida eventuali loop precedenti
     var start = performance.now();
     function frame(now) {
-      if (!running) return;
+      if (!running || token !== animToken) return;
       var t = Math.min(1, (now - start) / DUR_EXIT);
       var e = easeWow(t);
       overlay.style.opacity = e.toFixed(3);       // velo entra
@@ -170,16 +167,16 @@
     overlay.style.visibility = 'visible';
     overlay.style.opacity = '1'; // parte COPERTO (lo sfondo CSS copre subito)
 
-    if (lite) {
+    if (liteNow()) {
       animateVeil(1, 0, DUR_FADE, hideOverlay);
       return;
     }
 
     seed();
-    running = true;
+    var token = ++animToken; running = true;
     var start = performance.now();
     function frame(now) {
-      if (!running) return;
+      if (!running || token !== animToken) return;
       var t = Math.min(1, (now - start) / DUR_ENTER);
       var e = easeWow(t);
       overlay.style.opacity = (1 - e).toFixed(3);     // velo si dissolve
@@ -190,19 +187,25 @@
     raf = requestAnimationFrame(frame);
   }
 
-  // dissolvenza semplice del solo velo (modalità sobria)
+  // dissolvenza semplice del solo velo (modalità sobria) — interrompibile
+  // come i loop pesanti: usa animToken + running così un nuovo run o un
+  // hideOverlay/visibilitychange la fermano (niente loop concorrenti).
   function animateVeil(from, to, dur, done) {
+    var token = ++animToken; running = true;
     var start = performance.now();
-    (function step(now) {
+    function step(now) {
+      if (!running || token !== animToken) return;
       var t = Math.min(1, (now - start) / dur);
       overlay.style.opacity = (from + (to - from) * t).toFixed(3);
-      if (t < 1) requestAnimationFrame(step); else if (done) done();
-    })(performance.now());
+      if (t < 1) { raf = requestAnimationFrame(step); }
+      else { running = false; if (done) done(); }
+    }
+    raf = requestAnimationFrame(step);
   }
 
   function hideOverlay() {
-    running = false;
-    if (raf) cancelAnimationFrame(raf), raf = 0;
+    running = false; animToken++; // invalida ogni loop in corso
+    if (raf) { cancelAnimationFrame(raf); raf = 0; }
     if (!overlay) return;
     overlay.style.opacity = '0';
     overlay.style.visibility = 'hidden';
@@ -249,26 +252,40 @@
   function homeLoaderActive() {
     return document.documentElement.classList.contains('has-js') &&
       document.body && document.body.classList.contains('home') &&
-      document.querySelector('.home-loader') && !reduceMotion;
+      document.querySelector('.home-loader') && !reduceNow();
   }
 
-  function onPageShow(e) {
-    // Ritorno da bfcache: assicurati che lo schermo non resti coperto.
-    if (e && e.persisted) { leaving = false; hideOverlay(); flagClear(); return; }
-    if (homeLoaderActive()) { flagClear(); return; } // lascia fare al loader home
-    if (flagGet()) { flagClear(); runEnter(); }       // entrata "piena" dopo nav interna
-    // atterraggio diretto / refresh: nessuna entrata (overlay mai mostrato)
+  // Appena lo script gira (defer → DOM pronto, PRIMA del 'load'): se
+  // arriviamo da una navigazione interna copriamo subito e disperdiamo.
+  // Non aspettiamo 'pageshow'/'load' — eviterebbe il flash "pagina già
+  // visibile → coperta → svelata".
+  function startEnterIfNeeded() {
+    if (!flagGet()) return;          // atterraggio diretto / refresh: niente entrata
+    flagClear();
+    if (homeLoaderActive()) return;  // la home è coperta dal suo loader (no doppio velo)
+    runEnter();
   }
-  window.addEventListener('pageshow', onPageShow);
+  if (document.body) startEnterIfNeeded();
+  else document.addEventListener('DOMContentLoaded', startEnterIfNeeded);
+
+  // Ritorno da bfcache: la pagina è ripristinata com'era → assicura che
+  // l'overlay non resti incollato sullo schermo.
+  window.addEventListener('pageshow', function (e) {
+    if (e && e.persisted) { leaving = false; hideOverlay(); flagClear(); }
+  });
 
   /* ─── Pausa quando la tab è nascosta ────────────────────────── */
   // Se la tab si nasconde a metà transizione fermiamo il loop. Al ritorno,
   // se stavamo entrando (non uscendo), scopriamo subito: niente animazione
   // a scatti dopo una pausa lunga. L'uscita è coperta dal safety timeout.
   document.addEventListener('visibilitychange', function () {
-    if (document.hidden) { running = false; if (raf) { cancelAnimationFrame(raf); raf = 0; } }
-    else if (overlay && overlay.style.visibility === 'visible' && !leaving && !running) {
-      hideOverlay();
+    if (document.hidden) {
+      running = false; if (raf) { cancelAnimationFrame(raf); raf = 0; }
+      // se stavamo USCENDO, tieni la pagina coperta fino al safety timeout
+      // (niente velo a metà): la nuvola era già quasi piena.
+      if (leaving && overlay) overlay.style.opacity = '1';
+    } else if (overlay && overlay.style.visibility === 'visible' && !leaving && !running) {
+      hideOverlay(); // entrata interrotta: scopri subito, niente scatti
     }
   });
 
