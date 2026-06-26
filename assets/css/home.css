@@ -73,15 +73,23 @@ body.home .hero { isolation: isolate; }
    overflow-x: clip (non hidden) → no scroll orizzontale MA sticky funziona.
    ════════════════════════════════════════════════════════════════ */
 body.home { overflow-x: clip; }
-body.home .hero { display: block; padding: 0; overflow: hidden; min-height: 100vh; }
+body.home .hero { display: block; padding: 0; overflow: visible; min-height: 100vh; }
 body.home .hero::after { display: none; }
+.has-js body.home .hero { height: 240vh; }                 /* spazio per lo scrub pinnato */
 
-/* hero semplice e fisso (niente più scroll-scrub/pin): video ambient di sfondo */
 body.home .hero-stage {
   position: relative; min-height: 100vh; min-height: 100svh; overflow: hidden;
   display: flex; align-items: flex-end; justify-content: flex-start;
   padding: clamp(96px, 13vh, 150px) clamp(28px, 6vw, 96px) clamp(64px, 9vh, 104px);
 }
+.has-js body.home .hero-stage { position: sticky; top: 0; height: 100vh; }
+
+/* media di base: poster (fallback) + canvas (image-sequence) */
+body.home .hero-poster, body.home .hero-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; display: block;
+}
+body.home .hero-poster { filter: saturate(0.98) brightness(0.76); }
+body.home .hero-canvas { will-change: contents; }
 /* scrim: scuro in basso-sinistra per la leggibilità, trasparente in alto-destra */
 body.home .hero-bg-overlay {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
