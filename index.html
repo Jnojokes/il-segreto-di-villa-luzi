@@ -111,7 +111,9 @@
 
 <!-- ═════ ORB · la sfera dei mondi della villa ═════ -->
 <section class="orb-section" aria-labelledby="orb-title">
-  <div class="orb-bg" aria-hidden="true"></div>
+  <div class="orb-bg" aria-hidden="true">
+    <img class="orb-bg-photo" src="/assets/img/heroes/la-villa.webp" alt="La palazzina padronale di Villa Luzi e il parco — sfondo decorativo del blocco" loading="lazy" decoding="async" />
+  </div>
   <div class="orb-head">
     <span class="orb-eyebrow"><span class="line" aria-hidden="true"></span>I mondi della villa<span class="line" aria-hidden="true"></span></span>
     <h2 class="orb-title" id="orb-title">Esplora le <em>anime</em> di Villa Luzi</h2>
@@ -119,6 +121,64 @@
   </div>
 
   <div class="orb-stage">
+    <!-- Globo inciso (decorativo, visibile solo in modalità sfera): superficie
+         disegnata — meridiani/paralleli + mappa stilizzata della dimora — con
+         vetro, rim-light dorato e riflesso speculare. Nasconde se no-JS/grid. -->
+    <div class="orb-globe" aria-hidden="true">
+      <svg viewBox="0 0 440 440" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="orbGlass" cx="40%" cy="34%" r="72%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.70)"/>
+            <stop offset="40%" stop-color="rgba(243,236,223,0.40)"/>
+            <stop offset="76%" stop-color="rgba(14,59,62,0.10)"/>
+            <stop offset="100%" stop-color="rgba(14,59,62,0.26)"/>
+          </radialGradient>
+          <radialGradient id="orbCore" cx="50%" cy="52%" r="55%">
+            <stop offset="0%" stop-color="rgba(201,160,121,0.22)"/>
+            <stop offset="60%" stop-color="rgba(201,160,121,0.06)"/>
+            <stop offset="100%" stop-color="rgba(201,160,121,0)"/>
+          </radialGradient>
+          <linearGradient id="orbRimG" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="rgba(216,180,134,0.95)"/>
+            <stop offset="48%" stop-color="rgba(201,160,121,0.30)"/>
+            <stop offset="100%" stop-color="rgba(14,59,62,0.40)"/>
+          </linearGradient>
+          <clipPath id="orbClip"><circle cx="220" cy="220" r="196"/></clipPath>
+        </defs>
+        <circle cx="220" cy="220" r="196" fill="url(#orbGlass)"/>
+        <circle cx="220" cy="220" r="196" fill="url(#orbCore)"/>
+        <g clip-path="url(#orbClip)">
+          <g class="orb-grid">
+            <ellipse cx="220" cy="220" rx="196" ry="46"/>
+            <ellipse cx="220" cy="220" rx="188" ry="100"/>
+            <ellipse cx="220" cy="220" rx="168" ry="152"/>
+            <line x1="24" y1="220" x2="416" y2="220"/>
+            <ellipse cx="220" cy="220" rx="46" ry="196"/>
+            <ellipse cx="220" cy="220" rx="100" ry="188"/>
+            <ellipse cx="220" cy="220" rx="152" ry="168"/>
+            <line x1="220" y1="24" x2="220" y2="416"/>
+          </g>
+          <g class="orb-map">
+            <path d="M70 250 Q150 215 215 244 T370 232"/>
+            <path d="M96 300 Q190 262 250 296 T372 286"/>
+            <rect x="198" y="150" width="44" height="32"/>
+            <path d="M198 150 L220 133 L242 150"/>
+            <line x1="230" y1="141" x2="230" y2="120"/>
+            <path d="M150 206 q-7 -30 0 -56 q7 26 0 56"/>
+            <path d="M170 210 q-6 -24 0 -46 q6 20 0 46"/>
+            <path d="M286 200 q-7 -32 0 -58 q7 28 0 58"/>
+            <circle cx="220" cy="266" r="13"/>
+            <circle cx="220" cy="266" r="4.5"/>
+            <g class="orb-compass" transform="translate(326,322)">
+              <path d="M0 -15 L4 0 L0 15 L-4 0 Z"/>
+              <path d="M-15 0 L0 -4 L15 0 L0 4 Z"/>
+            </g>
+          </g>
+        </g>
+        <circle class="orb-rim" cx="220" cy="220" r="196" fill="none" stroke="url(#orbRimG)"/>
+        <ellipse class="orb-spec" cx="150" cy="132" rx="74" ry="46" transform="rotate(-26 150 132)"/>
+      </svg>
+    </div>
     <!-- Lista reale delle SEZIONI del sito (navigazione pura): senza JS o con
          reduced-motion resta una griglia accessibile; orb.js la dispone sulla
          sfera e mostra l'anteprima foto (data-cover) al passaggio del mouse. -->

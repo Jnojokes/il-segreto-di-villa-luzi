@@ -21,6 +21,21 @@
   z-index:0;
   pointer-events:none;
 }
+/* Sfondo materico: foto reale della dimora, DUOTONE panna/ottanio a bassa
+   opacità (multiply sul fondo panna) e sfumata ai bordi — il blocco non
+   galleggia nel vuoto, il testo resta AA. Statica: ok anche in reduced-motion. */
+.orb-bg-photo{
+  position:absolute;
+  inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  z-index:-1;
+  opacity:.12;
+  filter:grayscale(1) sepia(.45) contrast(1.04) brightness(1.06);
+  mix-blend-mode:multiply;
+  -webkit-mask-image:radial-gradient(118% 96% at 50% 42%, #000 26%, transparent 78%);
+  mask-image:radial-gradient(118% 96% at 50% 42%, #000 26%, transparent 78%);
+}
 .orb-bg::before{
   /* alone ottanio molto tenue, respiro centrale */
   content:"";
@@ -267,14 +282,38 @@
   pointer-events:none;
 }
 
-/* ── PULVISCOLO sognante attorno alla sfera: canvas leggermente più ampio
-   dello stage, dietro ai nodi (orb.js lo crea e lo anima). ── */
+/* ── GLOBO INCISO: la superficie DISEGNATA della sfera (solo modalità sfera).
+   Meridiani/paralleli in oro + mappa stilizzata della dimora in ottanio +
+   rim-light e riflesso speculare. Reticolo che gira lento (armilla). ── */
+.orb-globe{ display:none; }
+.orb-stage.is-orb .orb-globe{
+  display:block;
+  position:absolute;
+  left:50%; top:50%;
+  width:100%; max-width:540px;
+  aspect-ratio:1 / 1;
+  transform:translate(-50%,-50%);
+  z-index:1;
+  pointer-events:none;
+  filter:drop-shadow(0 38px 56px rgba(14,59,62,0.22));
+}
+.orb-globe svg{ width:100%; height:100%; display:block; overflow:visible; }
+.orb-grid{ fill:none; stroke:var(--oro); stroke-width:0.7; opacity:.32; transform-box:fill-box; transform-origin:center; animation:orb-grid-spin 96s linear infinite; }
+.orb-map{ fill:none; stroke:var(--ottanio); stroke-width:1; stroke-linecap:round; stroke-linejoin:round; opacity:.40; transform-box:fill-box; transform-origin:center; animation:orb-map-drift 26s ease-in-out infinite alternate; }
+.orb-compass{ stroke:var(--oro); opacity:.85; }
+.orb-rim{ stroke-width:2.2; opacity:.9; }
+.orb-spec{ fill:rgba(255,255,255,0.34); }
+@keyframes orb-grid-spin{ to{ transform:rotate(360deg); } }
+@keyframes orb-map-drift{ from{ transform:rotate(-2.5deg) translateY(-2px); } to{ transform:rotate(2.5deg) translateY(2px); } }
+
+/* ── PULVISCOLO sognante: canvas più ampio dello stage, DAVANTI al globo e
+   dietro ai nodi (orb.js disegna pulviscolo + linee-costellazione). ── */
 .orb-stage.is-orb .orb-dust{
   position:absolute;
   left:50%; top:50%;
   width:150%; height:138%;
   transform:translate(-50%,-50%);
-  z-index:0;
+  z-index:2;
   pointer-events:none;
 }
 
@@ -305,9 +344,10 @@
 }
 .orb-preview-frame{
   position:absolute;
-  inset:9px;
-  border:1px solid rgba(244,236,220,0.5);
+  inset:8px;
+  border:1px solid var(--oro);
   border-radius:9px;
+  opacity:.6;
   pointer-events:none;
 }
 .orb-preview-cap{
@@ -381,7 +421,9 @@
   .orb-stage.is-orb::before,
   .orb-stage.is-orb::after{ display:none; }
   .orb-stage.is-orb .orb-dust,
-  .orb-stage.is-orb .orb-preview{ display:none; }
+  .orb-stage.is-orb .orb-preview,
+  .orb-stage.is-orb .orb-globe{ display:none; }
+  .orb-grid, .orb-map{ animation:none !important; }
   .orb-stage.is-orb ~ .orb-hint{ display:none; }
 }
 

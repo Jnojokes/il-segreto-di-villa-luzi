@@ -164,7 +164,7 @@
   }
   function seedDust() {
     sizeDust();
-    var n = Math.min(70, Math.round((DW * DH) / 6500));
+    var n = Math.min(100, Math.round((DW * DH) / 5200)); // più denso, ma sotto cap
     motes = [];
     for (var i = 0; i < n; i++) {
       motes.push({
@@ -178,9 +178,26 @@
       });
     }
   }
+  // Linee-costellazione: dal centro della sfera a ciascun nodo (popolate dal
+  // loop di render con gli offset correnti). Più nitide per i nodi davanti.
+  var linkPts = [];
+  function drawLinks() {
+    if (!dctx || !linkPts.length) return;
+    var cx = DW / 2, cy = DH / 2;
+    for (var i = 0; i < linkPts.length; i++) {
+      var lp = linkPts[i];
+      var f = (lp.d + 1) * 0.5;            // 0 dietro → 1 davanti
+      var al = 0.05 + f * 0.15;
+      dctx.beginPath();
+      dctx.moveTo(cx, cy);
+      dctx.lineTo(cx + lp.x, cy + lp.y);
+      dctx.strokeStyle = 'rgba(201,160,121,' + al.toFixed(3) + ')';
+      dctx.lineWidth = 0.5 + f * 0.5;
+      dctx.stroke();
+    }
+  }
   function drawDust() {
     if (!dctx) return;
-    dctx.clearRect(0, 0, DW, DH);
     for (var i = 0; i < motes.length; i++) {
       var m = motes[i];
       m.x += m.vx; m.y += m.vy; m.ph += m.tw;
@@ -199,28 +216,37 @@
   }
   seedDust();
 
-  /* ── 6) Interazione: drag (pointer) + hover slow-down ── */
+  /* ── 6) Interazione: drag con SOGLIA, senza rubare il click ──
+     NIENTE setPointerCapture sullo stage: cattura il 'click' e l'<a> non
+     naviga più. Il drag gira col pointermove a livello window. Movimento
+     sotto soglia = CLICK → l'<a> naviga (lo gestisce transition.js); sopra
+     soglia = DRAG → ruota e sopprime quel solo click. ── */
+  var DRAG_THRESHOLD = 6;            // px (Manhattan) oltre cui è drag
+  var pointerDown = false, downX = 0, downY = 0, dragged = false;
+  var suppressClick = false;
+
   function onPointerDown(e) {
-    dragging = true;
-    stage.setPointerCapture && e.pointerId != null &&
-      stage.setPointerCapture(e.pointerId);
-    lastPX = e.clientX;
-    lastPY = e.clientY;
+    if (e.button != null && e.button > 0) return;  // solo pulsante principale
+    pointerDown = true; dragged = false;
+    downX = lastPX = e.clientX; downY = lastPY = e.clientY;
   }
   function onPointerMove(e) {
     pointerInside = true;
-    if (!dragging) return;
-    var dx = e.clientX - lastPX;
-    var dy = e.clientY - lastPY;
-    lastPX = e.clientX;
-    lastPY = e.clientY;
-    velY = dx * 0.0009;
-    velX = -dy * 0.0009;
-    rotY += velY;
-    rotX += velX;
+    if (!pointerDown) return;
+    var dx = e.clientX - lastPX, dy = e.clientY - lastPY;
+    lastPX = e.clientX; lastPY = e.clientY;
+    if (!dragged) {
+      // distanza dal punto iniziale: sotto soglia resta un potenziale click
+      if (Math.abs(e.clientX - downX) + Math.abs(e.clientY - downY) < DRAG_THRESHOLD) return;
+      dragged = true; dragging = true;
+    }
+    velY = dx * 0.0009; velX = -dy * 0.0009;
+    rotY += velY; rotX += velX;
   }
   function onPointerUp() {
-    dragging = false;
+    pointerDown = false; dragging = false;
+    // se è stato un drag, sopprimi il click che seguirà (una volta sola)
+    if (dragged) { suppressClick = true; setTimeout(function () { suppressClick = false; }, 0); }
   }
   function onEnter() { pointerInside = true; }
   function onLeave() { pointerInside = false; }
@@ -230,6 +256,13 @@
   window.addEventListener('pointerup', onPointerUp);
   stage.addEventListener('pointerenter', onEnter);
   stage.addEventListener('pointerleave', onLeave);
+
+  // Solo dopo un DRAG sopprimiamo il click (fase di cattura: precede sia la
+  // navigazione nativa dell'<a> sia il listener di transition.js sul document).
+  // Un click "vero" non viene toccato → naviga normalmente.
+  world.addEventListener('click', function (e) {
+    if (suppressClick) { e.preventDefault(); e.stopPropagation(); suppressClick = false; }
+  }, true);
 
   // tastiera/focus: quando un nodo riceve focus, fermiamo la deriva
   // così resta leggibile (non lo "portiamo" davanti per evitare
@@ -269,6 +302,7 @@
     var sinY = Math.sin(rotY), cosY = Math.cos(rotY);
     var sinX = Math.sin(rotX), cosX = Math.cos(rotX);
 
+    linkPts.length = 0;
     for (var i = 0; i < N; i++) {
       var p = points[i];
       // rotazione attorno a Y
@@ -299,9 +333,11 @@
       nodes[i].style.setProperty('--node-opacity', opacity.toFixed(3));
       // i nodi molto dietro non catturano il puntatore
       nodes[i].style.pointerEvents = depth < -0.55 ? 'none' : 'auto';
+      linkPts.push({ x: tx, y: ty, d: depth });
     }
 
-    drawDust(); // pulviscolo attorno alla sfera (stesso frame)
+    // un solo clear, poi linee-costellazione + pulviscolo (stesso frame)
+    if (dctx) { dctx.clearRect(0, 0, DW, DH); drawLinks(); drawDust(); }
 
     rafId = requestAnimationFrame(render);
   }
