@@ -130,59 +130,8 @@
     });
   }
 
-  // ─── Hero image-sequence: il canvas disegna i fotogrammi reali sullo scroll ───
-  // (frame estratti dal video reale → scrub affidabile, ripinge sempre, 60fps)
-  var heroCanvas = document.querySelector('.hero-canvas');
-  var heroSec = document.querySelector('.hero');
-  var heroInner = document.querySelector('.hero .hero-inner');
-  var heroPoster = document.querySelector('.hero-poster');
-  var FRAMES = 60, imgs = [], cctx = null, cW = 0, cH = 0, drawn = false;
-  var cdpr = Math.min(window.devicePixelRatio || 1, 2);
-  var natW = 1152, natH = 648;
-  if (heroCanvas) {
-    cctx = heroCanvas.getContext('2d');
-    for (var fi = 1; fi <= FRAMES; fi++) {
-      var im = new Image();
-      im.decoding = 'async';
-      im.src = '/assets/img/hero-frames/f' + String(fi).padStart(3, '0') + '.webp';
-      im.onload = function () { if (this.naturalWidth) { natW = this.naturalWidth; natH = this.naturalHeight; } drawHeroFrame(); };
-      imgs.push(im);
-    }
-    sizeHeroCanvas();
-    window.addEventListener('resize', function () { sizeHeroCanvas(); drawHeroFrame(); }, { passive: true });
-  }
-  function sizeHeroCanvas() {
-    if (!heroCanvas || !cctx) return;
-    var r = heroCanvas.getBoundingClientRect();
-    cW = Math.max(1, r.width); cH = Math.max(1, r.height);
-    heroCanvas.width = Math.round(cW * cdpr); heroCanvas.height = Math.round(cH * cdpr);
-    cctx.setTransform(cdpr, 0, 0, cdpr, 0, 0);
-  }
-  function heroProgress() {
-    if (!heroSec) return 0;
-    var vh = window.innerHeight || document.documentElement.clientHeight;
-    var total = heroSec.offsetHeight - vh;
-    return total > 0 ? Math.min(1, Math.max(0, window.scrollY / total)) : 0;
-  }
-  function drawHeroFrame() {
-    if (!cctx) return;
-    if (cW < 2 || cH < 2) sizeHeroCanvas();
-    var p = heroProgress();
-    if (heroInner) heroInner.style.opacity = Math.max(0, 1 - p * 1.25).toFixed(2); /* fade sempre, anche se i frame non sono pronti */
-    var idx = Math.min(FRAMES - 1, Math.max(0, Math.round(p * (FRAMES - 1))));
-    var img = imgs[idx];
-    if (!img || !img.complete || !img.naturalWidth) {
-      for (var k = idx; k >= 0; k--) { if (imgs[k] && imgs[k].complete && imgs[k].naturalWidth) { img = imgs[k]; break; } }
-    }
-    if (!img || !img.naturalWidth) return;
-    var zoom = 1 + p * 0.14;
-    var scale = Math.max(cW / natW, cH / natH) * zoom;
-    var dw = natW * scale, dh = natH * scale;
-    cctx.clearRect(0, 0, cW, cH);
-    cctx.drawImage(img, (cW - dw) / 2, (cH - dh) / 2, dw, dh);
-    /* il poster resta come base sotto: il canvas opaco lo copre quando disegna,
-       così non si vede mai "vuoto" se i frame sono lenti a caricare. */
-  }
+  // (Hero image-sequence / scroll-scrub RIMOSSO su richiesta: l'hero ora è un
+  //  semplice video ambient in autoplay-loop, nessuno scroll/pin.)
 
   // ─── Tempo sospeso: drift parallasse + scroll-cue + sezione pinned ───
   var drifts = document.querySelectorAll('[data-drift]');
@@ -212,11 +161,10 @@
       });
       if (cue) cue.style.opacity = String(Math.max(0, 1 - y / 260));
       updatePin();
-      drawHeroFrame();
       ticking = false;
     });
   }
-  if (drifts.length || cue || pin || heroCanvas) {
+  if (drifts.length || cue || pin) {
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
     onScroll();
