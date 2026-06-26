@@ -1,0 +1,472 @@
+/* ════════════════════════════════════════════════════════════════
+   VILLA LUZI · CONCIERGE.CSS
+   Launcher fluttuante + pannello guidato (side sheet desktop /
+   bottom sheet mobile). Bilingue IT/EN gestito dal JS.
+
+   AUTOSUFFICIENTE di proposito: le due pagine standalone
+   (/il-segreto, /esperienze/aperitivi-in-erba/2-giugno-2026) NON
+   linkano site.css, quindi qui ridefiniamo i token di brand come
+   variabili --vlc-* (valori letterali, stessa palette di site.css).
+   Niente font nuovi: usa lo stack già caricato con fallback sicuri.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ─── Token locali (palette di brand, valori letterali) ───────── */
+.vlc-launcher,
+.vlc-backdrop,
+.vlc-panel {
+  --vlc-ottanio: #0E3B3E;
+  --vlc-ottanio-deep: #0a2d2f;
+  --vlc-verde-notte: #081E20;
+  --vlc-oro: #C9A86A;
+  --vlc-oro-soft: #b89855;
+  --vlc-oro-bright: #d4b576;
+  --vlc-avorio: #F4ECDC;
+  --vlc-corallo: #EA7275;
+  --vlc-whisper: rgba(244, 236, 220, 0.65);
+  --vlc-whisper-soft: rgba(244, 236, 220, 0.40);
+  --vlc-whisper-faint: rgba(244, 236, 220, 0.15);
+  --vlc-crystal: rgba(244, 236, 220, 0.06);
+  --vlc-crystal-edge: rgba(244, 236, 220, 0.16);
+  --vlc-ease: cubic-bezier(0.19, 1, 0.22, 1);
+  --vlc-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --vlc-sans: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
+  --vlc-cormorant: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* Un solo controllo fluttuante: quando il concierge è montato (solo
+   con JS), assorbiamo la sticky-cta esistente (globale e quelle inline
+   delle pagine standalone, tutte con class .sticky-cta). A JS spento
+   la classe non viene aggiunta e la sticky-cta resta come fallback. */
+html.vlc-ready .sticky-cta { display: none !important; }
+
+/* No-JS / pre-init: il markup è nel sorgente con l'attributo [hidden]
+   (progressive enhancement). I selettori di classe sotto hanno la stessa
+   specificità della regola UA [hidden]{display:none}: senza questa riga
+   il launcher resterebbe visibile a JS spento. Il JS rimuove [hidden]. */
+.vlc-launcher[hidden],
+.vlc-backdrop[hidden],
+.vlc-panel[hidden] { display: none !important; }
+
+/* ════════════════════════════════════════════════════════════════
+   LAUNCHER
+   ════════════════════════════════════════════════════════════════ */
+.vlc-launcher {
+  position: fixed;
+  right: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 130;
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 20px 13px 16px;
+  font-family: var(--vlc-sans);
+  color: var(--vlc-avorio);
+  background: linear-gradient(150deg, rgba(14, 59, 62, 0.96), rgba(10, 45, 47, 0.96));
+  border: 1px solid var(--vlc-oro-soft);
+  border-radius: 100px;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow:
+    0 18px 44px -14px rgba(0, 0, 0, 0.55),
+    0 0 0 0 var(--vlc-corallo);
+  transform: translateY(0);
+  transition: transform 0.5s var(--vlc-ease), box-shadow 0.5s var(--vlc-ease), border-color 0.5s var(--vlc-ease);
+}
+.vlc-launcher:hover,
+.vlc-launcher:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--vlc-oro);
+  box-shadow:
+    0 22px 54px -14px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(234, 114, 117, 0.55),
+    0 14px 40px -18px rgba(234, 114, 117, 0.5);
+  outline: none;
+}
+.vlc-launcher:focus-visible { outline: 2px solid var(--vlc-oro); outline-offset: 3px; }
+
+.vlc-launcher-icon {
+  display: inline-flex;
+  width: 30px; height: 30px;
+  align-items: center; justify-content: center;
+  color: var(--vlc-oro-bright);
+  border: 1px solid var(--vlc-whisper-faint);
+  border-radius: 50%;
+  flex: 0 0 auto;
+  transition: color 0.45s var(--vlc-ease), border-color 0.45s var(--vlc-ease);
+}
+.vlc-launcher:hover .vlc-launcher-icon { color: var(--vlc-corallo); border-color: var(--vlc-corallo); }
+.vlc-launcher-icon svg { width: 17px; height: 17px; }
+
+.vlc-launcher-text { display: flex; flex-direction: column; line-height: 1.1; text-align: left; }
+.vlc-launcher-label {
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500;
+}
+.vlc-launcher-sub {
+  font-family: var(--vlc-cormorant);
+  font-size: 13px; font-style: italic; letter-spacing: 0.01em;
+  color: var(--vlc-whisper); margin-top: 2px;
+}
+
+.vlc-badge {
+  position: absolute;
+  top: -6px; right: -4px;
+  min-width: 21px; height: 21px;
+  padding: 0 6px;
+  display: none;
+  align-items: center; justify-content: center;
+  font-family: var(--vlc-sans);
+  font-size: 11px; font-weight: 600;
+  color: var(--vlc-verde-notte);
+  background: var(--vlc-oro);
+  border-radius: 100px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+.vlc-badge.is-on { display: inline-flex; }
+
+@media (max-width: 540px) {
+  .vlc-launcher { padding: 12px; gap: 0; }
+  .vlc-launcher-text { display: none; }      /* su schermi stretti: solo l'icona */
+  .vlc-launcher-icon { width: 26px; height: 26px; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   BACKDROP + PANNELLO
+   ════════════════════════════════════════════════════════════════ */
+.vlc-backdrop {
+  position: fixed; inset: 0;
+  z-index: 940;
+  background: rgba(8, 30, 32, 0.55);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.5s var(--vlc-ease), visibility 0.5s var(--vlc-ease);
+}
+.vlc-backdrop.is-open { opacity: 1; visibility: visible; }
+
+.vlc-panel {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  z-index: 945;
+  width: clamp(360px, 32vw, 480px);
+  max-width: 100vw;
+  display: flex; flex-direction: column;
+  font-family: var(--vlc-sans);
+  color: var(--vlc-avorio);
+  background:
+    radial-gradient(120% 80% at 100% 0%, rgba(201, 168, 106, 0.08), transparent 60%),
+    linear-gradient(160deg, var(--vlc-ottanio) 0%, var(--vlc-ottanio-deep) 60%, var(--vlc-verde-notte) 100%);
+  border-left: 1px solid var(--vlc-whisper-faint);
+  box-shadow: -30px 0 80px -30px rgba(0, 0, 0, 0.7);
+  transform: translateX(104%);
+  visibility: hidden;
+  transition: transform 0.6s var(--vlc-ease), visibility 0.6s var(--vlc-ease);
+  overscroll-behavior: contain;
+}
+.vlc-panel.is-open { transform: translateX(0); visibility: visible; }
+
+/* lock scroll della pagina sotto, come fa site.js per il drawer */
+body.vlc-open { overflow: hidden; }
+
+/* ─── Header del pannello ─────────────────────────────────────── */
+.vlc-head {
+  display: flex; align-items: center; gap: 14px;
+  padding: 22px 24px 16px;
+  border-bottom: 1px solid var(--vlc-whisper-faint);
+}
+.vlc-head-titles { flex: 1 1 auto; min-width: 0; }
+.vlc-kicker {
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--vlc-oro); font-weight: 500;
+}
+.vlc-head-name {
+  font-family: var(--vlc-serif);
+  font-size: 21px; font-weight: 500; letter-spacing: 0.01em;
+  margin-top: 3px; color: var(--vlc-avorio);
+}
+
+.vlc-lang { display: inline-flex; border: 1px solid var(--vlc-whisper-faint); border-radius: 100px; overflow: hidden; }
+.vlc-lang-btn {
+  font-family: var(--vlc-sans);
+  font-size: 11px; letter-spacing: 0.12em; font-weight: 500;
+  padding: 6px 11px; background: transparent; color: var(--vlc-whisper);
+  border: none; cursor: pointer; transition: color 0.3s ease, background 0.3s ease;
+}
+.vlc-lang-btn[aria-pressed="true"] { background: var(--vlc-oro); color: var(--vlc-verde-notte); }
+.vlc-lang-btn:focus-visible { outline: 2px solid var(--vlc-oro); outline-offset: -2px; }
+
+.vlc-close {
+  flex: 0 0 auto;
+  width: 38px; height: 38px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--vlc-whisper); background: transparent;
+  border: 1px solid var(--vlc-whisper-faint); border-radius: 50%;
+  cursor: pointer; transition: color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+.vlc-close:hover { color: var(--vlc-corallo); border-color: var(--vlc-corallo); }
+.vlc-close:focus-visible { outline: 2px solid var(--vlc-oro); outline-offset: 2px; }
+.vlc-close svg { width: 16px; height: 16px; }
+
+/* progress dots dei passi */
+.vlc-progress { display: flex; gap: 7px; padding: 0 24px; margin-top: 14px; }
+.vlc-progress span {
+  width: 22px; height: 3px; border-radius: 3px;
+  background: var(--vlc-whisper-faint); transition: background 0.4s var(--vlc-ease);
+}
+.vlc-progress span.is-done { background: var(--vlc-oro-soft); }
+.vlc-progress span.is-now { background: var(--vlc-oro); }
+
+/* ─── Corpo scrollabile ───────────────────────────────────────── */
+.vlc-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 22px 24px 26px;
+}
+.vlc-body::-webkit-scrollbar { width: 8px; }
+.vlc-body::-webkit-scrollbar-thumb { background: var(--vlc-whisper-faint); border-radius: 8px; }
+
+.vlc-eyebrow {
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--vlc-oro); font-weight: 500; margin-bottom: 12px;
+}
+.vlc-title {
+  font-family: var(--vlc-serif);
+  font-size: clamp(23px, 2.4vw, 28px); font-weight: 500; line-height: 1.18;
+  color: var(--vlc-avorio); margin-bottom: 8px;
+}
+.vlc-lede {
+  font-family: var(--vlc-cormorant);
+  font-size: 18px; font-style: italic; line-height: 1.5;
+  color: var(--vlc-whisper); margin-bottom: 22px;
+}
+.vlc-note-text { font-size: 12.5px; line-height: 1.55; color: var(--vlc-whisper); }
+
+/* ─── Scelte (Step 1) ─────────────────────────────────────────── */
+.vlc-choices { display: flex; flex-direction: column; gap: 10px; }
+.vlc-choice {
+  position: relative;
+  display: flex; align-items: center; gap: 13px;
+  width: 100%; text-align: left;
+  padding: 15px 16px;
+  font-family: var(--vlc-sans); font-size: 14.5px; color: var(--vlc-avorio);
+  background: var(--vlc-crystal);
+  border: 1px solid var(--vlc-crystal-edge); border-radius: 14px;
+  cursor: pointer;
+  transition: border-color 0.4s var(--vlc-ease), background 0.4s var(--vlc-ease), transform 0.3s var(--vlc-ease);
+}
+.vlc-choice:hover { border-color: var(--vlc-oro-soft); transform: translateY(-1px); }
+.vlc-choice:focus-visible { outline: 2px solid var(--vlc-oro); outline-offset: 2px; }
+.vlc-choice-mark {
+  flex: 0 0 auto;
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1px solid var(--vlc-whisper-soft);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--vlc-verde-notte);
+  transition: background 0.35s var(--vlc-ease), border-color 0.35s var(--vlc-ease);
+}
+.vlc-choice-mark svg { width: 13px; height: 13px; opacity: 0; transition: opacity 0.3s ease; }
+.vlc-choice[aria-pressed="true"] { border-color: var(--vlc-oro); background: rgba(201, 168, 106, 0.12); }
+.vlc-choice[aria-pressed="true"] .vlc-choice-mark { background: var(--vlc-oro); border-color: var(--vlc-oro); }
+.vlc-choice[aria-pressed="true"] .vlc-choice-mark svg { opacity: 1; }
+.vlc-choice-label { flex: 1 1 auto; }
+.vlc-choice-sub { display: block; font-size: 12px; color: var(--vlc-whisper); margin-top: 2px; font-family: var(--vlc-cormorant); font-style: italic; }
+
+/* ─── Schede di dettaglio (Step 2) ────────────────────────────── */
+.vlc-section + .vlc-section { margin-top: 26px; padding-top: 24px; border-top: 1px solid var(--vlc-whisper-faint); }
+.vlc-section-head { font-family: var(--vlc-serif); font-size: 19px; font-weight: 500; margin-bottom: 4px; }
+.vlc-section-desc { font-family: var(--vlc-cormorant); font-style: italic; font-size: 16px; color: var(--vlc-whisper); line-height: 1.5; margin-bottom: 16px; }
+
+.vlc-card {
+  display: flex; align-items: center; gap: 12px;
+  padding: 13px 14px; margin-bottom: 9px;
+  background: var(--vlc-crystal);
+  border: 1px solid var(--vlc-crystal-edge); border-radius: 12px;
+}
+.vlc-card-body { flex: 1 1 auto; min-width: 0; }
+.vlc-card-title { font-size: 14px; color: var(--vlc-avorio); }
+.vlc-card-meta { font-size: 12px; color: var(--vlc-whisper); margin-top: 3px; }
+.vlc-price { font-family: var(--vlc-sans); font-size: 13px; color: var(--vlc-oro-bright); white-space: nowrap; font-weight: 500; }
+.vlc-price-soft { color: var(--vlc-whisper); font-style: italic; font-family: var(--vlc-cormorant); font-size: 14px; }
+
+/* bottone "Aggiungi" / "Tienimi un posto" */
+.vlc-add {
+  flex: 0 0 auto;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 14px;
+  font-family: var(--vlc-sans); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500;
+  color: var(--vlc-avorio); background: transparent;
+  border: 1px solid var(--vlc-whisper-soft); border-radius: 100px;
+  cursor: pointer; transition: all 0.35s var(--vlc-ease);
+}
+.vlc-add:hover { border-color: var(--vlc-oro); color: var(--vlc-oro); }
+.vlc-add:focus-visible { outline: 2px solid var(--vlc-oro); outline-offset: 2px; }
+.vlc-add svg { width: 13px; height: 13px; }
+.vlc-add.is-added { border-color: var(--vlc-corallo); color: var(--vlc-corallo); }
+
+/* deep link reali verso i mondi della villa */
+.vlc-deeplink {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
+  color: var(--vlc-oro); text-decoration: none;
+  transition: gap 0.3s ease, color 0.3s ease;
+}
+.vlc-deeplink:hover { gap: 12px; color: var(--vlc-corallo); }
+.vlc-deeplink svg { width: 13px; height: 13px; }
+
+/* mini-mappa "Esplorare" */
+.vlc-worlds { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.vlc-world {
+  display: block; padding: 13px 14px;
+  background: var(--vlc-crystal); border: 1px solid var(--vlc-crystal-edge); border-radius: 12px;
+  color: var(--vlc-avorio); text-decoration: none; font-size: 13px;
+  transition: border-color 0.35s var(--vlc-ease), color 0.35s var(--vlc-ease);
+}
+.vlc-world:hover { border-color: var(--vlc-oro); color: var(--vlc-oro); }
+.vlc-world:focus-visible { outline: 2px solid var(--vlc-oro); outline-offset: 2px; }
+.vlc-world span { display: block; font-family: var(--vlc-cormorant); font-style: italic; font-size: 12.5px; color: var(--vlc-whisper); margin-top: 2px; }
+
+/* ─── Campi (data, persone, valore libero) ───────────────────── */
+.vlc-fields { display: flex; gap: 10px; margin: 4px 0 12px; flex-wrap: wrap; }
+.vlc-field { flex: 1 1 130px; display: flex; flex-direction: column; gap: 5px; }
+.vlc-field label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--vlc-whisper); }
+.vlc-field input, .vlc-field select {
+  font-family: var(--vlc-sans); font-size: 14px;
+  color: var(--vlc-avorio); background: rgba(244, 236, 220, 0.05);
+  border: 1px solid var(--vlc-whisper-faint); border-radius: 10px;
+  padding: 10px 12px; width: 100%;
+  -webkit-appearance: none; appearance: none;
+}
+.vlc-field input:focus, .vlc-field select:focus { outline: none; border-color: var(--vlc-oro); background: rgba(244, 236, 220, 0.08); }
+.vlc-field input::-webkit-calendar-picker-indicator { filter: invert(0.8) sepia(1) saturate(2) hue-rotate(5deg); cursor: pointer; }
+
+/* ─── Riepilogo selezione (Step 3) ────────────────────────────── */
+.vlc-summary { display: flex; flex-direction: column; gap: 9px; }
+.vlc-line {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 13px 14px;
+  background: var(--vlc-crystal); border: 1px solid var(--vlc-crystal-edge); border-radius: 12px;
+}
+.vlc-line-body { flex: 1 1 auto; min-width: 0; }
+.vlc-line-title { font-size: 14px; color: var(--vlc-avorio); }
+.vlc-line-meta { font-size: 12px; color: var(--vlc-whisper); margin-top: 3px; }
+.vlc-line-price { font-size: 13px; color: var(--vlc-oro-bright); white-space: nowrap; }
+.vlc-remove {
+  flex: 0 0 auto; width: 28px; height: 28px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--vlc-whisper); background: transparent;
+  border: 1px solid var(--vlc-whisper-faint); border-radius: 50%;
+  cursor: pointer; transition: color 0.3s ease, border-color 0.3s ease;
+}
+.vlc-remove:hover { color: var(--vlc-corallo); border-color: var(--vlc-corallo); }
+.vlc-remove:focus-visible { outline: 2px solid var(--vlc-oro); outline-offset: 2px; }
+.vlc-remove svg { width: 13px; height: 13px; }
+
+.vlc-empty { font-family: var(--vlc-cormorant); font-style: italic; font-size: 16px; color: var(--vlc-whisper); line-height: 1.5; }
+
+.vlc-note { margin-top: 18px; }
+.vlc-note label { display: block; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--vlc-whisper); margin-bottom: 7px; }
+.vlc-note textarea {
+  width: 100%; min-height: 74px; resize: vertical;
+  font-family: var(--vlc-sans); font-size: 14px; line-height: 1.5;
+  color: var(--vlc-avorio); background: rgba(244, 236, 220, 0.05);
+  border: 1px solid var(--vlc-whisper-faint); border-radius: 12px; padding: 12px 13px;
+}
+.vlc-note textarea:focus { outline: none; border-color: var(--vlc-oro); background: rgba(244, 236, 220, 0.08); }
+
+/* ─── Handoff WhatsApp (Step 4) ───────────────────────────────── */
+.vlc-handoff-msg {
+  font-size: 12.5px; line-height: 1.6; color: var(--vlc-whisper);
+  white-space: pre-wrap; word-break: break-word;
+  background: rgba(8, 30, 32, 0.45); border: 1px solid var(--vlc-whisper-faint);
+  border-radius: 12px; padding: 14px 15px; margin-bottom: 18px; max-height: 200px; overflow-y: auto;
+}
+.vlc-secondary-row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.vlc-secondary {
+  flex: 1 1 auto;
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  padding: 11px 12px;
+  font-family: var(--vlc-sans); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+  color: var(--vlc-whisper); text-decoration: none; background: transparent;
+  border: 1px solid var(--vlc-whisper-faint); border-radius: 100px; cursor: pointer;
+  transition: color 0.35s ease, border-color 0.35s ease;
+}
+.vlc-secondary:hover { color: var(--vlc-oro); border-color: var(--vlc-oro-soft); }
+.vlc-secondary:focus-visible { outline: 2px solid var(--vlc-oro); outline-offset: 2px; }
+.vlc-secondary svg { width: 14px; height: 14px; }
+.vlc-warm { font-family: var(--vlc-cormorant); font-style: italic; font-size: 17px; color: var(--vlc-whisper); margin-top: 20px; text-align: center; }
+
+/* ─── Footer di navigazione del pannello ──────────────────────── */
+.vlc-foot {
+  display: flex; align-items: center; gap: 10px;
+  padding: 16px 24px calc(16px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--vlc-whisper-faint);
+  background: rgba(8, 30, 32, 0.4);
+}
+.vlc-back {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 12px 16px; font-family: var(--vlc-sans);
+  font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500;
+  color: var(--vlc-whisper); background: transparent;
+  border: 1px solid var(--vlc-whisper-faint); border-radius: 100px; cursor: pointer;
+  transition: color 0.35s ease, border-color 0.35s ease;
+}
+.vlc-back:hover { color: var(--vlc-avorio); border-color: var(--vlc-whisper-soft); }
+.vlc-back:focus-visible { outline: 2px solid var(--vlc-oro); outline-offset: 2px; }
+.vlc-back svg { width: 13px; height: 13px; }
+.vlc-back[hidden] { display: none; }
+
+/* CTA primaria — pill oro (linguaggio .btn di site.css) */
+.vlc-next {
+  flex: 1 1 auto;
+  display: inline-flex; align-items: center; justify-content: center; gap: 11px;
+  padding: 15px 22px;
+  font-family: var(--vlc-sans); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
+  color: var(--vlc-verde-notte); text-decoration: none;
+  background: var(--vlc-oro); border: 1px solid var(--vlc-oro); border-radius: 100px;
+  cursor: pointer; transition: background 0.4s ease, box-shadow 0.5s var(--vlc-ease), transform 0.4s var(--vlc-ease);
+}
+.vlc-next:hover { background: var(--vlc-oro-bright); box-shadow: 0 16px 40px -18px rgba(234, 114, 117, 0.5); transform: translateY(-1px); }
+.vlc-next:focus-visible { outline: 2px solid var(--vlc-avorio); outline-offset: 2px; }
+.vlc-next svg { width: 16px; height: 16px; }
+.vlc-next[disabled] { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+.vlc-next.is-whatsapp { background: var(--vlc-oro); }
+
+/* ════════════════════════════════════════════════════════════════
+   MOBILE — bottom sheet
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 720px) {
+  .vlc-panel {
+    top: auto; right: 0; left: 0; bottom: 0;
+    width: 100%;
+    height: min(92vh, 760px);
+    border-left: none; border-top: 1px solid var(--vlc-whisper-faint);
+    border-radius: 22px 22px 0 0;
+    box-shadow: 0 -30px 80px -30px rgba(0, 0, 0, 0.7);
+    transform: translateY(104%);
+  }
+  .vlc-panel.is-open { transform: translateY(0); }
+  .vlc-panel::before {
+    content: ''; position: absolute; top: 9px; left: 50%; transform: translateX(-50%);
+    width: 40px; height: 4px; border-radius: 4px; background: var(--vlc-whisper-faint);
+  }
+  .vlc-head { padding-top: 26px; }
+  .vlc-worlds { grid-template-columns: 1fr; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   PREFERS-REDUCED-MOTION — niente moto, dissolvenze minime
+   ════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .vlc-launcher,
+  .vlc-backdrop,
+  .vlc-panel,
+  .vlc-choice,
+  .vlc-next,
+  .vlc-add,
+  .vlc-close,
+  .vlc-progress span { transition: opacity 0.2s linear !important; }
+  .vlc-panel { transform: none !important; opacity: 0; }
+  .vlc-panel.is-open { transform: none !important; opacity: 1; }
+}
