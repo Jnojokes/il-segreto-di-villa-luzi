@@ -55,6 +55,12 @@
     <lastmod>2026-06-12</lastmod>
     <priority>0.7</priority>
   </url>
+  <!-- villaluzi1737.it è NXDOMAIN: la landing ads usa il dominio live .com -->
+  <url>
+    <loc>https://www.villaluzi1737.com/eventi/cena-spettacolo-jazz/</loc>
+    <lastmod>2026-07-07</lastmod>
+    <priority>0.6</priority>
+  </url>
   <url>
     <loc>https://villaluzi1737.it/matrimoni/</loc>
     <lastmod>2026-06-12</lastmod>

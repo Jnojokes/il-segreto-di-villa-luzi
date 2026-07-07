@@ -19,6 +19,9 @@ const DIST = path.join(__dirname, 'dist');
 const BLOCKED = new Set([
   'il-segreto/index.html',
   'esperienze/aperitivi-in-erba/2-giugno-2026/index.html',
+  // Landing ads standalone (un solo obiettivo di conversione: niente nav,
+  // niente link interni, canonical sul dominio live .com): solo controlli soft.
+  'eventi/cena-spettacolo-jazz/index.html',
 ]);
 
 if (!fs.existsSync(DIST)) {
