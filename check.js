@@ -22,6 +22,7 @@ const BLOCKED = new Set([
   // Landing ads standalone (un solo obiettivo di conversione: niente nav,
   // niente link interni, canonical sul dominio live .com): solo controlli soft.
   'eventi/cena-spettacolo-jazz/index.html',
+  'eventi/noche-latina/index.html',
 ]);
 
 if (!fs.existsSync(DIST)) {
