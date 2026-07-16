@@ -30,7 +30,7 @@ const SKIP_ROOT = new Set([
   'PROMPT_AI_CONCIERGE.md', 'REPORT_AI_CONCIERGE.md',   // documenti di lavoro
 ]);
 const SKIP_ANY = new Set(['.DS_Store', 'node_modules']);
-const SKIP_ROOT_PATTERNS = [/^Screenshot /];
+const SKIP_ROOT_PATTERNS = [/^Screenshot /, /^dist \d+$/]; // "dist 2", "dist 4"…: duplicati creati da iCloud
 
 function readPartial(name) {
   return fs.readFileSync(path.join(ROOT, 'partials', `${name}.html`), 'utf8').trim();
