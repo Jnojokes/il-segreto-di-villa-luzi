@@ -12,7 +12,15 @@
     { "source": "/white-party-lista.html", "destination": "/eventi/white-party/lista/", "permanent": true },
     { "source": "/la-domenica.html", "destination": "/eventi/la-domenica/", "permanent": true },
     { "source": "/eventi/matrimoni", "destination": "/matrimoni/", "permanent": true },
-    { "source": "/eventi/matrimoni/", "destination": "/matrimoni/", "permanent": true }
+    { "source": "/eventi/matrimoni/", "destination": "/matrimoni/", "permanent": true },
+    { "source": "/journal/:path*", "destination": "/", "permanent": false },
+    { "source": "/il-segreto/menu/", "destination": "/il-segreto/", "permanent": false },
+    { "source": "/esperienze/yoga-e-benessere/", "destination": "/esperienze/", "permanent": false },
+    { "source": "/esperienze/il-parco/", "destination": "/esperienze/", "permanent": false },
+    { "source": "/esperienze/aperitivi-in-erba/", "destination": "/esperienze/", "permanent": false },
+    { "source": "/eventi/eventi-privati/", "destination": "/eventi/", "permanent": false },
+    { "source": "/eventi/corporate/", "destination": "/eventi/", "permanent": false },
+    { "source": "/eventi/la-domenica/", "destination": "/eventi/", "permanent": false }
   ],
   "headers": [
     { "source": "/assets/img/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
