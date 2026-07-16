@@ -1,0 +1,441 @@
+/* ═══════════════════════════════════════════════════════════════════
+   ORB · la sfera interattiva delle business unit (solo HOME)
+   Layer isolato — scope .orb-* — non tocca site.css/home.css.
+   FONDO PANNA + vetro panna/ottanio, accento corallo, glow misurato.
+   Tag-cloud sferico 3D via CSS transforms; orb.js posiziona i nodi.
+   Senza JS / reduced-motion / no-3D → griglia statica accessibile.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.orb-section{
+  position:relative;
+  overflow:hidden;
+  padding:120px 24px 132px;
+  background:var(--panna);
+  isolation:isolate;
+}
+
+/* media tenue dietro (decorativo) + velo panna che lo smorza */
+.orb-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+/* Sfondo materico: foto reale della dimora, DUOTONE panna/ottanio a bassa
+   opacità (multiply sul fondo panna) e sfumata ai bordi — il blocco non
+   galleggia nel vuoto, il testo resta AA. Statica: ok anche in reduced-motion. */
+.orb-bg-photo{
+  position:absolute;
+  inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  z-index:-1;
+  opacity:.12;
+  filter:grayscale(1) sepia(.45) contrast(1.04) brightness(1.06);
+  mix-blend-mode:multiply;
+  -webkit-mask-image:radial-gradient(118% 96% at 50% 42%, #000 26%, transparent 78%);
+  mask-image:radial-gradient(118% 96% at 50% 42%, #000 26%, transparent 78%);
+}
+.orb-bg::before{
+  /* alone ottanio molto tenue, respiro centrale */
+  content:"";
+  position:absolute;
+  left:50%; top:46%;
+  width:min(86vw,900px);
+  height:min(86vw,900px);
+  transform:translate(-50%,-50%);
+  background:
+    radial-gradient(circle at 50% 50%,
+      var(--corallo-faint) 0%,
+      rgba(14,59,62,0.06) 38%,
+      transparent 70%);
+  opacity:.9;
+}
+.orb-bg::after{
+  /* sfumatura ai bordi verso la panna piena, niente stacchi netti */
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at 50% 45%, transparent 52%, var(--panna) 88%);
+}
+
+/* ── intestazione sobria ── */
+.orb-head{
+  position:relative;
+  z-index:2;
+  max-width:680px;
+  margin:0 auto 40px;
+  text-align:center;
+}
+.orb-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+}
+.orb-eyebrow .line{
+  width:34px;
+  height:1px;
+  background:var(--ink-faint);
+}
+.orb-title{
+  margin:18px 0 0;
+  font-family:"Playfair Display",Georgia,serif;
+  font-weight:500;
+  font-size:clamp(1.9rem,4.4vw,2.9rem);
+  line-height:1.08;
+  color:var(--inchiostro);
+}
+.orb-title em{
+  font-style:italic;
+  color:var(--corallo);
+}
+.orb-lead{
+  margin:16px auto 0;
+  max-width:540px;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:1.18rem;
+  line-height:1.5;
+  color:var(--ink-soft);
+}
+
+/* ══════════════════════════════════════════════════════════
+   STAGE 3D — attivo solo quando orb.js aggiunge .is-orb
+   ══════════════════════════════════════════════════════════ */
+.orb-stage{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:620px;
+  margin:0 auto;
+}
+
+/* ── DEFAULT (no-JS): lista/griglia statica accessibile ──
+   I nodi vivono già nel sorgente come <a>; senza JS restano
+   una griglia leggibile, navigabile da tastiera. ── */
+.orb-world{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:12px;
+}
+.orb-world > li{ margin:0; display:flex; }
+
+/* il nodo — vetro panna, testo inchiostro, hover→corallo */
+.orb-node{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  padding:14px 18px;
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:.92rem;
+  font-weight:500;
+  letter-spacing:.01em;
+  line-height:1.2;
+  text-decoration:none;
+  color:var(--inchiostro);
+  border-radius:18px;
+  /* RICETTA GLASSMORPHISM */
+  background:rgba(243,236,223,0.62);
+  -webkit-backdrop-filter:blur(20px) saturate(1.25);
+  backdrop-filter:blur(20px) saturate(1.25);
+  border:1px solid rgba(255,255,255,0.55);
+  box-shadow:0 24px 64px -28px rgba(26,26,26,0.30);
+  transition:color .3s ease, border-color .3s ease,
+             box-shadow .3s ease, background .3s ease,
+             transform .3s ease;
+  will-change:transform;
+}
+.orb-node .orb-dot{
+  flex:0 0 auto;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--ottanio);
+  box-shadow:0 0 0 4px rgba(14,59,62,0.10);
+  transition:background .3s ease, box-shadow .3s ease, transform .3s ease;
+}
+.orb-node .orb-label{ white-space:nowrap; }
+
+.orb-node:hover,
+.orb-node:focus-visible{
+  color:var(--corallo-deep);
+  border-color:var(--corallo-soft);
+  background:rgba(243,236,223,0.78);
+  box-shadow:0 26px 70px -26px rgba(216,95,98,0.42),
+             0 0 0 1px var(--corallo-faint);
+}
+.orb-node:hover .orb-dot,
+.orb-node:focus-visible .orb-dot{
+  background:var(--corallo);
+  box-shadow:0 0 0 4px var(--corallo-glow);
+  transform:scale(1.15);
+}
+.orb-node:focus-visible{
+  outline:2px solid var(--corallo);
+  outline-offset:3px;
+}
+
+/* nodo "in evidenza" (Il Segreto) — accento corallo già a riposo */
+.orb-node[data-primary] .orb-dot{
+  background:var(--corallo);
+  box-shadow:0 0 0 4px var(--corallo-glow);
+}
+
+/* ══════════════════════════════════════════════════════════
+   MODALITÀ SFERA — solo quando .orb-stage.is-orb (JS + 3D ok)
+   ══════════════════════════════════════════════════════════ */
+.orb-stage.is-orb{
+  height:560px;
+  max-width:560px;
+  perspective:1100px;
+  cursor:grab;
+  touch-action:pan-y;
+}
+.orb-stage.is-orb:active{ cursor:grabbing; }
+
+.orb-stage.is-orb .orb-world{
+  position:absolute;
+  inset:0;
+  display:block;          /* annulla la griglia */
+  transform-style:preserve-3d;
+  margin:0;
+}
+.orb-stage.is-orb .orb-world > li{
+  position:absolute;
+  top:50%;
+  left:50%;
+  display:block;
+  transform-style:preserve-3d;
+  /* la posizione xyz e la profondità sono iniettate da orb.js
+     via custom properties --tx --ty --tz e opacity/scale via --depth */
+  transform:translate(-50%,-50%)
+            translate3d(var(--tx,0px),var(--ty,0px),var(--tz,0px));
+  will-change:transform,opacity;
+}
+.orb-stage.is-orb .orb-node{
+  /* nello spazio sfera i nodi si rimpiccioliscono e contro-ruotano
+     per restare frontali; scala/opacità in base alla profondità --depth */
+  width:auto;
+  padding:9px 15px;
+  font-size:.84rem;
+  border-radius:999px;
+  white-space:nowrap;
+  transform:translate(-50%,-50%) scale(var(--node-scale,1));
+  opacity:var(--node-opacity,1);
+  /* niente transition sul transform in modalità sfera: lo guida il RAF */
+  transition:color .3s ease, border-color .3s ease,
+             box-shadow .3s ease, background .3s ease;
+  box-shadow:0 16px 38px -20px rgba(26,26,26,0.34);
+}
+.orb-stage.is-orb .orb-node:hover,
+.orb-stage.is-orb .orb-node:focus-visible{
+  opacity:1 !important;
+}
+
+/* alone centrale della sfera — vetro tenue dietro ai nodi */
+.orb-stage.is-orb::before{
+  content:"";
+  position:absolute;
+  left:50%; top:50%;
+  width:62%;
+  height:62%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(circle at 50% 42%,
+    rgba(243,236,223,0.55) 0%,
+    rgba(14,59,62,0.05) 55%,
+    transparent 74%);
+  box-shadow:inset 0 0 80px -30px rgba(14,59,62,0.18);
+  pointer-events:none;
+  z-index:-1;
+}
+
+/* ── BASE / PIEDISTALLO che regge la sfera mentre ruota (solo CSS).
+   Ellisse in prospettiva con ombra di contatto: la sfera gira, la base
+   resta ferma e la "sostiene". ── */
+.orb-stage.is-orb::after{
+  content:"";
+  position:absolute;
+  left:50%; bottom:3%;
+  width:46%; height:42px;
+  transform:translateX(-50%) perspective(220px) rotateX(60deg);
+  border-radius:50%;
+  background:radial-gradient(ellipse at 50% 38%,
+    rgba(226,214,192,0.95) 0%,
+    rgba(234,224,206,0.65) 46%,
+    rgba(14,59,62,0.07) 72%,
+    transparent 82%);
+  box-shadow:
+    0 24px 50px -16px rgba(14,59,62,0.42),
+    inset 0 2px 6px rgba(255,255,255,0.55);
+  z-index:0;
+  pointer-events:none;
+}
+
+/* ── GLOBO INCISO: la superficie DISEGNATA della sfera (solo modalità sfera).
+   Meridiani/paralleli in oro + mappa stilizzata della dimora in ottanio +
+   rim-light e riflesso speculare. Reticolo che gira lento (armilla). ── */
+.orb-globe{ display:none; }
+.orb-stage.is-orb .orb-globe{
+  display:block;
+  position:absolute;
+  left:50%; top:50%;
+  width:100%; max-width:540px;
+  aspect-ratio:1 / 1;
+  transform:translate(-50%,-50%);
+  z-index:1;
+  pointer-events:none;
+  filter:drop-shadow(0 38px 56px rgba(14,59,62,0.22));
+}
+.orb-globe svg{ width:100%; height:100%; display:block; overflow:visible; }
+.orb-grid{ fill:none; stroke:var(--oro); stroke-width:0.7; opacity:.32; transform-box:fill-box; transform-origin:center; animation:orb-grid-spin 96s linear infinite; }
+.orb-map{ fill:none; stroke:var(--ottanio); stroke-width:1; stroke-linecap:round; stroke-linejoin:round; opacity:.40; transform-box:fill-box; transform-origin:center; animation:orb-map-drift 26s ease-in-out infinite alternate; }
+.orb-compass{ stroke:var(--oro); opacity:.85; }
+.orb-rim{ stroke-width:2.2; opacity:.9; }
+.orb-spec{ fill:rgba(255,255,255,0.34); }
+@keyframes orb-grid-spin{ to{ transform:rotate(360deg); } }
+@keyframes orb-map-drift{ from{ transform:rotate(-2.5deg) translateY(-2px); } to{ transform:rotate(2.5deg) translateY(2px); } }
+
+/* ── PULVISCOLO sognante: canvas più ampio dello stage, DAVANTI al globo e
+   dietro ai nodi (orb.js disegna pulviscolo + linee-costellazione). ── */
+.orb-stage.is-orb .orb-dust{
+  position:absolute;
+  left:50%; top:50%;
+  width:150%; height:138%;
+  transform:translate(-50%,-50%);
+  z-index:2;
+  pointer-events:none;
+}
+
+/* ── ANTEPRIMA FOTO (card che si apre al hover di un nodo) ── */
+.orb-stage.is-orb .orb-preview{
+  position:absolute;
+  left:50%; top:50%;
+  width:min(58%,250px);
+  transform:translate(-50%,-50%) scale(0.86);
+  z-index:1500;
+  opacity:0;
+  pointer-events:none;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 34px 80px -30px rgba(26,26,26,0.55);
+  transition:opacity .5s cubic-bezier(.19,1,.22,1),
+             transform .65s cubic-bezier(.19,1,.22,1);
+}
+.orb-stage.is-orb .orb-preview.is-on{
+  opacity:1;
+  transform:translate(-50%,-50%) scale(1);
+}
+.orb-stage.is-orb .orb-preview img{
+  display:block;
+  width:100%;
+  aspect-ratio:4 / 5;
+  object-fit:cover;
+}
+.orb-preview-frame{
+  position:absolute;
+  inset:8px;
+  border:1px solid var(--oro);
+  border-radius:9px;
+  opacity:.6;
+  pointer-events:none;
+}
+.orb-preview-cap{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  padding:30px 16px 14px;
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:.82rem;
+  font-weight:500;
+  letter-spacing:.02em;
+  color:var(--avorio);
+  background:linear-gradient(to top,
+    rgba(8,30,32,0.85) 0%, rgba(8,30,32,0.40) 55%, transparent 100%);
+}
+
+/* hint d'uso, visibile solo in modalità sfera */
+.orb-hint{
+  display:none;
+  margin:28px auto 0;
+  text-align:center;
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:.74rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  opacity:.7;
+}
+.orb-stage.is-orb ~ .orb-hint{ display:block; }
+
+/* ── FALLBACK GLASSMORPHISM: niente backdrop-filter ── */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .orb-node{
+    background:rgba(243,236,223,0.95);
+  }
+  .orb-node:hover,
+  .orb-node:focus-visible{
+    background:rgba(243,236,223,0.99);
+  }
+}
+
+/* ── REDUCED MOTION: la sfera NON ruota mai → resta griglia ──
+   orb.js non aggiunge .is-orb se reduced-motion è attivo, ma
+   blindiamo anche via CSS per sicurezza. ── */
+@media (prefers-reduced-motion:reduce){
+  .orb-stage,
+  .orb-stage.is-orb{
+    height:auto;
+    perspective:none;
+    cursor:auto;
+  }
+  .orb-stage.is-orb .orb-world{
+    position:static;
+    inset:auto;
+    display:grid;
+    transform:none;
+  }
+  .orb-stage.is-orb .orb-world > li{
+    position:static;
+    top:auto; left:auto;
+    transform:none;
+  }
+  .orb-stage.is-orb .orb-node{
+    width:100%;
+    padding:14px 18px;
+    font-size:.92rem;
+    border-radius:18px;
+    white-space:nowrap;
+    transform:none;
+    opacity:1;
+  }
+  .orb-stage.is-orb::before,
+  .orb-stage.is-orb::after{ display:none; }
+  .orb-stage.is-orb .orb-dust,
+  .orb-stage.is-orb .orb-preview,
+  .orb-stage.is-orb .orb-globe{ display:none; }
+  .orb-grid, .orb-map{ animation:none !important; }
+  .orb-stage.is-orb ~ .orb-hint{ display:none; }
+}
+
+/* ── mobile: stage più compatto in modalità sfera ── */
+@media (max-width:640px){
+  .orb-section{ padding:88px 18px 96px; }
+  .orb-stage.is-orb{
+    height:430px;
+    max-width:100%;
+  }
+  .orb-stage.is-orb .orb-node{
+    font-size:.78rem;
+    padding:8px 13px;
+  }
+}

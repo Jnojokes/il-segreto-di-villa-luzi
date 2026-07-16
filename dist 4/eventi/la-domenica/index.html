@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/assets/css/site.css?v=3">
+<title>La Domenica al Segreto · Villa Luzi 1737 · Treia, Marche</title>
+<meta name="description" content="Ogni domenica a Villa Luzi 1737: pranzo dalle 12:30, poi piscina fino alle 18. Menù del giorno in quattro portate, 55 euro a persona. A Treia, su prenotazione.">
+<meta name="theme-color" content="#0A2C2E">
+<link rel="canonical" href="https://villaluzi1737.it/eventi/la-domenica/">
+<link rel="icon" type="image/png" href="/assets/img/LS-Icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Villa Luzi 1737">
+<meta property="og:title" content="La Domenica al Segreto · Villa Luzi 1737 · Treia, Marche">
+<meta property="og:description" content="Il segreto è non avere fretta. Pranzo e piscina, ogni domenica a Villa Luzi 1737. 55 euro a persona, menù e ingresso in piscina.">
+<meta property="og:image" content="https://villaluzi1737.it/assets/kv-hero.webp">
+<meta property="og:url" content="https://villaluzi1737.it/eventi/la-domenica/">
+<meta property="og:locale" content="it_IT">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://villaluzi1737.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Eventi", "item": "https://villaluzi1737.it/eventi/" },
+    { "@type": "ListItem", "position": 3, "name": "La Domenica al Segreto", "item": "https://villaluzi1737.it/eventi/la-domenica/" }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<script>document.documentElement.className='js';</script>
+<style>
+  :root{
+    --teal:#0E3B3E; --teal-deep:#0A2C2E; --ivory:#F4ECDC; --ivory-soft:#FBF6EC; --ivory-warm:#EFE4CF;
+    --rose:#D49785; --gold:#C9A86A; --gold-soft:#D8BE88; --gold-deep:#B0904E;
+    --maxw:1200px; --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'DM Sans',system-ui,sans-serif;background:var(--teal-deep);color:var(--teal);font-size:18px;line-height:1.7;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--gold);color:var(--teal-deep)}
+  h1,h2,h3,.display{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.04em;line-height:1.12}
+  .script{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500}
+  .eyebrow{font-size:.74rem;letter-spacing:.36em;text-transform:uppercase;font-weight:500;display:inline-block;color:var(--gold-soft)}
+  .gold{color:var(--gold)}
+  .rule{width:58px;height:1px;background:var(--gold-soft);border:0;margin:20px 0;position:relative;overflow:hidden}
+  .rule.c{margin-left:auto;margin-right:auto}
+  .rule::after{content:"";position:absolute;top:0;left:-45%;width:45%;height:100%;background:linear-gradient(90deg,transparent,#fff,transparent);animation:sweep 3.6s ease-in-out infinite}
+  @keyframes sweep{0%{left:-45%}55%,100%{left:130%}}
+
+  /* BUTTONS */
+  .btn{display:inline-flex;align-items:center;gap:.6em;font-family:'DM Sans',sans-serif;font-size:.98rem;font-weight:500;letter-spacing:.05em;padding:.95em 1.9em;border-radius:999px;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s,background .25s,color .25s;white-space:nowrap}
+  .btn-gold{background:var(--gold);color:var(--teal-deep);box-shadow:0 10px 30px rgba(201,168,106,.30)}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(201,168,106,.46);background:var(--gold-soft)}
+  .btn-ghost{border:1px solid rgba(244,236,220,.45);color:var(--ivory)}
+  .btn-ghost:hover{background:rgba(244,236,220,.12);border-color:rgba(244,236,220,.8)}
+  .btn-ghost-dark{border:1px solid rgba(14,59,62,.3);color:var(--teal)}
+  .btn-ghost-dark:hover{background:rgba(14,59,62,.06);border-color:rgba(14,59,62,.6)}
+  .btn svg{width:1.15em;height:1.15em;fill:currentColor;flex:none}
+
+  /* INTRO */
+  #intro{display:none}
+  html.js #intro{display:flex;position:fixed;inset:0;z-index:100;background:radial-gradient(120% 100% at 50% 40%,#103e40,#0A2C2E 70%);align-items:center;justify-content:center;flex-direction:column;text-align:center;transition:opacity 1s var(--ease),visibility 1s,transform 1.1s var(--ease)}
+  #intro.done{opacity:0;visibility:hidden;transform:translateY(-2.5%);pointer-events:none}
+  #intro .ilogo{width:128px;opacity:0;transform:translateY(14px) scale(.96);animation:introLogo 1.4s .25s var(--ease) forwards;filter:drop-shadow(0 6px 26px rgba(0,0,0,.5))}
+  #intro .iline{width:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-soft),transparent);margin:26px auto 0;animation:introLine 1.6s 1s var(--ease) forwards}
+  #intro .iword{margin-top:20px;color:var(--gold-soft);font-size:.8rem;letter-spacing:.42em;text-transform:uppercase;opacity:0;animation:introWord 1.2s 1.5s var(--ease) forwards}
+  @keyframes introLogo{to{opacity:1;transform:none}}
+  @keyframes introLine{to{width:min(260px,60vw)}}
+  @keyframes introWord{to{opacity:1}}
+
+  /* PROGRESS + TOPBAR + CHAPTERS */
+  #progress{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,var(--gold-deep),var(--gold-soft));z-index:80;transition:transform .1s linear}
+  .chapters{position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;gap:15px;opacity:0;pointer-events:none;transition:opacity .6s}
+  .chapters.show{opacity:1;pointer-events:auto}
+  .chapters a{position:relative;width:11px;height:11px;border-radius:50%;border:1px solid rgba(244,236,220,.6);box-shadow:0 1px 5px rgba(0,0,0,.45);transition:background .35s,border-color .35s,transform .35s}
+  .chapters a:hover{transform:scale(1.3);border-color:var(--gold-soft)}
+  .chapters a.active{background:var(--gold);border-color:var(--gold)}
+  .chapters a .lbl{position:absolute;right:22px;top:50%;transform:translateY(-50%) translateX(6px);white-space:nowrap;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ivory);background:rgba(10,44,46,.82);padding:5px 10px;border-radius:5px;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+  .chapters a:hover .lbl{opacity:1;transform:translateY(-50%) translateX(0)}
+
+  /* SCENE SYSTEM */
+  .scene{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;scroll-snap-align:start}
+  .scene__bg{position:absolute;inset:0;z-index:1;overflow:hidden}
+  .scene__bg video,.scene__bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);animation:kb 26s ease-in-out infinite alternate}
+  @keyframes kb{0%{transform:scale(1.05)}100%{transform:scale(1.16)}}
+  .scene__scrim{position:absolute;inset:0;z-index:2;background:
+     radial-gradient(130% 100% at 50% 35%,rgba(10,44,46,.12),rgba(10,44,46,.5) 72%,rgba(10,44,46,.74)),
+     linear-gradient(180deg,rgba(10,44,46,.5),rgba(10,44,46,.08) 26%,rgba(10,44,46,.2) 60%,rgba(10,44,46,.8))}
+  .scene__content{position:relative;z-index:3;width:100%;max-width:var(--maxw);margin:0 auto;padding:96px 28px;color:var(--ivory)}
+  .scene--center{text-align:center}
+  .scene--left .scene__content{max-width:760px}
+  .scene__content .line{will-change:transform,opacity}
+  html.js .scene__content .line{opacity:0;transform:translateY(34px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+  .scene.is-active .scene__content .line{opacity:1;transform:none}
+  .scene.is-active .line:nth-child(2){transition-delay:.12s}
+  .scene.is-active .line:nth-child(3){transition-delay:.24s}
+  .scene.is-active .line:nth-child(4){transition-delay:.36s}
+  .scene.is-active .line:nth-child(5){transition-delay:.48s}
+  .scene.is-active .line:nth-child(6){transition-delay:.6s}
+
+  .scene h1{font-size:clamp(2.5rem,7vw,5.8rem);letter-spacing:.06em;text-shadow:0 6px 34px rgba(0,0,0,.45)}
+  .scene h2{font-size:clamp(2rem,5vw,3.7rem);text-shadow:0 4px 28px rgba(0,0,0,.45)}
+  .scene .big-script{font-size:clamp(1.7rem,3.8vw,2.9rem);line-height:1.3;color:var(--gold-soft);text-shadow:0 3px 22px rgba(0,0,0,.55)}
+  .scene .sub-script{font-size:clamp(1.4rem,2.6vw,2.1rem);color:var(--gold-soft);text-shadow:0 3px 20px rgba(0,0,0,.5)}
+  .scene .lead{font-size:clamp(1.05rem,1.7vw,1.32rem);font-weight:300;color:rgba(244,236,220,.92);max-width:46ch;line-height:1.78;text-shadow:0 2px 16px rgba(0,0,0,.4)}
+  .scene--center .lead{margin-left:auto;margin-right:auto}
+  .scene .para{font-size:clamp(1.05rem,1.5vw,1.25rem);font-weight:300;color:rgba(244,236,220,.9);max-width:48ch;line-height:1.85;text-shadow:0 2px 16px rgba(0,0,0,.4)}
+
+  /* HERO extras */
+  #hero .hlogo{width:104px;margin-bottom:24px;filter:drop-shadow(0 4px 18px rgba(0,0,0,.45))}
+  #hero{text-align:center}
+  #hero .scene__content{max-width:920px}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:30px}
+  .scrollcue{position:absolute;left:50%;bottom:26px;z-index:4;transform:translateX(-50%);color:rgba(244,236,220,.66);font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;text-align:center}
+  .scrollcue span{display:block;width:1px;height:38px;background:linear-gradient(var(--gold-soft),transparent);margin:10px auto 0;transform-origin:top;animation:cue 2s ease-in-out infinite}
+  @keyframes cue{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+  .spark{position:absolute;inset:0;z-index:3;pointer-events:none}
+
+  /* INFO CARDS (funziona) */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px}
+  .card{border:1px solid rgba(216,190,136,.34);border-radius:8px;padding:44px 28px 38px;text-align:center;background:rgba(10,44,46,.34);backdrop-filter:blur(4px);transition:transform .4s var(--ease),border-color .4s,background .4s}
+  .card:hover{transform:translateY(-8px);border-color:rgba(216,190,136,.75);background:rgba(10,44,46,.5)}
+  .card .ico{width:42px;height:42px;margin:0 auto 18px;stroke:var(--gold-soft);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+  .card .k{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-soft);font-weight:500;margin-bottom:13px;display:block}
+  .card .v{font-family:'Cinzel',serif;font-size:1.7rem;line-height:1.15;display:block;color:var(--ivory)}
+  .card .v small{display:block;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:300;color:rgba(244,236,220,.74);margin-top:11px;text-transform:none;letter-spacing:0}
+
+  /* MENU card */
+  .menu-card{max-width:760px;margin:44px auto 0;background:rgba(10,44,46,.5);border:1px solid rgba(216,190,136,.36);backdrop-filter:blur(8px);border-radius:10px;padding:clamp(26px,4vw,52px);text-align:left}
+  .course{border-top:1px solid rgba(216,190,136,.22);padding:22px 6px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:baseline;transition:padding-left .35s var(--ease)}
+  .course:last-of-type{border-bottom:1px solid rgba(216,190,136,.22)}
+  .course:hover{padding-left:8px}
+  .course__num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.7rem;color:var(--gold-soft);line-height:1;min-width:1.6em}
+  .course__t{font-family:'Cinzel',serif;font-size:1.02rem;letter-spacing:.05em;color:var(--ivory);margin-bottom:6px}
+  .course__d{font-size:1rem;font-weight:300;color:rgba(244,236,220,.78);line-height:1.6}
+  .menu-foot{margin-top:26px;font-size:.95rem;color:rgba(244,236,220,.62);text-align:center}
+
+  /* SECTIONS (light) */
+  .section{padding:clamp(72px,10vw,128px) 26px;position:relative}
+  .band-ivory{background:var(--ivory);color:var(--teal)}
+  .band-soft{background:var(--ivory-soft);color:var(--teal)}
+  .wrap{max-width:var(--maxw);margin:0 auto}
+  .section h2{font-size:clamp(1.9rem,4vw,3.1rem);color:var(--teal)}
+  .section .eyebrow{color:var(--gold-deep)}
+  .section .rule{background:var(--gold)}
+  .reveal{opacity:0;transform:translateY(32px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+  html:not(.js) .reveal{opacity:1;transform:none}
+  .reveal.in{opacity:1;transform:none}
+  .d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+
+  /* GALLERY */
+  .gallery{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:200px;gap:16px;margin-top:50px}
+  .gcell{position:relative;overflow:hidden;border-radius:6px}
+  .gcell img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
+  .gcell:hover img{transform:scale(1.07)}
+  .gcell::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,44,46,.45));opacity:0;transition:opacity .4s}
+  .gcell:hover::after{opacity:1}
+  .gcell .cap{position:absolute;left:16px;bottom:14px;z-index:2;color:var(--ivory);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
+  .gcell:hover .cap{opacity:1;transform:none}
+  .g-a{grid-column:span 4;grid-row:span 2}.g-b{grid-column:span 2}.g-c{grid-column:span 2}
+  .g-d{grid-column:span 2;grid-row:span 2}.g-e{grid-column:span 2}.g-f{grid-column:span 2}
+
+  /* COME ARRIVARE */
+  .map-split{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(32px,5vw,72px);align-items:center}
+  .map-frame{border-radius:10px;overflow:hidden;box-shadow:0 26px 60px rgba(10,44,46,.22);border:1px solid rgba(14,59,62,.12);aspect-ratio:4/3;background:#dfeae6}
+  .map-frame iframe{width:100%;height:100%;border:0;display:block;filter:saturate(.92)}
+  .addr{font-size:1.12rem;font-weight:300;line-height:1.9;margin:1.1em 0 1.4em}
+  .addr strong{font-weight:500;font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:.04em}
+  .arrow-list{list-style:none;margin:1.1em 0 0;display:grid;gap:10px}
+  .arrow-list li{position:relative;padding-left:26px;font-weight:300;color:rgba(14,59,62,.82)}
+  .arrow-list li::before{content:"";position:absolute;left:0;top:.62em;width:11px;height:11px;border-right:1.5px solid var(--gold-deep);border-bottom:1.5px solid var(--gold-deep);transform:rotate(-45deg)}
+  .scopri-link{color:var(--gold-deep);border-bottom:1px solid var(--gold-soft);transition:color .25s,border-color .25s}
+  .scopri-link:hover{color:var(--teal);border-color:var(--teal)}
+
+  /* CTA + FOOTER */
+  #prenota{background:radial-gradient(70% 80% at 50% 20%,#12504F,#0A2C2E 75%);text-align:center;color:var(--ivory)}
+  #prenota .sub{color:rgba(244,236,220,.84);font-size:1.18rem;font-weight:300;margin:.7em 0 1.9em}
+  .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .cta-note{margin-top:1.8em;font-size:.92rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft)}
+  footer{background:var(--teal-deep);color:rgba(244,236,220,.82);text-align:center;padding:70px 26px 60px}
+  footer .flogo{width:92px;margin:0 auto 22px;opacity:.95}
+  footer .fname{font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:.2em;color:var(--ivory)}
+  footer .tagline{margin:8px 0 24px;font-size:1.3rem;color:var(--gold-soft)}
+  footer .faddr{font-size:1.02rem;font-weight:300;line-height:1.9}
+  footer .faddr a{color:var(--gold-soft);border-bottom:1px solid transparent;transition:border-color .25s}
+  footer .faddr a:hover{border-color:var(--gold-soft)}
+  footer .fmeta{margin-top:28px;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,236,220,.4)}
+
+  /* FLOATING ACTIONS */
+  .fab{position:fixed;z-index:65;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(10,44,46,.4);transition:transform .25s var(--ease),box-shadow .25s,background .3s,color .3s;cursor:pointer}
+  .wa-float{right:22px;bottom:22px;background:var(--gold);color:var(--teal-deep)}
+  .wa-float:hover{transform:scale(1.08)}
+  .wa-float svg{width:30px;height:30px;fill:currentColor}
+  .wa-float::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--gold);animation:pulse 2.6s ease-out infinite}
+  @keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.7);opacity:0}}
+  .audio-float{left:22px;bottom:22px;background:rgba(10,44,46,.72);color:var(--gold-soft);border:1px solid rgba(216,190,136,.5);backdrop-filter:blur(8px)}
+  .audio-float:hover{transform:scale(1.08);color:var(--gold)}
+  .audio-float svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .audio-float .wave{opacity:0;transition:opacity .3s}
+  .audio-float.on .wave{opacity:1}
+  .audio-float .lbl{position:absolute;left:64px;white-space:nowrap;font-family:'DM Sans',sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ivory);background:rgba(10,44,46,.82);padding:6px 11px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .3s}
+  .audio-float:hover .lbl{opacity:1}
+
+  /* RESPONSIVE */
+  @media (max-width:900px){
+    .map-split{grid-template-columns:1fr;gap:30px}
+    .cards{grid-template-columns:1fr;gap:16px}
+    .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+    .g-a,.g-b,.g-c,.g-d,.g-e,.g-f{grid-column:span 1;grid-row:span 1}
+    .g-a{grid-column:span 2;grid-row:span 2}
+    .chapters{display:none}
+  }
+  @media (max-width:560px){
+    body{font-size:17px}
+    .hero-cta .btn,.cta-row .btn{width:100%;justify-content:center}
+    .gallery{grid-auto-rows:132px}
+    .scene__bg video,.scene__bg img{animation:none;transform:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{animation-duration:.001s!important;animation-iteration-count:1!important}
+    .scene__bg video,.scene__bg img{transform:none}
+    html.js .scene__content .line,.reveal{opacity:1!important;transform:none!important;transition:none}
+    #intro .ilogo,#intro .iword{opacity:1}
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     VILLA LUZI · HEADER GLOBALE (fonte di verità)
+     Incluso a build-time da build.js dove le pagine hanno il
+     marker <!━━ @include:header ━━> (fra <body> e il contenuto).
+     MAI iniettare via JS: i crawler AI (GPTBot, ClaudeBot,
+     PerplexityBot, ecc.) non eseguono JavaScript — tutte le voci
+     di menu (incluse quelle nei dropdown) sono nel sorgente HTML.
+     I dropdown desktop sono pura CSS (hover + focus-within), il
+     drawer mobile è progressive enhancement (apertura via JS).
+     ═══════════════════════════════════════════════════════════ -->
+<!-- Progressive enhancement: segna che il JS è attivo, così i blocchi
+     .reveal partono nascosti SOLO con JS (a JS spento restano visibili).
+     Non inietta contenuti: la navbar resta interamente nel sorgente. -->
+<script>document.documentElement.classList.add('has-js');</script>
+<header class="topbar" id="topbar">
+  <a href="/" class="topbar-mark" aria-label="Villa Luzi · Home">
+    <img src="/assets/img/LS-Mark.png" alt="Villa Luzi" />
+  </a>
+
+  <nav class="topbar-nav" aria-label="Navigazione principale">
+
+    <div class="topbar-item has-menu">
+      <a href="/la-villa/" class="topbar-link" data-route="/la-villa">La Villa
+        <svg class="topbar-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="topbar-menu">
+        <a href="/la-villa/" data-route="/la-villa">La Villa</a>
+        <a href="/il-luogo/" data-route="/il-luogo">Il luogo · Treia e le Marche</a>
+        <a href="/journal/" data-route="/journal">Journal</a>
+      </div>
+    </div>
+
+    <!-- TEMP: redirect provvisorio Soggiornare → Google. Sostituire con la pagina /soggiornare/ quando pronta. Sottovoci (Le camere/Room/Suite/Offerte) sganciate dal menu: le pagine restano nel repo (Offerte resta linkata dal footer). URL Google in un solo formato, replicato in drawer e footer. -->
+    <div class="topbar-item">
+      <a href="https://www.google.com/search?q=Villa+Luzi+1737+Treia+soggiorno" class="topbar-link" target="_blank" rel="noopener">Soggiornare</a>
+    </div>
+
+    <div class="topbar-item has-menu">
+      <a href="/il-segreto/" class="topbar-link" data-route="/il-segreto">Ristorante
+        <svg class="topbar-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="topbar-menu">
+        <a href="/il-segreto/" data-route="/il-segreto">Il Segreto</a>
+        <a href="/il-segreto/menu/" data-route="/il-segreto/menu">Il menu</a>
+      </div>
+    </div>
+
+    <div class="topbar-item has-menu">
+      <a href="/esperienze/" class="topbar-link" data-route="/esperienze">Esperienze
+        <svg class="topbar-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="topbar-menu">
+        <a href="/esperienze/" data-route="/esperienze">Esperienze</a>
+        <a href="/esperienze/aperitivi-in-erba/" data-route="/esperienze/aperitivi-in-erba">Aperitivi in erba</a>
+        <a href="/esperienze/yoga-e-benessere/" data-route="/esperienze/yoga-e-benessere">Yoga e benessere</a>
+        <a href="/esperienze/il-parco/" data-route="/esperienze/il-parco">Il parco</a>
+      </div>
+    </div>
+
+    <div class="topbar-item has-menu">
+      <a href="/eventi/" class="topbar-link" data-route="/eventi">Eventi
+        <svg class="topbar-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="topbar-menu">
+        <a href="/eventi/" data-route="/eventi">Eventi</a>
+        <a href="/eventi/eventi-privati/" data-route="/eventi/eventi-privati">Eventi privati</a>
+        <a href="/eventi/corporate/" data-route="/eventi/corporate">Corporate</a>
+      </div>
+    </div>
+
+    <div class="topbar-item">
+      <a href="/matrimoni/" class="topbar-link" data-route="/matrimoni">Matrimoni</a>
+    </div>
+
+    <div class="topbar-item has-menu">
+      <a href="/contatti/" class="topbar-link" data-route="/contatti">Contatti
+        <svg class="topbar-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="topbar-menu">
+        <a href="/contatti/" data-route="/contatti">Contatti</a>
+        <a href="/come-arrivare/" data-route="/come-arrivare">Come arrivare</a>
+        <a href="/informazioni-utili/" data-route="/informazioni-utili">Informazioni utili</a>
+        <a href="/faq/" data-route="/faq">FAQ</a>
+      </div>
+    </div>
+
+  </nav>
+
+  <div class="topbar-actions">
+    <a href="https://www.instagram.com/villaluzi1737/" class="topbar-ig" target="_blank" rel="noopener" aria-label="Instagram Villa Luzi">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="/il-segreto/#prenota" class="topbar-cta">Prenota ora</a>
+    <button class="topbar-burger" id="nav-burger" type="button" aria-label="Apri menu" aria-controls="mobile-nav" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile nav drawer -->
+<aside class="mobile-nav" id="mobile-nav" aria-hidden="true" aria-label="Menu di navigazione">
+  <button class="mobile-nav-close" id="mobile-nav-close" type="button" aria-label="Chiudi menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+  </button>
+  <ul class="mobile-nav-list">
+    <li class="mobile-nav-group">
+      <a href="/la-villa/" class="mobile-nav-link" data-route="/la-villa">La Villa</a>
+      <ul class="mobile-nav-sub">
+        <li><a href="/il-luogo/" data-route="/il-luogo">Il luogo · Treia e le Marche</a></li>
+        <li><a href="/journal/" data-route="/journal">Journal</a></li>
+      </ul>
+    </li>
+    <!-- TEMP: redirect provvisorio Soggiornare → Google (coerente con header desktop) -->
+    <li class="mobile-nav-group">
+      <a href="https://www.google.com/search?q=Villa+Luzi+1737+Treia+soggiorno" class="mobile-nav-link" target="_blank" rel="noopener">Soggiornare</a>
+    </li>
+    <li class="mobile-nav-group">
+      <a href="/il-segreto/" class="mobile-nav-link" data-route="/il-segreto">Ristorante</a>
+      <ul class="mobile-nav-sub">
+        <li><a href="/il-segreto/" data-route="/il-segreto">Il Segreto</a></li>
+        <li><a href="/il-segreto/menu/" data-route="/il-segreto/menu">Il menu</a></li>
+      </ul>
+    </li>
+    <li class="mobile-nav-group">
+      <a href="/esperienze/" class="mobile-nav-link" data-route="/esperienze">Esperienze</a>
+      <ul class="mobile-nav-sub">
+        <li><a href="/esperienze/aperitivi-in-erba/" data-route="/esperienze/aperitivi-in-erba">Aperitivi in erba</a></li>
+        <li><a href="/esperienze/yoga-e-benessere/" data-route="/esperienze/yoga-e-benessere">Yoga e benessere</a></li>
+        <li><a href="/esperienze/il-parco/" data-route="/esperienze/il-parco">Il parco</a></li>
+      </ul>
+    </li>
+    <li class="mobile-nav-group">
+      <a href="/eventi/" class="mobile-nav-link" data-route="/eventi">Eventi</a>
+      <ul class="mobile-nav-sub">
+        <li><a href="/eventi/eventi-privati/" data-route="/eventi/eventi-privati">Eventi privati</a></li>
+        <li><a href="/eventi/corporate/" data-route="/eventi/corporate">Corporate</a></li>
+      </ul>
+    </li>
+    <li class="mobile-nav-group">
+      <a href="/matrimoni/" class="mobile-nav-link" data-route="/matrimoni">Matrimoni</a>
+    </li>
+    <li class="mobile-nav-group">
+      <a href="/contatti/" class="mobile-nav-link" data-route="/contatti">Contatti</a>
+      <ul class="mobile-nav-sub">
+        <li><a href="/come-arrivare/" data-route="/come-arrivare">Come arrivare</a></li>
+        <li><a href="/informazioni-utili/" data-route="/informazioni-utili">Informazioni utili</a></li>
+        <li><a href="/faq/" data-route="/faq">FAQ</a></li>
+      </ul>
+    </li>
+  </ul>
+  <a href="/il-segreto/#prenota" class="mobile-nav-cta">
+    <span>Prenota ora</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+  </a>
+  <div class="mobile-nav-meta">
+    Villa Luzi · Contrada Chiaravalle 49 · 62010 Treia (MC)<br/>
+    <a href="tel:+393452419263">+39 345 241 9263</a> · <a href="mailto:villaluzi1737@gmail.com">villaluzi1737@gmail.com</a>
+  </div>
+</aside>
+
+<!-- INTRO -->
+<div id="intro" aria-hidden="true">
+  <img class="ilogo" src="/assets/logo.webp" alt="Il logo di Villa Luzi 1737">
+  <div class="iline"></div>
+  <div class="iword">Dove il tempo si ferma</div>
+</div>
+
+<div id="progress"></div>
+
+<!-- CHAPTERS NAV -->
+<nav class="chapters" id="chapters" aria-label="Capitoli">
+  <a href="#hero" data-label="Inizio"><span class="lbl">Inizio</span></a>
+  <a href="#dimora" data-label="La dimora"><span class="lbl">La dimora</span></a>
+  <a href="#arrivo" data-label="L'arrivo"><span class="lbl">L'arrivo</span></a>
+  <a href="#rito" data-label="Ore lente"><span class="lbl">Ore lente</span></a>
+  <a href="#giardino" data-label="Il giardino"><span class="lbl">Il giardino</span></a>
+  <a href="#menu" data-label="Il menù"><span class="lbl">Il menù</span></a>
+  <a href="#piscina" data-label="La piscina"><span class="lbl">La piscina</span></a>
+  <a href="#prenota" data-label="Prenota"><span class="lbl">Prenota</span></a>
+</nav>
+
+<!-- SCENE 1 — HERO -->
+<section class="scene scene--center" id="hero">
+  <div class="scene__bg"><video src="/assets/hero-pool.mp4" poster="/assets/hero-poster.webp" autoplay muted loop playsinline preload="auto"></video></div>
+  <div class="scene__scrim"></div>
+  <canvas class="spark" id="spark"></canvas>
+  <div class="scene__content">
+    <span class="eyebrow line">Ogni domenica, dal 1737</span>
+    <h1 class="line">La Domenica<br>al Segreto</h1>
+    <hr class="rule c line">
+    <p class="lead line">Il segreto è non avere fretta. Pranzo e piscina, e tutto il pomeriggio davanti.</p>
+    <div class="hero-cta line">
+      <a class="btn btn-gold" href="https://wa.me/393452419263?text=Ciao!%20Vorrei%20prenotare%20per%20La%20Domenica%20al%20Segreto.">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        Prenota su WhatsApp
+      </a>
+    </div>
+  </div>
+  <div class="scrollcue">Scorri<span></span></div>
+</section>
+
+<!-- SCENE 2 — LA DIMORA -->
+<section class="scene scene--center" id="dimora">
+  <div class="scene__bg"><video data-src="/assets/villa.mp4" poster="/assets/poster-villa.webp" muted loop playsinline preload="none"></video></div>
+  <div class="scene__scrim"></div>
+  <div class="scene__content">
+    <span class="eyebrow line">La dimora</span>
+    <hr class="rule c line">
+    <h2 class="line">Una villa del 1737</h2>
+    <p class="big-script script line">sospesa sulle colline marchigiane</p>
+  </div>
+</section>
+
+<!-- SCENE 3 — L'ARRIVO -->
+<section class="scene scene--center" id="arrivo">
+  <div class="scene__bg"><video data-src="/assets/cipressi.mp4" poster="/assets/poster-cipressi.webp" muted loop playsinline preload="none"></video></div>
+  <div class="scene__scrim"></div>
+  <div class="scene__content">
+    <span class="eyebrow line">L'arrivo</span>
+    <hr class="rule c line">
+    <h2 class="line">Si arriva piano</h2>
+    <p class="sub-script script line">tra i cipressi, il mondo fuori rallenta</p>
+  </div>
+</section>
+
+<!-- SCENE 4 — IL RITO (key visual) -->
+<section class="scene scene--left" id="rito">
+  <div class="scene__bg"><video data-src="/assets/tuffo.mp4" poster="/assets/poster-tuffo.webp" muted loop playsinline preload="none"></video></div>
+  <div class="scene__scrim" style="background:linear-gradient(90deg,rgba(10,44,46,.82),rgba(10,44,46,.46) 48%,rgba(10,44,46,.12))"></div>
+  <div class="scene__content">
+    <span class="eyebrow line">Ogni domenica</span>
+    <hr class="rule line">
+    <h2 class="line">Ore lente</h2>
+    <p class="para line">Il pranzo arriva senza fretta, un menù del giorno in quattro portate; poi l'acqua fa il resto: l'azzurro tutto intorno, un pomeriggio che ci si lascia attraversare senza guardare l'orologio.</p>
+    <p class="big-script script line" style="margin-top:.5em">Dove il tempo si ferma.</p>
+  </div>
+</section>
+
+<!-- SCENE 5 — IL GIARDINO -->
+<section class="scene scene--center" id="giardino">
+  <div class="scene__bg"><video data-src="/assets/garden.mp4" poster="/assets/poster-garden.webp" muted loop playsinline preload="none"></video></div>
+  <div class="scene__scrim"></div>
+  <div class="scene__content">
+    <span class="eyebrow line">Il giardino</span>
+    <hr class="rule c line">
+    <p class="big-script script line">C'è un giardino segreto,<br>e una domenica che non vuole finire.</p>
+  </div>
+</section>
+
+<!-- SCENE 6 — IL MENÙ -->
+<section class="scene scene--center" id="menu">
+  <div class="scene__bg"><video data-src="/assets/table.mp4" poster="/assets/poster-table.webp" muted loop playsinline preload="none"></video></div>
+  <div class="scene__scrim" style="background:linear-gradient(180deg,rgba(10,44,46,.7),rgba(10,44,46,.55) 45%,rgba(10,44,46,.8))"></div>
+  <div class="scene__content">
+    <span class="eyebrow line">Il menù del giorno</span>
+    <hr class="rule c line">
+    <h2 class="line">Quattro portate</h2>
+    <div class="menu-card line">
+      <div class="course"><span class="course__num">I</span><div><div class="course__t">Battuta di pomodoro e burratina</div><div class="course__d">Colatura di alici, cialda di pane e olio al basilico.</div></div></div>
+      <div class="course"><span class="course__num">II</span><div><div class="course__t">Fusilloni Mancini</div><div class="course__d">Crudaiola e ricotta salata.</div></div></div>
+      <div class="course"><span class="course__num">III</span><div><div class="course__t">Vitello tonnato</div><div class="course__d">Con misticanza di stagione.</div></div></div>
+      <div class="course"><span class="course__num">IV</span><div><div class="course__t">Zuppa di frutta</div><div class="course__d">Latte di mandorla tostata e gelato alla vaniglia.</div></div></div>
+      <p class="menu-foot">Il menù può variare secondo la stagione e il mercato.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 7 — LA PISCINA -->
+<section class="scene scene--center" id="piscina">
+  <div class="scene__bg"><video data-src="/assets/pool.mp4" poster="/assets/poster-pool.webp" muted loop playsinline preload="none"></video></div>
+  <div class="scene__scrim"></div>
+  <div class="scene__content">
+    <span class="eyebrow line">Il pomeriggio</span>
+    <hr class="rule c line">
+    <h2 class="line">Poi, la piscina</h2>
+    <p class="sub-script script line">e si resta, fino a sera</p>
+  </div>
+</section>
+
+<!-- SCENE 8 — COME FUNZIONA -->
+<section class="scene scene--center" id="funziona">
+  <div class="scene__bg"><img src="/assets/pool-aerial.webp" alt="La piscina di Villa Luzi vista dall'alto"></div>
+  <div class="scene__scrim" style="background:linear-gradient(180deg,rgba(10,44,46,.78),rgba(10,44,46,.62) 45%,rgba(10,44,46,.82))"></div>
+  <div class="scene__content">
+    <span class="eyebrow line">Come funziona</span>
+    <hr class="rule c line">
+    <h2 class="line">Pranzo, piscina<br>e tutto il pomeriggio</h2>
+    <div class="cards line">
+      <div class="card">
+        <svg class="ico" viewBox="0 0 48 48"><path d="M10 22h28M16 22v-3a8 8 0 0 1 16 0v3M14 22l1.5 14a3 3 0 0 0 3 2.6h11a3 3 0 0 0 3-2.6L34 22"/></svg>
+        <span class="k">Il pranzo</span><span class="v">dalle 12:30<small>Menù del giorno in quattro portate</small></span>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 48 48"><path d="M6 30c3.5-3.5 6.5-3.5 10 0s6.5 3.5 10 0 6.5-3.5 10 0M6 38c3.5-3.5 6.5-3.5 10 0s6.5 3.5 10 0 6.5-3.5 10 0M18 24l2-12 8 2-2 12"/></svg>
+        <span class="k">La piscina</span><span class="v">fino alle 18<small>Ingresso e relax a bordo vasca</small></span>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 48 48"><path d="M24 6v36M16 14h12a5 5 0 0 1 0 10H20a5 5 0 0 0 0 10h12"/></svg>
+        <span class="k">Tutto incluso</span><span class="v">55 € a persona<small>Menù e ingresso in piscina</small></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERIA -->
+<section class="section band-soft" id="galleria">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow reveal">Villa Luzi</span>
+    <hr class="rule c reveal d1">
+    <h2 class="reveal d1">Uno sguardo</h2>
+  </div>
+  <div class="wrap">
+    <div class="gallery reveal d1">
+      <div class="gcell g-a"><img src="/assets/poolside.webp" alt="La piscina tra gli alberi" loading="lazy" decoding="async"><span class="cap">La piscina</span></div>
+      <div class="gcell g-b"><img src="/assets/tavola.webp" alt="Tavola apparecchiata con fiori e cristalli" loading="lazy" decoding="async"><span class="cap">La tavola</span></div>
+      <div class="gcell g-c"><img src="/assets/pool-aerial.webp" alt="La piscina vista dall'alto, tra gli alberi" loading="lazy" decoding="async"><span class="cap">Dall'alto</span></div>
+      <div class="gcell g-d"><img src="/assets/secret-garden.webp" alt="Il tempietto e la vasca del giardino segreto" loading="lazy" decoding="async"><span class="cap">Il giardino</span></div>
+      <div class="gcell g-e"><img src="/assets/villa-hills.webp" alt="La villa sulle colline marchigiane" loading="lazy" decoding="async"><span class="cap">La dimora</span></div>
+      <div class="gcell g-f"><img src="/assets/cipressi.webp" alt="Il viale dei cipressi" loading="lazy" decoding="async"><span class="cap">Il viale</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- COME ARRIVARE -->
+<section class="section band-ivory" id="arrivare">
+  <div class="wrap">
+    <div class="map-split">
+      <div>
+        <span class="eyebrow reveal">Come arrivare</span>
+        <hr class="rule reveal d1">
+        <h2 class="reveal d1">Villa Luzi, Treia</h2>
+        <p class="addr reveal d2"><strong>Il Segreto — Villa Luzi</strong><br>Contrada Chiaravalle 49<br>62010 Treia (MC), Marche</p>
+        <ul class="arrow-list reveal d2">
+          <li>A 15 minuti da Macerata, tra le colline del maceratese.</li>
+          <li>Ampio parcheggio interno alla tenuta.</li>
+          <li>Si consiglia di arrivare per le 12:30, all'apertura del pranzo.</li>
+        </ul>
+        <div class="cta-row reveal d3" style="justify-content:flex-start;margin-top:1.8em">
+          <a class="btn btn-gold" href="https://www.google.com/maps/search/?api=1&query=Villa+Luzi+Contrada+Chiaravalle+49+Treia+MC" target="_blank" rel="noopener">Apri in Google Maps</a>
+          <a class="btn btn-ghost-dark" href="https://wa.me/393452419263?text=Ciao!%20Vorrei%20prenotare%20per%20La%20Domenica%20al%20Segreto.">Prenota</a>
+        </div>
+        <p class="addr reveal d3" style="margin-top:1.6em;font-size:1rem">
+          Scopri anche <a class="scopri-link" href="/il-segreto/">Il Segreto, il ristorante</a>,
+          gli <a class="scopri-link" href="/esperienze/aperitivi-in-erba/">aperitivi in erba</a>
+          e <a class="scopri-link" href="/eventi/">gli eventi a Villa Luzi</a>.
+        </p>
+      </div>
+      <div class="map-frame reveal d2">
+        <iframe title="Mappa — Villa Luzi, Contrada Chiaravalle 49, Treia (MC)" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Contrada%20Chiaravalle%2049%20Treia%20MC&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="section" id="prenota">
+  <div class="wrap" style="max-width:720px;margin:0 auto">
+    <span class="eyebrow reveal">Su prenotazione</span>
+    <hr class="rule c reveal d1">
+    <h2 class="reveal d1" style="color:var(--ivory)">Prenota la tua domenica</h2>
+    <p class="sub reveal d1">Posti limitati. Scrivici su WhatsApp e tieniti il tuo posto a bordo piscina.</p>
+    <div class="cta-row reveal d2">
+      <a class="btn btn-gold" href="https://wa.me/393452419263?text=Ciao!%20Vorrei%20prenotare%20per%20La%20Domenica%20al%20Segreto.">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        Scrivici su WhatsApp
+      </a>
+      <a class="btn btn-ghost" href="tel:+393452419263">Chiama 345 241 9263</a>
+    </div>
+    <p class="cta-note reveal d2">Ogni domenica — dalle 12:30</p>
+  </div>
+</section>
+
+<!-- FLOATING -->
+<button class="fab audio-float" id="audioToggle" aria-label="Attiva o disattiva l'audio ambient">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="wave" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8 8 0 0 1 0 12"/></svg>
+  <span class="lbl">Audio</span>
+</button>
+<a class="fab wa-float" href="https://wa.me/393452419263?text=Ciao!%20Vorrei%20prenotare%20per%20La%20Domenica%20al%20Segreto." aria-label="Prenota su WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+</a>
+
+<audio id="amb" src="/assets/ambient.mp3" loop preload="none"></audio>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene'));
+
+  /* INTRO */
+  var intro = document.getElementById('intro');
+  function dismissIntro(){ if(intro) intro.classList.add('done'); }
+  setTimeout(dismissIntro, reduce ? 200 : 2600);
+  ['wheel','touchstart','keydown','pointerdown'].forEach(function(ev){
+    window.addEventListener(ev, dismissIntro, {once:true, passive:true});
+  });
+
+  /* SCENE: preload video src when near */
+  var preIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var v = e.target.querySelector('video[data-src]');
+        if(v && !v.src){ v.src = v.dataset.src; try{v.load();}catch(_){} }
+        preIO.unobserve(e.target);
+      }
+    });
+  }, {rootMargin:'130% 0px'});
+  scenes.forEach(function(s){ if(s.querySelector('video[data-src]')) preIO.observe(s); });
+
+  /* SCENE: active state (reveal text + play/pause video + chapter nav) */
+  var chapterLinks = Array.prototype.slice.call(document.querySelectorAll('.chapters a'));
+  function setActiveChapter(id){
+    chapterLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#'+id); });
+  }
+  var activeIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var v = e.target.querySelector('video');
+      if(e.isIntersecting && e.intersectionRatio >= 0.5){
+        e.target.classList.add('is-active');
+        if(e.target.id) setActiveChapter(e.target.id);
+        if(v){ if(!v.src && v.dataset.src){ v.src = v.dataset.src; } var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+      } else {
+        e.target.classList.remove('is-active');
+        if(v && e.target.id!=='hero' && !v.paused){ v.pause(); }
+      }
+    });
+  }, {threshold:[0,0.5,0.9]});
+  scenes.forEach(function(s){ activeIO.observe(s); });
+
+  /* Failsafe: if nothing active shortly after load, reveal everything */
+  setTimeout(function(){ if(!document.querySelector('.scene.is-active')){ scenes.forEach(function(s){ s.classList.add('is-active'); }); } }, 1800);
+
+  /* SECTION reveals (light bands) */
+  var revIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); revIO.unobserve(e.target); } });
+  }, {threshold:0.14, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ revIO.observe(el); });
+
+  /* Chapters visibility + progress (la navbar globale gestisce da sé lo stato scrolled) */
+  var chapters = document.getElementById('chapters'),
+      bar = document.getElementById('progress'),
+      hero = document.getElementById('hero'),
+      galleria = document.getElementById('galleria');
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var y = window.scrollY, vh = window.innerHeight;
+    var doc = document.documentElement, max = doc.scrollHeight - doc.clientHeight;
+    bar.style.transform = 'scaleX(' + (max>0 ? (y/max) : 0) + ')';
+    var inCinema = y > hero.offsetHeight*0.6 && y < (galleria.offsetTop - vh*0.4);
+    chapters.classList.toggle('show', inCinema);
+  }
+  function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', update); update();
+
+  /* AUDIO toggle with fade */
+  var amb = document.getElementById('amb'), aBtn = document.getElementById('audioToggle'), on=false, fadeT;
+  function fadeTo(target, done){
+    clearInterval(fadeT);
+    fadeT = setInterval(function(){
+      var d = target - amb.volume;
+      if(Math.abs(d) < 0.04){ amb.volume = Math.max(0,Math.min(1,target)); clearInterval(fadeT); if(done) done(); }
+      else { amb.volume = Math.max(0, Math.min(1, amb.volume + d*0.18)); }
+    }, 40);
+  }
+  aBtn.addEventListener('click', function(){
+    on = !on;
+    if(on){
+      amb.volume = 0;
+      var p = amb.play();
+      if(p && p.catch) p.catch(function(){ on=false; aBtn.classList.remove('on'); });
+      aBtn.classList.add('on');
+      fadeTo(0.55);
+    } else {
+      fadeTo(0, function(){ amb.pause(); });
+      aBtn.classList.remove('on');
+    }
+  });
+
+  /* HERO gold sparkle */
+  if(!reduce){
+    var cv = document.getElementById('spark');
+    if(cv){
+      var ctx = cv.getContext('2d'), parts=[], W,H,DPR=Math.min(window.devicePixelRatio||1,2);
+      function size(){ W=cv.width=hero.clientWidth*DPR; H=cv.height=hero.clientHeight*DPR; cv.style.width=hero.clientWidth+'px'; cv.style.height=hero.clientHeight+'px'; }
+      function seed(){ parts=[]; var n=Math.round((hero.clientWidth*hero.clientHeight)/22000); n=Math.max(18,Math.min(64,n)); for(var i=0;i<n;i++){ parts.push({x:Math.random()*W,y:Math.random()*H,r:(Math.random()*1.4+0.4)*DPR,a:Math.random()*6.28,sp:Math.random()*0.4+0.1,vx:(Math.random()-0.5)*0.09*DPR,vy:-(Math.random()*0.15+0.03)*DPR}); } }
+      function draw(){ ctx.clearRect(0,0,W,H); for(var i=0;i<parts.length;i++){ var p=parts[i]; p.a+=p.sp*0.02; var tw=(Math.sin(p.a)+1)/2; p.x+=p.vx; p.y+=p.vy; if(p.y<-4){p.y=H+4;p.x=Math.random()*W;} if(p.x<-4)p.x=W+4; if(p.x>W+4)p.x=-4; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*(0.55+tw*0.85),0,6.283); ctx.fillStyle='rgba(216,190,136,'+(0.1+tw*0.42)+')'; ctx.fill(); } requestAnimationFrame(draw); }
+      size(); seed(); draw();
+      window.addEventListener('resize', function(){ size(); seed(); });
+    }
+  }
+})();
+</script>
+
+<script src="/assets/js/site.js?v=3" defer></script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     VILLA LUZI · FOOTER GLOBALE (fonte di verità)
+     Incluso a build-time da build.js dove le pagine hanno il
+     marker <!━━ @include:footer ━━> (prima di </body>).
+     NAP (Nome / Indirizzo / Phone) consistente ovunque — solo
+     dati canonici (§2 del brief): niente dati inventati.
+     Include il nodo JSON-LD #organization condiviso da tutte
+     le pagine nuove (§5).
+     ═══════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-top">
+
+    <div class="footer-col">
+      <a href="/" class="footer-brand-mark" aria-label="Villa Luzi">
+        <img src="/assets/img/LS-Mark.png" alt="Villa Luzi" loading="lazy" />
+      </a>
+      <p class="footer-brand-tagline">Dimora storica del 1737 · Treia, Marche.</p>
+      <p class="footer-brand-address">
+        Contrada Chiaravalle 49<br/>
+        62010 Treia (MC) · Marche · Italia<br/>
+        <a href="tel:+393452419263">+39 345 241 9263</a><br/>
+        <a href="https://wa.me/393452419263" target="_blank" rel="noopener">WhatsApp +39 345 241 9263</a><br/>
+        <a href="mailto:villaluzi1737@gmail.com">villaluzi1737@gmail.com</a>
+      </p>
+      <a href="https://www.instagram.com/villaluzi1737/" target="_blank" rel="noopener" class="footer-social">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <span>@villaluzi1737</span>
+      </a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Villa Luzi</h4>
+      <ul>
+        <li><a href="/la-villa/">La Villa</a></li>
+        <li><a href="/il-luogo/">Il luogo</a></li>
+        <li><a href="https://www.google.com/search?q=Villa+Luzi+1737+Treia+soggiorno" target="_blank" rel="noopener">Soggiornare</a><!-- TEMP: redirect provvisorio, sostituire con /soggiornare/ --></li>
+        <li><a href="/il-segreto/">Il Segreto · Ristorante</a></li>
+        <li><a href="/il-segreto/menu/">Il menu</a></li>
+        <li><a href="/esperienze/">Esperienze</a></li>
+        <li><a href="/eventi/">Eventi</a></li>
+        <li><a href="/offerte/">Offerte</a></li>
+        <li><a href="/journal/">Journal</a></li>
+        <li><a href="/contatti/">Contatti</a></li>
+      </ul>
+      <p class="footer-cert">Dimora storica del 1737 · Otto ettari di parco · Ridisegnata nell'Ottocento da Andrea Vici.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>In villa</h4>
+      <ul>
+        <li><a href="/esperienze/aperitivi-in-erba/">Aperitivi in erba</a></li>
+        <li><a href="/esperienze/yoga-e-benessere/">Yoga e benessere</a></li>
+        <li><a href="/esperienze/il-parco/">Il parco</a></li>
+        <li><a href="/matrimoni/">Matrimoni</a></li>
+        <li><a href="/eventi/eventi-privati/">Eventi privati</a></li>
+        <li><a href="/eventi/corporate/">Corporate</a></li>
+        <li><a href="/matrimoni-nelle-marche/">Matrimoni nelle Marche</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Arrivare</h4>
+      <p class="footer-brand-address">
+        A 30 minuti da Macerata,<br/>
+        45 da Ancona e da Civitanova,<br/>
+        1 ora dall'aeroporto di Falconara.<br/>
+        Parcheggio gratuito in villa,<br/>
+        segnalato all'arrivo.
+      </p>
+      <ul style="margin-top:18px;">
+        <li><a href="/come-arrivare/">Come arrivare</a></li>
+        <li><a href="/informazioni-utili/">Informazioni utili</a></li>
+        <li><a href="/faq/">FAQ</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-legal">
+      © 2026 Villa Luzi
+    </div>
+    <div class="footer-vat-line">P.IVA 02184340434</div>
+  </div>
+</footer>
+
+<!-- Nodo entità condiviso: Organization Villa Luzi 1737 (§5) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://villaluzi1737.it/#organization",
+  "name": "Villa Luzi 1737",
+  "alternateName": "Villa Luzi",
+  "url": "https://villaluzi1737.it/",
+  "logo": "https://villaluzi1737.it/assets/img/LS-Mark.png",
+  "foundingDate": "1737",
+  "telephone": "+39 345 241 9263",
+  "email": "villaluzi1737@gmail.com",
+  "vatID": "02184340434",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Contrada Chiaravalle 49",
+    "addressLocality": "Treia",
+    "addressRegion": "Marche",
+    "postalCode": "62010",
+    "addressCountry": "IT"
+  },
+  "sameAs": ["https://www.instagram.com/villaluzi1737/"]
+}
+</script>
+
+<!-- Sticky mobile CTA (globale, sempre verso prenotazione ristorante) -->
+<a href="/il-segreto/#prenota" class="sticky-cta" id="sticky-cta">
+  <span>Prenota ora</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+</a>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CONCIERGE + TRANSIZIONE DI PAGINA (progressive enhancement)
+     Montati qui con [hidden]: a JS spento restano nascosti e la
+     sticky-cta sopra fa da fallback (nessun controllo "morto").
+     concierge.js costruisce il pannello e, via html.vlc-ready
+     (concierge.css), assorbe la sticky-cta → un solo controllo
+     fluttuante. transition.js dà la transizione "boule de neige"
+     tra le pagine. Tutto vanilla, zero dipendenze.
+     ═══════════════════════════════════════════════════════════ -->
+<link rel="stylesheet" href="/assets/css/concierge.css?v=3" />
+<button class="vlc-launcher" id="vlc-launcher" type="button" hidden aria-haspopup="dialog" aria-controls="vlc-panel" aria-expanded="false" aria-label="Concierge · Villa Luzi">
+  <span class="vlc-launcher-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3l1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7z" stroke-linejoin="round"/></svg></span>
+  <span class="vlc-launcher-text">
+    <span class="vlc-launcher-label">Concierge</span>
+    <span class="vlc-launcher-sub">Ti guido io</span>
+  </span>
+  <span class="vlc-badge" aria-hidden="true"></span>
+</button>
+<div class="vlc-backdrop" id="vlc-backdrop" hidden></div>
+<aside class="vlc-panel" id="vlc-panel" role="dialog" aria-modal="true" aria-label="Concierge · Villa Luzi" aria-hidden="true" hidden></aside>
+<script src="/assets/js/concierge.js?v=3" defer></script>
+<script src="/assets/js/transition.js?v=3" defer></script>
+</body>
+</html>
