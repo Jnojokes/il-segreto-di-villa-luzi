@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Il menù · Villa Luzi 1737 · Treia, Marche</title>
+<meta name="description" content="La carta del Segreto, il ristorante di Villa Luzi 1737 a Treia: antipasti, primi di pasta Mancini, secondi alla brace e dessert, nella dimora del 1737.">
+<!-- Pagina riservata al QR sul tavolo: nessun link dal sito, fuori sitemap, noindex. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#081E20">
+<link rel="canonical" href="https://www.villaluzi1737.com/menu/">
+<link rel="icon" type="image/png" href="/assets/img/LS-Icon.png">
+
+<meta property="og:title" content="Il menù · Il Segreto, Villa Luzi 1737">
+<meta property="og:description" content="La carta del Segreto: antipasti, primi di pasta Mancini, secondi alla brace e dessert.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.villaluzi1737.com/menu/">
+<meta property="og:image" content="https://www.villaluzi1737.com/assets/tavola.webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap"></noscript>
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   IL MENÙ · pagina QR da tavolo — standalone come le landing:
+   niente partial, niente site.css. Si legge al lume di candela:
+   verde notte, avorio grande, oro per categorie e prezzi.
+   Un solo lusso: il nastro delle portate che resta a portata
+   di pollice mentre si scorre la carta.
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --verde-notte: #081E20;
+  --fondo: #0A2426;
+  --oro: #C9A079;
+  --oro-chiaro: #DDBE93;
+  --oro-velato: rgba(201, 160, 121, 0.4);
+  --avorio: #F4ECDC;
+  --velo: rgba(244, 236, 220, 0.72);
+  --rosa-rame: #D49785;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(201, 160, 121, 0.14) 0%, transparent 52%),
+    radial-gradient(ellipse at 50% 100%, rgba(8, 30, 32, 0.9) 0%, transparent 70%),
+    var(--verde-notte);
+  color: var(--avorio);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/* grana di velluto */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E");
+  z-index: 3;
+}
+
+.carta {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: clamp(40px, 9vw, 64px) 24px 72px;
+  text-align: center;
+}
+
+/* ── testata ── */
+.testata-logo { width: 64px; height: auto; margin: 0 auto; opacity: 0.95; }
+.testata-nome {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: clamp(21px, 5.6vw, 27px);
+  letter-spacing: 0.24em;
+  padding-left: 0.24em;
+  margin-top: 18px;
+}
+.testata-motto {
+  font-style: italic;
+  color: var(--velo);
+  font-size: clamp(17px, 4.6vw, 20px);
+  margin-top: 6px;
+}
+h1.testata-titolo {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-weight: 400;
+  color: var(--oro-chiaro);
+  font-size: clamp(15px, 4.1vw, 18px);
+  letter-spacing: 0.34em;
+  padding-left: 0.34em;
+  text-transform: uppercase;
+  margin-top: 30px;
+}
+.testata-filo {
+  width: 54px;
+  height: 1px;
+  background: var(--oro-velato);
+  margin: 22px auto 0;
+}
+
+/* ── nastro delle portate: sempre a portata di pollice ── */
+.nastro {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  margin-top: 34px;
+  padding: 13px 8px;
+  background: rgba(8, 30, 32, 0.92);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(201, 160, 121, 0.22);
+  border-bottom: 1px solid rgba(201, 160, 121, 0.22);
+  display: flex;
+  justify-content: center;
+  gap: clamp(14px, 4vw, 26px);
+  white-space: nowrap;
+}
+.nastro a {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: clamp(10px, 2.8vw, 12px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--oro);
+  text-decoration: none;
+}
+.nastro a:hover, .nastro a:focus-visible { color: var(--oro-chiaro); }
+
+/* ── categorie e piatti ── */
+.categoria-blocco { margin-top: clamp(48px, 11vw, 64px); scroll-margin-top: 72px; }
+h2.categoria {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: clamp(16px, 4.4vw, 20px);
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+  text-transform: uppercase;
+  color: var(--oro-chiaro);
+}
+.piatto { margin-top: clamp(26px, 6.4vw, 34px); }
+.piatto-nome {
+  font-size: clamp(19px, 5.2vw, 23px);
+  color: var(--avorio);
+  max-width: 42ch;
+  margin: 0 auto;
+  line-height: 1.4;
+}
+.piatto-dettaglio {
+  font-style: italic;
+  font-size: clamp(16px, 4.3vw, 19px);
+  color: var(--rosa-rame);
+  margin-top: 2px;
+}
+.piatto-prezzo {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: clamp(13px, 3.6vw, 15px);
+  letter-spacing: 0.16em;
+  padding-left: 0.16em;
+  color: var(--oro);
+  margin-top: 6px;
+}
+
+/* ── congedo ── */
+.congedo { margin-top: clamp(60px, 14vw, 84px); }
+.congedo-filo {
+  width: 54px;
+  height: 1px;
+  background: var(--oro-velato);
+  margin: 0 auto 26px;
+}
+.congedo-motto {
+  font-style: italic;
+  color: var(--velo);
+  font-size: clamp(17px, 4.6vw, 20px);
+}
+.congedo-riga {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  padding-left: 0.2em;
+  color: rgba(244, 236, 220, 0.5);
+  margin-top: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<main class="carta">
+
+  <img class="testata-logo" src="/assets/img/LS-Mark.png" alt="Il Segreto, Villa Luzi 1737" width="128" height="128">
+  <p class="testata-nome">IL SEGRETO</p>
+  <p class="testata-motto">Dove il tempo si ferma</p>
+  <h1 class="testata-titolo">Il menù</h1>
+  <div class="testata-filo" aria-hidden="true"></div>
+
+  <nav class="nastro" aria-label="Le portate">
+    <a href="#antipasti">Antipasti</a>
+    <a href="#primi">Primi</a>
+    <a href="#secondi">Secondi</a>
+    <a href="#dessert">Dessert</a>
+  </nav>
+
+  <section class="categoria-blocco" id="antipasti" aria-label="Antipasti">
+    <h2 class="categoria">Antipasti</h2>
+    <div class="piatto">
+      <p class="piatto-nome">Selezione di salumi e formaggi con confetture artigianali e crescia</p>
+      <p class="piatto-dettaglio">degustazione per due</p>
+      <p class="piatto-prezzo">€30</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Il nostro vitello tonnato</p>
+      <p class="piatto-prezzo">€15</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Carpaccio di carne salada su panella di ceci, misticanza, scaglie di Castelmagno DOP e miele di corbezzolo</p>
+      <p class="piatto-prezzo">€18</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Battuta di pomodoro, burrata, colatura di alici, olio al basilico e cialda di pane</p>
+      <p class="piatto-prezzo">€12</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Torre di melanzane, bufala e pomodoro grigliato</p>
+      <p class="piatto-prezzo">€12</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Prosciutto al coltello di suino della Marca IGP</p>
+      <p class="piatto-prezzo">€18</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Prosciutto pata negra al coltello</p>
+      <p class="piatto-dettaglio">100 g</p>
+      <p class="piatto-prezzo">€28</p>
+    </div>
+  </section>
+
+  <section class="categoria-blocco" id="primi" aria-label="Primi piatti">
+    <h2 class="categoria">Primi piatti</h2>
+    <div class="piatto">
+      <p class="piatto-nome">Tortelloni verdi di rucola ripieni di cicoria ripassata, erbe di campo e ricotta, su burro demi-sel, maggiorana, parmigiano e riduzione di aceto balsamico</p>
+      <p class="piatto-prezzo">€16</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Paccheri selezione Mancini, coniglio di Arcevia, crema di melanzane arrosto, mandorle siciliane tostate e menta fresca</p>
+      <p class="piatto-prezzo">€15</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Gnocchi di patate, ragù di salsicce, datterini rossi e gialli</p>
+      <p class="piatto-prezzo">€13</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Tagliatelle paglia e fieno, anatra, birra, salsa di pane e polvere di olive nere</p>
+      <p class="piatto-prezzo">€15</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Fusilloni Mancini dall'orto al piatto e ricotta salata</p>
+      <p class="piatto-prezzo">€12</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Spaghettoni Mancini alla gricia della Marca</p>
+      <p class="piatto-prezzo">€13</p>
+    </div>
+  </section>
+
+  <section class="categoria-blocco" id="secondi" aria-label="Secondi piatti">
+    <h2 class="categoria">Secondi piatti</h2>
+    <div class="piatto">
+      <p class="piatto-nome">Carré d'agnello neozelandese CBT con fagiolini alla brace e pesca caramellata</p>
+      <p class="piatto-prezzo">€20</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Tagliata di manzo argentino, frutta estiva e salsa teriyaki</p>
+      <p class="piatto-prezzo">€30</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Coniglio in agrodolce di caponata siciliana</p>
+      <p class="piatto-prezzo">€18</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Assortimento di carne alla brace con patate Anna</p>
+      <p class="piatto-prezzo">€25</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Tataki d'anguria, feta e germogli di soia</p>
+      <p class="piatto-prezzo">€16</p>
+    </div>
+  </section>
+
+  <section class="categoria-blocco" id="dessert" aria-label="Dessert">
+    <h2 class="categoria">Dessert</h2>
+    <div class="piatto">
+      <p class="piatto-nome">Cannolo siciliano</p>
+      <p class="piatto-prezzo">€8</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">New York cheesecake con caramello salato</p>
+      <p class="piatto-prezzo">€8</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Semifreddo al croccante</p>
+      <p class="piatto-prezzo">€8</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Tiramisù</p>
+      <p class="piatto-prezzo">€6</p>
+    </div>
+  </section>
+
+  <footer class="congedo">
+    <div class="congedo-filo" aria-hidden="true"></div>
+    <p class="congedo-motto">Il Segreto, dove il tempo si ferma.</p>
+    <p class="congedo-riga">VILLA LUZI 1737 · CONTRADA CHIARAVALLE 49 · TREIA (MC)</p>
+  </footer>
+
+</main>
+
+</body>
+</html>
