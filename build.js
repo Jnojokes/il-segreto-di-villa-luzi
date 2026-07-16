@@ -32,6 +32,21 @@ const SKIP_ROOT = new Set([
 const SKIP_ANY = new Set(['.DS_Store', 'node_modules']);
 const SKIP_ROOT_PATTERNS = [/^Screenshot /, /^dist \d+$/]; // "dist 2", "dist 4"…: duplicati creati da iCloud
 
+// Pagine dismesse dalla ristrutturazione del 2026-07-16: fuori dalla build
+// ma sorgenti nel repo (reversibile). I loro URL fanno redirect in vercel.json.
+// NB: di aperitivi-in-erba si esclude SOLO l'index — la landing figlia
+// 2-giugno-2026/ (Salotto dei Corsari) resta pubblicata.
+const SKIP_REL = new Set([
+  'journal',
+  'il-segreto/menu',
+  'esperienze/yoga-e-benessere',
+  'esperienze/il-parco',
+  'esperienze/aperitivi-in-erba/index.html',
+  'eventi/eventi-privati',
+  'eventi/corporate',
+  'eventi/la-domenica',
+]);
+
 function readPartial(name) {
   return fs.readFileSync(path.join(ROOT, 'partials', `${name}.html`), 'utf8').trim();
 }
@@ -47,6 +62,7 @@ function walk(srcDir, outDir, isRoot) {
     if (SKIP_ANY.has(entry.name)) continue;
     if (isRoot && (SKIP_ROOT.has(entry.name) || SKIP_ROOT_PATTERNS.some((re) => re.test(entry.name)))) continue;
     const src = path.join(srcDir, entry.name);
+    if (SKIP_REL.has(path.relative(ROOT, src).split(path.sep).join('/'))) continue;
     const out = path.join(outDir, entry.name);
 
     if (entry.isDirectory()) {
