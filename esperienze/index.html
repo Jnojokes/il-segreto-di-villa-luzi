@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Esperienze · Villa Luzi 1737 · Treia, Marche</title>
-<meta name="description" content="Le esperienze di Villa Luzi 1737 a Treia (MC): Aperitivi in erba nel parco di otto ettari, yoga e benessere con gli studi del territorio. Su prenotazione." />
+<title>Il centro estetico · Villa Luzi 1737 · Treia, Marche</title>
+<meta name="description" content="Il centro estetico di Villa Luzi 1737 a Treia: massaggi corpo e viso, trattamento viso completo, manicure, pedicure e make-up sposa, su appuntamento in dimora." />
 <meta name="theme-color" content="#0E3B3E" />
 <link rel="canonical" href="https://villaluzi1737.it/esperienze/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Villa Luzi 1737" />
-<meta property="og:title" content="Esperienze · Villa Luzi 1737 · Treia, Marche" />
-<meta property="og:description" content="Aperitivi in erba nel parco di otto ettari, yoga e benessere con gli studi del territorio, il parco della dimora del 1737. Su prenotazione." />
+<meta property="og:title" content="Il centro estetico · Villa Luzi 1737 · Treia, Marche" />
+<meta property="og:description" content="Massaggi corpo e viso, trattamento viso completo, manicure, pedicure e make-up sposa: il centro estetico della dimora del 1737, su appuntamento." />
 <meta property="og:image" content="https://villaluzi1737.it/assets/img/heroes/esperienze.webp" />
 <meta property="og:locale" content="it_IT" />
 <meta property="og:url" content="https://villaluzi1737.it/esperienze/" />
@@ -22,31 +22,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/css/site.css?v=3" />
 
-<!-- JSON-LD · ItemList delle esperienze -->
+<!-- JSON-LD · BeautySalon -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "Esperienze a Villa Luzi 1737",
-  "description": "Le esperienze della dimora del 1737 a Treia (MC): il format Aperitivi in erba nel parco di otto ettari, yoga e benessere con gli studi del territorio, il parco con i suoi luoghi nominati.",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Aperitivi in erba",
-      "url": "https://villaluzi1737.it/esperienze/aperitivi-in-erba/2-giugno-2026/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Yoga e benessere"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Il parco"
-    }
-  ]
+  "@type": "BeautySalon",
+  "@id": "https://villaluzi1737.it/esperienze/#estetica",
+  "name": "Il centro estetico di Villa Luzi 1737",
+  "url": "https://villaluzi1737.it/esperienze/",
+  "description": "Centro estetico nella dimora storica Villa Luzi 1737 a Treia (MC): massaggi corpo e viso, trattamento viso completo, manicure, pedicure e make-up, su appuntamento.",
+  "telephone": "+39 345 241 9263",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Contrada Chiaravalle 49",
+    "addressLocality": "Treia",
+    "addressRegion": "MC",
+    "postalCode": "62010",
+    "addressCountry": "IT"
+  },
+  "containedInPlace": {
+    "@type": "Place",
+    "name": "Villa Luzi 1737",
+    "url": "https://villaluzi1737.it/"
+  }
 }
 </script>
 
@@ -61,15 +59,57 @@
   ]
 }
 </script>
+
+<style>
+/* Il listino del centro estetico: voci centrate, nomi in Playfair,
+   dettagli in Cormorant, prezzi in oro — la carta dei trattamenti. */
+.listino {
+  list-style: none;
+  margin: 44px auto 0;
+  padding: 0;
+  max-width: 560px;
+  text-align: center;
+}
+.listino-item { padding: 26px 0; }
+.listino-item + .listino-item { border-top: 1px solid rgba(201, 160, 121, 0.28); }
+.listino-nome {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--inchiostro);
+  line-height: 1.3;
+}
+.listino-dettaglio {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+.listino-prezzo {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--oro-soft);
+  margin-top: 8px;
+}
+.listino-nota {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 36px;
+}
+</style>
 </head>
 <body>
-
 <!-- @include:header -->
-
 <main>
 
 <!-- ═════ HERO ═════ -->
-<section class="hero hero--compact" aria-label="Esperienze a Villa Luzi">
+<section class="hero hero--compact" aria-label="Il centro estetico di Villa Luzi">
   <img class="hero-bg-img" src="/assets/img/heroes/esperienze.webp" alt="Donna in accappatoio bianco di spalle nel gazebo settecentesco a vetrate dipinte immerso nel bosco del parco di Villa Luzi, in un momento di benessere all'aperto" fetchpriority="high" decoding="async" />
   <div class="hero-bg-overlay"></div>
   <div class="hero-inner">
@@ -78,15 +118,25 @@
       <span class="eyebrow">Villa Luzi 1737 · Treia · Marche</span>
       <span class="line" aria-hidden="true"></span>
     </div>
-    <h1 class="hero-title">Esperienze <em>in villa</em></h1>
-    <div class="hero-divider"></div>
-    <p class="hero-tagline">Un parco di otto ettari, un format di pic nic, le pratiche del mattino: la dimora del 1737 si vive a calendario.</p>
-    <p class="hero-meta">Aperitivi in erba <span class="sep">·</span> Yoga e benessere <span class="sep">·</span> Il parco</p>
+    <h1 class="hero-title">
+      Il centro estetico
+      <em>in villa</em>
+    </h1>
+    <div class="hero-divider" aria-hidden="true"></div>
+    <p class="hero-tagline">Massaggi, trattamenti viso, manicure e make-up nella quiete della dimora del 1737, su appuntamento.</p>
+    <div class="hero-ctas">
+      <a href="#listino" class="btn"><span>Il listino</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://wa.me/393452419263" class="btn-ghost" target="_blank" rel="noopener"><span>Prenota su WhatsApp</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
 <!-- ═════ BREADCRUMB ═════ -->
-<nav class="breadcrumb" aria-label="Percorso" style="padding-top:48px;">
+<nav class="breadcrumb" aria-label="Percorso" style="padding-top:28px">
   <ol>
     <li><a href="/">Villa Luzi</a></li>
     <li aria-current="page">Esperienze</li>
@@ -94,186 +144,120 @@
 </nav>
 
 <!-- ═════ LEAD · apertura answer-ready ═════ -->
-<section aria-label="Esperienze · introduzione" style="padding-top:80px;">
-  <div class="container-narrow reveal">
+<section aria-label="Il centro estetico — introduzione">
+  <div class="container-narrow reveal" style="text-align:center">
     <div class="section-eyebrow center">
-      <span class="line"></span>
-      <span class="eyebrow">Che cosa si fa in villa</span>
-      <span class="line"></span>
+      <span class="line" aria-hidden="true"></span>
+      <span class="eyebrow">Il tempo per sé</span>
+      <span class="line" aria-hidden="true"></span>
     </div>
-    <div class="lead" style="text-align:center;">
+    <div class="lead">
       <p>
-        Le esperienze di <strong>Villa Luzi</strong>, dimora del <strong>1737</strong> a Treia,
-        in provincia di Macerata (Marche), si svolgono negli <strong>otto ettari</strong> di parco
-        che circondano la palazzina padronale: il format di pic nic <strong>Aperitivi in erba</strong>,
-        le pratiche di <strong>yoga e benessere</strong> condotte con gli studi del territorio,
-        e il parco stesso, con i suoi luoghi nominati — dal bosco col giardino all'italiana alla limonaia.
+        Nella dimora del <strong>1737</strong> c&rsquo;è una stanza dove il tempo rallenta
+        davvero: il <strong>centro estetico</strong> di Villa Luzi riceve su appuntamento,
+        con massaggi corpo e viso, trattamenti completi, manicure, pedicure e make-up —
+        anche per chi soggiorna nelle camere della villa e per le spose che si preparano
+        al loro giorno.
       </p>
       <p>
-        Tutte le esperienze sono <strong>su prenotazione</strong>, con posti limitati nei format.
-        Prossime date: [DA CONFERMARE: calendario delle prossime edizioni e delle pratiche].
-        La villa è a 30 minuti da Macerata e a 45 da Ancona e da Civitanova;
-        si arriva in Contrada Chiaravalle 49, con parcheggio gratuito all'interno della proprietà.
+        Si prenota con un messaggio <strong>WhatsApp</strong> al
+        <a href="tel:+393452419263">+39&nbsp;345&nbsp;241&nbsp;9263</a> o con la richiesta
+        in fondo alla pagina; prima o dopo il trattamento, il parco di otto ettari e la tavola
+        del <a href="/il-segreto/">Segreto</a> completano il pomeriggio.
       </p>
     </div>
   </div>
 </section>
 
-<!-- ═════ MEDIA-BAND · il parco come palcoscenico ═════ -->
-<section class="media-band reveal" aria-label="Il parco di otto ettari">
-  <div class="media-band-bg">
-    <img src="/assets/img/gallery/esperienze/1.webp" alt="Il parco di otto ettari di Villa Luzi al tramonto, con il prato e i grandi alberi che fanno da palcoscenico alle esperienze della dimora" loading="lazy" decoding="async" />
-  </div>
-  <div class="media-band-inner">
-    <div class="media-band-eyebrow">Otto ettari · a calendario</div>
-    <h2 class="media-band-title">La dimora del 1737 <em>si vive a calendario</em></h2>
-    <p class="media-band-text">Un format di pic nic, le pratiche del mattino, una passeggiata fino alla fontana: ogni esperienza nasce dentro il <a href="/esperienze/il-parco/">parco di otto ettari</a> e ne segue le ore. Tutte su prenotazione, con posti limitati nei format.</p>
-    <a href="/contatti/" class="btn"><span>Prenota un'esperienza</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-    </a>
+<!-- ═════ LISTINO ═════ -->
+<section id="listino" aria-label="Il listino del centro estetico">
+  <div class="container-narrow">
+    <div class="block-head reveal">
+      <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">I trattamenti</span><span class="line" aria-hidden="true"></span></div>
+      <h2>Il <em>listino</em></h2>
+    </div>
+    <ul class="listino reveal">
+      <li class="listino-item">
+        <div class="listino-nome">Massaggio corpo relax o decontratturante</div>
+        <div class="listino-dettaglio">50–60 minuti</div>
+        <div class="listino-prezzo">€ 85</div>
+      </li>
+      <li class="listino-item">
+        <div class="listino-nome">Trattamento viso completo</div>
+        <div class="listino-prezzo">€ 95</div>
+      </li>
+      <li class="listino-item">
+        <div class="listino-nome">Massaggio viso Sibilla</div>
+        <div class="listino-prezzo">€ 65</div>
+      </li>
+      <li class="listino-item">
+        <div class="listino-nome">Manicure</div>
+        <div class="listino-prezzo">SMALTO € 40 · SHELLAC € 50</div>
+      </li>
+      <li class="listino-item">
+        <div class="listino-nome">Pedicure</div>
+        <div class="listino-prezzo">SMALTO € 50 · SHELLAC € 60</div>
+      </li>
+      <li class="listino-item">
+        <div class="listino-nome">Make-up</div>
+        <div class="listino-dettaglio">sposa su preventivo</div>
+        <div class="listino-prezzo">€ 65</div>
+      </li>
+    </ul>
+    <p class="listino-nota reveal">
+      Prenotazioni su WhatsApp: <a href="https://wa.me/393452419263" target="_blank" rel="noopener">+39 345 241 9263</a>
+    </p>
   </div>
 </section>
 
-<!-- ═════ TRE ESPERIENZE · TILE GRID ═════ -->
-<section class="info" aria-label="Le tre esperienze">
-  <div class="container">
-    <div class="info-header reveal">
-      <div class="section-eyebrow center"><span class="line"></span><span class="eyebrow">Tre modi di abitare il parco</span><span class="line"></span></div>
-      <h2>Quello che il parco <em>sa fare</em>.</h2>
-      <p class="prose" style="margin-top:18px;max-width:620px;margin-left:auto;margin-right:auto;text-align:center;">
-        Non un programma di intrattenimento, ma tre usi della stessa casa: un pic nic
-        a tema che apparecchia il prato, una pratica che comincia sul Vialetto Yoga,
-        una passeggiata tra fontana, giostra e Segreta. Ogni esperienza nasce dentro
-        gli otto ettari e ne segue le ore: la luce del mezzogiorno per i turni a pranzo,
-        quella radente della sera per gli aperitivi. Chi resta a dormire trova
-        tutto a pochi passi dalle camere — <a href="/soggiornare/">qui il soggiorno in dimora</a>.
-      </p>
-    </div>
-
-    <div class="tile-grid reveal" style="margin-top:48px;">
-
-      <a href="/esperienze/aperitivi-in-erba/" class="tile">
-        <div class="tile-media">
-          <img src="/assets/img/covers/aperitivi-in-erba.webp" alt="Tavola apparecchiata sul prato del parco di Villa Luzi per il pic nic Aperitivi in erba, con il bosco sullo sfondo" loading="lazy" decoding="async" />
-          <span class="photo-frame" aria-hidden="true"></span>
-        </div>
-        <div class="tile-body">
-          <span class="tile-eyebrow">Il format</span>
-          <h3 class="tile-title">Aperitivi <em>in erba</em></h3>
-          <p class="tile-desc">
-            Il pic nic a tema di Villa Luzi: il prato apparecchiato, un'ambientazione
-            che cambia a ogni edizione, posti limitati. L'ultima — &laquo;Il Salotto dei
-            Corsari&raquo;, martedì 2 giugno 2026 — è raccontata nella sua pagina.
-          </p>
-          <span class="link-arrow" style="margin-top:6px;">
-            <span>Il format e le edizioni</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </span>
-        </div>
-      </a>
-
-      <a href="/esperienze/yoga-e-benessere/" class="tile">
-        <div class="tile-media">
-          <img src="/assets/img/covers/yoga-e-benessere.webp" alt="Momento di relax e meditazione distesa sui cuscini nel gazebo a vetrate del parco, lo sguardo rivolto verso il bosco controluce" loading="lazy" decoding="async" />
-          <span class="photo-frame" aria-hidden="true"></span>
-        </div>
-        <div class="tile-body">
-          <span class="tile-eyebrow">Le pratiche</span>
-          <h3 class="tile-title">Yoga <em>e benessere</em></h3>
-          <p class="tile-desc">
-            Le pratiche si tengono lungo il Vialetto Yoga e davanti alla chiesa,
-            con gli studi Il Cerchio d'Oro di Tolentino e La Luna e il Sole di Treia.
-            Per i trattamenti, la villa lavora con San Giuliano di Macerata e
-            Ametista di Pollenza. Giorni e orari:
-            [DA CONFERMARE: programma delle pratiche].
-          </p>
-          <span class="link-arrow" style="margin-top:6px;">
-            <span>Yoga e benessere</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </span>
-        </div>
-      </a>
-
-      <a href="/esperienze/il-parco/" class="tile">
-        <div class="tile-media">
-          <img src="/assets/img/covers/il-parco.webp" alt="L'ingresso monumentale del parco con i due pilastri in cotto sormontati da aquile in pietra e il cancello in ferro che inquadra un'edicola votiva" loading="lazy" decoding="async" />
-          <span class="photo-frame" aria-hidden="true"></span>
-        </div>
-        <div class="tile-body">
-          <span class="tile-eyebrow">Il luogo</span>
-          <h3 class="tile-title">Il <em>parco</em></h3>
-          <p class="tile-desc">
-            Gli otto ettari della villa ridisegnata nell'Ottocento da Andrea Vici per il
-            marchese Nicola Luzi: il bosco col giardino all'italiana, la fontana,
-            la limonaia, la giostra, la Segreta — un patio rialzato — e il vialetto
-            dell'Amore. È il palcoscenico di ogni esperienza della villa.
-          </p>
-          <span class="link-arrow" style="margin-top:6px;">
-            <span>Il parco, luogo per luogo</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </span>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═════ GALLERY-MOSAIC · gli otto ettari ═════ -->
-<section aria-label="Il parco e le esperienze in immagini">
-  <div class="block-head reveal">
-    <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">Dentro gli otto ettari</span><span class="line" aria-hidden="true"></span></div>
-    <h2>Il parco, <em>luogo per luogo</em></h2>
-  </div>
-  <div class="gallery-mosaic reveal">
-    <figure class="g-big"><img src="/assets/img/gallery/esperienze/1.webp" alt="Il prato del parco di Villa Luzi al tramonto, palcoscenico degli Aperitivi in erba e delle esperienze all'aperto" loading="lazy" decoding="async" /></figure>
-    <figure class="g-wide"><img src="/assets/img/gallery/esperienze/2.webp" alt="Scorcio del bosco col giardino all'italiana negli otto ettari di parco della dimora" loading="lazy" decoding="async" /></figure>
-    <figure class="g-tall"><img src="/assets/img/gallery/esperienze/3.webp" alt="La fontana del parco lungo il percorso fra i luoghi nominati di Villa Luzi" loading="lazy" decoding="async" /></figure>
-    <figure class="g-tall"><img src="/assets/img/gallery/esperienze/4.webp" alt="Il gazebo a vetrate immerso nel verde, spazio delle pratiche di yoga e benessere" loading="lazy" decoding="async" /></figure>
-    <figure><img src="/assets/img/gallery/esperienze/5.webp" alt="Angolo del vialetto dell'Amore fra gli alberi secolari del parco della dimora" loading="lazy" decoding="async" /></figure>
-    <figure><img src="/assets/img/gallery/esperienze/6.webp" alt="La Segreta, patio rialzato che guarda dall'alto il verde degli otto ettari di Villa Luzi" loading="lazy" decoding="async" /></figure>
-  </div>
-</section>
-
-<!-- ═════ PILLARS · come si vivono le esperienze ═════ -->
-<section aria-label="Come si vivono le esperienze">
-  <div class="block-head reveal">
-    <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">La grammatica della villa</span><span class="line" aria-hidden="true"></span></div>
-    <h2>Tre cose <em>da sapere</em></h2>
-  </div>
-  <div class="pillars reveal-group">
-    <div class="pillar">
-      <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-      <h3>Sempre <em>su prenotazione</em></h3>
-      <p>Ogni esperienza è su prenotazione, con posti limitati nei format: gli Aperitivi in erba lavorano a numero chiuso. Telefono o WhatsApp, tutti i recapiti in <a href="/contatti/">contatti</a>.</p>
-    </div>
-    <div class="pillar">
-      <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="1"/><path d="M4 9h16M8 3v4M16 3v4"/></svg></div>
-      <h3>A <em>calendario</em></h3>
-      <p>La dimora si vive una data alla volta: la luce del mezzogiorno per i turni a pranzo, quella della sera per gli aperitivi. Prossime date: [DA CONFERMARE: calendario delle prossime edizioni e delle pratiche].</p>
-    </div>
-    <div class="pillar">
-      <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21c0-6 3-12 9-15-1 7-4 12-9 15Z"/><path d="M12 21c0-4-2-8-6-10"/></svg></div>
-      <h3>Dentro <em>il parco</em></h3>
-      <p>Tutto nasce negli otto ettari: il prato degli <a href="/esperienze/aperitivi-in-erba/">Aperitivi in erba</a>, il Vialetto Yoga delle pratiche, la fontana e la Segreta lungo le passeggiate de <a href="/esperienze/il-parco/">Il parco</a>.</p>
-    </div>
+<!-- ═════ RICHIESTA · form lead ═════ -->
+<section class="lead-section" id="richiesta" aria-label="Prenota un trattamento">
+  <div class="container-narrow reveal">
+    <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">La richiesta</span><span class="line" aria-hidden="true"></span></div>
+    <h2 style="text-align:center">Prenota un <em>trattamento</em></h2>
+    <p class="lead-intro">Un trattamento, un giorno e un orario preferiti: vi ricontattiamo per confermare l&rsquo;appuntamento. Per la sposa, il make-up si definisce con un preventivo su misura.</p>
+    <form class="lead-form" novalidate data-lead-context="estetica" data-lead-success="Grazie: la vostra richiesta è arrivata. Vi ricontattiamo per confermare l'appuntamento.">
+      <div class="lead-grid">
+        <div class="lead-field"><label for="lf-nome">Nome e cognome</label><input id="lf-nome" name="nome" type="text" autocomplete="name" maxlength="60" required></div>
+        <div class="lead-field"><label for="lf-email">Email</label><input id="lf-email" name="email" type="email" autocomplete="email" maxlength="90" required></div>
+        <div class="lead-field"><label for="lf-tel">Telefono</label><input id="lf-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" maxlength="24" required></div>
+        <div class="lead-field"><label for="lf-data">Giorno e orario preferiti</label><input id="lf-data" name="data" type="text" maxlength="40" placeholder="Es. sabato pomeriggio"></div>
+        <div class="lead-field lead-field--full"><label for="lf-tipo">Trattamento</label><select id="lf-tipo" name="tipo">
+          <option value="massaggio-corpo" selected>Massaggio corpo relax o decontratturante</option>
+          <option value="viso-completo">Trattamento viso completo</option>
+          <option value="viso-sibilla">Massaggio viso Sibilla</option>
+          <option value="manicure">Manicure</option>
+          <option value="pedicure">Pedicure</option>
+          <option value="make-up">Make-up</option>
+          <option value="make-up-sposa">Make-up sposa</option>
+        </select></div>
+      </div>
+      <div class="lead-field lead-field--full"><label for="lf-msg">Messaggio</label><textarea id="lf-msg" name="messaggio" maxlength="1200" placeholder="Esigenze particolari, occasione, richieste…"></textarea></div>
+      <label class="lead-consent"><input type="checkbox" name="consenso" required><span>Acconsento al trattamento dei dati per essere ricontattato su questa richiesta. <a href="/informazioni-utili/">Informativa</a>.</span></label>
+      <div class="lead-hp" aria-hidden="true"><label>Lascia vuoto questo campo<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <button type="submit" class="btn lead-submit"><span>Invia richiesta</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+      <p class="lead-status" role="status" aria-live="polite"></p>
+      <p class="lead-fallback">Preferite scrivere a voce? <a href="https://wa.me/393452419263" target="_blank" rel="noopener">WhatsApp</a> · <a href="tel:+393452419263">+39 345 241 9263</a> · <a href="mailto:villaluzi1737@gmail.com">villaluzi1737@gmail.com</a></p>
+    </form>
   </div>
 </section>
 
 <!-- ═════ CLOSING · cta-split-image ═════ -->
-<section class="cta-split" aria-label="Invito">
+<section class="cta-split" aria-label="Il centro estetico della dimora">
   <div class="cta-split-media">
-    <img src="/assets/img/covers/esperienze.webp" alt="Donna in accappatoio sulla terrazza panoramica di Villa Luzi con calice in mano, affacciata sulle colline marchigiane punteggiate di cipressi" loading="lazy" decoding="async" />
+    <img src="/assets/img/covers/yoga-e-benessere.webp" alt="Momento di relax e meditazione distesa sui cuscini nel gazebo a vetrate del parco, lo sguardo rivolto verso il bosco controluce" loading="lazy" decoding="async" />
   </div>
   <div class="cta-split-panel">
-    <div class="eyebrow" style="margin-bottom:18px">Treia · Marche · dal 1737</div>
-    <h2 class="cta-split-title">Il prato aspetta</h2>
-    <p class="cta-split-sub">Un pic nic, una pratica al mattino, una passeggiata fino alla fontana: chi resta a dormire trova il parco <a href="/soggiornare/">fuori dalla porta</a>.</p>
+    <div class="eyebrow" style="margin-bottom:18px">Contrada Chiaravalle 49 · Treia (MC)</div>
+    <h2 class="cta-split-title">Il tempo si ferma. Anche per voi.</h2>
+    <p class="cta-split-sub">Un massaggio nella quiete della dimora, poi il parco, poi — se volete — la tavola del <a href="/il-segreto/">Segreto</a>. Gli appuntamenti si concordano su WhatsApp o dalla pagina <a href="/contatti/">Contatti</a>.</p>
     <div class="cta-split-ctas">
-      <a href="/contatti/" class="btn"><span>Prenota un'esperienza</span>
+      <a href="#richiesta" class="btn"><span>Prenota un trattamento</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
-      <a href="/eventi/" class="btn-ghost"><span>Eventi privati</span>
+      <a href="https://wa.me/393452419263" class="btn-ghost" target="_blank" rel="noopener"><span>WhatsApp</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -281,9 +265,8 @@
 </section>
 
 </main>
-
 <!-- @include:footer -->
-
 <script src="/assets/js/site.js?v=3" defer></script>
+<script src="/assets/js/lead-form.js?v=3" defer></script>
 </body>
 </html>

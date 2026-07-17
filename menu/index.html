@@ -131,6 +131,10 @@ h1.testata-titolo {
   text-decoration: none;
 }
 .nastro a:hover, .nastro a:focus-visible { color: var(--oro-chiaro); }
+@media (max-width: 430px) {
+  /* sei portate: su schermi stretti il nastro scorre invece di tagliare */
+  .nastro { justify-content: flex-start; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
 
 /* ── categorie e piatti ── */
 .categoria-blocco { margin-top: clamp(48px, 11vw, 64px); scroll-margin-top: 72px; }
@@ -208,6 +212,7 @@ h2.categoria {
     <a href="#primi">Primi</a>
     <a href="#secondi">Secondi</a>
     <a href="#pizze-rosse">Pizze</a>
+    <a href="#fritti">Fritti</a>
     <a href="#dessert">Dessert</a>
   </nav>
 
@@ -390,6 +395,16 @@ h2.categoria {
       <p class="piatto-nome">Greca</p>
       <p class="piatto-dettaglio">mozzarella, rucola, feta, noci, pomodorini secchi, miele</p>
       <p class="piatto-prezzo">€14</p>
+    </div>
+  </section>
+
+  <section class="categoria-blocco" id="fritti" aria-label="Fritti">
+    <h2 class="categoria">Fritti</h2>
+    <div class="piatto">
+      <p class="piatto-nome">Fritto misto</p>
+      <p class="piatto-dettaglio">patatine fritte, olive all'ascolana, cremini, fiori di zucca, verdure pastellate, salvia</p>
+      <p class="piatto-dettaglio">per due persone</p>
+      <p class="piatto-prezzo">€15</p>
     </div>
   </section>
 
