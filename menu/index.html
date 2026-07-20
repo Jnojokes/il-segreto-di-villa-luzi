@@ -169,6 +169,12 @@ h2.categoria {
   color: var(--oro);
   margin-top: 6px;
 }
+.categoria-nota {
+  font-style: italic;
+  font-size: clamp(15px, 4vw, 18px);
+  color: var(--velo);
+  margin-top: clamp(24px, 6vw, 32px);
+}
 
 /* ── congedo ── */
 .congedo { margin-top: clamp(60px, 14vw, 84px); }
@@ -213,6 +219,7 @@ h2.categoria {
     <a href="#secondi">Secondi</a>
     <a href="#pizze-rosse">Pizze</a>
     <a href="#fritti">Fritti</a>
+    <a href="#tagli">Tagli</a>
     <a href="#dessert">Dessert</a>
   </nav>
 
@@ -406,6 +413,27 @@ h2.categoria {
       <p class="piatto-dettaglio">per due persone</p>
       <p class="piatto-prezzo">€15</p>
     </div>
+  </section>
+
+  <section class="categoria-blocco" id="tagli" aria-label="Carni al taglio">
+    <h2 class="categoria">Carni al taglio</h2>
+    <div class="piatto">
+      <p class="piatto-nome">Marchigiana</p>
+      <p class="piatto-prezzo">€8 all'etto</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Irlandese</p>
+      <p class="piatto-prezzo">€8 all'etto</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Kobe</p>
+      <p class="piatto-prezzo">su richiesta</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Wagyu</p>
+      <p class="piatto-prezzo">€30 all'etto</p>
+    </div>
+    <p class="categoria-nota">Tagli e pezzature in sala</p>
   </section>
 
   <section class="categoria-blocco" id="dessert" aria-label="Dessert">

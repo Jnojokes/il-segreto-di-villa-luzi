@@ -1443,6 +1443,8 @@ section { position: relative; padding: 140px 32px; }
   font-weight: 400;
   letter-spacing: -0.01em;
   margin-bottom: 16px;
+  /* .info è verde notte: senza override il titolo eredita l'inchiostro */
+  color: var(--avorio);
 }
 .info-header h2 em { font-style: italic; color: var(--oro); }
 
@@ -2829,6 +2831,36 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
           </div>
           <span class="menu-item-price">€ 15,00</span>
         </div>
+      </div></div></div>
+    </article>
+
+    <article class="menu-card" data-cat="tagli">
+      <button type="button" class="menu-card-header" aria-expanded="false" aria-controls="cat-tagli">
+        <span class="menu-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l10-10"/><path d="M14 8l-3 3"/><path d="M14 8a4 4 0 0 1 6 0l-3 3z"/></svg>
+        </span>
+        <span class="menu-card-name">Carni al Taglio</span>
+        <span class="menu-card-count">4</span>
+        <svg class="menu-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="menu-card-body-wrap"><div class="menu-card-body"><div class="menu-card-body-inner" id="cat-tagli">
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Marchigiana</span></div>
+          <span class="menu-item-price">€ 8,00 / hg</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Irlandese</span></div>
+          <span class="menu-item-price">€ 8,00 / hg</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Kobe</span></div>
+          <span class="menu-item-price on-request">su richiesta</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-main"><span class="menu-item-name">Wagyu</span></div>
+          <span class="menu-item-price">€ 30,00 / hg</span>
+        </div>
+        <p>Tagli e pezzature in sala</p>
       </div></div></div>
     </article>
 
