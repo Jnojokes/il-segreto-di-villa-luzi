@@ -4,14 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Soggiornare · Villa Luzi 1737 · Treia, Marche</title>
-<meta name="description" content="B&B nella palazzina padronale del 1737 a Treia (MC), Marche: camere Room Villa e Suite Villa, otto ettari di parco, ristorante Il Segreto. 30 min da Macerata." />
+<meta name="description" content="Le camere regali di Villa Luzi 1737 a Treia: Camera Marisa, Camera delle Rose, Suite Baldacchino e la Suite al secondo piano. Soggiorni su richiesta WhatsApp." />
 <meta name="theme-color" content="#0E3B3E" />
 <link rel="canonical" href="https://villaluzi1737.it/soggiornare/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Villa Luzi 1737" />
 <meta property="og:title" content="Soggiornare · Villa Luzi 1737 · Treia, Marche" />
-<meta property="og:description" content="B&B nella palazzina padronale del 1737 a Treia (MC): camere Room Villa, mini-appartamento Suite Villa, otto ettari di parco e il ristorante Il Segreto in villa." />
-<meta property="og:image" content="https://villaluzi1737.it/assets/img/chef-villa-luzi.png" />
+<meta property="og:description" content="Le camere regali della dimora del 1737: Camera Marisa, Camera delle Rose, Suite Baldacchino e la Suite al secondo piano. Si prenota con un messaggio WhatsApp." />
+<meta property="og:image" content="https://villaluzi1737.it/assets/img/camere-regali/marisa-hero-1600.webp" />
 <meta property="og:locale" content="it_IT" />
 <meta property="og:url" content="https://villaluzi1737.it/soggiornare/" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -28,9 +28,9 @@
   "@context": "https://schema.org",
   "@type": "BedAndBreakfast",
   "@id": "https://villaluzi1737.it/soggiornare/#bnb",
-  "name": "Villa Luzi 1737 — Soggiorno in dimora",
+  "name": "Villa Luzi 1737 — Le camere regali",
   "url": "https://villaluzi1737.it/soggiornare/",
-  "description": "Bed & breakfast nella palazzina padronale di Villa Luzi, dimora del 1737 a Treia (MC), Marche: camere Room Villa, mini-appartamento Suite Villa, otto ettari di parco, ristorante Il Segreto in villa.",
+  "description": "Le camere regali della palazzina padronale di Villa Luzi, dimora del 1737 a Treia (MC), Marche: Camera Marisa, Camera delle Rose, Suite Baldacchino e la Suite al secondo piano. Otto ettari di parco e il ristorante Il Segreto in villa.",
   "telephone": "+39 345 241 9263",
   "email": "villaluzi1737@gmail.com",
   "address": {
@@ -43,19 +43,14 @@
   },
   "parentOrganization": { "@id": "https://villaluzi1737.it/#organization" },
   "containsPlace": [
-    {
-      "@type": "Accommodation",
-      "name": "Room Villa",
-      "description": "Camere nella palazzina padronale della dimora, con il Parco 1 antistante la residenza."
-    },
-    {
-      "@type": "Accommodation",
-      "name": "Suite Villa",
-      "description": "Mini-appartamento della residenza, per chi desidera più spazio e autonomia."
-    }
+    { "@type": "Accommodation", "name": "Camera Marisa", "description": "Camera con volta affrescata e fregi dipinti alle pareti, con angolo salotto e bagno privato." },
+    { "@type": "Accommodation", "name": "Camera delle Rose", "description": "Camera con letto in legno intagliato, accanto alla biblioteca storica della dimora, con bagno privato." },
+    { "@type": "Accommodation", "name": "Suite Baldacchino", "description": "Suite con letto a baldacchino, salotto attiguo e bagno privato." },
+    { "@type": "Accommodation", "name": "La Suite al secondo piano", "description": "Due camere al piano alto della palazzina, con vista sul parco." }
   ]
 }
 </script>
+
 <!-- JSON-LD · BreadcrumbList -->
 <script type="application/ld+json">
 {
@@ -67,240 +62,299 @@
   ]
 }
 </script>
+
 <style>
 /* Titoli h3 nelle info-cell: stessa resa dell'h4 di sistema, senza saltare livelli di heading */
 .info-cell h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; color: var(--avorio); margin-bottom: 10px; letter-spacing: -0.01em; line-height: 1.2; }
-/* Variante a due colonne della tile-grid (resta a 1 colonna sotto i 600px) */
-.tile-grid--two { max-width: 920px; }
-@media (min-width: 601px) { .tile-grid--two { grid-template-columns: repeat(2, 1fr); } }
+
+/* Le camere regali: una scheda per camera, foto grande + due dettagli,
+   CTA WhatsApp. Niente prezzi: il soggiorno si chiede con un messaggio. */
+.camera-scheda {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(48px, 7vw, 84px) 32px;
+}
+.camera-scheda:nth-of-type(even) .camera-media { order: 2; }
+.camera-media { display: grid; gap: 14px; }
+.camera-media .foto-grande {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 18px 44px rgba(26, 26, 26, 0.16);
+}
+.camera-dettagli { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.camera-dettagli img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+.camera-corpo .camera-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--oro-soft);
+}
+.camera-corpo h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: 400;
+  margin-top: 12px;
+  line-height: 1.1;
+}
+.camera-corpo p {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(18px, 1.6vw, 21px);
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin-top: 16px;
+  max-width: 46ch;
+}
+.camera-corpo .btn { margin-top: 26px; }
+@media (max-width: 860px) {
+  .camera-scheda { grid-template-columns: 1fr; padding: 44px 20px; }
+  .camera-scheda:nth-of-type(even) .camera-media { order: 0; }
+}
+.camere-divisore {
+  width: 54px; height: 1px; margin: 0 auto;
+  background: rgba(201, 160, 121, 0.4);
+}
 </style>
 </head>
 <body>
 <!-- @include:header -->
 <main>
 
-  <!-- ═════ HERO COMPATTO ═════ -->
-  <section class="hero hero--compact" aria-label="Soggiornare a Villa Luzi">
+<!-- ═════ HERO ═════ -->
+<section class="hero hero--compact" aria-label="Soggiornare a Villa Luzi">
   <img class="hero-bg-img" src="/assets/img/heroes/soggiornare.webp" alt="Salone barocco con soffitto affrescato, lampadario di cristallo, specchiere dorate e sedie tappezzate in rosa disposte simmetricamente" fetchpriority="high" decoding="async" />
   <div class="hero-bg-overlay"></div>
-    <div class="hero-inner">
-      <div class="hero-eyebrow">
-        <span class="line" aria-hidden="true"></span>
-        <span class="eyebrow">Treia · Marche · dal 1737</span>
-        <span class="line" aria-hidden="true"></span>
-      </div>
-      <h1 class="hero-title">Soggiornare <em>in dimora</em></h1>
-      <div class="hero-divider"></div>
-      <p class="hero-tagline">Le camere della palazzina padronale, otto ettari di parco, la tavola del Segreto.</p>
-      <p class="hero-meta">
-        Room Villa <span class="sep">·</span> Suite Villa <span class="sep">·</span> Parco <span class="sep">·</span> Ristorante
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="line" aria-hidden="true"></span>
+      <span class="eyebrow">Villa Luzi 1737 · Treia · Marche</span>
+      <span class="line" aria-hidden="true"></span>
+    </div>
+    <h1 class="hero-title">
+      Le camere
+      <em>regali</em>
+    </h1>
+    <div class="hero-divider" aria-hidden="true"></div>
+    <p class="hero-tagline">Dormire nella palazzina padronale del 1737: quattro camere d&rsquo;epoca, gli affreschi, il parco fuori dalla finestra.</p>
+    <div class="hero-ctas">
+      <a href="#camere" class="btn"><span>Le camere</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://wa.me/393452419263?text=Buongiorno%2C%20vorrei%20informazioni%20per%20un%20soggiorno%20nelle%20camere%20della%20villa." class="btn-ghost" target="_blank" rel="noopener"><span>Richiedi su WhatsApp</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ BREADCRUMB ═════ -->
+<nav class="breadcrumb" aria-label="Percorso" style="padding-top:28px">
+  <ol>
+    <li><a href="/">Villa Luzi</a></li>
+    <li aria-current="page">Soggiornare</li>
+  </ol>
+</nav>
+
+<!-- ═════ LEAD · apertura answer-ready ═════ -->
+<section aria-label="Soggiornare a Villa Luzi — introduzione">
+  <div class="container-narrow reveal" style="text-align:center">
+    <div class="section-eyebrow center">
+      <span class="line" aria-hidden="true"></span>
+      <span class="eyebrow">La notte in dimora</span>
+      <span class="line" aria-hidden="true"></span>
+    </div>
+    <div class="lead">
+      <p>
+        Nella palazzina padronale di <strong>Villa Luzi</strong>, dimora del
+        <strong>1737</strong> a Treia (Macerata), quattro camere d&rsquo;epoca portano i nomi
+        della loro storia: la <strong>Camera Marisa</strong>, la <strong>Camera delle Rose</strong>,
+        la <strong>Suite Baldacchino</strong> e la <strong>Suite al secondo piano</strong>.
       </p>
-      <div class="hero-ctas">
-        <a href="https://wa.me/393452419263" target="_blank" rel="noopener" class="btn"><span>Verifica disponibilità</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-        <a href="tel:+393452419263" class="btn-ghost"><span>+39 345 241 9263</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════ BREADCRUMB ═════ -->
-  <nav class="breadcrumb" aria-label="Percorso" style="padding-top:48px">
-    <ol>
-      <li><a href="/">Villa Luzi</a></li>
-      <li aria-current="page">Soggiornare</li>
-    </ol>
-  </nav>
-
-  <!-- ═════ LEAD · apertura answer-ready ═════ -->
-  <section aria-label="Il soggiorno in breve">
-    <div class="container-narrow reveal">
-      <div class="section-eyebrow center">
-        <span class="line"></span>
-        <span class="eyebrow">Il B&amp;B</span>
-        <span class="line"></span>
-      </div>
-      <div class="lead" style="text-align:center">
-        <p>
-          <strong>Villa Luzi</strong> è un bed &amp; breakfast nella palazzina padronale di una dimora
-          del <strong>1737</strong> in Contrada Chiaravalle 49, a <strong>Treia</strong>, in provincia di
-          Macerata, nelle Marche. Si dorme nelle camere <strong>Room Villa</strong> della palazzina,
-          col parco antistante la residenza, o nella <strong>Suite Villa</strong>, il mini-appartamento.
-        </p>
-        <p>
-          Intorno, <strong>otto ettari di parco</strong> di una dimora ridisegnata nell'Ottocento
-          dall'architetto Andrea Vici per il marchese Nicola Luzi; in villa, il ristorante
-          <a href="/il-segreto/">Il Segreto</a> dello chef Jan Paul Kana. Macerata è a 30 minuti,
-          Ancona e Civitanova a 45, l'aeroporto di Falconara a un'ora.
-        </p>
-      </div>
-      <div class="prose" style="margin-top:48px">
-        <p>
-          Soggiornare a Villa Luzi non somiglia a prendere una camera: somiglia a entrare in una
-          casa che esiste da quasi tre secoli e che continua a funzionare come tale. La palazzina
-          padronale è la residenza del B&amp;B; il parcheggio è dentro la proprietà, gratuito e
-          segnalato all'arrivo; le chiavi le consegna chi la villa la vive ogni giorno. Il resto
-          della dimora — il loggiato, la fontana, il bosco con il giardino all'italiana, la
-          limonaia — è il paesaggio quotidiano di chi dorme qui, non uno sfondo da cartolina.
-        </p>
-        <p>
-          Il calendario della casa accompagna il soggiorno: quando il ristorante è aperto si cena
-          in villa, e nei giorni di programma il parco ospita i format della dimora — come il pic
-          nic "Il Salotto dei Corsari" degli
-          <a href="/esperienze/aperitivi-in-erba/2-giugno-2026/">Aperitivi in erba del 2 giugno 2026</a>,
-          con due turni e posti limitati. Per chi invece immagina la villa per un matrimonio o una
-          festa privata, gli spazi si raccontano nella pagina degli <a href="/eventi/">eventi</a>.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════ IL SOGGIORNO IN CIFRE · stat-strip ═════ -->
-  <section aria-label="Il soggiorno in cifre">
-    <div class="container">
-      <div class="block-head reveal">
-        <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">Una casa, non un albergo</span><span class="line" aria-hidden="true"></span></div>
-        <h2>Il soggiorno <em>in cifre</em></h2>
-      </div>
-      <div class="stat-strip reveal">
-        <div class="stat"><div class="stat-num" data-count="1737">1737</div><div class="stat-label">La dimora dal</div></div>
-        <div class="stat"><div class="stat-num" data-count="8">8</div><div class="stat-label">Ettari di parco</div></div>
-        <div class="stat"><div class="stat-num" data-count="2">2</div><div class="stat-label">Tipologie di stanza</div></div>
-        <div class="stat"><div class="stat-num" data-count="30">30</div><div class="stat-label">Minuti da Macerata</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════ LA GIORNATA IN VILLA · editorial-feature full-bleed ═════ -->
-  <section class="editorial-feature editorial-feature--bottom reveal" aria-label="La giornata in villa">
-    <div class="editorial-feature-media">
-      <img src="/assets/img/covers/soggiornare.webp" alt="Camera matrimoniale con volta affrescata, parati decorati, comò con specchiera, ritratto ovale dorato e copriletto azzurro chiaro" loading="lazy" decoding="async" data-parallax="0.08" />
-    </div>
-    <div class="editorial-feature-panel">
-      <div class="editorial-feature-kicker">La giornata in villa</div>
-      <h2 class="editorial-feature-title">Dal Parco 1 <em>alla Segreta</em></h2>
-      <p class="editorial-feature-text">
-        La giornata comincia sul Parco 1, il parco antistante la residenza del B&amp;B: è la prima
-        cosa che si attraversa uscendo dalla porta di casa. La mattina passa dal loggiato, l'esterno
-        del ristorante, con l'acqua della fontana come unico rumore di fondo, e gli otto ettari
-        intorno aperti in tutte le direzioni.
+      <p>
+        Il soggiorno si richiede con un messaggio <strong>WhatsApp</strong> al
+        <a href="tel:+393452419263">+39&nbsp;345&nbsp;241&nbsp;9263</a>, indicando date e numero
+        di ospiti: rispondiamo con disponibilità e proposta. La sera, la tavola è quella del
+        ristorante <a href="/il-segreto/">Il Segreto</a>, in villa.
       </p>
-      <p class="editorial-feature-text">
-        Nel pomeriggio si entra nel bosco, dove il verde spontaneo incornicia il giardino
-        all'italiana; si percorre il vialetto dell'Amore o si sale alla Segreta, il patio rialzato
-        della villa. La sera comincia al bar o davanti alla limonaia e — nei giorni di apertura —
-        finisce alla tavola del <a href="/il-segreto/">Segreto</a>, senza riprendere l'auto: il
-        ristorante è in villa.
+    </div>
+  </div>
+</section>
+
+<!-- ═════ LE CAMERE ═════ -->
+<div id="camere">
+
+  <section class="camera-scheda reveal" aria-label="Camera Marisa">
+    <div class="camera-media">
+      <img class="foto-grande" src="/assets/img/camere-regali/marisa-hero-800.webp"
+           srcset="/assets/img/camere-regali/marisa-hero-800.webp 800w, /assets/img/camere-regali/marisa-hero-1600.webp 1600w"
+           sizes="(min-width: 860px) 56vw, 100vw"
+           alt="La Camera Marisa: letto in legno sotto la volta affrescata, con fregi floreali dipinti alle pareti e applique accese" loading="lazy" decoding="async" />
+      <div class="camera-dettagli">
+        <img src="/assets/img/camere-regali/marisa-salotto-800.webp" alt="L'angolo salotto della Camera Marisa, con poltrone imbottite sotto l'arco" loading="lazy" decoding="async" />
+        <img src="/assets/img/camere-regali/marisa-bagno-800.webp" alt="Il bagno privato della Camera Marisa" loading="lazy" decoding="async" />
+      </div>
+    </div>
+    <div class="camera-corpo">
+      <div class="camera-eyebrow">01 · La camera affrescata</div>
+      <h2>Camera <em>Marisa</em></h2>
+      <p>
+        La volta dipinta, le ghirlande di fiori che corrono lungo le pareti, i quadri
+        d&rsquo;epoca sopra il letto: la Camera Marisa è la stanza che racconta meglio
+        la mano ottocentesca della palazzina. Con angolo salotto e bagno privato.
       </p>
-      <a href="/esperienze/" class="link-arrow">
-        <span>Il calendario delle esperienze nel parco</span>
+      <a class="btn" href="https://wa.me/393452419263?text=Buongiorno%2C%20vorrei%20informazioni%20per%20un%20soggiorno%20nella%20Camera%20Marisa." target="_blank" rel="noopener"><span>Richiedi la Camera Marisa</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
     </div>
   </section>
 
-  <!-- ═════ LE DUE TIPOLOGIE · tile-grid ═════ -->
-  <section class="info" aria-label="Camere e suite">
-    <div class="container">
-      <div class="info-header reveal">
-        <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">Le stanze</span><span class="line" aria-hidden="true"></span></div>
-        <h2>Due modi di <em>abitare</em> la villa</h2>
-        <p class="prose" style="margin-top:18px;max-width:640px;margin-left:auto;margin-right:auto;text-align:center;">
-          La palazzina padronale è la residenza del B&amp;B: scale, soffitti e proporzioni sono
-          quelli di una casa nobiliare marchigiana, non di un albergo. Davanti alla residenza
-          si apre il Parco 1, quello dove la giornata comincia e finisce. Due le tipologie tra cui
-          scegliere — le camere e il mini-appartamento — entrambe dentro la dimora, con il Parco 1
-          davanti alla porta.
-        </p>
-      </div>
+  <div class="camere-divisore" aria-hidden="true"></div>
 
-      <div class="tile-grid tile-grid--two reveal" style="margin-top:48px">
-        <a href="/soggiornare/camere/room-villa/" class="tile">
-          <div class="tile-media">
-            <img src="/assets/img/covers/room-villa.webp" alt="Camera doppia classica con letto in noce, copriletto chiaro, comò con specchiera e ritratto ovale dorato alla parete" loading="lazy" decoding="async" />
-            <span class="photo-frame" aria-hidden="true"></span>
-          </div>
-          <div class="tile-body">
-            <span class="tile-eyebrow">Nella palazzina padronale</span>
-            <h3 class="tile-title">Room <em>Villa</em></h3>
-            <p class="tile-desc">Le camere del B&amp;B, ricavate nella palazzina padronale, col Parco 1 antistante la residenza: gli spazi di una casa nobiliare marchigiana, non i corridoi di un albergo.</p>
-          </div>
-        </a>
-        <a href="/soggiornare/camere/suite-villa/" class="tile">
-          <div class="tile-media">
-            <img src="/assets/img/covers/suite-villa.webp" alt="Ampia suite con mobili veneziani laccati verde acqua e dorature, letto, divano e toeletta presso la finestra" loading="lazy" decoding="async" />
-            <span class="photo-frame" aria-hidden="true"></span>
-          </div>
-          <div class="tile-body">
-            <span class="tile-eyebrow">Mini-appartamento</span>
-            <h3 class="tile-title">Suite <em>Villa</em></h3>
-            <p class="tile-desc">Il mini-appartamento della residenza: più spazio e più autonomia, per chi resta qualche giorno in più o viaggia in piccola compagnia.</p>
-          </div>
-        </a>
+  <section class="camera-scheda reveal" aria-label="Camera delle Rose">
+    <div class="camera-media">
+      <img class="foto-grande" src="/assets/img/camere-regali/rose-hero-800.webp"
+           srcset="/assets/img/camere-regali/rose-hero-800.webp 800w, /assets/img/camere-regali/rose-hero-1600.webp 1600w"
+           sizes="(min-width: 860px) 56vw, 100vw"
+           alt="La Camera delle Rose: letto con testiera in legno intagliato e coperta chiara, quadri alle pareti" loading="lazy" decoding="async" />
+      <div class="camera-dettagli">
+        <img src="/assets/img/camere-regali/rose-biblioteca-800.webp" alt="La biblioteca storica della dimora, con le scaffalature in legno e lo scrittoio" loading="lazy" decoding="async" />
+        <img src="/assets/img/camere-regali/rose-bagno-800.webp" alt="Il bagno privato della Camera delle Rose" loading="lazy" decoding="async" />
       </div>
-
-      <div class="container-narrow reveal" style="text-align:center;margin-top:32px">
-        <a href="/soggiornare/camere/" class="link-arrow">
-          <span>Tutte le camere</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-
-      <div class="container-narrow reveal" style="text-align:center;margin-top:56px">
-        <p class="prose" style="max-width:560px;margin:0 auto 28px">
-          Per tariffe e disponibilità scriveteci su WhatsApp o telefonate:
-          rispondiamo personalmente, con date reali e una proposta su misura
-          per la camera o per la suite, secondo la stagione e la durata del soggiorno.
-        </p>
-        <div class="closing-ctas" style="margin-top:0">
-          <a href="https://wa.me/393452419263" target="_blank" rel="noopener" class="btn"><span>WhatsApp</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-          <a href="tel:+393452419263" class="btn-ghost"><span>+39 345 241 9263</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
+    </div>
+    <div class="camera-corpo">
+      <div class="camera-eyebrow">02 · La camera della biblioteca</div>
+      <h2>Camera <em>delle Rose</em></h2>
+      <p>
+        Il letto in legno intagliato, la luce del mattino dalle persiane, e a pochi passi
+        la biblioteca storica della dimora, con le sue scaffalature e lo scrittoio.
+        Con bagno privato.
+      </p>
+      <a class="btn" href="https://wa.me/393452419263?text=Buongiorno%2C%20vorrei%20informazioni%20per%20un%20soggiorno%20nella%20Camera%20delle%20Rose." target="_blank" rel="noopener"><span>Richiedi la Camera delle Rose</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </section>
 
-  <!-- ═════ LA DIMORA · gallery-mosaic ═════ -->
-  <section aria-label="La dimora e il parco in immagini">
-    <div class="block-head reveal">
-      <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">La dimora</span><span class="line" aria-hidden="true"></span></div>
-      <h2>Dove si <em>soggiorna</em></h2>
+  <div class="camere-divisore" aria-hidden="true"></div>
+
+  <section class="camera-scheda reveal" aria-label="Suite Baldacchino">
+    <div class="camera-media">
+      <img class="foto-grande" src="/assets/img/camere-regali/baldacchino-hero-800.webp"
+           srcset="/assets/img/camere-regali/baldacchino-hero-800.webp 800w, /assets/img/camere-regali/baldacchino-hero-1600.webp 1600w"
+           sizes="(min-width: 860px) 56vw, 100vw"
+           alt="La Suite Baldacchino: il letto con la coperta verde sotto il baldacchino, fra mobili d'epoca laccati" loading="lazy" decoding="async" />
+      <div class="camera-dettagli">
+        <img src="/assets/img/camere-regali/baldacchino-salotto-800.webp" alt="Il salotto attiguo alla Suite Baldacchino, con soffitto decorato e lampadario" loading="lazy" decoding="async" />
+        <img src="/assets/img/camere-regali/baldacchino-bagno-800.webp" alt="Il bagno privato della Suite Baldacchino" loading="lazy" decoding="async" />
+      </div>
     </div>
-    <div class="gallery-mosaic reveal">
-      <figure class="g-big"><img src="/assets/img/gallery/soggiornare/1.webp" alt="Salone della dimora con soffitto affrescato, lampadario di cristallo e sedute tappezzate disposte simmetricamente" loading="lazy" decoding="async" /></figure>
-      <figure class="g-wide"><img src="/assets/img/gallery/soggiornare/2.webp" alt="Camera della palazzina padronale con copriletto chiaro, comò con specchiera e finestra affacciata sul parco" loading="lazy" decoding="async" /></figure>
-      <figure class="g-tall"><img src="/assets/img/gallery/soggiornare/3.webp" alt="Dettaglio degli arredi d'epoca della residenza, fra legni intagliati e dorature" loading="lazy" decoding="async" /></figure>
-      <figure class="g-tall"><img src="/assets/img/gallery/soggiornare/4.webp" alt="Angolo di una camera con specchiera dorata e tessuti chiari nella luce naturale" loading="lazy" decoding="async" /></figure>
-      <figure><img src="/assets/img/gallery/soggiornare/5.webp" alt="Scorcio degli ambienti comuni della palazzina padronale verso il parco" loading="lazy" decoding="async" /></figure>
-      <figure><img src="/assets/img/gallery/soggiornare/6.webp" alt="Dettaglio di parete e arredo della dimora, fra parati decorati e mobili d'epoca" loading="lazy" decoding="async" /></figure>
+    <div class="camera-corpo">
+      <div class="camera-eyebrow">03 · La suite del piano nobile</div>
+      <h2>Suite <em>Baldacchino</em></h2>
+      <p>
+        Il baldacchino sopra il letto, i mobili laccati d&rsquo;epoca, il salotto attiguo
+        col soffitto decorato: la suite più teatrale della palazzina, per chi vuole dormire
+        dentro la scena. Con bagno privato.
+      </p>
+      <a class="btn" href="https://wa.me/393452419263?text=Buongiorno%2C%20vorrei%20informazioni%20per%20un%20soggiorno%20nella%20Suite%20Baldacchino." target="_blank" rel="noopener"><span>Richiedi la Suite Baldacchino</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </section>
 
-  <!-- ═════ CLOSING · cta-split-image ═════ -->
-  <section class="cta-split" aria-label="Richiedi disponibilità">
-    <div class="cta-split-media">
-      <img src="/assets/img/gallery/soggiornare/2.webp" alt="Camera della palazzina padronale con copriletto chiaro, comò con specchiera e finestra affacciata sul parco di Villa Luzi" loading="lazy" decoding="async" />
-    </div>
-    <div class="cta-split-panel">
-      <div class="eyebrow" style="margin-bottom:18px">Contrada Chiaravalle 49 · Treia (MC)</div>
-      <h2 class="cta-split-title">Restate una notte</h2>
-      <p class="cta-split-sub">Scriveteci la data e il numero di ospiti: vi rispondiamo personalmente, con la tavola del <a href="/il-segreto/">Segreto</a> e il calendario degli <a href="/eventi/">eventi</a> a pochi passi dalla porta.</p>
-      <div class="cta-split-ctas">
-        <a href="https://wa.me/393452419263" target="_blank" rel="noopener" class="btn"><span>Scrivici su WhatsApp</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-        <a href="/contatti/" class="btn-ghost"><span>Tutti i contatti</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
+  <div class="camere-divisore" aria-hidden="true"></div>
+
+  <!-- [DA CONFERMARE: piano e composizione esatta della suite: la cartella dice "secondo piano", alcune foto "terzo piano"] -->
+  <section class="camera-scheda reveal" aria-label="La Suite al secondo piano">
+    <div class="camera-media">
+      <img class="foto-grande" src="/assets/img/camere-regali/suite-hero-800.webp"
+           srcset="/assets/img/camere-regali/suite-hero-800.webp 800w, /assets/img/camere-regali/suite-hero-1600.webp 1600w"
+           sizes="(min-width: 860px) 56vw, 100vw"
+           alt="La camera principale della Suite al secondo piano, con letto in ottone e copriletto a righe" loading="lazy" decoding="async" />
+      <div class="camera-dettagli">
+        <img src="/assets/img/camere-regali/suite-singola-800.webp" alt="La camera singola della Suite al secondo piano" loading="lazy" decoding="async" />
+        <img src="/assets/img/camere-regali/suite-vista-800.webp" alt="La vista sul parco dalle finestre della Suite al secondo piano" loading="lazy" decoding="async" />
       </div>
     </div>
+    <div class="camera-corpo">
+      <div class="camera-eyebrow">04 · La suite di famiglia</div>
+      <h2>La Suite <em>al secondo piano</em></h2>
+      <p>
+        Due camere al piano alto della palazzina — il letto in ottone nella principale,
+        la singola accanto — per famiglie o piccoli gruppi che vogliono restare insieme.
+        Dalle finestre, il parco.
+      </p>
+      <a class="btn" href="https://wa.me/393452419263?text=Buongiorno%2C%20vorrei%20informazioni%20per%20un%20soggiorno%20nella%20Suite%20al%20secondo%20piano." target="_blank" rel="noopener"><span>Richiedi la Suite</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
   </section>
+
+</div>
+
+<!-- ═════ COME SI PRENOTA ═════ -->
+<section class="info" aria-label="Come si prenota il soggiorno">
+  <div class="container">
+    <div class="info-header reveal">
+      <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">Come si prenota</span><span class="line" aria-hidden="true"></span></div>
+      <h2>Un messaggio, <em>una proposta</em></h2>
+    </div>
+    <div class="info-grid reveal-group">
+      <div class="info-cell">
+        <div class="label">01 · La richiesta</div>
+        <h3>Scriveteci su WhatsApp</h3>
+        <p>Date, numero di ospiti e la camera che avete in mente: un messaggio al
+        <a href="https://wa.me/393452419263" target="_blank" rel="noopener">+39 345 241 9263</a>
+        basta per avere disponibilità e proposta.</p>
+      </div>
+      <div class="info-cell">
+        <div class="label">02 · La sera</div>
+        <h3>La tavola in villa</h3>
+        <p>Chi soggiorna cena a pochi passi dalla camera: il ristorante della dimora è
+        <a href="/il-segreto/">Il Segreto</a>, con la carta dello chef Jan Paul Kana.</p>
+      </div>
+      <div class="info-cell">
+        <div class="label">03 · Il giorno</div>
+        <h3>Il parco e il tempo</h3>
+        <p>Otto ettari da attraversare a piedi, il <a href="/esperienze/">centro estetico</a>
+        per un massaggio, le <a href="/eventi/">serate</a> della villa. Tutti i recapiti nella
+        pagina <a href="/contatti/">Contatti</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ CLOSING · cta-split-image ═════ -->
+<section class="cta-split" aria-label="Richiedi il tuo soggiorno">
+  <div class="cta-split-media">
+    <img src="/assets/img/camere-regali/marisa-salotto-800.webp" alt="L'angolo salotto della Camera Marisa, con le poltrone sotto l'arco e la luce calda della sera" loading="lazy" decoding="async" />
+  </div>
+  <div class="cta-split-panel">
+    <div class="eyebrow" style="margin-bottom:18px">Contrada Chiaravalle 49 · Treia (MC)</div>
+    <h2 class="cta-split-title">La vostra notte in dimora.</h2>
+    <p class="cta-split-sub">Una data e un messaggio: vi rispondiamo con la camera giusta e la proposta per il soggiorno. E la sera, la tavola del <a href="/il-segreto/">Segreto</a>.</p>
+    <div class="cta-split-ctas">
+      <a href="https://wa.me/393452419263?text=Buongiorno%2C%20vorrei%20informazioni%20per%20un%20soggiorno%20nelle%20camere%20della%20villa." class="btn" target="_blank" rel="noopener"><span>Richiedi su WhatsApp</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="/contatti/" class="btn-ghost"><span>Tutti i recapiti</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
 
 </main>
 <!-- @include:footer -->

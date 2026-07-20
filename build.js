@@ -45,6 +45,9 @@ const SKIP_REL = new Set([
   'eventi/eventi-privati',
   'eventi/corporate',
   'eventi/la-domenica',
+  // Vecchie pagine camere (Room/Suite Villa): sostituite dalle camere
+  // regali in /soggiornare/ (2026-07-20).
+  'soggiornare/camere',
 ]);
 
 function readPartial(name) {
