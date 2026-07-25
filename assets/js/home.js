@@ -222,3 +222,18 @@
     onScroll();
   }
 })();
+
+/* ─── CONCIERGE INVITE · le bolle aprono il concierge con l'intento giusto ───
+   Le bolle sono <a> con href reale: senza JS (o senza concierge) navigano;
+   con VLConcierge disponibile il click apre il dock con l'intento
+   preselezionato. Il link di chiusura (data-concierge-open) apre lo Step 0. */
+(function () {
+  var invite = document.querySelector('.concierge-invite');
+  if (!invite) return;
+  invite.addEventListener('click', function (e) {
+    var trigger = e.target.closest('[data-intent], [data-concierge-open]');
+    if (!trigger || !window.VLConcierge) return;
+    e.preventDefault();
+    window.VLConcierge.open(trigger.getAttribute('data-intent') || null);
+  });
+})();

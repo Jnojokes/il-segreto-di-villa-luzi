@@ -33,12 +33,12 @@
     catalog: {
       // I tre pilastri dell'estate
       domenica: {
-        kind: 'domenica', price: 55,
+        kind: 'domenica', price: 35,
         label: { it: 'La Domenica al Segreto', en: 'Sunday at Il Segreto' },
         name: { it: 'la Domenica al Segreto', en: 'the Sunday at Il Segreto' },
         desc: {
-          it: 'Pranzo dalle 12:30, piscina fino alle 18. Il menù d’autore di Chef Jan Paul Kana.',
-          en: 'Lunch from 12:30, pool until 18:00. Chef Jan Paul Kana’s signature menù.'
+          it: 'Pranzo dalle 12:30 con un antipasto e un primo di Chef Jan Paul Kana, una bevuta e la piscina fino alle 18.',
+          en: 'Lunch from 12:30 with a starter and a first course by Chef Jan Paul Kana, one drink and the pool until 18:00.'
         }
       },
       aperitivo: {
@@ -62,7 +62,7 @@
       w_pedi_shellac: { kind: 'wellness', price: 60, label: { it: 'Pedicure semipermanente Shellac', en: 'Shellac gel pedicure' } },
       // Pacchetti (upselling)
       p_domenica_benessere: {
-        kind: 'package', price: 130, oldPrice: 140,
+        kind: 'package', price: 110, oldPrice: 120,
         label: { it: 'Domenica + Benessere', en: 'Sunday + Wellness' },
         desc: { it: 'Il pranzo della domenica con piscina e un massaggio da 50 minuti.', en: 'Sunday lunch with the pool and a 50-minute massage.' }
       },
@@ -77,7 +77,7 @@
         desc: { it: 'Un trattamento al mattino, pranzo e pomeriggio in piscina.', en: 'A morning treatment, lunch and an afternoon by the pool.' }
       },
       // Gift card dell'estate
-      g_domenica_due: { kind: 'gift', price: 110, label: { it: 'Una Domenica per due', en: 'A Sunday for two' } },
+      g_domenica_due: { kind: 'gift', price: 70, label: { it: 'Una Domenica per due', en: 'A Sunday for two' } },
       g_ora_benessere: { kind: 'gift', price: 85, label: { it: 'Un’ora di benessere', en: 'An hour of wellness' } },
       g_aperitivo_due: { kind: 'gift', price: null, noteKey: 'sumisura', label: { it: 'Aperitivo al tramonto per due', en: 'Sunset aperitif for two' } },
       g_libero: { kind: 'gift', price: null, freeValue: [50, 100, 150], label: { it: 'A valore libero', en: 'Open value' } },
@@ -155,7 +155,7 @@
         secPackages: 'I pacchetti', secGift: 'Le gift card dell’estate', secStay: 'Eventi e matrimoni', secExplore: 'I mondi della villa',
         instead: 'anziché', fieldDate: 'Data', fieldPeople: 'Persone', fieldValue: 'Importo',
         noteLabel: 'Aggiungi una nota', notePlaceholder: 'Es. arriviamo nel pomeriggio…',
-        empty: 'La selezione è ancora vuota. Tornate indietro e tenete ciò che vi attira — anche una cosa sola.',
+        empty: 'La selezione è ancora vuota. Tornate indietro e tenete ciò che vi attira, anche una cosa sola.',
         msgLabel: 'Il tuo messaggio', whatsapp: 'Invia richiesta',
         copy: 'Copia messaggio', copied: 'Copiato', emailBtn: 'Email', phoneBtn: 'Telefono',
         warm: 'Ti aspettiamo in dimora.', giftCta: 'Regala un’estate', openDetail: 'Scopri'
@@ -170,14 +170,14 @@
         remove: 'Remove',
         s0title: 'Time is the real luxury.', s0lede: 'Where shall we begin?',
         s1eyebrow: 'Step 1 · Your intention', s1title: 'What draws you in?', s1lede: 'Feel free to pick more than one.',
-        s2eyebrow: 'Step 2 · The details', s2title: 'Keep what you like', s2lede: 'Add to your selection — you’ll send it all in a single message.',
+        s2eyebrow: 'Step 2 · The details', s2title: 'Keep what you like', s2lede: 'Add to your selection: you’ll send it all in a single message.',
         s3eyebrow: 'Step 3 · Your selection', s3title: 'Your request', s3lede: 'Edit freely, then add a note.',
         s4eyebrow: 'Step 4 · Sending', s4title: 'Send your request', s4lede: 'This is the message you’ll send.',
         secDomenica: 'Sunday at Il Segreto', secAperitivo: 'The aperitif by the pool', secWellness: 'Wellness & massage',
         secPackages: 'The packages', secGift: 'Summer gift cards', secStay: 'Events & weddings', secExplore: 'The villa’s worlds',
         instead: 'instead of', fieldDate: 'Date', fieldPeople: 'Guests', fieldValue: 'Amount',
         noteLabel: 'Add a note', notePlaceholder: 'E.g. we arrive in the afternoon…',
-        empty: 'Your selection is still empty. Go back and keep what draws you — even just one thing.',
+        empty: 'Your selection is still empty. Go back and keep what draws you, even just one thing.',
         msgLabel: 'Your message', whatsapp: 'Send request',
         copy: 'Copy message', copied: 'Copied', emailBtn: 'Email', phoneBtn: 'Call',
         warm: 'We’ll be expecting you.', giftCta: 'Gift a summer', openDetail: 'Discover'
@@ -326,11 +326,11 @@
     switch (c.kind) {
       case 'domenica':
         var m = domenicaMeta(it.meta);
-        return L(c.label) + ' (' + price + ')' + (m ? ' — ' + m : '');
+        return L(c.label) + ' (' + price + ')' + (m ? ' · ' + m : '');
       case 'aperitivo':
         return lang === 'it'
-          ? 'Aperitivo in piscina — tenetemi un posto (formula da confermare)'
-          : 'Aperitif by the pool — please hold a spot (format to be confirmed)';
+          ? 'Aperitivo in piscina: tenetemi un posto (formula da confermare)'
+          : 'Aperitif by the pool: please hold a spot (format to be confirmed)';
       case 'wellness':
         return L(c.label) + ' (' + price + ')';
       case 'package':

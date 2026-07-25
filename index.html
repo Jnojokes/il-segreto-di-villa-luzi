@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Villa Luzi 1737 · Dimora storica a Treia, Marche — Soggiorno, ristorante, esperienze, eventi</title>
+<title>Villa Luzi 1737 · Dimora storica a Treia, Marche · Soggiorno, ristorante, esperienze, eventi</title>
 <meta name="description" content="Villa Luzi è una dimora storica del 1737 a Treia (Macerata), Marche: otto ettari di parco, soggiorno in villa, il ristorante Il Segreto, esperienze ed eventi." />
 <meta name="theme-color" content="#0E3B3E" />
 <link rel="canonical" href="https://villaluzi1737.it/" />
@@ -22,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/css/site.css?v=3" />
 <link rel="stylesheet" href="/assets/css/home.css?v=3" />
-<link rel="stylesheet" href="/assets/css/orb.css?v=3" />
 
 <!-- JSON-LD · WebSite (l'Organization è iniettata dal footer, qui solo il riferimento) -->
 <script type="application/ld+json">
@@ -109,89 +108,50 @@
   </div>
 </section>
 
-<!-- ═════ ORB · la sfera dei mondi della villa ═════ -->
-<section class="orb-section" aria-labelledby="orb-title">
-  <div class="orb-bg" aria-hidden="true">
-    <img class="orb-bg-photo" src="/assets/img/heroes/la-villa.webp" alt="La palazzina padronale di Villa Luzi e il parco — sfondo decorativo del blocco" loading="lazy" decoding="async" />
-  </div>
-  <div class="orb-head">
-    <span class="orb-eyebrow"><span class="line" aria-hidden="true"></span>I mondi della villa<span class="line" aria-hidden="true"></span></span>
-    <h2 class="orb-title" id="orb-title">Esplora le <em>anime</em> di Villa Luzi</h2>
-    <p class="orb-lead">Una sola dimora, tanti modi di viverla. Ruota la sfera o tocca un mondo per entrarci.</p>
-  </div>
-
-  <div class="orb-stage">
-    <!-- Globo inciso (decorativo, visibile solo in modalità sfera): superficie
-         disegnata — meridiani/paralleli + mappa stilizzata della dimora — con
-         vetro, rim-light dorato e riflesso speculare. Nasconde se no-JS/grid. -->
-    <div class="orb-globe" aria-hidden="true">
-      <svg viewBox="0 0 440 440" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="orbGlass" cx="40%" cy="34%" r="72%">
-            <stop offset="0%" stop-color="rgba(255,255,255,0.70)"/>
-            <stop offset="40%" stop-color="rgba(243,236,223,0.40)"/>
-            <stop offset="76%" stop-color="rgba(14,59,62,0.10)"/>
-            <stop offset="100%" stop-color="rgba(14,59,62,0.26)"/>
-          </radialGradient>
-          <radialGradient id="orbCore" cx="50%" cy="52%" r="55%">
-            <stop offset="0%" stop-color="rgba(201,160,121,0.22)"/>
-            <stop offset="60%" stop-color="rgba(201,160,121,0.06)"/>
-            <stop offset="100%" stop-color="rgba(201,160,121,0)"/>
-          </radialGradient>
-          <linearGradient id="orbRimG" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="rgba(216,180,134,0.95)"/>
-            <stop offset="48%" stop-color="rgba(201,160,121,0.30)"/>
-            <stop offset="100%" stop-color="rgba(14,59,62,0.40)"/>
-          </linearGradient>
-          <clipPath id="orbClip"><circle cx="220" cy="220" r="196"/></clipPath>
-        </defs>
-        <circle cx="220" cy="220" r="196" fill="url(#orbGlass)"/>
-        <circle cx="220" cy="220" r="196" fill="url(#orbCore)"/>
-        <g clip-path="url(#orbClip)">
-          <g class="orb-grid">
-            <ellipse cx="220" cy="220" rx="196" ry="46"/>
-            <ellipse cx="220" cy="220" rx="188" ry="100"/>
-            <ellipse cx="220" cy="220" rx="168" ry="152"/>
-            <line x1="24" y1="220" x2="416" y2="220"/>
-            <ellipse cx="220" cy="220" rx="46" ry="196"/>
-            <ellipse cx="220" cy="220" rx="100" ry="188"/>
-            <ellipse cx="220" cy="220" rx="152" ry="168"/>
-            <line x1="220" y1="24" x2="220" y2="416"/>
-          </g>
-          <g class="orb-map">
-            <path d="M70 250 Q150 215 215 244 T370 232"/>
-            <path d="M96 300 Q190 262 250 296 T372 286"/>
-            <rect x="198" y="150" width="44" height="32"/>
-            <path d="M198 150 L220 133 L242 150"/>
-            <line x1="230" y1="141" x2="230" y2="120"/>
-            <path d="M150 206 q-7 -30 0 -56 q7 26 0 56"/>
-            <path d="M170 210 q-6 -24 0 -46 q6 20 0 46"/>
-            <path d="M286 200 q-7 -32 0 -58 q7 28 0 58"/>
-            <circle cx="220" cy="266" r="13"/>
-            <circle cx="220" cy="266" r="4.5"/>
-            <g class="orb-compass" transform="translate(326,322)">
-              <path d="M0 -15 L4 0 L0 15 L-4 0 Z"/>
-              <path d="M-15 0 L0 -4 L15 0 L0 4 Z"/>
-            </g>
-          </g>
-        </g>
-        <circle class="orb-rim" cx="220" cy="220" r="196" fill="none" stroke="url(#orbRimG)"/>
-        <ellipse class="orb-spec" cx="150" cy="132" rx="74" ry="46" transform="rotate(-26 150 132)"/>
-      </svg>
+<!-- ═════ CONCIERGE · l'invito conversazionale (al posto dell'orb) ═════
+     Le bolle sono domande-tipo dell'ospite: link reali alle sezioni (fallback
+     no-JS e link interni per check.js); con JS home.js intercetta il click e
+     apre il Concierge (window.VLConcierge, montato dal footer) con l'intento
+     già preselezionato. -->
+<section class="concierge-invite" aria-labelledby="ci-title">
+  <div class="container">
+    <div class="block-head reveal">
+      <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">Il concierge della villa</span><span class="line" aria-hidden="true"></span></div>
+      <h2 id="ci-title">Da dove <em>cominciamo?</em></h2>
+      <p class="ci-lead">Alla villa risponde un concierge: sceglie con voi la giornata giusta e ve la manda su WhatsApp, già composta. Toccate una domanda per cominciare.</p>
     </div>
-    <!-- Lista reale delle SEZIONI del sito (navigazione pura): senza JS o con
-         reduced-motion resta una griglia accessibile; orb.js la dispone sulla
-         sfera e mostra l'anteprima foto (data-cover) al passaggio del mouse. -->
-    <ul class="orb-world" aria-label="I mondi di Villa Luzi">
-      <li><a class="orb-node" href="/la-villa/" data-cover="/assets/img/covers/la-villa.webp"><span class="orb-dot" aria-hidden="true"></span><span class="orb-label">La Villa</span></a></li>
-      <li><a class="orb-node" href="/il-segreto/" data-primary data-cover="/assets/img/covers/menu.webp"><span class="orb-dot" aria-hidden="true"></span><span class="orb-label">Il Segreto · Ristorante</span></a></li>
-      <li><a class="orb-node" href="/esperienze/" data-cover="/assets/img/covers/esperienze.webp"><span class="orb-dot" aria-hidden="true"></span><span class="orb-label">Esperienze</span></a></li>
-      <li><a class="orb-node" href="/eventi/" data-cover="/assets/img/covers/eventi.webp"><span class="orb-dot" aria-hidden="true"></span><span class="orb-label">Eventi</span></a></li>
-      <li><a class="orb-node" href="/matrimoni/" data-cover="/assets/img/covers/matrimoni.webp"><span class="orb-dot" aria-hidden="true"></span><span class="orb-label">Matrimoni</span></a></li>
-      <li><a class="orb-node" href="/contatti/" data-cover="/assets/img/covers/contatti.webp"><span class="orb-dot" aria-hidden="true"></span><span class="orb-label">Contatti</span></a></li>
-    </ul>
+    <div class="ci-thread reveal-group">
+      <a class="ci-bubble" href="/offerte/" data-intent="domenica">
+        <span class="ci-q">Vorrei una domenica di pranzo e piscina.</span>
+        <span class="ci-a">La Domenica al Segreto · 35 € a persona</span>
+      </a>
+      <a class="ci-bubble" href="/esperienze/" data-intent="wellness">
+        <span class="ci-q">Un massaggio nel parco, tempo per me.</span>
+        <span class="ci-a">Benessere in villa</span>
+      </a>
+      <a class="ci-bubble" href="/eventi/" data-intent="evento">
+        <span class="ci-q">Sto pensando a una festa, forse a un matrimonio.</span>
+        <span class="ci-a">Eventi e matrimoni</span>
+      </a>
+      <a class="ci-bubble" href="/offerte/" data-intent="gift">
+        <span class="ci-q">Vorrei regalare una giornata qui.</span>
+        <span class="ci-a">Le gift card della villa</span>
+      </a>
+      <a class="ci-bubble" href="/la-villa/" data-intent="esplorare">
+        <span class="ci-q">Fatemi solo curiosare fra le anime.</span>
+        <span class="ci-a">I mondi della villa</span>
+      </a>
+      <div class="ci-typing" aria-hidden="true">
+        <span class="ci-typing-name">Concierge</span>
+        <span class="ci-dots"><i></i><i></i><i></i></span>
+      </div>
+    </div>
+    <p class="ci-foot reveal">
+      <a class="ci-open" href="/contatti/" data-concierge-open>Oppure aprite il concierge e chiedete voi
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </p>
   </div>
-  <p class="orb-hint" aria-hidden="true">Trascina per ruotare · tocca un mondo</p>
 </section>
 
 <!-- ═════ LE ANIME · PILLARS ═════ -->
@@ -258,9 +218,9 @@
       <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">Tre modi di vivere la villa</span><span class="line" aria-hidden="true"></span></div>
       <h2>I tre <em>mondi</em></h2>
       <p class="prose" style="margin-top:18px;max-width:640px;margin-left:auto;margin-right:auto;text-align:center;">
-        Si cena al Segreto — con una
+        Si cena al Segreto, con una
         <a href="/il-segreto/#menu">carta</a> che va dagli Antipasti ai Primi,
-        dai Secondi alle Pizze del forno a legna, fino ai Dessert — si passa un pomeriggio
+        dai Secondi alle Pizze del forno a legna, fino ai Dessert. Si passa un pomeriggio
         sull'erba con gli <a href="/esperienze/aperitivi-in-erba/2-giugno-2026/">Aperitivi in erba</a>,
         si celebra un matrimonio tra Salone, Limonaia e Chiesa. Per ogni richiesta:
         <a href="tel:+393452419263">+39&nbsp;345&nbsp;241&nbsp;9263</a>, anche WhatsApp,
@@ -324,22 +284,6 @@
   </div>
 </section>
 
-<!-- ═════ LA DIMORA IN CIFRE · stat-strip ═════ -->
-<section aria-label="La villa in numeri">
-  <div class="container">
-    <div class="block-head reveal">
-      <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">La villa in numeri</span><span class="line" aria-hidden="true"></span></div>
-      <h2>Una dimora che si misura <em>in secoli ed ettari</em></h2>
-    </div>
-    <div class="stat-strip reveal">
-      <div class="stat"><div class="stat-num" data-count="1737">1737</div><div class="stat-label">Anno di fondazione</div></div>
-      <div class="stat"><div class="stat-num" data-count="8">8</div><div class="stat-label">Ettari di parco</div></div>
-      <div class="stat"><div class="stat-num" data-count="21">21</div><div class="stat-label">Luoghi nominati</div></div>
-      <div class="stat"><div class="stat-num" data-count="4">4</div><div class="stat-label">Anime della dimora</div></div>
-    </div>
-  </div>
-</section>
-
 <!-- ═════ CLOSING · cta-split-image ═════ -->
 <section class="cta-split" aria-label="Invito">
   <div class="cta-split-media">
@@ -364,6 +308,5 @@
 <!-- @include:footer -->
 <script src="/assets/js/site.js?v=3" defer></script>
 <script src="/assets/js/home.js?v=3" defer></script>
-<script src="/assets/js/orb.js?v=3" defer></script>
 </body>
 </html>

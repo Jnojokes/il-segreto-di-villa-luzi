@@ -23,6 +23,8 @@ const BLOCKED = new Set([
   // niente link interni, canonical sul dominio live .com): solo controlli soft.
   'eventi/cena-spettacolo-jazz/index.html',
   'eventi/noche-latina/index.html',
+  'eventi/gran-ballo-russo/index.html',
+  'eventi/notte-dei-desideri/index.html',
   // Menù QR da tavolo: standalone, noindex, senza nav né link interni.
   'menu/index.html',
 ]);
