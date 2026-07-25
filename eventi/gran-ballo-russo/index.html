@@ -23,6 +23,22 @@
 <meta name="twitter:description" content="Una notte di eleganza imperiale nella corte della dimora. Sabato 1 agosto 2026, dalle 20:30. Prenotazione obbligatoria su WhatsApp.">
 <meta name="twitter:image" content="https://www.villaluzi1737.com/assets/ballo-russo/og-ballo-russo.jpg">
 
+<!-- Meta Pixel (stesso dataset delle altre landing evento) -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '5285830348309655');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></noscript>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
@@ -295,14 +311,16 @@
 </footer>
 
 <script>
-/* Tracciamento click WhatsApp: nessuna chiave hard coded.
-   Si aggancia a Meta Pixel (fbq) o GA/GTM (dataLayer) se presenti in pagina. */
+/* MISURAZIONE: un solo evento di conversione, Lead sul click WhatsApp
+   (stessa convenzione delle landing jazz, noche latina e White Party).
+   Le campagne Meta si ottimizzano su questo. In più un push generico
+   su dataLayer per GA/GTM, se presente. */
 (function () {
   document.addEventListener('click', function (e) {
     var a = e.target.closest('a[href^="https://wa.me/"]');
     if (!a) return;
     try {
-      if (typeof window.fbq === 'function') window.fbq('trackCustom', 'WhatsAppClick', { event_name: 'gran_ballo_russo', placement: a.id || 'page' });
+      if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: 'Gran Ballo Russo 1 agosto', method: 'whatsapp', cta: a.id || 'page' });
       if (Array.isArray(window.dataLayer)) window.dataLayer.push({ event: 'whatsapp_click', event_name: 'gran_ballo_russo', placement: a.id || 'page' });
     } catch (err) { /* il tracciamento non deve mai bloccare il click */ }
   });
