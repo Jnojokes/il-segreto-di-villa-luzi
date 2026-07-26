@@ -4,13 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Eventi · Villa Luzi 1737 · Treia, Marche</title>
-<meta name="description" content="Le serate di Villa Luzi 1737 a Treia: Noche Latina, Cena Spettacolo Jazz, White Party e Salotto dei Corsari. E l'evento privato su misura nella dimora del 1737." />
+<meta name="description" content="Le serate di Villa Luzi 1737 a Treia: Gran Ballo Russo il 1 agosto, La Notte dei Desideri il 10 agosto, e l'evento privato su misura nella dimora del 1737." />
 <meta name="theme-color" content="#0E3B3E" />
 <link rel="canonical" href="https://villaluzi1737.it/eventi/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Villa Luzi 1737" />
 <meta property="og:title" content="Eventi · Villa Luzi 1737 · Treia, Marche" />
-<meta property="og:description" content="Le serate della dimora (Noche Latina, jazz, White Party, il Salotto dei Corsari) e gli eventi privati su misura fra salone, limonaia e otto ettari di parco." />
+<meta property="og:description" content="Le serate della dimora, dal Gran Ballo Russo del 1 agosto a La Notte dei Desideri del 10 agosto, e gli eventi privati su misura fra salone, limonaia e parco." />
 <meta property="og:image" content="https://villaluzi1737.it/assets/img/covers/eventi.webp" />
 <meta property="og:locale" content="it_IT" />
 <meta property="og:url" content="https://villaluzi1737.it/eventi/" />
@@ -60,17 +60,171 @@
 }
 </script>
 
-<style>
-/* La parete dei manifesti: le locandine delle serate, incorniciate come
-   affissioni nel foyer della dimora. Ogni manifesto apre la sua landing. */
-.manifesti {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 36px 32px;
-  margin-top: 44px;
+<!-- JSON-LD · ItemList (il nastro delle serate, in ordine cronologico) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Le serate di Villa Luzi 1737",
+  "itemListOrder": "https://schema.org/ItemListOrderAscending",
+  "numberOfItems": 6,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "item": { "@type": "Event", "name": "Il Salotto dei Corsari", "startDate": "2026-06-02", "url": "https://villaluzi1737.it/esperienze/aperitivi-in-erba/2-giugno-2026/" } },
+    { "@type": "ListItem", "position": 2, "item": { "@type": "Event", "name": "White Party", "startDate": "2026-06-19T20:30:00+02:00", "url": "https://villaluzi1737.it/eventi/white-party/" } },
+    { "@type": "ListItem", "position": 3, "item": { "@type": "Event", "name": "Cena Spettacolo Jazz", "startDate": "2026-07-11T20:30:00+02:00", "url": "https://www.villaluzi1737.com/eventi/cena-spettacolo-jazz/" } },
+    { "@type": "ListItem", "position": 4, "item": { "@type": "Event", "name": "Noche Latina", "startDate": "2026-07-17T20:00:00+02:00", "url": "https://www.villaluzi1737.com/eventi/noche-latina/" } },
+    { "@type": "ListItem", "position": 5, "item": { "@type": "Event", "name": "Gran Ballo Russo", "startDate": "2026-08-01T20:30:00+02:00", "url": "https://www.villaluzi1737.com/eventi/gran-ballo-russo/" } },
+    { "@type": "ListItem", "position": 6, "item": { "@type": "Event", "name": "La Notte dei Desideri", "startDate": "2026-08-10T21:00:00+02:00", "url": "https://www.villaluzi1737.com/eventi/notte-dei-desideri/" } }
+  ]
 }
-.manifesto { display: block; text-decoration: none; }
-.manifesto-media {
+</script>
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   IL NASTRO DEL TEMPO
+   Le serate della dimora appese a una linea del tempo che si scorre.
+   L'asse è disegnato dalla pista (::before, per tutta la sua larghezza),
+   i pallini stanno sui nodi: nessuna posizione è calcolata in JS.
+   L'etichetta del mese è scritta a mano nell'HTML, solo sul primo nodo
+   di ogni mese. Il CSS vive qui perché è di questa pagina soltanto,
+   esattamente come la griglia dei manifesti che sostituisce.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── testata di ogni nastro: stato + frecce ─── */
+.nastro-testata {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 68px;
+}
+.block-head + .nastro-testata { margin-top: 0; }
+.nastro-stato {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--oro-soft);
+}
+.nastro-stato::after {
+  content: '';
+  width: 54px;
+  height: 1px;
+  background: var(--ink-faint);
+}
+.nastro-frecce { display: flex; gap: 10px; flex: none; }
+.nastro-frecce[hidden] { display: none; }
+.nastro-freccia {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--ink-faint);
+  background: transparent;
+  color: var(--inchiostro);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--dur-fast) var(--ease-lux),
+              color var(--dur-fast) var(--ease-lux);
+}
+.nastro-freccia svg { width: 17px; height: 17px; }
+.nastro-freccia:hover:not([aria-disabled="true"]),
+.nastro-freccia:focus-visible { border-color: var(--corallo); color: var(--corallo-deep); }
+/* aria-disabled e non `disabled`: un button che si disabilita mentre ha il
+   focus lo scarica sul <body>, e a fine corsa succede sempre */
+.nastro-freccia[aria-disabled="true"] { opacity: 0.28; cursor: default; }
+
+/* ─── il nastro ─── */
+.nastro {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  /* `proximity` e non `mandatory`: su iOS lo snap rigido litiga con lo
+     scorrimento programmatico delle frecce e produce salti */
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 12px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin-top: 24px;
+  /* spazio perché overflow-x non tagli l'anello di focus (offset 9px) */
+  padding-bottom: 18px;
+}
+.nastro::-webkit-scrollbar { display: none; }
+.nastro.is-scorribile { cursor: grab; }
+/* durante il trascinamento lo snap va spento, altrimenti contrasta lo
+   scrollLeft impostato a mano e il nastro sobbalza */
+.nastro.is-trascinato {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+  cursor: grabbing;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.nastro-pista {
+  position: relative;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* max-content quando le serate traboccano, larghezza piena quando no:
+     nel secondo caso `center` recupera il vuoto a destra, nel primo è un
+     no-op perché non resta spazio libero. L'asse resta comunque disteso. */
+  width: max-content;
+  min-width: 100%;
+  justify-content: center;
+}
+.nastro-pista::before {
+  content: '';
+  position: absolute;
+  top: 38px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ink-faint) 4%, var(--ink-faint) 96%, transparent);
+}
+
+.nastro-nodo {
+  position: relative;
+  flex: 0 0 clamp(210px, 24vw, 268px);
+  scroll-snap-align: start;
+  padding: 54px 16px 0;
+}
+.nastro-nodo::before {
+  content: '';
+  position: absolute;
+  top: 34px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--oro);
+  border: 1px solid var(--oro);
+  box-shadow: 0 0 0 5px var(--panna);
+}
+.nastro-mese {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--oro-soft);
+}
+
+/* ─── la card della serata: l'affissione incorniciata ─── */
+.serata { display: block; text-decoration: none; text-align: center; }
+.serata:focus-visible { outline: 2px solid var(--corallo); outline-offset: 9px; }
+.serata-manifesto {
   position: relative;
   aspect-ratio: 3 / 4;
   overflow: hidden;
@@ -80,16 +234,16 @@
   outline-offset: 5px;
   box-shadow: 0 18px 44px rgba(26, 26, 26, 0.16);
 }
-.manifesto-media img {
+.serata-manifesto img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s var(--ease-lux);
 }
-.manifesto:hover .manifesto-media img,
-.manifesto:focus-visible .manifesto-media img { transform: scale(1.03); }
-.manifesto-body { padding: 18px 4px 0; text-align: center; }
-.manifesto-eyebrow {
+.serata:hover .serata-manifesto img,
+.serata:focus-visible .serata-manifesto img { transform: scale(1.03); }
+.serata-corpo { padding-top: 18px; }
+.serata-quando {
   font-family: 'Inter', sans-serif;
   font-size: 11px;
   font-weight: 500;
@@ -97,20 +251,79 @@
   text-transform: uppercase;
   color: var(--oro-soft);
 }
-.manifesto-title {
+.serata-nome {
   font-family: 'Playfair Display', serif;
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 400;
   color: var(--inchiostro);
   margin-top: 8px;
   line-height: 1.2;
 }
-.manifesto-desc {
+.serata-riga {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 17px;
   color: var(--ink-soft);
   margin-top: 6px;
   line-height: 1.5;
+}
+
+/* ─── l'archivio: stesse regole, tono più basso ─── */
+.nastro--archivio .nastro-nodo { flex-basis: clamp(158px, 18vw, 198px); }
+.nastro--archivio .nastro-nodo::before { background: var(--panna); border-color: var(--oro-soft); }
+.nastro--archivio .serata-manifesto {
+  filter: saturate(0.66);
+  opacity: 0.8;
+  box-shadow: 0 12px 30px rgba(26, 26, 26, 0.12);
+  transition: filter var(--dur-mid) var(--ease-lux), opacity var(--dur-mid) var(--ease-lux);
+}
+.nastro--archivio .serata:hover .serata-manifesto,
+.nastro--archivio .serata:focus-visible .serata-manifesto { filter: none; opacity: 1; }
+/* date più strette: nelle card compatte dell'archivio ci stanno su una riga */
+.nastro--archivio .serata-quando { font-size: 10px; letter-spacing: 0.14em; }
+.nastro--archivio .serata-nome { font-size: 19px; }
+.nastro--archivio .serata-riga { display: none; }
+
+/* ─── sotto i 760px il nastro si raddrizza: l'asse scende a sinistra ─── */
+@media (max-width: 760px) {
+  .nastro { overflow: visible; scroll-snap-type: none; cursor: default; }
+  .nastro-pista { flex-direction: column; gap: 28px; width: auto; min-width: 0; }
+  .nastro-pista::before {
+    top: 10px;
+    bottom: 10px;
+    left: 20px;
+    right: auto;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(180deg, transparent, var(--ink-faint) 5%, var(--ink-faint) 95%, transparent);
+  }
+  .nastro-nodo { flex-basis: auto; padding: 0 0 0 52px; }
+  .nastro-nodo::before { top: 50%; left: 20px; transform: translate(-50%, -50%); }
+  .nastro-mese {
+    position: static;
+    transform: none;
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  .serata {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 18px;
+    align-items: center;
+    text-align: left;
+  }
+  .serata-manifesto { outline-offset: 3px; box-shadow: 0 10px 26px rgba(26, 26, 26, 0.14); }
+  .serata-corpo { padding-top: 0; }
+  .serata-nome { font-size: 21px; }
+  .nastro--archivio .nastro-nodo { flex-basis: auto; }
+  .nastro-frecce { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .serata-manifesto img { transition: none; }
+  .serata:hover .serata-manifesto img,
+  .serata:focus-visible .serata-manifesto img { transform: none; }
+  .nastro { scroll-behavior: auto; }
 }
 </style>
 </head>
@@ -181,70 +394,147 @@
   </div>
 </section>
 
-<!-- ═════ LE SERATE · la parete dei manifesti ═════ -->
+<!-- ═════ LE SERATE · il nastro del tempo ═════
+     MANUTENZIONE: quando una serata è passata, si sposta il suo <li> dalla
+     pista "In arrivo" a quella "Già successe" (l'ultima posizione, perché
+     entrambe le piste sono in ordine cronologico crescente). È l'unica cosa
+     da fare a mano: nient'altro dipende dalla data. -->
 <section aria-label="Le serate della dimora">
   <div class="container">
     <div class="block-head reveal">
       <div class="section-eyebrow center"><span class="line" aria-hidden="true"></span><span class="eyebrow">Le serate della dimora</span><span class="line" aria-hidden="true"></span></div>
-      <h2>Le <em>locandine</em></h2>
+      <h2>Il <em>nastro</em> delle serate</h2>
       <p class="prose" style="margin-top:18px;max-width:640px;margin-left:auto;margin-right:auto;text-align:center;">
-        Le serate che la villa ha messo in scena e quelle in arrivo: ogni manifesto
-        apre la pagina della sua serata.
+        Le sere in arrivo e quelle che la villa ha già messo in scena, in fila lungo
+        l&rsquo;estate: ogni manifesto apre la pagina della sua serata.
       </p>
     </div>
-    <div class="manifesti reveal-group">
-      <a href="/eventi/noche-latina/" class="manifesto">
-        <div class="manifesto-media">
-          <img src="/assets/noche-latina/locandina-440.webp"
-               srcset="/assets/noche-latina/locandina-440.webp 440w, /assets/noche-latina/locandina-880.webp 880w"
-               sizes="(min-width: 900px) 260px, (min-width: 600px) 45vw, 90vw"
-               alt="Locandina della Noche Latina: lampadario a candele e ibischi rossi su velluto smeraldo" loading="lazy" decoding="async" />
-        </div>
-        <div class="manifesto-body">
-          <div class="manifesto-eyebrow">Venerdì 17 luglio 2026</div>
-          <h3 class="manifesto-title">Noche Latina</h3>
-          <p class="manifesto-desc">La notte latina d&rsquo;estate: vocalist, dj set e cena alla carta nel salone affrescato.</p>
-        </div>
-      </a>
-      <a href="/eventi/cena-spettacolo-jazz/" class="manifesto">
-        <div class="manifesto-media">
-          <img src="/assets/jazz/bg-tromba-440.webp"
-               srcset="/assets/jazz/bg-tromba-440.webp 440w, /assets/jazz/bg-tromba-880.webp 880w"
-               sizes="(min-width: 900px) 260px, (min-width: 600px) 45vw, 90vw"
-               alt="Locandina della Cena Spettacolo Jazz: tromba dorata su fondo rosso pittorico" loading="lazy" decoding="async" />
-        </div>
-        <div class="manifesto-body">
-          <div class="manifesto-eyebrow">Sabato 11 luglio 2026</div>
-          <h3 class="manifesto-title">Cena Spettacolo Jazz</h3>
-          <p class="manifesto-desc">Jazz dal vivo e menù a tema New Orleans, nella sera d&rsquo;estate della dimora.</p>
-        </div>
-      </a>
-      <a href="/eventi/white-party/" class="manifesto">
-        <div class="manifesto-media">
-          <img src="/assets/img/covers/white-party-660.webp"
-               srcset="/assets/img/covers/white-party-660.webp 660w, /assets/img/covers/white-party-990.webp 990w"
-               sizes="(min-width: 900px) 260px, (min-width: 600px) 45vw, 90vw"
-               alt="Locandina del White Party: la sera in bianco nel parco di Villa Luzi" loading="lazy" decoding="async" />
-        </div>
-        <div class="manifesto-body">
-          <div class="manifesto-eyebrow">Venerdì 19 giugno 2026</div>
-          <h3 class="manifesto-title">White Party</h3>
-          <p class="manifesto-desc">La sera in bianco della villa, fra il giardino, la tavola e la musica.</p>
-        </div>
-      </a>
-      <a href="/esperienze/aperitivi-in-erba/2-giugno-2026/" class="manifesto">
-        <div class="manifesto-media">
-          <img src="/assets/img/covers/salotto-dei-corsari-660.webp"
-               srcset="/assets/img/covers/salotto-dei-corsari-660.webp 660w, /assets/img/covers/salotto-dei-corsari-880.webp 880w"
-               sizes="(min-width: 900px) 260px, (min-width: 600px) 45vw, 90vw"
-               alt="Locandina del Salotto dei Corsari, il pic nic in villa di martedì 2 giugno a Villa Luzi" loading="lazy" decoding="async" />
-        </div>
-        <div class="manifesto-body">
-          <div class="manifesto-eyebrow">Martedì 2 giugno 2026</div>
-          <h3 class="manifesto-title">Il Salotto dei Corsari</h3>
-          <p class="manifesto-desc">L&rsquo;aperitivo sull&rsquo;erba: il salotto a cielo aperto nel parco della dimora.</p>
-        </div>
-      </a>
+
+    <!-- ─── in arrivo ─── -->
+    <div class="nastro-testata reveal">
+      <span class="nastro-stato">In arrivo</span>
+      <div class="nastro-frecce" data-frecce="nastro-prossime" hidden>
+        <button type="button" class="nastro-freccia" data-dir="-1" aria-label="Scorri alle serate precedenti" aria-controls="nastro-prossime">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M19 12H5M11 19l-7-7 7-7"/></svg>
+        </button>
+        <button type="button" class="nastro-freccia" data-dir="1" aria-label="Scorri alle serate successive" aria-controls="nastro-prossime">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="nastro reveal" id="nastro-prossime">
+      <ol class="nastro-pista" role="list">
+        <li class="nastro-nodo">
+          <span class="nastro-mese" aria-hidden="true">Agosto</span>
+          <a href="/eventi/gran-ballo-russo/" class="serata">
+            <div class="serata-manifesto">
+              <img src="/assets/ballo-russo/dettaglio-640.webp"
+                   srcset="/assets/ballo-russo/dettaglio-640.webp 640w, /assets/ballo-russo/dettaglio-1080.webp 1080w"
+                   sizes="(max-width: 760px) 92px, 240px"
+                   alt="Immagine di campagna del Gran Ballo Russo: una lunga tavola apparecchiata in una corte, fra candelabri accesi e lampadari di cristallo" loading="lazy" decoding="async" />
+            </div>
+            <div class="serata-corpo">
+              <div class="serata-quando">Sabato 1 agosto 2026</div>
+              <h3 class="serata-nome">Gran Ballo Russo</h3>
+              <p class="serata-riga">Cena all&rsquo;aperto nella corte della dimora, dalle 20:30. Su prenotazione.</p>
+            </div>
+          </a>
+        </li>
+        <li class="nastro-nodo">
+          <a href="/eventi/notte-dei-desideri/" class="serata">
+            <div class="serata-manifesto">
+              <img src="/assets/notte-desideri/cielo-640.webp"
+                   srcset="/assets/notte-desideri/cielo-640.webp 640w, /assets/notte-desideri/cielo-1080.webp 1080w"
+                   sizes="(max-width: 760px) 92px, 240px"
+                   alt="Il cielo stellato di San Lorenzo sopra il parco di Villa Luzi, con una scia luminosa fra le stelle" loading="lazy" decoding="async" />
+            </div>
+            <div class="serata-corpo">
+              <div class="serata-quando">Lunedì 10 agosto 2026</div>
+              <h3 class="serata-nome">La Notte dei Desideri</h3>
+              <p class="serata-riga">La cena spettacolo di San Lorenzo: Gran Buffet Reale a 40 euro, dalle 21:00.</p>
+            </div>
+          </a>
+        </li>
+      </ol>
+    </div>
+
+    <!-- ─── già successe ─── -->
+    <div class="nastro-testata reveal">
+      <span class="nastro-stato">Già successe</span>
+      <div class="nastro-frecce" data-frecce="nastro-archivio" hidden>
+        <button type="button" class="nastro-freccia" data-dir="-1" aria-label="Scorri alle serate passate precedenti" aria-controls="nastro-archivio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M19 12H5M11 19l-7-7 7-7"/></svg>
+        </button>
+        <button type="button" class="nastro-freccia" data-dir="1" aria-label="Scorri alle serate passate successive" aria-controls="nastro-archivio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="nastro nastro--archivio reveal" id="nastro-archivio">
+      <ol class="nastro-pista" role="list">
+        <li class="nastro-nodo">
+          <span class="nastro-mese" aria-hidden="true">Giugno</span>
+          <a href="/esperienze/aperitivi-in-erba/2-giugno-2026/" class="serata">
+            <div class="serata-manifesto">
+              <img src="/assets/img/covers/salotto-dei-corsari-660.webp"
+                   srcset="/assets/img/covers/salotto-dei-corsari-660.webp 660w, /assets/img/covers/salotto-dei-corsari-880.webp 880w"
+                   sizes="(max-width: 760px) 92px, 175px"
+                   alt="Locandina del Salotto dei Corsari, il pic nic in villa di martedì 2 giugno a Villa Luzi" loading="lazy" decoding="async" />
+            </div>
+            <div class="serata-corpo">
+              <div class="serata-quando">Martedì 2 giugno 2026</div>
+              <h3 class="serata-nome">Il Salotto dei Corsari</h3>
+              <p class="serata-riga">L&rsquo;aperitivo sull&rsquo;erba: il salotto a cielo aperto nel parco della dimora.</p>
+            </div>
+          </a>
+        </li>
+        <li class="nastro-nodo">
+          <a href="/eventi/white-party/" class="serata">
+            <div class="serata-manifesto">
+              <img src="/assets/img/covers/white-party-660.webp"
+                   srcset="/assets/img/covers/white-party-660.webp 660w, /assets/img/covers/white-party-990.webp 990w"
+                   sizes="(max-width: 760px) 92px, 175px"
+                   alt="Locandina del White Party: la sera in bianco nel parco di Villa Luzi" loading="lazy" decoding="async" />
+            </div>
+            <div class="serata-corpo">
+              <div class="serata-quando">Venerdì 19 giugno 2026</div>
+              <h3 class="serata-nome">White Party</h3>
+              <p class="serata-riga">La sera in bianco della villa, fra il giardino, la tavola e la musica.</p>
+            </div>
+          </a>
+        </li>
+        <li class="nastro-nodo">
+          <span class="nastro-mese" aria-hidden="true">Luglio</span>
+          <a href="/eventi/cena-spettacolo-jazz/" class="serata">
+            <div class="serata-manifesto">
+              <img src="/assets/jazz/bg-tromba-440.webp"
+                   srcset="/assets/jazz/bg-tromba-440.webp 440w, /assets/jazz/bg-tromba-880.webp 880w"
+                   sizes="(max-width: 760px) 92px, 175px"
+                   alt="Locandina della Cena Spettacolo Jazz: tromba dorata su fondo rosso pittorico" loading="lazy" decoding="async" />
+            </div>
+            <div class="serata-corpo">
+              <div class="serata-quando">Sabato 11 luglio 2026</div>
+              <h3 class="serata-nome">Cena Spettacolo Jazz</h3>
+              <p class="serata-riga">Jazz dal vivo e menù a tema New Orleans, nella sera d&rsquo;estate della dimora.</p>
+            </div>
+          </a>
+        </li>
+        <li class="nastro-nodo">
+          <a href="/eventi/noche-latina/" class="serata">
+            <div class="serata-manifesto">
+              <img src="/assets/noche-latina/locandina-440.webp"
+                   srcset="/assets/noche-latina/locandina-440.webp 440w, /assets/noche-latina/locandina-880.webp 880w"
+                   sizes="(max-width: 760px) 92px, 175px"
+                   alt="Locandina della Noche Latina: lampadario a candele e ibischi rossi su velluto smeraldo" loading="lazy" decoding="async" />
+            </div>
+            <div class="serata-corpo">
+              <div class="serata-quando">Venerdì 17 luglio 2026</div>
+              <h3 class="serata-nome">Noche Latina</h3>
+              <p class="serata-riga">La notte latina d&rsquo;estate: vocalist, dj set e cena alla carta nel salone affrescato.</p>
+            </div>
+          </a>
+        </li>
+      </ol>
     </div>
   </div>
 </section>
@@ -350,5 +640,112 @@
 <!-- @include:footer -->
 <script src="/assets/js/site.js?v=3" defer></script>
 <script src="/assets/js/lead-form.js?v=3" defer></script>
+<script>
+/* ═══ IL NASTRO DEL TEMPO · enhancement ═══
+   Il nastro funziona già senza questo script: le serate sono link reali nel
+   sorgente, lo scorrimento col dito e col trackpad è nativo, il focus da
+   tastiera trascina il nastro da solo. Qui si aggiungono soltanto le frecce
+   (mostrate solo se il nastro trabocca davvero) e il trascinamento col mouse.
+   Nessuna posizione viene calcolata: l'asse e i pallini sono in CSS. */
+(function () {
+  'use strict';
+
+  var mousePuro = window.matchMedia
+    ? window.matchMedia('(hover: hover) and (pointer: fine)').matches
+    : false;
+
+  Array.prototype.forEach.call(document.querySelectorAll('.nastro'), function (nastro) {
+    var frecce = document.querySelector('[data-frecce="' + nastro.id + '"]');
+    var bottoni = frecce ? Array.prototype.slice.call(frecce.querySelectorAll('.nastro-freccia')) : [];
+
+    function passo() {
+      var nodo = nastro.querySelector('.nastro-nodo');
+      return nodo ? nodo.getBoundingClientRect().width : nastro.clientWidth * 0.8;
+    }
+
+    function aggiorna() {
+      var trabocca = nastro.scrollWidth - nastro.clientWidth > 2;
+      if (frecce) frecce.hidden = !trabocca;
+      nastro.classList.toggle('is-scorribile', trabocca && mousePuro);
+      var fine = nastro.scrollWidth - nastro.clientWidth - 2;
+      bottoni.forEach(function (b) {
+        var esaurita = Number(b.getAttribute('data-dir')) < 0
+          ? nastro.scrollLeft <= 2
+          : nastro.scrollLeft >= fine;
+        b.setAttribute('aria-disabled', esaurita ? 'true' : 'false');
+      });
+    }
+
+    bottoni.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.getAttribute('aria-disabled') === 'true') return;
+        // niente `behavior`: così eredita lo scroll-behavior della CSS, che
+        // site.css riporta già a `auto` sotto prefers-reduced-motion
+        nastro.scrollBy({ left: Number(b.getAttribute('data-dir')) * passo() });
+      });
+    });
+
+    var inCoda = false;
+    nastro.addEventListener('scroll', function () {
+      if (inCoda) return;
+      inCoda = true;
+      requestAnimationFrame(function () { inCoda = false; aggiorna(); });
+    }, { passive: true });
+
+    /* Osservare solo il contenitore non basta: quando cambia il NUMERO di
+       serate cresce la pista, non la fascia, e il ResizeObserver resterebbe
+       muto lasciando le frecce ferme allo stato sbagliato. */
+    var pista = nastro.querySelector('.nastro-pista');
+    if ('ResizeObserver' in window) {
+      var ro = new ResizeObserver(aggiorna);
+      ro.observe(nastro);
+      if (pista) ro.observe(pista);
+    }
+    window.addEventListener('resize', aggiorna, { passive: true });
+    window.addEventListener('load', aggiorna);   // font e immagini assestati
+    aggiorna();
+
+    /* Trascinamento col mouse. Oltre i 6 px si alza un flag che annulla il
+       click successivo: trascinare il nastro non deve aprire una landing.
+       Sul touch non serve, lo swipe nativo fa già tutto. */
+    if (!mousePuro) return;
+    var premuto = false, daX = 0, daScroll = 0, trascinato = false;
+
+    nastro.addEventListener('pointerdown', function (e) {
+      trascinato = false;
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      if (nastro.scrollWidth - nastro.clientWidth <= 2) return;
+      premuto = true;
+      daX = e.clientX;
+      daScroll = nastro.scrollLeft;
+    });
+    /* move e up stanno su window, non sul nastro: così il trascinamento non
+       si interrompe se il puntatore esce dalla fascia */
+    window.addEventListener('pointermove', function (e) {
+      if (!premuto) return;
+      var d = e.clientX - daX;
+      if (!trascinato && Math.abs(d) > 6) {
+        trascinato = true;
+        nastro.classList.add('is-trascinato');
+      }
+      if (trascinato) nastro.scrollLeft = daScroll - d;
+    }, { passive: true });
+    function rilascia() {
+      if (!premuto) return;
+      premuto = false;
+      nastro.classList.remove('is-trascinato');
+    }
+    window.addEventListener('pointerup', rilascia);
+    window.addEventListener('pointercancel', rilascia);
+    nastro.addEventListener('dragstart', function (e) { e.preventDefault(); });
+    nastro.addEventListener('click', function (e) {
+      if (!trascinato) return;
+      e.preventDefault();
+      e.stopPropagation();
+      trascinato = false;
+    }, true);
+  });
+})();
+</script>
 </body>
 </html>
