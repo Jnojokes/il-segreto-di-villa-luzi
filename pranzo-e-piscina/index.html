@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     PRANZO E PISCINA — landing ads standalone.
+     Convenzione delle landing di conversione (jazz, noche latina, agosto):
+     niente @include, niente site.css/site.js, tutto inline, zero link di
+     fuga. Dominio canonico www.villaluzi1737.com: il .it usato altrove nel
+     repo è NXDOMAIN e romperebbe og:image nelle anteprime Meta.
+     Pagina nel set BLOCKED di check.js: solo controlli soft.
+     ═══════════════════════════════════════════════════════════════════ -->
+
+<title>Pranzo e piscina al Segreto, Villa Luzi 1737, Treia | 35 euro a persona</title>
+<meta name="description" content="Pranzo e piscina al Segreto di Villa Luzi 1737, a Treia: un antipasto, un primo, una bevanda e l'ingresso in piscina a 35 euro a persona. Su prenotazione.">
+<meta name="theme-color" content="#F4ECDC">
+<link rel="canonical" href="https://www.villaluzi1737.com/pranzo-e-piscina/">
+<link rel="icon" type="image/png" href="/assets/img/LS-Icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Villa Luzi 1737">
+<meta property="og:locale" content="it_IT">
+<meta property="og:title" content="Pranzo e piscina al Segreto, 35 euro a persona">
+<meta property="og:description" content="Da giovedì a domenica a Villa Luzi 1737, Treia. Un antipasto, un primo, una bevanda e l'ingresso in piscina. Su prenotazione, posti limitati.">
+<meta property="og:url" content="https://www.villaluzi1737.com/pranzo-e-piscina/">
+<meta property="og:image" content="https://www.villaluzi1737.com/assets/pranzo-e-piscina/og-pranzo-e-piscina.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="628">
+<meta property="og:image:alt" content="La piscina di Villa Luzi 1737 vista dall'alto, fra gli alberi del parco">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pranzo e piscina al Segreto, 35 euro a persona">
+<meta name="twitter:description" content="Da giovedì a domenica a Villa Luzi 1737, Treia. Un antipasto, un primo, una bevanda e l'ingresso in piscina. Su prenotazione, posti limitati.">
+<meta name="twitter:image" content="https://www.villaluzi1737.com/assets/pranzo-e-piscina/og-pranzo-e-piscina.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- font non bloccanti: preload + swap, fallback a JS spento -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@1,400&display=swap"></noscript>
+
+<!-- il fermo immagine dell'hero è l'LCP: si scopre subito -->
+<link rel="preload" as="image" fetchpriority="high"
+      imagesrcset="/assets/pranzo-e-piscina/hero-piscina-480.webp 480w, /assets/pranzo-e-piscina/hero-piscina-768.webp 768w, /assets/pranzo-e-piscina/hero-piscina-1152.webp 1152w"
+      imagesizes="100vw">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "@id": "https://www.villaluzi1737.com/pranzo-e-piscina/#ilsegreto",
+  "name": "Il Segreto",
+  "alternateName": "Il Segreto, Villa Luzi 1737",
+  "description": "Il ristorante della dimora storica Villa Luzi 1737, a Treia, nelle Marche, con parco e piscina.",
+  "url": "https://www.villaluzi1737.com/pranzo-e-piscina/",
+  "image": "https://www.villaluzi1737.com/assets/pranzo-e-piscina/og-pranzo-e-piscina.jpg",
+  "telephone": "+39 345 241 9263",
+  "servesCuisine": "Italiana",
+  "currenciesAccepted": "EUR",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Contrada Chiaravalle 49",
+    "addressLocality": "Treia",
+    "addressRegion": "MC",
+    "postalCode": "62010",
+    "addressCountry": "IT"
+  },
+  "makesOffer": {
+    "@type": "Offer",
+    "name": "Pranzo e piscina",
+    "description": "Da giovedì a domenica. Un antipasto, un primo, una bevanda e l'ingresso in piscina. Su prenotazione, posti limitati.",
+    "price": "35",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://www.villaluzi1737.com/pranzo-e-piscina/",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "35",
+      "priceCurrency": "EUR",
+      "valueAddedTaxIncluded": true,
+      "referenceQuantity": { "@type": "QuantitativeValue", "value": 1, "unitText": "persona" }
+    },
+    "seller": { "@id": "https://www.villaluzi1737.com/pranzo-e-piscina/#ilsegreto" },
+    "itemOffered": {
+      "@type": "Service",
+      "name": "Pranzo e piscina",
+      "serviceType": "Pranzo con ingresso in piscina"
+    }
+  }
+}
+</script>
+<!-- Niente BreadcrumbList: /pranzo-e-piscina/ è una landing di radice senza pagina
+     padre, una briciola inventerebbe una gerarchia che non esiste.
+     Niente openingHoursSpecification: richiede opens/closes che non sono confermati. -->
+<!-- [DA CONFERMARE: orario di inizio e di fine del servizio pranzo] -->
+<!-- [DA CONFERMARE: orario di chiusura della piscina] -->
+<!-- [DA CONFERMARE: quale bevanda è compresa] -->
+<!-- [DA CONFERMARE: date di validità dell'offerta, per validFrom e priceValidUntil] -->
+<!-- [DA CONFERMARE: coordinate geo della villa; senza dato certo niente nodo geo] -->
+<!-- [DA CONFERMARE: politica bambini e animali, eventuale prezzo ridotto] -->
+
+<!-- ====================== META PIXEL ====================== -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '5285830348309655');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></noscript>
+
+<style>
+/* ═══════ TOKEN ═══════
+   Pagina diurna: l'avorio domina, l'ottanio è inchiostro e unico blocco scuro,
+   l'oro vive SOLO nei filetti (su avorio fa 1.96:1, come testo sarebbe illeggibile).
+   Il turchese non esiste nel CSS: arriva dal video e dalle foto. */
+:root{
+  --avorio:#F4ECDC;
+  --avorio-velo:rgba(244,236,220,.80);
+  --ottanio:#0E3B3E;
+  --ottanio-soft:rgba(14,59,62,.72);
+  --oro:#C9A86A;
+  --oro-filo:rgba(201,168,106,.55);
+  --oro-filo-tenue:rgba(201,168,106,.28);
+  --wa:#25D366;
+  --wa-ink:#05301A;
+  --sticky-h:86px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --titolo:'Cinzel','Times New Roman',serif;
+  --corsivo:'Cormorant Garamond',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--ottanio)}
+body{background:var(--avorio);color:var(--ottanio);font-family:var(--corsivo);
+  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--ottanio);color:var(--avorio)}
+.wrap{max-width:640px;margin:0 auto;padding:0 22px}
+
+/* ═══════ HERO ═══════
+   Altezza in svh (barre del browser APERTE, il caso peggiore) e non dvh:
+   il dvh farebbe crescere e restringere l'hero mentre iOS collassa la toolbar,
+   proprio sulla schermata che deve restare ferma. Il clamp in px fa il resto. */
+.hero{position:relative;overflow:hidden;display:flex;
+  min-height:340px;
+  min-height:clamp(280px,46svh,400px);
+  border-bottom:1px solid var(--oro)}
+@media (min-width:720px){.hero{min-height:min(64svh,600px)}}
+
+.hero-media{position:absolute;inset:0;z-index:1;background:var(--ottanio)}
+.hero-media img,.hero-media video{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 50%}
+.hero-video{opacity:0;transition:opacity .7s var(--ease)}
+.hero-video.acceso{opacity:1}
+
+/* velo OTTANIO, mai nero: su una pagina diurna il nero sporca l'acqua */
+.hero-velo{position:absolute;inset:0;z-index:2;background:
+  linear-gradient(180deg,rgba(14,59,62,.58) 0%,rgba(14,59,62,.16) 34%,
+                  rgba(14,59,62,.20) 58%,rgba(14,59,62,.64) 100%),
+  radial-gradient(115% 78% at 50% 62%,rgba(14,59,62,0) 30%,rgba(14,59,62,.32) 100%)}
+
+.hero-inner{position:relative;z-index:3;width:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:18px 22px 20px;color:var(--avorio);
+  text-shadow:0 1px 3px rgba(14,59,62,.45),0 2px 18px rgba(14,59,62,.65)}
+.occhiello{font-family:var(--titolo);font-size:11px;letter-spacing:.34em;padding-left:.34em}
+/* sopra l'acqua chiara del video l'avorio velato perde leggibilità:
+   qui la gerarchia la fanno corpo e spaziatura, non l'opacità. */
+.occhiello .sotto{display:block;font-size:9.5px;letter-spacing:.30em;padding-left:.30em;
+  margin-top:6px;color:var(--avorio)}
+.hero-title{font-family:var(--titolo);font-weight:600;
+  font-size:clamp(34px,12vw,72px);letter-spacing:.045em;padding-left:.045em;
+  line-height:1.06;margin-top:clamp(12px,3.4vw,26px)}
+@media (min-width:720px){
+  .br-m{display:none}
+  .occhiello{font-size:13px}
+  .occhiello .sotto{font-size:11px;margin-top:8px}
+}
+.hero-sub{font-family:var(--corsivo);font-style:italic;
+  font-size:clamp(18px,4.9vw,24px);line-height:1.3;margin-top:10px;color:var(--avorio)}
+.hero-azione{margin-top:clamp(14px,4.2vw,26px)}
+
+/* ═══════ IL PACCHETTO — l'elemento più importante della pagina ═══════
+   Nessun ornamento, nessun riempimento d'oro: la gerarchia la fanno
+   il corpo del prezzo e tre filetti di opacità decrescente. */
+.pacchetto{padding:clamp(26px,6.6vw,44px) 0 clamp(30px,8vw,56px);text-align:center}
+.voci{list-style:none;max-width:420px;margin:0 auto;
+  border-top:1px solid var(--oro-filo);border-bottom:1px solid var(--oro-filo)}
+.voci li{font-family:var(--titolo);font-weight:400;text-transform:uppercase;
+  font-size:clamp(15px,4.2vw,19px);letter-spacing:.20em;padding:9px 0 9px .20em;
+  line-height:1.15;color:var(--ottanio)}
+.voci li + li{border-top:1px solid var(--oro-filo-tenue)}
+.prezzo{font-family:var(--titolo);font-weight:600;color:var(--ottanio);
+  font-size:clamp(23px,6.6vw,32px);letter-spacing:.10em;padding-left:.10em;
+  line-height:1.2;margin-top:clamp(14px,4.6vw,30px)}
+.prezzo .cifra{font-size:1.35em;letter-spacing:.06em}
+.nota{font-family:var(--corsivo);font-style:italic;color:var(--ottanio-soft);
+  font-size:clamp(15px,4.2vw,18px);line-height:1.35;margin-top:9px}
+.pacchetto-azione{margin-top:clamp(16px,4.8vw,28px)}
+
+/* ═══════ RESPIRI ═══════ */
+.respiro{padding:clamp(40px,10vw,78px) 0}
+.respiro-grid{display:grid;gap:clamp(20px,5vw,52px);align-items:center}
+@media (min-width:820px){
+  .respiro-grid{grid-template-columns:1fr 1fr}
+  .respiro--invertito figure{order:2}
+}
+.lastra{position:relative;padding:8px;border:1px solid var(--oro-filo-tenue);background:#fff}
+.lastra img{width:100%;height:auto}
+.prosa{font-family:var(--corsivo);font-style:italic;color:var(--ottanio);
+  font-size:clamp(20px,5.4vw,27px);line-height:1.5;max-width:24ch;
+  margin-inline:auto;text-align:center}
+
+/* ═══════ CHIUSURA · unico blocco ottanio della pagina ═══════ */
+.chiusura{background:var(--ottanio);color:var(--avorio);text-align:center;
+  padding:clamp(52px,12vw,84px) 0 clamp(44px,10vw,68px)}
+.monogramma{width:min(112px,30vw);height:auto;margin:0 auto;opacity:.95}
+.firma{font-family:var(--corsivo);font-style:italic;
+  font-size:clamp(19px,5vw,25px);line-height:1.45;margin-top:20px}
+.chiusura-azione{margin-top:clamp(22px,6vw,34px)}
+.filo{width:56px;height:1px;border:0;background:var(--oro);margin:clamp(26px,7vw,38px) auto}
+.indirizzo{font-family:var(--titolo);font-size:11px;letter-spacing:.18em;padding-left:.18em;
+  line-height:1.7;color:var(--avorio-velo)}
+
+/* ═══════ BOTTONE WHATSAPP ═══════
+   Ombre ottanio e non nere: su avorio un'ombra nera legge come sporco. */
+.btn-wa{display:inline-flex;align-items:center;justify-content:center;gap:11px;
+  padding:15px 26px;border-radius:999px;background:var(--wa);color:var(--wa-ink);
+  font-family:system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:12.5px;font-weight:600;letter-spacing:.16em;padding-left:calc(26px + .16em);
+  text-transform:uppercase;white-space:nowrap;line-height:1;
+  box-shadow:0 10px 24px rgba(14,59,62,.18),0 2px 6px rgba(14,59,62,.10);
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-wa svg{width:19px;height:19px;fill:currentColor;flex:none}
+.btn-wa:hover{transform:translateY(-2px);
+  box-shadow:0 14px 30px rgba(14,59,62,.24),0 2px 6px rgba(14,59,62,.12)}
+.btn-wa:focus-visible{outline:2px solid var(--ottanio);outline-offset:3px}
+.btn-wa--media{box-shadow:0 12px 30px rgba(14,59,62,.40),0 0 0 1px rgba(244,236,220,.22)}
+.chiusura .btn-wa{box-shadow:0 12px 30px rgba(0,0,0,.34)}
+.chiusura .btn-wa:focus-visible{outline-color:var(--avorio)}
+
+/* ═══════ BARRA STICKY MOBILE ═══════
+   Piena e non sfumata: su avorio una sfumatura lascerebbe il testo dietro
+   semileggibile invece di nasconderlo pulito. Il padding-bottom del body
+   riserva esattamente la stessa altezza, così non copre mai nulla. */
+.sticky-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  background:var(--avorio);border-top:1px solid var(--oro-filo);
+  box-shadow:0 -10px 26px rgba(14,59,62,.10);pointer-events:none}
+.sticky-bar .btn-wa{pointer-events:auto;display:flex;width:100%}
+@media (max-width:719px){
+  .sticky-bar{display:block}
+  body{padding-bottom:calc(var(--sticky-h) + env(safe-area-inset-bottom))}
+}
+
+/* schermi corti (iPhone SE e simili): si comprime, il prezzo resta sopra la piega.
+   Misurato con l'harness: a 375x553, il caso peggiore reale di un SE con le
+   barre di Safari aperte, il fondo del prezzo deve restare sopra la sticky. */
+@media (max-height:700px){
+  .hero{min-height:clamp(230px,36svh,320px);padding-block:12px 14px}
+  .hero-title{font-size:clamp(30px,10.4vw,52px);margin-top:10px}
+  .hero-sub{font-size:clamp(16px,4.4vw,21px);margin-top:7px}
+  .hero-azione{margin-top:12px}
+  .pacchetto{padding-top:16px}
+  .voci li{padding-block:6px;font-size:clamp(14px,4vw,18px)}
+  .prezzo{margin-top:12px}
+  .nota{margin-top:7px}
+}
+@media (max-height:580px){
+  .hero{min-height:clamp(200px,32svh,280px)}
+  .hero .occhiello .sotto{margin-top:4px}
+  .voci li{padding-block:5px}
+}
+
+/* comparse allo scroll, attive solo con JS */
+html.js .appare{opacity:0;transform:translateY(16px);
+  transition:opacity .9s var(--ease),transform .9s var(--ease)}
+html.js .appare.vista{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .btn-wa{transition:none}
+  .btn-wa:hover{transform:none}
+  html.js .appare{opacity:1;transform:none;transition:none}
+  /* niente video: resta il fermo immagine, che è un <img> a parte */
+  .hero-video{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- la glifo WhatsApp definita una volta sola e richiamata dalle quattro CTA -->
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+  <symbol id="ico-wa" viewBox="0 0 32 32">
+    <path d="M16 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.347.613 4.64 1.787 6.667l-1.893 6.92 7.093-1.853c1.96 1.067 4.16 1.627 6.36 1.627 7.36 0 13.333-5.973 13.333-13.333S23.36 2.667 16 2.667zm0 24.4c-2.013 0-4-.547-5.733-1.573l-.413-.24-4.213 1.107 1.12-4.107-.267-.427a10.978 10.978 0 01-1.68-5.827c0-6.107 4.973-11.067 11.067-11.067 6.107 0 11.067 4.96 11.067 11.067 0 6.093-4.96 11.067-11.067 11.067zm6.067-8.293c-.333-.16-1.973-.973-2.28-1.08-.307-.107-.533-.16-.747.16-.213.32-.853 1.08-1.04 1.293-.187.213-.387.24-.72.08-.333-.16-1.4-.52-2.667-1.653-.987-.88-1.653-1.973-1.853-2.307-.187-.32-.013-.493.147-.653.147-.147.32-.387.493-.573.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.747-1.8-1.027-2.467-.267-.64-.547-.547-.747-.56-.187-.013-.4-.013-.613-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.253 3.44 5.467 4.827.76.32 1.36.52 1.827.667.76.24 1.453.213 2 .133.613-.093 1.973-.8 2.253-1.587.28-.787.28-1.467.187-1.587-.08-.133-.293-.213-.627-.373z"/>
+  </symbol>
+</svg>
+
+<main>
+
+<!-- ══════════ 1 · HERO ══════════ -->
+<section class="hero" aria-label="Pranzo e piscina al Segreto, Villa Luzi 1737, Treia">
+  <div class="hero-media" id="heroMedia" aria-hidden="true">
+    <img class="hero-still"
+         src="/assets/pranzo-e-piscina/hero-piscina-768.webp"
+         srcset="/assets/pranzo-e-piscina/hero-piscina-480.webp 480w, /assets/pranzo-e-piscina/hero-piscina-768.webp 768w, /assets/pranzo-e-piscina/hero-piscina-1152.webp 1152w"
+         sizes="100vw" width="1152" height="648"
+         alt="" fetchpriority="high" decoding="async">
+    <video class="hero-video" id="heroVideo" muted loop playsinline autoplay preload="none"
+           width="1152" height="648"
+           data-src="/assets/pranzo-e-piscina/hero-piscina-16x9.mp4"></video>
+  </div>
+  <div class="hero-velo" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <p class="occhiello">IL SEGRETO<span class="sotto">VILLA LUZI 1737, TREIA (MC)</span></p>
+    <h1 class="hero-title">PRANZO<br class="br-m"> E PISCINA</h1>
+    <p class="hero-sub">Da giovedì a domenica</p>
+    <p class="hero-azione">
+      <a class="btn-wa btn-wa--media" data-cta="hero" target="_blank" rel="noopener"
+         href="https://wa.me/393452419263?text=Buongiorno%2C%20vorrei%20prenotare%20il%20pranzo%20con%20piscina%20al%20Segreto">
+        <svg aria-hidden="true"><use href="#ico-wa"></use></svg><span>Prenota su WhatsApp</span>
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ 2 · IL PACCHETTO ══════════ -->
+<!-- [DA CONFERMARE: il pacchetto comprende lettino, ombrellone o telo?
+                     finché non è confermato NON si aggiunge una quinta voce] -->
+<section class="pacchetto" aria-label="Il pacchetto e il prezzo">
+  <div class="wrap">
+    <ul class="voci">
+      <li>Un antipasto</li>
+      <li>Un primo</li>
+      <li>Una bevanda</li>
+      <li>Ingresso in piscina</li>
+    </ul>
+    <p class="prezzo"><span class="cifra">35</span> euro a persona</p>
+    <p class="nota">Su prenotazione. Posti limitati.</p>
+    <p class="pacchetto-azione">
+      <a class="btn-wa" data-cta="pacchetto" target="_blank" rel="noopener"
+         href="https://wa.me/393452419263?text=Buongiorno%2C%20vorrei%20prenotare%20il%20pranzo%20con%20piscina%20al%20Segreto">
+        <svg aria-hidden="true"><use href="#ico-wa"></use></svg><span>Prenota su WhatsApp</span>
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ 3 · RESPIRO · il cortile ══════════ -->
+<section class="respiro" aria-label="Il pranzo nel cortile della dimora">
+  <div class="wrap respiro-grid">
+    <figure class="lastra appare">
+      <img src="/assets/pranzo-e-piscina/cortile-440.webp"
+           srcset="/assets/pranzo-e-piscina/cortile-440.webp 440w, /assets/pranzo-e-piscina/cortile-880.webp 880w, /assets/pranzo-e-piscina/cortile-1240.webp 1240w"
+           sizes="(min-width: 820px) 46vw, 92vw"
+           width="1240" height="1550" loading="lazy" decoding="async"
+           alt="Il portico del cortile di Villa Luzi, con le tavole apparecchiate lungo il muro di pietra">
+    </figure>
+    <p class="prosa appare">Si pranza nel cortile della dimora.</p>
+  </div>
+</section>
+
+<!-- ══════════ 4 · RESPIRO · la piscina nel parco ══════════ -->
+<section class="respiro respiro--invertito" aria-label="Il pomeriggio in piscina, nel parco">
+  <div class="wrap respiro-grid">
+    <figure class="lastra appare">
+      <img src="/assets/pranzo-e-piscina/piscina-parco-440.webp"
+           srcset="/assets/pranzo-e-piscina/piscina-parco-440.webp 440w, /assets/pranzo-e-piscina/piscina-parco-880.webp 880w, /assets/pranzo-e-piscina/piscina-parco-1240.webp 1240w"
+           sizes="(min-width: 820px) 46vw, 92vw"
+           width="1240" height="698" loading="lazy" decoding="async"
+           alt="La piscina di Villa Luzi fra gli alberi del parco, in una giornata di sole">
+    </figure>
+    <p class="prosa appare">Il pomeriggio prosegue in piscina, nel parco.</p>
+  </div>
+</section>
+
+<!-- ══════════ 5 · RESPIRO · la dimora del 1737 ══════════ -->
+<section class="respiro" aria-label="La dimora del 1737">
+  <div class="wrap respiro-grid">
+    <figure class="lastra appare">
+      <img src="/assets/pranzo-e-piscina/dimora-440.webp"
+           srcset="/assets/pranzo-e-piscina/dimora-440.webp 440w, /assets/pranzo-e-piscina/dimora-880.webp 880w, /assets/pranzo-e-piscina/dimora-1240.webp 1240w"
+           sizes="(min-width: 820px) 46vw, 92vw"
+           width="1240" height="698" loading="lazy" decoding="async"
+           alt="La palazzina di Villa Luzi in fondo a un viale del parco, fra gli alberi">
+    </figure>
+    <p class="prosa appare">Intorno, otto ettari di parco e una casa del 1737.</p>
+  </div>
+</section>
+
+<!-- ══════════ 6 · CHIUSURA ══════════ -->
+<footer class="chiusura">
+  <div class="wrap">
+    <img class="monogramma" src="/assets/pranzo-e-piscina/logo-ls-avorio-240.webp"
+         width="240" height="259" loading="lazy" decoding="async"
+         alt="Il Segreto, Villa Luzi 1737">
+    <p class="firma">Il Segreto, dove il tempo si ferma.</p>
+    <p class="chiusura-azione">
+      <a class="btn-wa" data-cta="chiusura" target="_blank" rel="noopener"
+         href="https://wa.me/393452419263?text=Buongiorno%2C%20vorrei%20prenotare%20il%20pranzo%20con%20piscina%20al%20Segreto">
+        <svg aria-hidden="true"><use href="#ico-wa"></use></svg><span>Prenota su WhatsApp</span>
+      </a>
+    </p>
+    <hr class="filo">
+    <p class="indirizzo">Contrada Chiaravalle 49, Treia (MC)</p>
+  </div>
+</footer>
+
+</main>
+
+<!-- barra sticky mobile: il bottone WhatsApp sempre a portata di pollice -->
+<div class="sticky-bar">
+  <a class="btn-wa" data-cta="sticky" target="_blank" rel="noopener"
+     href="https://wa.me/393452419263?text=Buongiorno%2C%20vorrei%20prenotare%20il%20pranzo%20con%20piscina%20al%20Segreto">
+    <svg aria-hidden="true"><use href="#ico-wa"></use></svg><span>Prenota su WhatsApp</span>
+  </a>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   Misurazione, UTM, video hero, comparse.
+   UN SOLO evento di conversione: Lead sul click WhatsApp. Niente Contact.
+   ═══════════════════════════════════════════════════════════════════ */
+(function () {
+  var d = document, w = window, root = d.documentElement;
+  root.className += (root.className ? ' ' : '') + 'js';
+
+  /* ── UTM passthrough ──────────────────────────────────────────────
+     La campagna arriva con utm_source=meta, utm_medium=paid,
+     utm_campaign=ilsegreto_pranzo_piscina, utm_content={{ad.name}}.
+     Si riversano sugli href wa.me (WhatsApp ignora i parametri che non
+     conosce) e si allegano al Lead per il debug per inserzione. */
+  var utm = {};
+  try {
+    new URLSearchParams(w.location.search).forEach(function (v, k) {
+      if (/^utm_/i.test(k) && v) utm[k.toLowerCase()] = v;
+    });
+  } catch (e) {}
+  var coda = Object.keys(utm).map(function (k) {
+    return encodeURIComponent(k) + '=' + encodeURIComponent(utm[k]);
+  }).join('&');
+  if (coda) {
+    /* si accoda a mano invece di passare da URL.searchParams: quello
+       riserializza tutta la query e trasformerebbe il %20 del testo
+       precompilato in "+", che non tutti i client WhatsApp rileggono
+       come spazio. Così il ?text= resta byte per byte quello scritto. */
+    Array.prototype.forEach.call(d.querySelectorAll('a[href^="https://wa.me/"]'), function (a) {
+      var h = a.getAttribute('href');
+      a.setAttribute('href', h + (h.indexOf('?') === -1 ? '?' : '&') + coda);
+    });
+  }
+
+  /* ── Lead · UN SOLO listener, delegato ────────────────────────────
+     Trappola del doppio sparo: la landing jazz registra un listener per
+     OGNI <a wa.me>, quelle di agosto ne registrano UNO delegato. Tenendo
+     tutti e due i meccanismi ogni click sparerebbe DUE Lead, raddoppiando
+     in silenzio le conversioni e avvelenando l'ottimizzazione. Qui resta
+     solo la delega: una registrazione sola, copre anche la sticky bar che
+     vive fuori da <main>. Lo stamp per elemento neutralizza il doppio tap
+     e il click sintetizzato dopo il touch su iOS. */
+  d.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!t || !t.closest) return;
+    var a = t.closest('a[href^="https://wa.me/"]');
+    if (!a) return;
+
+    var ora = Date.now();
+    if (ora - (+a.getAttribute('data-lead-at') || 0) < 900) return;
+    a.setAttribute('data-lead-at', ora);
+
+    try {
+      if (typeof w.fbq === 'function') {
+        w.fbq('track', 'Lead', {
+          content_name: 'Pranzo e piscina 35 euro',
+          content_category: 'pranzo-e-piscina',
+          method: 'whatsapp',
+          cta: a.getAttribute('data-cta') || 'page',
+          utm_source: utm.utm_source || '',
+          utm_campaign: utm.utm_campaign || '',
+          utm_content: utm.utm_content || ''
+        });
+      }
+      if (Array.isArray(w.dataLayer)) {
+        w.dataLayer.push({
+          event: 'whatsapp_click',
+          event_name: 'pranzo_e_piscina',
+          placement: a.getAttribute('data-cta') || 'page'
+        });
+      }
+    } catch (err) { /* il tracciamento non deve MAI bloccare il click */ }
+  }, false);
+
+  /* ── Video hero: pigro, e mai davanti al primo render ──────────────
+     Il fermo immagine è un <img> a parte, quindi il video può restare
+     spento del tutto senza lasciare un buco. */
+  var video = d.getElementById('heroVideo'),
+      media = d.getElementById('heroMedia'),
+      ridotto = !!(w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches),
+      rete = navigator.connection || {},
+      risparmio = !!(rete.saveData || /(^|-)2g$/.test(rete.effectiveType || '')),
+      pronto = false, visibile = false;
+
+  function accendi() {
+    if (!video || ridotto || risparmio || !pronto || !visibile) return;
+    if (!video.getAttribute('src')) {
+      video.addEventListener('playing', function () { video.classList.add('acceso'); }, { once: true });
+      video.setAttribute('src', video.getAttribute('data-src'));
+      try { video.load(); } catch (e) {}
+    }
+    var p = video.play();
+    if (p && p.catch) p.catch(function () {}); /* autoplay negato: resta il fermo immagine */
+  }
+
+  if (d.readyState === 'complete') { pronto = true; }
+  else { w.addEventListener('load', function () { pronto = true; accendi(); }, { once: true }); }
+
+  if (video && media && 'IntersectionObserver' in w) {
+    new IntersectionObserver(function (voci) {
+      voci.forEach(function (x) {
+        visibile = x.isIntersecting;
+        if (visibile) accendi();
+        else if (!video.paused) video.pause();
+      });
+    }, { threshold: 0.15 }).observe(media);
+  } else { visibile = true; accendi(); }
+
+  /* ── Comparse allo scroll ─────────────────────────────────────────
+     La comparsa parte da opacity:0, quindi un observer che non scatta
+     lascerebbe il contenuto invisibile per sempre: su una pagina di
+     conversione è un rischio che non vale l'effetto. Perciò margine
+     generoso (scatta prima che l'elemento entri davvero) e rete di
+     sicurezza a tempo che scopre comunque tutto. */
+  var appare = d.querySelectorAll('.appare');
+  function scopri(el) { el.classList.add('vista'); }
+  function scopriTutto() { Array.prototype.forEach.call(appare, scopri); }
+
+  if ('IntersectionObserver' in w && appare.length) {
+    var io = new IntersectionObserver(function (voci) {
+      voci.forEach(function (v) {
+        if (v.isIntersecting) { scopri(v.target); io.unobserve(v.target); }
+      });
+    }, { rootMargin: '0px 0px 20% 0px', threshold: 0 });
+    Array.prototype.forEach.call(appare, function (el) { io.observe(el); });
+    w.setTimeout(function () { io.disconnect(); scopriTutto(); }, 4000);
+  } else {
+    scopriTutto();
+  }
+})();
+</script>
+
+</body>
+</html>

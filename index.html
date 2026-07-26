@@ -121,9 +121,11 @@
       <p class="ci-lead">Alla villa risponde un concierge: sceglie con voi la giornata giusta e ve la manda su WhatsApp, già composta. Toccate una domanda per cominciare.</p>
     </div>
     <div class="ci-thread reveal-group">
-      <a class="ci-bubble" href="/offerte/" data-intent="domenica">
-        <span class="ci-q">Vorrei una domenica di pranzo e piscina.</span>
-        <span class="ci-a">La Domenica al Segreto · 35 € a persona</span>
+      <!-- senza data-intent: home.js intercetta le bolle con [data-intent] e apre il
+           concierge; questa deve invece portare davvero alla landing del pacchetto. -->
+      <a class="ci-bubble" href="/pranzo-e-piscina/">
+        <span class="ci-q">Vorrei un pranzo con la piscina.</span>
+        <span class="ci-a">Pranzo e piscina, 35 € a persona</span>
       </a>
       <a class="ci-bubble" href="/esperienze/" data-intent="wellness">
         <span class="ci-q">Un massaggio nel parco, tempo per me.</span>
@@ -175,7 +177,7 @@
       <div class="pillar">
         <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21c0-6 3-12 9-15-1 7-4 12-9 15Z"/><path d="M12 21c0-4-2-8-6-10"/></svg></div>
         <h3>Un <em>parco</em></h3>
-        <p>Otto ettari e ventuno luoghi con un nome proprio: pomeriggi sull'erba con le <a href="/esperienze/">esperienze</a> e saloni per gli eventi, dentro un unico calendario.</p>
+        <p>Otto ettari di parco: pomeriggi sull'erba con le <a href="/esperienze/">esperienze</a> e saloni per gli eventi, dentro un unico calendario.</p>
       </div>
     </div>
   </div>
@@ -201,7 +203,7 @@
   <div class="home-pin-stage">
     <p class="home-pin-line">
       <span>Una</span> <span>dimora</span> <span>del</span> <span>1737.</span>
-      <span>Otto</span> <span>ettari,</span> <span>ventuno</span> <span>luoghi,</span>
+      <span>Otto</span> <span>ettari</span> <span>di</span> <span>parco,</span>
       <span>un</span> <span>solo</span> <span class="accent">tempo:</span> <span class="accent">il&nbsp;vostro.</span>
     </p>
     <a href="/la-villa/" class="home-pin-cta">La storia della dimora
