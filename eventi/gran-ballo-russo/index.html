@@ -7,20 +7,20 @@
      Landing ads standalone: nessun header/footer del sito, zero dipendenze.
      Design freeze: la pagina è in BLOCKED dentro check.js. -->
 <title>Gran Ballo Russo · Villa Luzi 1737 · Treia, Marche</title>
-<meta name="description" content="Sabato 1 agosto 2026 a Villa Luzi 1737, Treia: il Gran Ballo Russo, cena all'aperto nella corte della dimora, dalle 20:30. Prenotazione obbligatoria.">
+<meta name="description" content="Sabato 1 agosto 2026 a Villa Luzi 1737, Treia: il Gran Ballo Russo, cena nella corte, menù russo in quattro portate, 40 euro a persona. Su prenotazione.">
 <meta name="theme-color" content="#0A0810">
 <link rel="canonical" href="https://www.villaluzi1737.com/eventi/gran-ballo-russo/">
 <link rel="icon" type="image/png" href="/assets/img/LS-Icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Villa Luzi 1737">
 <meta property="og:title" content="Gran Ballo Russo · Villa Luzi 1737">
-<meta property="og:description" content="Cena all'aperto nella corte della dimora. Sabato 1 agosto 2026, dalle 20:30. Prenotazione obbligatoria su WhatsApp.">
+<meta property="og:description" content="Cena all'aperto nella corte della dimora, menù russo in quattro portate, 40 euro a persona. Sabato 1 agosto 2026, dalle 20:30. Prenotazione obbligatoria su WhatsApp.">
 <meta property="og:image" content="https://www.villaluzi1737.com/assets/ballo-russo/og-ballo-russo.jpg">
 <meta property="og:url" content="https://www.villaluzi1737.com/eventi/gran-ballo-russo/">
 <meta property="og:locale" content="it_IT">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Gran Ballo Russo · Villa Luzi 1737">
-<meta name="twitter:description" content="Cena all'aperto nella corte della dimora. Sabato 1 agosto 2026, dalle 20:30. Prenotazione obbligatoria su WhatsApp.">
+<meta name="twitter:description" content="Cena all'aperto nella corte della dimora, menù russo in quattro portate, 40 euro a persona. Sabato 1 agosto 2026, dalle 20:30. Prenotazione obbligatoria su WhatsApp.">
 <meta name="twitter:image" content="https://www.villaluzi1737.com/assets/ballo-russo/og-ballo-russo.jpg">
 
 <!-- Meta Pixel (stesso dataset delle altre landing evento) -->
@@ -50,7 +50,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Gran Ballo Russo",
-  "description": "Cena all'aperto nella corte di Villa Luzi 1737 a Treia, sabato 1 agosto 2026 dalle 20:30. Prenotazione obbligatoria via WhatsApp.",
+  "description": "Cena all'aperto nella corte di Villa Luzi 1737 a Treia, sabato 1 agosto 2026 dalle 20:30, con menù russo in quattro portate, 40 euro a persona, bevande escluse. Prenotazione obbligatoria via WhatsApp.",
   "startDate": "2026-08-01T20:30:00+02:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "eventStatus": "https://schema.org/EventScheduled",
@@ -66,6 +66,13 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></
       "postalCode": "62010",
       "addressCountry": "IT"
     }
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "40",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://www.villaluzi1737.com/eventi/gran-ballo-russo/"
   },
   "organizer": {
     "@type": "Organization",
@@ -111,9 +118,12 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></
   @media (min-width:700px){
     .hero-bg img{object-position:center 44%}
   }
-  /* sfumatura di supporto: mai un riquadro pieno */
+  /* sfumatura di supporto: mai un riquadro pieno.
+     La fascia bassa cade sul muro illuminato della foto, dove stanno data,
+     quota e nota: da lì in giù il velo sale prima e più deciso, mentre la
+     parte alta e i lampadari a metà quadro restano come prima. */
   .hero-scrim{position:absolute;inset:0;background:
-    linear-gradient(180deg,rgba(10,8,16,.62) 0%,rgba(10,8,16,.18) 26%,rgba(10,8,16,0) 44%,rgba(10,8,16,.1) 62%,rgba(10,8,16,.86) 100%)}
+    linear-gradient(180deg,rgba(10,8,16,.62) 0%,rgba(10,8,16,.18) 26%,rgba(10,8,16,0) 44%,rgba(10,8,16,.16) 60%,rgba(10,8,16,.68) 76%,rgba(10,8,16,.92) 100%)}
   .hero-inner{
     position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align-items:center;
     justify-content:space-between;text-align:center;padding:clamp(40px,7svh,72px) 24px clamp(36px,6svh,64px)
@@ -132,6 +142,13 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></
     text-transform:uppercase;color:var(--avorio);text-shadow:0 2px 18px rgba(10,8,16,.95)
   }
   .hero-data .ora{display:block;font-size:.72em;letter-spacing:.34em;margin-top:.7em;color:var(--avorio-soft)}
+  /* la quota cade sul muro illuminato della foto: serve un'ombra fitta,
+     non basta quella singola e larga usata sulla notte-dei-desideri */
+  .hero-formula{
+    font-family:'Cinzel',serif;font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--oro);margin-top:1.9em;line-height:1.9;
+    text-shadow:0 1px 3px rgba(10,8,16,.98),0 2px 14px rgba(10,8,16,.95),0 0 34px rgba(10,8,16,.9)
+  }
   .hero-nota{
     font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;
     color:var(--avorio-soft);margin-top:2.1em
@@ -183,6 +200,32 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></
   .info-v{font-size:clamp(1.16rem,2.4vw,1.35rem);color:var(--avorio)}
   .info-v small{display:block;font-size:.82em;color:var(--avorio-soft);margin-top:.2em}
 
+  /* Il menù: una portata per volta, filo d'oro fra l'una e l'altra */
+  .menu{background:linear-gradient(180deg,rgba(10,8,16,0),rgba(74,18,32,.13) 45%,rgba(10,8,16,0));text-align:center}
+  .menu-lista{margin-top:clamp(38px,6vw,58px)}
+  .menu-voce+.menu-voce{margin-top:clamp(40px,7vw,58px)}
+  .menu-voce+.menu-voce::before{
+    content:"";display:block;width:64px;height:1px;margin:0 auto clamp(40px,7vw,58px);
+    background:linear-gradient(90deg,transparent,var(--oro-soft),transparent)
+  }
+  .menu-corso{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.38em;text-transform:uppercase;color:var(--oro)}
+  .menu-piatto{
+    font-family:'Cinzel',serif;font-weight:500;text-transform:uppercase;
+    font-size:clamp(1.2rem,4.2vw,2rem);letter-spacing:.06em;line-height:1.25;
+    color:var(--avorio);margin-top:.6em
+  }
+  .menu-desc{
+    font-style:italic;font-size:clamp(1.1rem,2.4vw,1.28rem);line-height:1.6;
+    color:var(--avorio-soft);max-width:42ch;margin:.45em auto 0
+  }
+  .menu-quota{margin-top:clamp(48px,8vw,68px)}
+  .menu-prezzo{
+    font-family:'Cinzel',serif;font-size:clamp(1.02rem,2.8vw,1.3rem);letter-spacing:.2em;
+    text-transform:uppercase;color:var(--avorio)
+  }
+  .menu-bevande{font-style:italic;font-size:1rem;color:var(--avorio-soft);margin-top:.35em}
+  .menu .btn-wa{margin-top:clamp(34px,6vw,50px)}
+
   /* Prenotazione */
   .prenota{background:
     radial-gradient(90% 120% at 50% 0%,rgba(74,18,32,.4),transparent 60%),
@@ -233,6 +276,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></
     </div>
     <div class="hero-basso">
       <p class="hero-data su r3">Sabato 1 agosto<span class="ora">dalle ore 20:30</span></p>
+      <p class="hero-formula su r3">Men&ugrave; in quattro portate<br>40 euro a persona</p>
       <p class="hero-nota su r4">Prenotazione obbligatoria</p>
       <p class="hero-cta su r4">
         <a class="btn-wa" id="waHero"
@@ -255,7 +299,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></
     <div class="racconto-grid">
       <div class="racconto-testo appare">
         <p>Si cena all&rsquo;aperto, nella corte della dimora, ai tavoli.</p>
-        <p>Il menù della serata avrà una comunicazione dedicata nei prossimi giorni.</p>
+        <p>Il menù della serata è russo, in quattro portate.</p>
       </div>
       <figure class="cornice appare">
         <img src="/assets/ballo-russo/racconto-tavolata-640.webp"
@@ -264,6 +308,49 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></
              alt="Immagine di campagna del Gran Ballo Russo: una lunga tavola apparecchiata in una corte, fra candelabri accesi e lampadari di cristallo" loading="lazy" decoding="async">
       </figure>
     </div>
+  </div>
+</section>
+
+<!-- ═════ IL MENÙ DELLA SERATA ═════ -->
+<section class="sezione menu" aria-label="Il menù della serata">
+  <div class="sezione-inner">
+    <span class="sez-eyebrow appare">La cucina</span>
+    <h2 class="sez-title appare">Il menù<br>della serata</h2>
+    <hr class="filo appare">
+    <div class="menu-lista">
+      <div class="menu-voce appare">
+        <p class="menu-corso">Antipasto</p>
+        <p class="menu-piatto">Caviale e insalata russa</p>
+        <p class="menu-desc">su crostino di pane, servito in cicchetti</p>
+      </div>
+      <div class="menu-voce appare">
+        <p class="menu-corso">Primo</p>
+        <p class="menu-piatto">Pel&rsquo;meni</p>
+        <p class="menu-desc">ravioli di carne con panna acida</p>
+      </div>
+      <div class="menu-voce appare">
+        <p class="menu-corso">Secondo</p>
+        <p class="menu-piatto">Manzo alla Stroganoff</p>
+        <p class="menu-desc">con purè</p>
+      </div>
+      <div class="menu-voce appare">
+        <p class="menu-corso">Dolce</p>
+        <p class="menu-piatto">Syrniki</p>
+        <p class="menu-desc">bignè fritti con formaggio spalmabile e marmellata</p>
+      </div>
+    </div>
+    <div class="menu-quota appare">
+      <p class="menu-prezzo">40 euro a persona</p>
+      <p class="menu-bevande">bevande escluse</p>
+    </div>
+    <p class="appare">
+      <a class="btn-wa" id="waMenu"
+         href="https://wa.me/393452419263?text=Buonasera%2C%20vorrei%20prenotare%20per%20il%20Gran%20Ballo%20Russo%20del%201%20agosto."
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-1.607z"/></svg>
+        <span>Scriveteci su WhatsApp</span>
+      </a>
+    </p>
   </div>
 </section>
 
@@ -277,7 +364,8 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></
       <div class="info-voce"><span class="info-k">La data</span><span class="info-v">Sabato 1 agosto 2026</span></div>
       <div class="info-voce"><span class="info-k">L&rsquo;orario</span><span class="info-v">Dalle ore 20:30</span></div>
       <div class="info-voce"><span class="info-k">Il luogo</span><span class="info-v">La corte di Villa Luzi 1737<small>Contrada Chiaravalle 49, Treia (MC), all&rsquo;aperto</small></span></div>
-      <div class="info-voce"><span class="info-k">Il menù</span><span class="info-v">In arrivo<small>Avrà una comunicazione dedicata</small></span></div>
+      <div class="info-voce"><span class="info-k">Il menù</span><span class="info-v">Russo, in quattro portate<small>Antipasto, primo, secondo, dolce</small></span></div>
+      <div class="info-voce"><span class="info-k">La quota</span><span class="info-v">40 euro a persona<small>Bevande escluse</small></span></div>
     </div>
   </div>
 </section>
