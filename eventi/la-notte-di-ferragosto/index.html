@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<!-- viewport-fit=cover NON e' decorativo: senza, tutte le env(safe-area-inset-*)
+     valgono 0 e il padding anti-home-indicator della barra sticky non fa nulla. -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Dominio canonico: www.villaluzi1737.com (come le altre landing evento).
+     Landing ads standalone: nessun header/footer del sito.
+     Design freeze: la pagina e' in BLOCKED dentro check.js.
+     La pagina e' la versione web della locandina: fotografia in fascia,
+     filetto oro, e tutto il testo su ottanio pieno. NESSUN testo sta
+     sulla fotografia, per costruzione: e' la ragione per cui qui non
+     serve nessuno scrim e non si ripete il difetto del Gran Ballo Russo,
+     dove il descrittore oro cade sui cristalli a 1.16:1. -->
+<title>La Notte di Ferragosto, Villa Luzi 1737, Treia</title>
+<meta name="description" content="Venerd&igrave; 14 agosto 2026 nella corte di Villa Luzi 1737, a Treia: cena, fuochi d&rsquo;artificio a mezzanotte e dj set. Men&ugrave; 50 euro a persona, bevande incluse.">
+<meta name="theme-color" content="#034354">
+<link rel="canonical" href="https://www.villaluzi1737.com/eventi/la-notte-di-ferragosto/">
+<link rel="icon" type="image/png" href="/assets/img/LS-Icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Villa Luzi 1737">
+<meta property="og:title" content="La Notte di Ferragosto, Villa Luzi 1737">
+<meta property="og:description" content="Cena nella corte della dimora, fuochi d&rsquo;artificio a mezzanotte e dj set. Venerd&igrave; 14 agosto 2026, dalle ore 21:00. Men&ugrave; 50 euro a persona, bevande incluse.">
+<meta property="og:image" content="https://www.villaluzi1737.com/assets/ferragosto/og-ferragosto.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1607">
+<meta property="og:image:alt" content="La Notte di Ferragosto a Villa Luzi 1737, venerd&igrave; 14 agosto 2026">
+<meta property="og:url" content="https://www.villaluzi1737.com/eventi/la-notte-di-ferragosto/">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="La Notte di Ferragosto, Villa Luzi 1737">
+<meta name="twitter:description" content="Cena nella corte della dimora, fuochi d&rsquo;artificio a mezzanotte e dj set. Venerd&igrave; 14 agosto 2026, dalle ore 21:00. Men&ugrave; 50 euro a persona, bevande incluse.">
+<meta name="twitter:image" content="https://www.villaluzi1737.com/assets/ferragosto/og-ferragosto.jpg">
+
+<!-- ══════════════ MISURAZIONE · CONFIGURAZIONE ══════════════
+     UNICO punto della pagina in cui compaiono identificativi e nomi degli
+     eventi: la logica in fondo al body non contiene nessun literal, legge
+     solo da qui. Se pixelId e' vuoto lo snippet base non viene installato
+     affatto e la pagina non finge di tracciare.
+     L'ID di un dataset Meta e' un dato pubblico, non un segreto: viaggia
+     in chiaro a ogni richiesta. Il token della Conversions API invece NON
+     deve entrare in una pagina statica, richiederebbe una funzione server. -->
+<script>
+window.VL_TRACK = {
+  pixelId:     '5285830348309655',   /* stesso dataset delle altre landing evento */
+  evento:      'La Notte di Ferragosto 14 agosto',
+  categoria:   'la-notte-di-ferragosto',
+  contentId:   'ferragosto-2026',
+  valore:      50,
+  valuta:      'EUR',
+  clickEvento: 'ClickWhatsApp'       /* evento personalizzato al click ('' per spegnerlo) */
+};
+/* Coda GA/GTM creata subito: un contenitore aggiunto domani ritrova anche
+   gli eventi accodati prima del suo caricamento. Nessun ID di misurazione
+   in pagina: si espongono eventi, non contenitori. */
+window.dataLayer = window.dataLayer || [];
+</script>
+<script>
+/* Snippet base Meta Pixel, quello ufficiale con due differenze:
+   1) init e PageView leggono l'ID dalla configurazione qui sopra;
+   2) se l'ID manca lo snippet NON viene installato. E' il rimedio al
+      difetto di eventi/white-party/index.html, che chiama fbq() senza
+      avere mai caricato fbevents.js: ogni suo evento e' un no-op muto. */
+(function () {
+  var c = window.VL_TRACK || {};
+  if (!c.pixelId) return;
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', c.pixelId);
+  fbq('track', 'PageView');
+})();
+</script>
+<!-- Il pixel <noscript> e' volutamente omesso: registrerebbe solo PageView
+     per chi ha JS disattivato (nessuno, fra le browser in-app di Meta) e
+     obbligherebbe a ripetere l'ID in un secondo literal, che e' proprio
+     cio' che il requisito "niente chiavi hard coded" vuole evitare. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Cormorant Garamond con ENTRAMBI gli assi: le landing sorelle caricano
+     solo l'italic (ital,wght@1,...) e per questo tutto il loro testo tondo
+     cade in realta' su Georgia senza che si veda. Qui il tondo serve. -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<script>document.documentElement.className='js';</script>
+
+<!-- L'LCP e' la fotografia. Due preload art-directed con media complementare
+     sui 720px: senza il media si scaricherebbero tutti e due i ritagli. -->
+<link rel="preload" as="image" fetchpriority="high" media="(max-width: 719px)"
+      imagesrcset="/assets/ferragosto/hero-villa-1x1-480.webp 480w, /assets/ferragosto/hero-villa-1x1-828.webp 828w, /assets/ferragosto/hero-villa-1x1-1170.webp 1170w"
+      imagesizes="100vw">
+<link rel="preload" as="image" fetchpriority="high" media="(min-width: 720px)"
+      imagesrcset="/assets/ferragosto/hero-villa-880.webp 880w, /assets/ferragosto/hero-villa-1400.webp 1400w, /assets/ferragosto/hero-villa-1744.webp 1744w"
+      imagesizes="100vw">
+
+<!-- QUOTA: 50 euro a persona, bevande incluse. In HTML statico non puo'
+     stare in un punto solo, perche' l'hero sta sopra la sezione del menu'
+     e il JSON-LD sta nel <head>. I punti sono QUATTRO ed eccoli tutti:
+       1. questa pagina, hero          -> .hero-quota
+       2. partials/menu-ferragosto.html -> .menu-prezzo / .menu-bevande
+       3. questa pagina, informazioni   -> voce "La quota"
+       4. questo JSON-LD                -> offers.price e description
+     I PIATTI invece stanno solo al punto 2: non scriverli altrove. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "La Notte di Ferragosto",
+  "description": "Cena nella corte di Villa Luzi 1737 a Treia, venerdì 14 agosto 2026 dalle ore 21:00, con fuochi d'artificio a mezzanotte e dj set. Menù 50 euro a persona, bevande incluse. Prenotazione obbligatoria via WhatsApp.",
+  "startDate": "2026-08-14T21:00:00+02:00",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "image": "https://www.villaluzi1737.com/assets/ferragosto/og-ferragosto.jpg",
+  "location": {
+    "@type": "Place",
+    "name": "Villa Luzi 1737, la corte",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Contrada Chiaravalle 49",
+      "addressLocality": "Treia",
+      "addressRegion": "MC",
+      "postalCode": "62010",
+      "addressCountry": "IT"
+    }
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "50",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://www.villaluzi1737.com/eventi/la-notte-di-ferragosto/"
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Villa Luzi 1737",
+    "url": "https://www.villaluzi1737.com/"
+  }
+}
+</script>
+
+<style>
+  /* ═════════════════ TOKEN ═════════════════
+     Fondo ottanio pieno edge to edge su tutta la pagina, html compreso:
+     senza html il rubber band di iOS scopre il bianco sotto. */
+  :root{
+    --ottanio:#034354;          /* fondo, e inchiostro sul bottone oro (5.73:1) */
+    --ottanio-fondo:#022E3A;    /* fasce e barra sticky */
+    --avorio:#F7F0E2;           /* 9.25:1 su ottanio */
+    --avorio-velo:rgba(247,240,226,.80);
+    --oro:#E2BA6A;              /* 5.73:1 su ottanio */
+    --oro-filo:rgba(226,186,106,.52);
+
+    --titolo:'Cinzel','Times New Roman',serif;
+    --corsivo:'Cormorant Garamond',Georgia,serif;
+    --ease:cubic-bezier(.22,.61,.36,1);
+
+    --filetto:2px;
+    --sticky-h:68px;            /* default senza JS; la barra pubblica la misura vera */
+
+    /* Fallback obbligatori per iOS 15.0-15.3 e ogni browser senza svh.
+       Una custom property con valore invalido non viene scartata alla
+       dichiarazione ma ALL'USO: font-size diventerebbe
+       invalid-at-computed-value-time, cioe' ereditato, e tutta la
+       tipografia finirebbe fuori scala. */
+    --u:11px;
+    --foto-h:250px;
+    --hero-h:100vh;
+  }
+  @supports (height:1svh){
+    :root{
+      /* UNA sola unita' tipografica per tutto il blocco di testo, sensibile
+         all'altezza oltre che alla larghezza: cosi' la piega e' aritmetica
+         e non una scala di media query. */
+      --u:clamp(9.5px, min(2.76vw, 1.86svh), 15.5px);
+      /* Rampa lineare e non percentuale: la foto cede altezza al testo piu'
+         che proporzionalmente quando lo schermo si accorcia.
+         Passa per (800svh -> 353px, il 44% chiesto) e si ferma a 200px. */
+      --foto-h:clamp(172px, calc(76svh - 255px), 355px);
+      /* svh e non dvh: l'altezza va congelata sul caso peggiore, barre di
+         Safari aperte. Con dvh l'hero crescerebbe e si restringerebbe
+         mentre iOS collassa la toolbar, proprio sulla schermata che deve
+         restare ferma. */
+      --hero-h:100svh;
+    }
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;background:var(--ottanio)}
+  body{
+    background:var(--ottanio);color:var(--avorio);
+    font-family:var(--corsivo);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--oro);color:var(--ottanio)}
+
+  /* ═════════════════ HERO ═════════════════
+     Due figli e nient'altro: la fotografia e il blocco a tinta piena.
+     La foto ha altezza calcolata (flex:0 0 auto) cosi' non balla mai; il
+     blocco e' flex:1 e centra il contenuto, assorbendo il surplus sugli
+     schermi alti e dimezzando lo spostamento allo swap dei font. */
+  .hero{position:relative;min-height:var(--hero-h);display:flex;flex-direction:column}
+
+  .hero-foto{flex:0 0 auto;height:var(--foto-h);overflow:hidden;background:var(--ottanio-fondo)}
+  /* 42% tiene i fuochi in alto e la villa in basso nel ritaglio quadrato */
+  .hero-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 42%}
+
+  /* Il filetto oro e' border-top del blocco e non border-bottom della foto:
+     resta incollato al testo anche se la fotografia non carica. */
+  .hero-testo{
+    flex:1 1 auto;border-top:var(--filetto) solid var(--oro);
+    background:var(--ottanio);
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;gap:.64em;                 /* UNA manopola per tutti i respiri */
+    font-size:var(--u);                          /* la radice del sistema em */
+    padding:.9em max(20px, env(safe-area-inset-left,0px) + 20px) 1.05em
+  }
+
+  /* Il tracking lascia uno spazio dopo l'ultima lettera e sposta ogni riga
+     centrata a sinistra di meta' tracking: il padding-left lo compensa
+     esattamente (su blocco centrato sposta di meta' del proprio valore). */
+  .hero-occhiello{
+    font-family:var(--titolo);font-weight:400;text-transform:uppercase;
+    font-size:1em;letter-spacing:.30em;padding-left:.30em;line-height:1.2;
+    color:var(--avorio)
+  }
+  .hero-occhiello .sotto{
+    display:block;font-size:.82em;letter-spacing:.26em;padding-left:.26em;
+    margin-top:.45em;color:var(--oro)
+  }
+
+  .hero-titolo{
+    font-family:var(--titolo);font-weight:600;text-transform:uppercase;
+    font-size:3em;line-height:1.02;letter-spacing:.055em;padding-left:.055em;
+    color:var(--avorio)
+  }
+
+  /* Oro corsivo su ottanio PIENO: 5.73:1. max(18px, ...) tiene il pavimento
+     dei 18px anche quando --u tocca il minimo sugli schermi piu' stretti. */
+  .hero-desc{
+    font-family:var(--corsivo);font-style:italic;color:var(--oro);
+    font-size:max(18px,1.7em);line-height:1.24;max-width:26ch;text-wrap:balance
+  }
+
+  .hero-quando{font-family:var(--titolo);text-transform:uppercase}
+  .hero-quando .giorno{
+    display:block;font-size:1.32em;line-height:1.25;
+    letter-spacing:.20em;padding-left:.20em;color:var(--avorio)
+  }
+  .hero-quando .ora{
+    display:block;font-size:1.02em;line-height:1.25;
+    letter-spacing:.26em;padding-left:.26em;margin-top:.42em;color:var(--avorio-velo)
+  }
+
+  /* Un solo pieno d'oro in pagina, ed e' il bottone: la quota resta Cinzel
+     avorio con la sola cifra in oro, cosi' non compete con la CTA. */
+  .hero-quota .prezzo{
+    display:block;font-family:var(--titolo);text-transform:uppercase;
+    font-size:1.26em;line-height:1.3;letter-spacing:.17em;padding-left:.17em;
+    color:var(--avorio)
+  }
+  .hero-quota .cifra{font-size:max(18px,1.3em);color:var(--oro);letter-spacing:.08em}
+  .hero-quota .bevande{
+    display:block;font-family:var(--corsivo);font-style:italic;
+    font-size:1.32em;line-height:1.3;margin-top:.3em;color:var(--avorio-velo)
+  }
+
+  /* ── bottone: oro pieno, testo ottanio (5.73:1) ──
+     Ombra ottanio e non nera: su fondo teal il nero legge come sporco. */
+  .btn-wa{
+    display:inline-flex;align-items:center;justify-content:center;gap:.62em;
+    background:var(--oro);color:var(--ottanio);border-radius:999px;
+    font-family:var(--titolo);font-weight:600;text-transform:uppercase;
+    font-size:max(12.6px,1.15em);line-height:1;letter-spacing:.14em;
+    padding:1.15em 2.3em;padding-left:calc(2.3em + .14em);white-space:nowrap;
+    box-shadow:0 10px 26px rgba(2,46,58,.42),0 2px 6px rgba(2,46,58,.28);
+    transition:transform .25s var(--ease),box-shadow .25s var(--ease)
+  }
+  .btn-wa svg{width:1.35em;height:1.35em;fill:currentColor;flex:none}
+  .btn-wa:hover{transform:translateY(-2px);
+    box-shadow:0 14px 32px rgba(2,46,58,.5),0 2px 6px rgba(2,46,58,.3)}
+  .btn-wa:focus-visible{outline:2px solid var(--avorio);outline-offset:3px}
+
+  /* ═════ MOBILE: la piega diventa un invariante di layout ═════
+     L'hero e' alto esattamente lo spazio sopra la barra, quindi tutto
+     cio' che sta dentro .hero e' sopra la barra per costruzione. */
+  @media (max-width:719px){
+    .hero{min-height:calc(var(--hero-h) - var(--sticky-h))}
+    body{padding-bottom:var(--sticky-h)}
+  }
+
+  /* ═════ DESKTOP e tablet: la fascia panoramica ═════ */
+  @media (min-width:720px){
+    :root{--foto-h:300px}
+    @supports (height:1svh){
+      :root{
+        --foto-h:clamp(260px, min(38svh, 26vw), 460px);
+        --u:clamp(13px, min(1.30vw, 1.85svh), 21px)
+      }
+    }
+    /* 78%: quando la fascia e' alta tiene le scie dei fuochi e il cielo,
+       quando e' schiacciata tiene la villa intera fra i pini. */
+    .hero-foto img{object-position:50% 78%}
+    .hero-desc{max-width:none}
+    /* Fondo e filetto restano full bleed, e' il TESTO a restare in colonna:
+       una riga di Cinzel tracciata larga 1440px sarebbe un banner, non una
+       locandina. Per questo il max-width sta sui FIGLI, non sul blocco. */
+    .hero-testo{padding-inline:24px}
+    .hero-testo > *{max-width:min(720px,92vw)}
+    .hero-titolo{letter-spacing:.07em;padding-left:.07em}
+  }
+  @media (min-width:1440px){
+    .hero-testo > *{max-width:min(820px,88vw)}
+  }
+
+  /* ═════ TELEFONO IN LANDSCAPE ═════
+     Qui la piega non si risolve comprimendo: si ruota l'hero, foto a
+     sinistra (dove il ritaglio quadrato calza) e testo a destra. */
+  @media (max-width:719px) and (orientation:landscape){
+    .hero{flex-direction:row}
+    .hero-foto{flex:0 0 42%;height:auto}
+    .hero-testo{
+      border-top:0;border-left:var(--filetto) solid var(--oro);
+      padding-block:.8em .9em;gap:.6em
+    }
+    .hero-desc{max-width:30ch}
+  }
+
+  /* ═════ BARRA STICKY ═════
+     Piena e non sfumata: su ottanio una sfumatura lascerebbe il testo
+     dietro semileggibile invece di nasconderlo pulito. Non e' animata:
+     a t=0 esiste gia' una CTA visibile, sempre. */
+  .sticky-bar{
+    position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
+    background:var(--ottanio-fondo);border-top:1px solid var(--oro-filo);
+    box-shadow:0 -10px 26px rgba(2,46,58,.45);pointer-events:none;
+    padding:11px calc(16px + env(safe-area-inset-right,0px))
+            calc(11px + env(safe-area-inset-bottom,0px))
+            calc(16px + env(safe-area-inset-left,0px))
+  }
+  .sticky-bar .btn-wa{pointer-events:auto;display:flex;width:100%;font-size:12.6px}
+  @media (max-width:719px){.sticky-bar{display:block}}
+
+  /* ═════ COMPARSE ═════
+     Sulle sorelle la CTA arriva a opacita' piena a ~2.1s dal paint: su una
+     landing di inserzioni sono due secondi in cui non c'e' niente da
+     toccare. Qui la CTA e' opaca a 1.10s, e la sticky non aspetta nulla. */
+  .su{opacity:0;transform:translateY(14px);animation:su .8s var(--ease) forwards}
+  .su.r1{animation-delay:.06s}
+  .su.r2{animation-delay:.18s}
+  .su.r3{animation-delay:.30s}
+  @keyframes su{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .su{opacity:1;transform:none;animation:none}
+    .btn-wa{transition:none}
+    .btn-wa:hover{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- glifo WhatsApp definito una volta sola: quattro CTA con lo stesso path
+     inline sarebbero 4 KB buttati -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ico-wa" viewBox="0 0 24 24">
+    <path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-1.607z"/>
+  </symbol>
+</svg>
+
+<!-- ═════ HERO · la locandina ═════ -->
+<section class="hero" aria-label="La Notte di Ferragosto, venerd&igrave; 14 agosto 2026 a Villa Luzi 1737">
+
+  <div class="hero-foto">
+    <picture>
+      <source media="(min-width: 720px)"
+              srcset="/assets/ferragosto/hero-villa-880.webp 880w, /assets/ferragosto/hero-villa-1400.webp 1400w, /assets/ferragosto/hero-villa-1744.webp 1744w"
+              sizes="100vw"
+              width="1744" height="698">
+      <!-- la fotografia non e' decorativa: e' la locandina, quindi alt vero -->
+      <img src="/assets/ferragosto/hero-villa-1x1-828.webp"
+           srcset="/assets/ferragosto/hero-villa-1x1-480.webp 480w, /assets/ferragosto/hero-villa-1x1-828.webp 828w, /assets/ferragosto/hero-villa-1x1-1170.webp 1170w"
+           sizes="100vw" width="1170" height="1170"
+           alt="Villa Luzi 1737 all&rsquo;ora blu, con i fuochi d&rsquo;artificio nel cielo sopra la dimora"
+           fetchpriority="high" decoding="async">
+    </picture>
+  </div>
+
+  <div class="hero-testo">
+    <p class="hero-occhiello su r1">Villa Luzi 1737<span class="sotto">Treia (MC)</span></p>
+
+    <!-- il <br> e' voluto: fissa il numero di righe a due a ogni corpo,
+         rende esatto il bilancio della piega e immunizza dallo spostamento
+         allo swap dei font (Times e Cinzel hanno conteggi di riga diversi) -->
+    <h1 class="hero-titolo su r2">La notte<br>di Ferragosto</h1>
+
+    <p class="hero-desc su r2">cena, fuochi d&rsquo;artificio a mezzanotte e dj set</p>
+
+    <p class="hero-quando su r3">
+      <span class="giorno">Venerd&igrave; 14 agosto</span>
+      <span class="ora">dalle ore 21:00</span>
+    </p>
+
+    <p class="hero-quota su r3">
+      <span class="prezzo">Men&ugrave; <span class="cifra">50</span> euro a persona</span>
+      <span class="bevande">bevande incluse</span>
+    </p>
+
+    <p class="hero-cta su r3">
+      <a class="btn-wa" data-cta="hero"
+         href="https://wa.me/393452419263?text=Buonasera%2C%20vorrei%20prenotare%20per%20La%20Notte%20di%20Ferragosto%20del%2014%20agosto"
+         target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#ico-wa"></use></svg>
+        <span>Scriveteci su WhatsApp</span>
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- ═════ BARRA STICKY (solo sotto i 720px) ═════ -->
+<div class="sticky-bar">
+  <a class="btn-wa" data-cta="sticky"
+     href="https://wa.me/393452419263?text=Buonasera%2C%20vorrei%20prenotare%20per%20La%20Notte%20di%20Ferragosto%20del%2014%20agosto"
+     target="_blank" rel="noopener">
+    <svg aria-hidden="true"><use href="#ico-wa"></use></svg>
+    <span>Scriveteci su WhatsApp</span>
+  </a>
+</div>
+
+<script>
+/* La barra pubblica la propria altezza vera, invece di fidarsi del default
+   del CSS: l'invariante della piega dipende da --sticky-h. Una passata,
+   converge subito (cambiare --sticky-h non cambia l'altezza della barra). */
+(function () {
+  var bar = document.querySelector('.sticky-bar');
+  if (!bar || !('ResizeObserver' in window)) return;
+  function pubblica() {
+    var h = Math.ceil(bar.getBoundingClientRect().height);
+    if (h > 0) document.documentElement.style.setProperty('--sticky-h', h + 'px');
+  }
+  new ResizeObserver(pubblica).observe(bar);
+  pubblica();
+})();
+</script>
+</body>
+</html>

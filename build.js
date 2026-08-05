@@ -53,8 +53,27 @@ const SKIP_REL = new Set([
 function readPartial(name) {
   return fs.readFileSync(path.join(ROOT, 'partials', `${name}.html`), 'utf8').trim();
 }
-const HEADER = readPartial('header');
-const FOOTER = readPartial('footer');
+
+// Include generico: <!-- @include:<nome> -->  →  partials/<nome>.html
+// Il nome ammette solo [a-z0-9-], quindi un marker non può uscire da
+// partials/ (niente path traversal) e un nome scritto male resta non
+// risolto invece di leggere un file a caso.
+// DUE regex e non una: INCLUDE_RE è globale, e .test() su una regex
+// globale avanza lastIndex — riusarla per il controllo farebbe saltare
+// un file su due.
+const INCLUDE_RE = /<!--\s*@include:([a-z0-9-]+)\s*-->/g;
+const HAS_INCLUDE = /<!--\s*@include:/;
+
+// Ogni partial si legge una volta per build.
+const PARTIALS = new Map();
+function partial(name) {
+  if (!PARTIALS.has(name)) PARTIALS.set(name, readPartial(name));
+  return PARTIALS.get(name);
+}
+// Precarico del chrome del sito: se manca, la build deve morire subito
+// e non alla prima pagina che lo include.
+partial('header');
+partial('footer');
 
 let copied = 0;
 let withInclude = 0;
@@ -77,16 +96,37 @@ function walk(srcDir, outDir, isRoot) {
 
     if (entry.name.endsWith('.html')) {
       const raw = fs.readFileSync(src, 'utf8');
-      if (/<!--\s*@include:/.test(raw)) {
-        // Funzioni come replacement: il contenuto dei partial non passa
+      if (HAS_INCLUDE.test(raw)) {
+        // Funzione come replacement: il contenuto dei partial non passa
         // dai pattern speciali ($&, $1…) di String.replace.
-        const html = raw
-          .replace(/<!--\s*@include:header\s*-->/g, () => HEADER)
-          .replace(/<!--\s*@include:footer\s*-->/g, () => FOOTER);
-        if (/<!--\s*@include:/.test(html)) {
-          console.error(`✗ marker @include sconosciuto in ${path.relative(ROOT, src)}`);
-          failed = true;
+        // Un solo giro, niente ricorsione: se un partial contenesse a sua
+        // volta un marker, il controllo qui sotto lo trasforma in errore
+        // rumoroso invece di risolverlo a sorpresa. Per citare un marker
+        // dentro un commento si scrive <!━━ @include:nome ━━>, come già
+        // fanno partials/header.html e partials/footer.html.
+        const mancanti = [];
+        INCLUDE_RE.lastIndex = 0;
+        const html = raw.replace(INCLUDE_RE, (marker, name) => {
+          try {
+            return partial(name);
+          } catch (e) {
+            mancanti.push(name);
+            return marker;
+          }
+        });
+        let rotta = false;
+        for (const name of mancanti) {
+          console.error(`✗ partial mancante o illeggibile: partials/${name}.html — richiesto da ${path.relative(ROOT, src)}`);
+          failed = rotta = true;
         }
+        if (!mancanti.length && HAS_INCLUDE.test(html)) {
+          console.error(`✗ marker @include non risolto in ${path.relative(ROOT, src)} (nome fuori da [a-z0-9-])`);
+          failed = rotta = true;
+        }
+        // La pagina col marker aperto non si scrive affatto: la build
+        // esce comunque con 1, ma così dist/ non contiene mai una pagina
+        // mutila da servire per sbaglio in locale.
+        if (rotta) continue;
         fs.writeFileSync(out, html);
         withInclude++;
         copied++;
@@ -106,4 +146,4 @@ if (failed) {
   console.error('build FALLITA: marker non risolti.');
   process.exit(1);
 }
-console.log(`build ok → dist/ · ${copied} file copiati · ${withInclude} con include header/footer`);
+console.log(`build ok → dist/ · ${copied} file copiati · ${withInclude} con include · ${PARTIALS.size} partial usati`);
