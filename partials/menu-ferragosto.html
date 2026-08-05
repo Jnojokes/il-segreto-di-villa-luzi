@@ -1,0 +1,67 @@
+<!-- ═══════════════════════════════════════════════════════════
+     VILLA LUZI · MENÙ · La Notte di Ferragosto (14 agosto 2026)
+
+     FONTE UNICA delle portate. Incluso a build-time da build.js
+     dove la landing ha il marker <!━━ @include:menu-ferragosto ━━>
+     (qui è scritto con ━━ per non farsi risolvere: stessa
+     accortezza di partials/header.html).
+
+     Chi deve correggere un piatto tocca SOLO questo file:
+     una riga <p class="menu-piatto"> è un piatto. Nel markup
+     della landing non compare nemmeno un nome di piatto.
+
+     I tre marcatori di conferma stanno in commento, quindi non si
+     vedono in pagina, ma check.js li censisce come warn a ogni
+     build: le righe provvisorie restano sotto gli occhi finché
+     qualcuno non le cancella. Sono le tre segnalate in
+     COPY_FERRAGOSTO_14AGO.md: la parola dopo "panella"
+     nell'antipasto, quella dopo "anatra" nelle tagliatelle, e le
+     tre righe del dolce.
+
+     Il CSS vive nella landing, non qui. Contratto delle classi:
+       .menu-lista   griglia, due colonne da 820px, una sotto
+       .menu-voce    una portata
+       .menu-corso   Cinzel oro maiuscolo tracciato, mai sotto 18px
+       .menu-piatto  Cormorant italic avorio, ripetibile (i primi sono due)
+       .menu-quota / .menu-prezzo / .menu-bevande
+       .appare       comparsa allo scroll, l'observer è nella landing
+
+     La quota vive anche in altri TRE punti che l'HTML statico non
+     può unificare: hero, blocco informazioni e JSON-LD. Sono
+     elencati nel commento sopra il JSON-LD della landing.
+
+     MAI rendere questo contenuto via JavaScript: lo scraper Open
+     Graph di Facebook e i crawler AI non eseguono JS.
+     ═══════════════════════════════════════════════════════════ -->
+<div class="menu-lista">
+
+  <div class="menu-voce appare">
+    <p class="menu-corso">Antipasto</p>
+    <!-- [DA CONFERMARE: la parola dopo "panella", il foglio dello chef è illeggibile] -->
+    <p class="menu-piatto">Panella, carne salada, fichi, miele e pecorino</p>
+  </div>
+
+  <div class="menu-voce appare">
+    <p class="menu-corso">Primi</p>
+    <p class="menu-piatto">Plin ripieni di porcini e patate su salsa di gorgonzola, timo e fondo bruno</p>
+    <!-- [DA CONFERMARE: la parola dopo "anatra" nelle tagliatelle] -->
+    <p class="menu-piatto">Tagliatelle all&rsquo;anatra e salsa di lamponi</p>
+  </div>
+
+  <div class="menu-voce appare">
+    <p class="menu-corso">Secondo</p>
+    <p class="menu-piatto">Arrosto di maiale alle erbe, patate e frutta caramellata alla brace</p>
+  </div>
+
+  <div class="menu-voce appare">
+    <p class="menu-corso">Dolce</p>
+    <!-- [DA CONFERMARE: le tre righe del dolce per esteso, oggi accorciate] -->
+    <p class="menu-piatto">Cannolo, formaggi e caff&egrave;</p>
+  </div>
+
+</div>
+
+<div class="menu-quota appare">
+  <p class="menu-prezzo">50 euro a persona</p>
+  <p class="menu-bevande">bevande incluse</p>
+</div>

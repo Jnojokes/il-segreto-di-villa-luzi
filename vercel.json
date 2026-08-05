@@ -14,6 +14,8 @@
     { "source": "/1-agosto.html", "destination": "/eventi/gran-ballo-russo/", "permanent": true },
     { "source": "/10-agosto", "destination": "/eventi/notte-dei-desideri/", "permanent": true },
     { "source": "/10-agosto.html", "destination": "/eventi/notte-dei-desideri/", "permanent": true },
+    { "source": "/14-agosto", "destination": "/eventi/la-notte-di-ferragosto/", "permanent": true },
+    { "source": "/14-agosto.html", "destination": "/eventi/la-notte-di-ferragosto/", "permanent": true },
     { "source": "/la-domenica.html", "destination": "/eventi/la-domenica/", "permanent": true },
     { "source": "/eventi/matrimoni", "destination": "/matrimoni/", "permanent": true },
     { "source": "/eventi/matrimoni/", "destination": "/matrimoni/", "permanent": true },

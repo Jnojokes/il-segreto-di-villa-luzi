@@ -231,9 +231,12 @@ window.dataLayer = window.dataLayer || [];
     font-size:1em;letter-spacing:.30em;padding-left:.30em;line-height:1.2;
     color:var(--avorio)
   }
+  /* Avorio e non oro: il prompt assegna l'oro al descrittore, alle portate
+     del menu', ai filetti e al bottone, e vieta testo oro sotto i 18px.
+     Qui siamo a ~9px, quindi l'oro sarebbe fuori regola due volte. */
   .hero-occhiello .sotto{
     display:block;font-size:.82em;letter-spacing:.26em;padding-left:.26em;
-    margin-top:.45em;color:var(--oro)
+    margin-top:.45em;color:var(--avorio-velo)
   }
 
   .hero-titolo{
@@ -348,6 +351,127 @@ window.dataLayer = window.dataLayer || [];
   .sticky-bar .btn-wa{pointer-events:auto;display:flex;width:100%;font-size:12.6px}
   @media (max-width:719px){.sticky-bar{display:block}}
 
+  /* ═════════════════ SEZIONI ═════════════════
+     Il fondo ottanio non si interrompe mai: le fasce di respiro sono in
+     ottanio piu' scuro, mai in chiaro. Nessun blocco bianco in pagina. */
+  .sezione{padding:clamp(64px,10vw,116px) 24px}
+  .sezione-inner{max-width:1000px;margin:0 auto}
+  .sezione.fascia{background:var(--ottanio-fondo)}
+
+  .sez-eyebrow{
+    display:block;text-align:center;font-family:var(--titolo);font-weight:400;
+    font-size:.78rem;letter-spacing:.4em;padding-left:.4em;text-transform:uppercase;
+    color:var(--avorio-velo)
+  }
+  .sez-title{
+    text-align:center;font-family:var(--titolo);font-weight:500;text-transform:uppercase;
+    font-size:clamp(1.5rem,4.4vw,2.35rem);line-height:1.16;letter-spacing:.13em;
+    padding-left:.13em;color:var(--avorio);margin-top:.7em
+  }
+  .filo{width:64px;height:1px;border:0;margin:26px auto 0;
+    background:linear-gradient(90deg,transparent,var(--oro),transparent)}
+
+  /* ── Racconto ── */
+  .racconto{max-width:34rem;margin:clamp(34px,5vw,52px) auto 0;text-align:center}
+  .racconto p{font-size:clamp(1.15rem,2.6vw,1.36rem);line-height:1.85;color:var(--avorio)}
+  .racconto p+p{margin-top:1.05em}
+
+  /* ── Il menu': due colonne da 820px, una sotto ──
+     Gap zero e padding interno, cosi' i fili d'oro dei bordi si toccano e
+     la griglia si legge come una carta invece di galleggiare. */
+  .menu-lista{
+    margin:clamp(34px,5vw,52px) auto 0;max-width:900px;
+    display:grid;grid-template-columns:1fr;text-align:center
+  }
+  .menu-voce{padding:clamp(24px,4vw,34px) clamp(6px,3vw,30px)}
+  .menu-voce+.menu-voce{border-top:1px solid rgba(226,186,106,.20)}
+  @media (min-width:820px){
+    .menu-lista{grid-template-columns:1fr 1fr}
+    /* Si ridisegna la griglia: filo verticale fra le colonne, filo
+       orizzontale dalla seconda riga in poi. Regge qualunque numero di
+       portate, non solo quattro. */
+    .menu-voce+.menu-voce{border-top:0}
+    .menu-voce:nth-child(even){border-left:1px solid rgba(226,186,106,.20)}
+    .menu-voce:nth-child(n+3){border-top:1px solid rgba(226,186,106,.20)}
+  }
+  /* La portata e' oro, quindi mai sotto i 18px: il tracking largo la tiene
+     comunque leggera. Il padding-left compensa lo spazio che il tracking
+     lascia in coda e che sposterebbe la riga centrata a sinistra. */
+  .menu-corso{
+    font-family:var(--titolo);font-weight:400;font-size:18px;
+    letter-spacing:.36em;padding-left:.36em;text-transform:uppercase;color:var(--oro)
+  }
+  .menu-piatto{
+    font-family:var(--corsivo);font-style:italic;font-weight:400;
+    font-size:clamp(1.18rem,3vw,1.5rem);line-height:1.5;color:var(--avorio);
+    max-width:34ch;margin:.85em auto 0;text-wrap:balance
+  }
+  /* I primi sono due: fra l'uno e l'altro solo respiro, nessun separatore,
+     come nella locandina. */
+  .menu-piatto+.menu-piatto{margin-top:.7em}
+
+  .menu-quota{margin-top:clamp(40px,6vw,60px);text-align:center}
+  .menu-prezzo{
+    font-family:var(--titolo);font-size:clamp(1.05rem,2.8vw,1.3rem);
+    letter-spacing:.2em;padding-left:.2em;text-transform:uppercase;color:var(--avorio)
+  }
+  .menu-bevande{font-family:var(--corsivo);font-style:italic;font-size:1.15rem;
+    color:var(--avorio-velo);margin-top:.35em}
+  .menu-cta{text-align:center;margin-top:clamp(34px,5vw,48px)}
+
+  /* ── Informazioni essenziali ── */
+  .info-lista{max-width:620px;margin:clamp(34px,5vw,52px) auto 0}
+  .info-voce{
+    display:flex;flex-direction:column;gap:.3em;padding:1.35em 0;text-align:center;
+    border-top:1px solid rgba(226,186,106,.20)
+  }
+  .info-voce:last-child{border-bottom:1px solid rgba(226,186,106,.20)}
+  .info-k{
+    font-family:var(--titolo);font-size:.72rem;letter-spacing:.36em;padding-left:.36em;
+    text-transform:uppercase;color:var(--avorio-velo)
+  }
+  .info-v{font-size:clamp(1.16rem,2.5vw,1.34rem);line-height:1.5;color:var(--avorio)}
+  .info-v small{display:block;font-size:.84em;color:var(--avorio-velo);margin-top:.25em}
+
+  /* ── Prenotazione ── */
+  .prenota-testo{
+    max-width:34rem;margin:clamp(30px,4.5vw,44px) auto 0;text-align:center;
+    font-size:clamp(1.14rem,2.5vw,1.3rem);line-height:1.8;color:var(--avorio)
+  }
+  .prenota-cta{text-align:center;margin-top:clamp(30px,4.5vw,44px)}
+  .prenota-tel{
+    display:block;margin-top:1.7em;font-family:var(--titolo);font-size:.74rem;
+    letter-spacing:.28em;padding-left:.28em;text-transform:uppercase;color:var(--avorio-velo)
+  }
+  .prenota-tel a{color:var(--avorio);border-bottom:1px solid var(--oro-filo);padding-bottom:2px}
+
+  /* ── Chiusura ── */
+  .chiusura{
+    padding:clamp(58px,8vw,88px) 24px calc(clamp(44px,6vw,68px) + env(safe-area-inset-bottom,0px));
+    text-align:center;border-top:1px solid rgba(226,186,106,.16)
+  }
+  .chiusura img{width:min(180px,50vw);height:auto;margin:0 auto}
+  .chiusura-nome{
+    font-family:var(--titolo);font-size:.82rem;letter-spacing:.4em;padding-left:.4em;
+    text-transform:uppercase;color:var(--avorio);margin-top:1.5em
+  }
+  .chiusura-riga{font-size:1.06rem;line-height:1.8;color:var(--avorio-velo);margin-top:.9em}
+  .chiusura-link{margin-top:1.6em;font-family:var(--titolo);font-size:.72rem;
+    letter-spacing:.28em;padding-left:.28em;text-transform:uppercase;line-height:2.4}
+  .chiusura-link a{color:var(--avorio);border-bottom:1px solid var(--oro-filo);padding-bottom:2px}
+  .chiusura-link a+a{margin-left:1.4em}
+  .chiusura-altre{margin-top:2.2em;font-family:var(--corsivo);font-style:italic;
+    font-size:1.08rem;line-height:1.9;color:var(--avorio-velo)}
+  .chiusura-altre a{color:var(--avorio);border-bottom:1px solid var(--oro-filo);padding-bottom:2px}
+
+  /* Comparsa allo scroll, gated su JS e su prefers-reduced-motion */
+  html.js .appare{opacity:0;transform:translateY(20px);
+    transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  html.js .appare.vista{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html.js .appare{opacity:1;transform:none;transition:none}
+  }
+
   /* ═════ COMPARSE ═════
      Sulle sorelle la CTA arriva a opacita' piena a ~2.1s dal paint: su una
      landing di inserzioni sono due secondi in cui non c'e' niente da
@@ -424,6 +548,97 @@ window.dataLayer = window.dataLayer || [];
   </div>
 </section>
 
+<!-- ═════ LA SERATA ═════ -->
+<section class="sezione" aria-label="La serata">
+  <div class="sezione-inner">
+    <span class="sez-eyebrow appare">La serata</span>
+    <h2 class="sez-title appare">Si cena<br>nella corte</h2>
+    <hr class="filo appare">
+    <div class="racconto appare">
+      <p>Si cena all&rsquo;aperto, nella corte della dimora.</p>
+      <p>A mezzanotte i fuochi d&rsquo;artificio sopra la villa.</p>
+      <p>Poi si continua con il dj set.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ IL MENÙ ═════ -->
+<section class="sezione fascia menu" aria-label="Il men&ugrave; della cena">
+  <div class="sezione-inner">
+    <span class="sez-eyebrow appare">La cucina</span>
+    <h2 class="sez-title appare">Il men&ugrave;<br>della cena</h2>
+    <hr class="filo appare">
+
+    <!-- Portate e quota: FONTE UNICA in partials/menu-ferragosto.html.
+         Non scrivere piatti qui. build.js risolve il marker a build-time;
+         se il partial manca la build esce con 1 e non pubblica la pagina. -->
+    <!-- @include:menu-ferragosto -->
+
+    <p class="menu-cta appare">
+      <a class="btn-wa" data-cta="menu"
+         href="https://wa.me/393452419263?text=Buonasera%2C%20vorrei%20prenotare%20per%20La%20Notte%20di%20Ferragosto%20del%2014%20agosto"
+         target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#ico-wa"></use></svg>
+        <span>Scriveteci su WhatsApp</span>
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- ═════ INFORMAZIONI ESSENZIALI ═════ -->
+<section class="sezione" aria-label="Informazioni essenziali">
+  <div class="sezione-inner">
+    <span class="sez-eyebrow appare">Le informazioni</span>
+    <h2 class="sez-title appare">L&rsquo;essenziale</h2>
+    <hr class="filo appare">
+    <div class="info-lista appare">
+      <div class="info-voce"><span class="info-k">La data</span><span class="info-v">Venerd&igrave; 14 agosto 2026</span></div>
+      <div class="info-voce"><span class="info-k">L&rsquo;orario</span><span class="info-v">Dalle ore 21:00</span></div>
+      <div class="info-voce"><span class="info-k">Il luogo</span><span class="info-v">La corte di Villa Luzi 1737<small>Contrada Chiaravalle 49, Treia (MC), all&rsquo;aperto</small></span></div>
+      <div class="info-voce"><span class="info-k">La quota</span><span class="info-v">50 euro a persona<small>Bevande incluse</small></span></div>
+      <div class="info-voce"><span class="info-k">La prenotazione</span><span class="info-v">Obbligatoria<small>Su WhatsApp, al 345 241 9263</small></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ PRENOTAZIONE ═════ -->
+<section class="sezione fascia" aria-label="La prenotazione" id="prenota">
+  <div class="sezione-inner">
+    <span class="sez-eyebrow appare">La prenotazione</span>
+    <h2 class="sez-title appare">Si prenota<br>con un messaggio</h2>
+    <hr class="filo appare">
+    <p class="prenota-testo appare">La prenotazione &egrave; obbligatoria: bastano il vostro nome e il numero di persone. Vi rispondiamo noi, dalla villa.</p>
+    <p class="prenota-cta appare">
+      <a class="btn-wa" data-cta="prenota"
+         href="https://wa.me/393452419263?text=Buonasera%2C%20vorrei%20prenotare%20per%20La%20Notte%20di%20Ferragosto%20del%2014%20agosto"
+         target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#ico-wa"></use></svg>
+        <span>Scriveteci su WhatsApp</span>
+      </a>
+      <span class="prenota-tel">oppure al telefono<br><a href="tel:+393452419263">345 241 9263</a></span>
+    </p>
+  </div>
+</section>
+
+<!-- ═════ CHIUSURA · lockup Il Segreto ═════ -->
+<footer class="chiusura">
+  <img src="/assets/ferragosto/logo-ls-320.webp" alt="Il Segreto, il ristorante di Villa Luzi 1737" width="320" height="232" loading="lazy" decoding="async">
+  <p class="chiusura-nome">Il Segreto</p>
+  <p class="chiusura-riga">Il ristorante di Villa Luzi 1737<br>Contrada Chiaravalle 49, 62010 Treia (MC)</p>
+  <p class="chiusura-link">
+    <a href="https://www.instagram.com/villaluzi1737/" target="_blank" rel="noopener">Instagram</a>
+  </p>
+  <!-- MANUTENZIONE: qui si rimanda alle altre serate di agosto ancora da
+       venire. Il Gran Ballo Russo del 1 agosto e' gia' passato e non
+       compare. Dopo il 10 agosto togliere anche La Notte dei Desideri e
+       lasciare il solo rimando al calendario. -->
+  <p class="chiusura-altre">
+    L&rsquo;altra serata di agosto:<br>
+    <a href="/eventi/notte-dei-desideri/">La Notte dei Desideri, luned&igrave; 10 agosto</a><br>
+    <a href="/eventi/">tutte le serate della dimora</a>
+  </p>
+</footer>
+
 <!-- ═════ BARRA STICKY (solo sotto i 720px) ═════ -->
 <div class="sticky-bar">
   <a class="btn-wa" data-cta="sticky"
@@ -435,18 +650,183 @@ window.dataLayer = window.dataLayer || [];
 </div>
 
 <script>
-/* La barra pubblica la propria altezza vera, invece di fidarsi del default
-   del CSS: l'invariante della piega dipende da --sticky-h. Una passata,
-   converge subito (cambiare --sticky-h non cambia l'altezza della barra). */
+/* ═══════════════════════════════════════════════════════════════════
+   MISURAZIONE · La Notte di Ferragosto
+   Nomi e identificativi stanno TUTTI in window.VL_TRACK, nel <head>:
+   qui sotto non c'e' un solo literal. Eventi:
+     PageView      dallo snippet base, all'init
+     ViewContent   una volta, all'apertura (misurazione e retargeting)
+     Lead          al click WhatsApp  <- UNICA conversione delle campagne
+     ClickWhatsApp al click WhatsApp, evento personalizzato
+   Lead e ClickWhatsApp partono dallo STESSO click, dallo stesso listener,
+   protetti dallo stesso stampo: non possono disallinearsi ne' duplicarsi.
+
+   Configurazione lato Meta perche' la teoria regga: ottimizzare le
+   inserzioni su Lead, mai su ViewContent, che scatta su quasi ogni
+   sessione e trasformerebbe l'ottimizzazione in un cercatore di clic.
+   ═══════════════════════════════════════════════════════════════════ */
 (function () {
-  var bar = document.querySelector('.sticky-bar');
-  if (!bar || !('ResizeObserver' in window)) return;
-  function pubblica() {
-    var h = Math.ceil(bar.getBoundingClientRect().height);
-    if (h > 0) document.documentElement.style.setProperty('--sticky-h', h + 'px');
+  'use strict';
+  var d = document, w = window;
+  var c = w.VL_TRACK || (w.VL_TRACK = {});
+  var debug = /(^|[?&])vldebug=1(&|$)/.test(w.location.search);
+
+  function log() {
+    if (debug && w.console) console.log.apply(console, ['[VL_TRACK]'].concat([].slice.call(arguments)));
   }
-  new ResizeObserver(pubblica).observe(bar);
-  pubblica();
+
+  /* fbq.loaded e' true gia' nello stub, quindi NON dice se il pixel e'
+     davvero caricato: l'indicatore vero e' fbq.callMethod. */
+  function pixelPresente() { return typeof w.fbq === 'function'; }
+  function pixelCaricato() { return pixelPresente() && typeof w.fbq.callMethod === 'function'; }
+  if (!pixelPresente() && w.console) {
+    console.warn('[VL_TRACK] fbq assente: da questa pagina non partira\' nessun evento Meta.');
+  }
+
+  /* eventID: se un domani arriva la Conversions API lato server, Meta
+     deduplica browser e server sullo stesso id. Oggi non costa nulla. */
+  function nuovoId(p) {
+    return p + '-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
+  }
+
+  function meta(tipo, nome, params, eventID) {
+    if (!pixelPresente() || !nome) return;
+    try {
+      w.fbq(tipo, nome, params, eventID ? { eventID: eventID } : undefined);
+      log(tipo, nome, params);
+    } catch (e) {}
+  }
+
+  /* ── UTM verso gli href wa.me ──
+     Si accodano A MANO invece di passare da URL/searchParams: quello
+     riserializza tutta la query e trasformerebbe i %20 del testo
+     precompilato in "+", che non tutti i client WhatsApp rileggono come
+     spazio. Si legge con getAttribute (href grezzo), non con .href. */
+  var utm = {};
+  try {
+    new URLSearchParams(w.location.search).forEach(function (v, k) {
+      if (/^utm_/i.test(k) && v) utm[k.toLowerCase()] = v;
+    });
+  } catch (e) {}
+  var coda = Object.keys(utm).map(function (k) {
+    return encodeURIComponent(k) + '=' + encodeURIComponent(utm[k]);
+  }).join('&');
+  if (coda) {
+    Array.prototype.forEach.call(d.querySelectorAll('a[href^="https://wa.me/"]'), function (a) {
+      var h = a.getAttribute('href');
+      a.setAttribute('href', h + (h.indexOf('?') === -1 ? '?' : '&') + coda);
+    });
+  }
+
+  function base(extra) {
+    var p = {
+      content_name: c.evento, content_category: c.categoria,
+      content_ids: [c.contentId], content_type: 'product',
+      value: c.valore, currency: c.valuta,
+      utm_source: utm.utm_source || '', utm_campaign: utm.utm_campaign || '',
+      utm_content: utm.utm_content || ''
+    };
+    for (var k in extra) if (Object.prototype.hasOwnProperty.call(extra, k)) p[k] = extra[k];
+    return p;
+  }
+
+  /* ── ViewContent, una volta all'apertura ──
+     Qualifica il traffico dell'inserzione e costruisce il pubblico di
+     retargeting. Parte subito e non al DOMContentLoaded: chi rimbalza in
+     due secondi deve comunque entrare nel pubblico. */
+  meta('track', 'ViewContent', base(), nuovoId('vc'));
+  w.dataLayer.push({ event: 'view_content', event_name: c.categoria, value: c.valore, currency: c.valuta });
+  if (typeof w.gtag === 'function') {
+    w.gtag('event', 'view_item', { currency: c.valuta, value: c.valore,
+      items: [{ item_id: c.contentId, item_name: c.evento, price: c.valore }] });
+  }
+
+  /* ── Click WhatsApp: UN SOLO listener, delegato ──
+     La landing jazz ne registra uno per OGNI <a wa.me>, quelle di agosto
+     uno delegato: tenendo entrambi i meccanismi ogni click sparerebbe DUE
+     Lead, raddoppiando in silenzio le conversioni. Qui c'e' solo la
+     delega, e copre anche le CTA aggiunte in futuro.
+     Lo stampo per elemento (900 ms) neutralizza il doppio tap e il click
+     sintetizzato dopo il touch su iOS. */
+  d.addEventListener('click', function (e) {
+    try {
+      var t = e.target;
+      if (!t || !t.closest) return;
+      var a = t.closest('a[href^="https://wa.me/"]');
+      if (!a) return;
+
+      var ora = Date.now();
+      if (ora - (+a.getAttribute('data-lead-at') || 0) < 900) return;
+      a.setAttribute('data-lead-at', ora);
+
+      var cta = a.getAttribute('data-cta') || 'page';
+      var id = nuovoId('wa');
+      var params = base({ method: 'whatsapp', cta: cta });
+
+      /* 1. Lead: standard, l'unica conversione su cui ottimizzano le
+            campagne. Identico alle altre landing, quindi le campagne
+            esistenti continuano a funzionare senza toccare Ads Manager. */
+      meta('track', 'Lead', params, 'lead-' + id);
+
+      /* 2. L'evento personalizzato chiesto dal brief: stesso click, stesso
+            payload, id gemello per correlarli in Gestione Eventi. E'
+            misurazione, non conversione: non impostarlo come evento di
+            ottimizzazione o si conterebbe due volte la stessa azione. */
+      meta('trackCustom', c.clickEvento, params, 'cwa-' + id);
+
+      /* 3. GA4 e GTM senza nessun identificativo in pagina: si espone
+            l'evento, se il contenitore c'e' lo raccoglie. */
+      w.dataLayer.push({ event: 'whatsapp_click', event_name: c.categoria,
+        placement: cta, value: c.valore, currency: c.valuta });
+      if (typeof w.gtag === 'function') {
+        w.gtag('event', 'generate_lead', { method: 'whatsapp', placement: cta,
+          currency: c.valuta, value: c.valore });
+      }
+    } catch (err) { /* il tracciamento non deve MAI bloccare il click */ }
+  }, false);
+
+  if (debug) {
+    w.addEventListener('load', function () {
+      w.setTimeout(function () {
+        c.stato = !pixelPresente() ? 'pixel-assente' : (pixelCaricato() ? 'ok' : 'fbevents-non-caricato');
+        log('stato pixel:', c.stato);
+      }, 2500);
+    }, { once: true });
+  }
+
+  /* ── La barra pubblica la propria altezza vera ──
+     L'invariante della piega dipende da --sticky-h: fidarsi del default
+     del CSS vorrebbe dire sbagliare di qualche px a ogni ritocco. */
+  (function () {
+    var bar = d.querySelector('.sticky-bar');
+    if (!bar || !('ResizeObserver' in w)) return;
+    function pubblica() {
+      var h = Math.ceil(bar.getBoundingClientRect().height);
+      if (h > 0) d.documentElement.style.setProperty('--sticky-h', h + 'px');
+    }
+    new ResizeObserver(pubblica).observe(bar);
+    pubblica();
+  })();
+
+  /* ── Comparsa allo scroll, con rete di sicurezza ──
+     .appare parte da opacity:0: su una pagina di conversione un observer
+     che non scatta lascerebbe il menu' invisibile per sempre. Dopo 4s si
+     scopre tutto comunque. */
+  var appare = d.querySelectorAll('.appare');
+  function scopriTutto() {
+    Array.prototype.forEach.call(appare, function (el) { el.classList.add('vista'); });
+  }
+  if ('IntersectionObserver' in w && appare.length) {
+    var io = new IntersectionObserver(function (voci) {
+      voci.forEach(function (v) {
+        if (v.isIntersecting) { v.target.classList.add('vista'); io.unobserve(v.target); }
+      });
+    }, { rootMargin: '0px 0px 12% 0px', threshold: 0 });
+    Array.prototype.forEach.call(appare, function (el) { io.observe(el); });
+    w.setTimeout(function () { io.disconnect(); scopriTutto(); }, 4000);
+  } else {
+    scopriTutto();
+  }
 })();
 </script>
 </body>
