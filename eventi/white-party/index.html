@@ -1910,9 +1910,19 @@
     $heroSub.textContent = $heroSub.getAttribute('data-variante-b');
   }
 
-  /* ============ MISURAZIONE ============ */
+  /* ============ MISURAZIONE ============
+     DISATTIVATA il 6 agosto 2026. Questa pagina non ha MAI avuto lo
+     snippet base del pixel Meta: lo script di Facebook non viene
+     caricato da nessuna parte in questo file, quindi ogni chiamata al
+     pixel qui dentro e' sempre stata un no-op silenzioso. Il codice dichiarava un tracciamento che non
+     esisteva, ed e' peggio di non averlo.
+     Le chiamate sono state tolte invece di installare il pixel perche'
+     il White Party e' del 19 giugno: una pagina d'archivio che ricomincia
+     a sparare Lead e Contact sporcherebbe il dataset delle campagne vive.
+     Se un domani la serata torna, si reinstalla lo snippet base e si
+     rimette la riga fbq qui sotto. */
   function track(evento, params) {
-    if (typeof fbq === 'function') fbq('track', evento, params);
+    /* volutamente vuota: vedi il commento qui sopra */
   }
 
   // Lead su TUTTI i link WhatsApp: la maggior parte delle prenotazioni passa di qui,
@@ -2213,7 +2223,8 @@
       heroFlash.classList.add('on');
 
       hero.classList.add('is-popped');
-      if (typeof fbq === 'function') fbq('trackCustom', 'StappoChampagne');
+      /* qui c'era l'evento personalizzato StappoChampagne: tolto, il
+         pixel non e' mai stato installato su questa pagina (vedi MISURAZIONE) */
 
       // micro-scroll verso i dettagli della serata, se l'utente non si è già mosso
       var scrollPrima = window.scrollY;
@@ -2276,9 +2287,9 @@
   function segnaLeadWhatsApp() {
     if (leadInviato || dopo) return;
     leadInviato = true;
-    if (typeof fbq === 'function') {
-      fbq('track', 'Lead', { content_name: 'White Party 19 giugno', method: 'whatsapp' });
-    }
+    /* qui c'era l'invio di Lead al pixel: tolto, il pixel non e' mai
+       stato installato su questa pagina (vedi MISURAZIONE). La guardia
+       resta perche' governa anche lo stato "dopo" della serata. */
   }
   var $prenotaWa = document.getElementById('ctaPrenotaWa');
   if ($prenotaWa) $prenotaWa.addEventListener('click', segnaLeadWhatsApp);

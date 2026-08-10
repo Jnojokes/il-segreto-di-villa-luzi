@@ -744,14 +744,12 @@
     $titolo.textContent = $titolo.getAttribute('data-variante-b');
   }
 
-  /* ============ MISURAZIONE ============ */
-  document.querySelectorAll('[data-cta]').forEach(function (el) {
-    el.addEventListener('click', function () {
-      if (typeof fbq === 'function') {
-        fbq('track', 'Contact', { content_name: 'White Party lista · ' + el.getAttribute('data-cta') });
-      }
-    });
-  });
+  /* ============ MISURAZIONE ============
+     DISATTIVATA il 6 agosto 2026, stesso motivo della pagina madre:
+     questa pagina non ha mai avuto lo snippet base del pixel, quindi
+     ogni chiamata al pixel era un no-op silenzioso. Il White Party e'
+     del 19 giugno
+     e non va rimesso in tracciamento ora. */
 
   /* ============ ELEMENTI ============ */
   var $chat = document.getElementById('chatBox');
@@ -949,9 +947,7 @@
       utm: utm,
       inviato: new Date().toISOString()
     });
-    if (typeof fbq === 'function') {
-      fbq('track', 'Lead', { content_name: 'White Party · lista' });
-    }
+    /* qui c'era l'invio di Lead al pixel: tolto, vedi MISURAZIONE */
     salva({ fatto: 1, nome: nome, telefono: telefono });
 
     // il form esce di scena, la chat risponde

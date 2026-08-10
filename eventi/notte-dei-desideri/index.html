@@ -7,20 +7,20 @@
      Landing ads standalone: nessun header/footer del sito, zero dipendenze.
      Design freeze: la pagina è in BLOCKED dentro check.js. -->
 <title>La Notte dei Desideri · Villa Luzi 1737 · Treia, Marche</title>
-<meta name="description" content="Lunedì 10 agosto 2026 a Villa Luzi 1737, Treia: La Notte dei Desideri, cena spettacolo di San Lorenzo dalle 21:00. Gran Buffet Reale a 40 euro, su prenotazione.">
+<meta name="description" content="Lunedì 10 agosto 2026 a Villa Luzi 1737, Treia: La Notte dei Desideri, cena spettacolo di San Lorenzo, inizio cena 21:15. Gran Buffet Reale a 40 euro, su prenotazione.">
 <meta name="theme-color" content="#0A0810">
 <link rel="canonical" href="https://www.villaluzi1737.com/eventi/notte-dei-desideri/">
 <link rel="icon" type="image/png" href="/assets/img/LS-Icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Villa Luzi 1737">
 <meta property="og:title" content="La Notte dei Desideri · Villa Luzi 1737">
-<meta property="og:description" content="Cena spettacolo di San Lorenzo sotto le stelle della dimora. Lunedì 10 agosto 2026, dalle 21:00. Gran Buffet Reale a 40 euro, prenotazione obbligatoria su WhatsApp.">
+<meta property="og:description" content="Cena spettacolo di San Lorenzo sotto le stelle della dimora. Lunedì 10 agosto 2026, inizio cena ore 21:15. Gran Buffet Reale a 40 euro, prenotazione obbligatoria su WhatsApp.">
 <meta property="og:image" content="https://www.villaluzi1737.com/assets/notte-desideri/og-notte-desideri.jpg">
 <meta property="og:url" content="https://www.villaluzi1737.com/eventi/notte-dei-desideri/">
 <meta property="og:locale" content="it_IT">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="La Notte dei Desideri · Villa Luzi 1737">
-<meta name="twitter:description" content="Cena spettacolo di San Lorenzo sotto le stelle della dimora. Lunedì 10 agosto 2026, dalle 21:00. Gran Buffet Reale a 40 euro, prenotazione obbligatoria su WhatsApp.">
+<meta name="twitter:description" content="Cena spettacolo di San Lorenzo sotto le stelle della dimora. Lunedì 10 agosto 2026, inizio cena ore 21:15. Gran Buffet Reale a 40 euro, prenotazione obbligatoria su WhatsApp.">
 <meta name="twitter:image" content="https://www.villaluzi1737.com/assets/notte-desideri/og-notte-desideri.jpg">
 
 <!-- Meta Pixel (stesso dataset delle altre landing evento) -->
@@ -50,8 +50,8 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "La Notte dei Desideri",
-  "description": "Cena spettacolo di San Lorenzo a Villa Luzi 1737 a Treia: Gran Buffet Reale firmato dal ristorante Il Segreto, musica e spettacolo con Movimenti Notturni. Prenotazione obbligatoria via WhatsApp.",
-  "startDate": "2026-08-10T21:00:00+02:00",
+  "description": "Cena spettacolo di San Lorenzo a Villa Luzi 1737 a Treia, lunedì 10 agosto 2026 con inizio cena alle 21:15: Gran Buffet Reale con show cooking firmato dal ristorante Il Segreto, tavolo riservato, calice di vino e acqua inclusi, musica e spettacolo con Movimenti Notturni. Prenotazione obbligatoria via WhatsApp.",
+  "startDate": "2026-08-10T21:15:00+02:00",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "eventStatus": "https://schema.org/EventScheduled",
   "image": "https://www.villaluzi1737.com/assets/notte-desideri/og-notte-desideri.jpg",
@@ -122,9 +122,16 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></
   /* sfumatura di supporto: mai un riquadro pieno */
   .hero-scrim{position:absolute;inset:0;background:
     linear-gradient(180deg,rgba(10,8,16,.6) 0%,rgba(22,32,58,.16) 26%,rgba(10,8,16,0) 44%,rgba(22,32,58,.14) 62%,rgba(10,8,16,.88) 100%)}
+  /* Il padding inferiore E' il margine del bottone dalla piega: con
+     justify-content:space-between il blocco basso si appoggia esattamente
+     a quel valore. Prima era clamp(36px,6svh,64px), cioe' 36px su un SE:
+     il bottone finiva incollato al bordo. Ora consuma lo spazio libero
+     fra i due blocchi (misurato: 63px su 375x553, 55px su 320x568)
+     lasciandone ~20px di riserva, cosi' un font piu' largo non fa
+     traboccare l'hero. */
   .hero-inner{
     position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align-items:center;
-    justify-content:space-between;text-align:center;padding:clamp(40px,7svh,72px) 24px clamp(36px,6svh,64px)
+    justify-content:space-between;text-align:center;padding:clamp(40px,7svh,72px) 24px clamp(72px,12svh,100px)
   }
   .hero-alto,.hero-basso{display:flex;flex-direction:column;align-items:center}
   .hero-title{
@@ -247,7 +254,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></
       <p class="hero-desc script su r2">cena spettacolo di San Lorenzo</p>
     </div>
     <div class="hero-basso">
-      <p class="hero-data su r3">Lunedì 10 agosto<span class="ora">dalle ore 21:00</span></p>
+      <p class="hero-data su r3">Lunedì 10 agosto<span class="ora">inizio cena ore 21:15</span></p>
       <p class="hero-formula su r3">Gran Buffet Reale<br>40 euro a persona</p>
       <p class="hero-nota su r4">Prenotazione obbligatoria</p>
       <p class="hero-cta su r4">
@@ -271,7 +278,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></
     <div class="racconto-grid">
       <div class="racconto-testo appare">
         <p>È la notte di San Lorenzo, quella delle stelle che cadono e dei desideri che si tengono per sé. Il parco della dimora si accende piano, la tavola si apre sotto il cielo più atteso dell&rsquo;estate.</p>
-        <p>Il <em>Gran Buffet Reale</em> è firmato dal ristorante Il Segreto: si cena senza fretta, tornando alla tavola quante volte si vuole, mentre la musica e lo spettacolo attraversano la serata.</p>
+        <p>Il <em>Gran Buffet Reale</em> è firmato dal ristorante Il Segreto, con lo show cooking: si cena senza fretta, al proprio tavolo riservato, tornando alla tavola quante volte si vuole, mentre la musica e lo spettacolo attraversano la serata.</p>
         <p>Poi si alza lo sguardo, e si aspetta.</p>
       </div>
       <figure class="cornice appare">
@@ -292,9 +299,10 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></
     <hr class="filo appare">
     <div class="info-lista appare">
       <div class="info-voce"><span class="info-k">La data</span><span class="info-v">Lunedì 10 agosto 2026</span></div>
-      <div class="info-voce"><span class="info-k">L&rsquo;orario</span><span class="info-v">Dalle ore 21:00</span></div>
+      <div class="info-voce"><span class="info-k">L&rsquo;orario</span><span class="info-v">Inizio cena ore 21:15</span></div>
       <div class="info-voce"><span class="info-k">Il luogo</span><span class="info-v">Villa Luzi 1737<small>Contrada Chiaravalle 49, Treia (MC)</small></span></div>
-      <div class="info-voce"><span class="info-k">La formula</span><span class="info-v">Gran Buffet Reale, 40 euro a persona<small>Firmato dal ristorante Il Segreto</small></span></div>
+      <div class="info-voce"><span class="info-k">La formula</span><span class="info-v">Gran Buffet Reale con show cooking<small>Firmato dal ristorante Il Segreto</small></span></div>
+      <div class="info-voce"><span class="info-k">La quota</span><span class="info-v">40 euro a persona<small>Tavolo riservato, calice di vino e acqua inclusi</small></span></div>
       <div class="info-voce"><span class="info-k">Se piove</span><span class="info-v">La serata non si ferma<small>In caso di maltempo si svolge negli spazi interni della villa</small></span></div>
     </div>
     <p class="credit appare">Musica e spettacolo con Movimenti Notturni</p>
@@ -329,17 +337,70 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/></
 </footer>
 
 <script>
-/* MISURAZIONE: un solo evento di conversione, Lead sul click WhatsApp
-   (stessa convenzione delle landing jazz, noche latina e White Party).
-   Le campagne Meta si ottimizzano su questo. In più un push generico
-   su dataLayer per GA/GTM, se presente. */
+/* ═══════════════════════════════════════════════════════════════════
+   MISURAZIONE · La Notte dei Desideri
+
+   L'evento del click e' Contact, NON Lead. Toccare il bottone e' una
+   intenzione di contatto: la prenotazione si chiude al telefono, quindi
+   qui non esiste niente di piu' profondo da misurare e chiamare "Lead"
+   un click gonfiava il dato. Lead e' stato tolto da questa pagina.
+
+   DOVE TROVO L'event_id (serve per deduplicare con la Conversions API):
+     1. window.dataLayer  -> l'ultimo oggetto con event:'whatsapp_click'
+                             ha il campo event_id
+     2. sul link cliccato -> attributo data-event-id
+   Chi manda l'evento server deve rispedire lo STESSO id con lo stesso
+   event_name ('Contact'): allora Meta unisce le due copie invece di
+   contarle due volte. Finche' il mittente server non lo fa, il doppio
+   conteggio resta, ma da qui e' gia' tutto pronto.
+   ═══════════════════════════════════════════════════════════════════ */
 (function () {
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest('a[href^="https://wa.me/"]');
-    if (!a) return;
+  var w = window, d = document;
+
+  /* UUID vero dove c'e' (contesti sicuri), altrimenti un ripiego che
+     resta unico quanto basta: l'id deve solo appaiare due invii. */
+  function uuid() {
     try {
-      if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: 'La Notte dei Desideri 10 agosto', method: 'whatsapp', cta: a.id || 'page' });
-      if (Array.isArray(window.dataLayer)) window.dataLayer.push({ event: 'whatsapp_click', event_name: 'notte_dei_desideri', placement: a.id || 'page' });
+      if (w.crypto && typeof w.crypto.randomUUID === 'function') return w.crypto.randomUUID();
+      if (w.crypto && w.crypto.getRandomValues) {
+        var b = w.crypto.getRandomValues(new Uint8Array(16));
+        b[6] = (b[6] & 0x0f) | 0x40; b[8] = (b[8] & 0x3f) | 0x80;
+        var h = []; for (var i = 0; i < 16; i++) h.push((b[i] + 0x100).toString(16).slice(1));
+        return h.slice(0,4).join('') + '-' + h.slice(4,6).join('') + '-' + h.slice(6,8).join('') +
+               '-' + h.slice(8,10).join('') + '-' + h.slice(10,16).join('');
+      }
+    } catch (e) {}
+    return 'nd-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+  }
+
+  d.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!t || !t.closest) return;
+    var a = t.closest('a[href^="https://wa.me/"]');
+    if (!a) return;
+
+    /* stampo per elemento: neutralizza il doppio tap e il click
+       sintetizzato dopo il touch su iOS, che altrimenti conta due volte */
+    var ora = Date.now();
+    if (ora - (+a.getAttribute('data-lead-at') || 0) < 900) return;
+    a.setAttribute('data-lead-at', ora);
+
+    var eventId = uuid();
+    a.setAttribute('data-event-id', eventId);
+    var cta = a.id || a.getAttribute('data-cta') || 'page';
+
+    try {
+      if (typeof w.fbq === 'function') {
+        w.fbq('track', 'Contact', {
+          content_name: 'La Notte dei Desideri 10 agosto',
+          content_category: 'notte-dei-desideri',
+          method: 'whatsapp', cta: cta
+        }, { eventID: eventId });
+      }
+      if (Array.isArray(w.dataLayer)) {
+        w.dataLayer.push({ event: 'whatsapp_click', event_name: 'notte_dei_desideri',
+          placement: cta, event_id: eventId });
+      }
     } catch (err) { /* il tracciamento non deve mai bloccare il click */ }
   });
 
