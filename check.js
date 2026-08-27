@@ -26,6 +26,7 @@ const BLOCKED = new Set([
   'eventi/gran-ballo-russo/index.html',
   'eventi/notte-dei-desideri/index.html',
   'eventi/la-notte-di-ferragosto/index.html',
+  'eventi/candle-experience/index.html',
   'pranzo-e-piscina/index.html',
   // Menù QR da tavolo: standalone, noindex, senza nav né link interni.
   'menu/index.html',

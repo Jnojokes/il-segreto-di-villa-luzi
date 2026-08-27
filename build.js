@@ -25,12 +25,18 @@ const SKIP_ROOT = new Set([
   'build.js', 'check.js', 'serve.js', 'netlify.toml', 'vercel.json', 'skills-lock.json',
   'package.json', 'package-lock.json',
   'CONSEGNA_DEV',            // sorgente media (35 GB): non pubblicare in dist/
-  'PROMPT_CHECK_IMPLEMENTAZIONE.md', 'REPORT_CHECK.md', // documenti di lavoro
-  'PROMPT_BLOCCHI_DINAMICI.md', 'REPORT_BLOCCHI.md',    // documenti di lavoro
-  'PROMPT_AI_CONCIERGE.md', 'REPORT_AI_CONCIERGE.md',   // documenti di lavoro
+  'stampa',                  // sorgenti e PDF della carta da stampa: non si pubblicano
 ]);
 const SKIP_ANY = new Set(['.DS_Store', 'node_modules']);
-const SKIP_ROOT_PATTERNS = [/^Screenshot /, /^dist \d+$/]; // "dist 2", "dist 4"…: duplicati creati da iCloud
+// I documenti di lavoro si riconoscono dal nome: un pattern invece della
+// lista a mano, che si dimenticava di aggiornare (PROMPT_CHECK_E_CORREZIONI.md,
+// PROMPT_EVENTI_PASSATI.md, PROMPT_GLOBO_E_FARFALLE.md e PROMPT_ORB_RESTYLE.md
+// finivano pubblicati in dist/).
+const SKIP_ROOT_PATTERNS = [
+  /^Screenshot /,
+  /^dist \d+$/,                  // "dist 2", "dist 4"…: duplicati creati da iCloud
+  /^(?:PROMPT|REPORT)_.*\.md$/,  // documenti di lavoro
+];
 
 // Pagine dismesse dalla ristrutturazione del 2026-07-16: fuori dalla build
 // ma sorgenti nel repo (reversibile). I loro URL fanno redirect in vercel.json.
