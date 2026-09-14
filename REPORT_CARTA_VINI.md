@@ -21,7 +21,7 @@ Tre stati diversi, che chiedono azioni diverse alla direzione:
 |---|---|---|---|---|
 | 1 | **Beverage** — birre, cocktail, amari e distillati, caffetteria, analcolici | L'intero elenco con i prezzi. È l'unica parte di carta che manca per intero | Da fornire | Nessuna delle due carte ha una sezione bevande |
 | 2 | **Testo di presentazione** (copertina del cartaceo e pagina QR della cucina) | Approvazione della direzione sulla riscrittura | Stampato solo nella versione rigenerata il 14/09, **non ancora committata**: la copia andata in tipografia porta il kicker «cucina & cantina» | `stampa/carta/build_carta.py` (lista `INTRO`) e `menu/index.html` |
-| 3 | **Franciacorta** | Etichetta e prezzo. Chiesto a voce il 26/08, mai arrivato | Sospeso | Commento nelle bollicine di `menu/cantina/index.html` |
+| 3 | **Franciacorta** — Bellavista, Alma Non Dosato, €75 | ~~Etichetta e prezzo~~ **Arrivati il 14/09.** Resta da confermare la dicitura: in carta è scritto «Alma Non Dosato · Bellavista · Franciacorta DOCG» | **Pubblicato sulla pagina QR, non ancora sul cartaceo**: entrerà alla prima rigenerazione dei PDF | `menu/cantina/index.html`, in coda alle bollicine · lista `BOLLICINE` di `build_carta.py` |
 | 4 | **Lumavite a 19 €** — sul foglio «Alinove», che nella gamma Lumavite non esiste | Conferma che si tratti de *Il cuore altrove*, o che la bottiglia non sia in carta | **Sospeso, non stampato.** Sul cartaceo i Lumavite sono solo Fos €25, Sami, Frasseto e Tusiano €42: nessuna bottiglia a 19 € | Da nessuna parte: la voce non è mai entrata in carta |
 | 5 | **Champagne a 130 €** — La Cuvée Brut, Laurent-Perrier | Conferma del produttore: dettato a voce, trascrizione incerta | Stampato, da confermare | Cartaceo, facciata cantina · pagina QR, sezione Champagne |
 | 6 | **Colle Mara, Colli Maceratesi DOC** | Il foglio dice **21 €**, in carta è stampata la **Ribona a 20 €**. Sono la stessa bottiglia con un prezzo sbagliato, o sono due etichette diverse? | Stampato, da confermare | Cartaceo e pagina QR, fra i bianchi Marche (la domanda «bianco o rosso?» è già stata decisa in stampa: bianco) |
@@ -37,9 +37,11 @@ Tre stati diversi, che chiedono azioni diverse alla direzione:
 
 ## 2. Che cosa è stato pubblicato intanto
 
-La pagina QR della cantina (`/menu/cantina/`) è online con **48 bottiglie**, identiche voce per voce a quelle stampate sul cartaceo: bollicine, champagne, bianchi (Marche e Italia), rosati, rossi (Marche e Italia), dolci e da meditazione. I prezzi si intendono alla bottiglia; l'unica voce servita anche al calice è il Vino di Visciole, con i cantuccini, come sul cartaceo.
+La pagina QR della cantina (`/menu/cantina/`) è online con **49 bottiglie**: bollicine, champagne, bianchi (Marche e Italia), rosati, rossi (Marche e Italia), dolci e da meditazione. I prezzi si intendono alla bottiglia; l'unica voce servita anche al calice è il Vino di Visciole, con i cantuccini, come sul cartaceo.
 
-Le voci ai punti 3, 4, 7, 10 e 11 **non sono pubblicate**: restano come commenti nel sorgente della pagina, nella sezione in cui entreranno, e `node check.js` le elenca a ogni esecuzione. Non spariscono e non finiscono in carta senza prezzo.
+Quarantotto di queste sono identiche voce per voce al cartaceo. La quarantanovesima è il Franciacorta del punto 3, arrivato dopo la stampa: **finché i PDF non si rigenerano, la carta di carta ha una bottiglia in meno della pagina QR.** È l'unico scostamento fra le due.
+
+Le voci ai punti 4, 7, 10 e 11 **non sono pubblicate**: restano come commenti nel sorgente della pagina, nella sezione in cui entreranno, e `node check.js` le elenca a ogni esecuzione. Non spariscono e non finiscono in carta senza prezzo.
 
 Il beverage (punto 1) non ha né sezione né voce nel nastro: una sezione vuota, in carta, è peggio di una sezione mancante.
 

@@ -113,8 +113,13 @@ DESSERT = [
 
 # ─────────────────────────────────────────────────────────────
 #  CANTINA — (vino, produttore/dettaglio, prezzo)
-#  Escluse per dati mancanti: Franciacorta, Grillo della Timpa,
-#  Brunello di Montalcino, Tignanello. Vedi note di consegna.
+#  Escluse per dati mancanti: Grillo della Timpa, Brunello di
+#  Montalcino, Tignanello. Vedi REPORT_CARTA_VINI.md nella root.
+#  Il Franciacorta (Bellavista Alma Non Dosato) è arrivato il
+#  14/09/2026 ed è in lista: i PDF consegnati non lo hanno ancora,
+#  ci sarà alla prossima generazione — controllare che la facciata
+#  della cantina non sfori (lo script avvisa se le pagine non sono
+#  2 per l'A3 e 4 per l'A4).
 # ─────────────────────────────────────────────────────────────
 BOLLICINE = [
     ("Varà", "Tenute Muròla · Passerina, metodo Martinotti", "25"),
@@ -124,6 +129,7 @@ BOLLICINE = [
     ("Prà dei Salt Millesimato", "Bernardi · Valdobbiadene Prosecco Superiore DOCG", "28"),
     ("Prosecco Extra Dry", "Bellussi", "29"),
     ("Valdobbiadene Prosecco Superiore DOCG Brut", "Bellussi", "35"),
+    ("Alma Non Dosato", "Bellavista · Franciacorta DOCG", "75"),
 ]
 CHAMPAGNE = [
     ("Brut", "Jean Duclert", "75"),
