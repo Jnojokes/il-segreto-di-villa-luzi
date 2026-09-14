@@ -28,8 +28,10 @@ const BLOCKED = new Set([
   'eventi/la-notte-di-ferragosto/index.html',
   'eventi/candle-experience/index.html',
   'pranzo-e-piscina/index.html',
-  // Menù QR da tavolo: standalone, noindex, senza nav né link interni.
+  // Menù QR da tavolo: standalone, noindex, niente nav del sito. L'unico
+  // link interno è il selettore fra le due facce della stessa carta.
   'menu/index.html',
+  'menu/cantina/index.html',
 ]);
 
 if (!fs.existsSync(DIST)) {

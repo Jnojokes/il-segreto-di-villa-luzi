@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Il menù · Villa Luzi 1737 · Treia, Marche</title>
-<meta name="description" content="La carta del Segreto, il ristorante di Villa Luzi 1737 a Treia: antipasti, primi di pasta Mancini, secondi alla brace e dessert, nella dimora del 1737.">
+<title>La cucina · Villa Luzi 1737 · Treia, Marche</title>
+<meta name="description" content="La cucina del Segreto, il ristorante di Villa Luzi 1737 a Treia: antipasti, primi di pasta Mancini, secondi alla brace, pizze e dessert, nella dimora del 1737.">
 <!-- Pagina riservata al QR sul tavolo: nessun link dal sito, fuori sitemap, noindex. -->
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#081E20">
 <link rel="canonical" href="https://www.villaluzi1737.com/menu/">
 <link rel="icon" type="image/png" href="/assets/img/LS-Icon.png">
 
-<meta property="og:title" content="Il menù · Il Segreto, Villa Luzi 1737">
-<meta property="og:description" content="La carta del Segreto: antipasti, primi di pasta Mancini, secondi alla brace e dessert.">
+<meta property="og:title" content="La cucina · Il Segreto, Villa Luzi 1737">
+<meta property="og:description" content="La cucina del Segreto: antipasti, primi di pasta Mancini, secondi alla brace, pizze e dessert.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.villaluzi1737.com/menu/">
 <meta property="og:image" content="https://www.villaluzi1737.com/assets/tavola.webp">
@@ -25,11 +25,13 @@
 
 <style>
 /* ═══════════════════════════════════════════════════════════
-   IL MENÙ · pagina QR da tavolo — standalone come le landing:
+   LA CUCINA · pagina QR da tavolo — standalone come le landing:
    niente partial, niente site.css. Si legge al lume di candela:
    verde notte, avorio grande, oro per categorie e prezzi.
    Un solo lusso: il nastro delle portate che resta a portata
    di pollice mentre si scorre la carta.
+   L'altra faccia della stessa carta è /menu/cantina/: stesso
+   impianto, stesse classi, selettore in cima a tutte e due.
    ═══════════════════════════════════════════════════════════ */
 :root {
   --verde-notte: #081E20;
@@ -105,7 +107,45 @@ h1.testata-titolo {
   margin: 22px auto 0;
 }
 
-/* ── nastro delle portate: sempre a portata di pollice ── */
+/* ── le due facce della carta: interruttore, non nav del sito ──
+   Bordo in oro pieno e non velato: a 1px l'oro velato sul verde
+   notte sta a 2,2:1, sotto i 3:1 che WCAG chiede al contorno di
+   un controllo. L'oro pieno regge 5,7:1 anche sotto l'alone. */
+.facce {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+.facce a {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: clamp(11px, 3vw, 12px);
+  letter-spacing: 0.2em;
+  text-indent: 0.2em; /* compensa la spaziatura sull'ultima lettera */
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--oro);
+  border: 1px solid var(--oro);
+  border-radius: 999px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 clamp(18px, 5vw, 26px);
+}
+.facce a[aria-current] {
+  background: var(--oro);
+  color: var(--verde-notte);
+}
+.facce a:hover, .facce a:focus-visible { border-color: var(--oro-chiaro); color: var(--oro-chiaro); }
+.facce a[aria-current]:hover, .facce a[aria-current]:focus-visible { background: var(--oro-chiaro); color: var(--verde-notte); }
+
+/* ── nastro delle portate: sempre a portata di pollice ──
+   Scorre a QUALUNQUE larghezza. I margini automatici sulla prima
+   e sull'ultima voce centrano il nastro quando lo spazio avanza e
+   si azzerano quando manca: con justify-content: center la parte
+   che esce a sinistra finiva fuori schermo e nessuno scroll la
+   riportava indietro (misurato: fra 431 e 660px la prima voce
+   usciva fino a 69px oltre il bordo sinistro). */
 .nastro {
   position: sticky;
   top: 0;
@@ -118,10 +158,16 @@ h1.testata-titolo {
   border-top: 1px solid rgba(201, 160, 121, 0.22);
   border-bottom: 1px solid rgba(201, 160, 121, 0.22);
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: clamp(14px, 4vw, 26px);
   white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
+.nastro::-webkit-scrollbar { display: none; }
+.nastro a:first-child { margin-inline-start: auto; }
+.nastro a:last-child { margin-inline-end: auto; }
 .nastro a {
   font-family: 'Cinzel', 'Times New Roman', serif;
   font-size: clamp(10px, 2.8vw, 12px);
@@ -131,9 +177,28 @@ h1.testata-titolo {
   text-decoration: none;
 }
 .nastro a:hover, .nastro a:focus-visible { color: var(--oro-chiaro); }
-@media (max-width: 430px) {
-  /* sei portate: su schermi stretti il nastro scorre invece di tagliare */
-  .nastro { justify-content: flex-start; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* ── la presentazione: sotto il nastro, non sopra ──
+   Sopra il nastro costava una schermata e mezza di prosa prima
+   del primo piatto su un iPhone SE (nastro a y=828 su 568 di
+   viewport). Qui il nastro resta sopra la piega e si incolla
+   subito, e la presentazione è comunque la prima cosa che si
+   legge scorrendo. */
+.presentazione {
+  max-width: 34em;
+  margin: clamp(34px, 8vw, 44px) auto 0;
+  font-style: italic;
+  color: var(--velo);
+  font-size: clamp(16px, 4.3vw, 19px);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+.presentazione p + p { margin-top: 14px; }
+.presentazione-filo {
+  width: 54px;
+  height: 1px;
+  background: var(--oro-velato);
+  margin: clamp(30px, 7vw, 38px) auto 0;
 }
 
 /* ── categorie e piatti ── */
@@ -210,8 +275,13 @@ h2.categoria {
   <img class="testata-logo" src="/assets/img/LS-Mark.png" alt="Il Segreto, Villa Luzi 1737" width="128" height="128">
   <p class="testata-nome">IL SEGRETO</p>
   <p class="testata-motto">Dove il tempo si ferma</p>
-  <h1 class="testata-titolo">Il menù</h1>
+  <h1 class="testata-titolo">La cucina</h1>
   <div class="testata-filo" aria-hidden="true"></div>
+
+  <nav class="facce" aria-label="Le due carte">
+    <a href="/menu/" aria-current="page">Cucina</a>
+    <a href="/menu/cantina/">Cantina</a>
+  </nav>
 
   <nav class="nastro" aria-label="Le portate">
     <a href="#antipasti">Antipasti</a>
@@ -222,6 +292,18 @@ h2.categoria {
     <a href="#tagli">Tagli</a>
     <a href="#dessert">Dessert</a>
   </nav>
+
+  <!-- Presentazione: identica ai tre paragrafi stampati in copertina sulla
+       carta cartacea (lista INTRO in stampa/carta/build_carta.py). Se cambia
+       qui, cambia anche là. Solo fatti verificabili: la dimora del 1737, lo
+       chef e il suo ruolo (citati in index.html e faq/), i fornitori già in
+       carta, la brace, il parco e la piscina. -->
+  <div class="presentazione">
+    <p>C'è una dimora del 1737 alle porte di Treia, e dentro una cucina che guarda avanti. Il Segreto nasce da qui: dal rispetto per un luogo che ha attraversato tre secoli, e dalla voglia di raccontare le Marche con la lingua di oggi.</p>
+    <p>La brigata dello chef Jan Paul Kana, Responsabile Regionale dei Cuochi delle Marche, sceglie la materia prima una per una — la pasta Mancini, il suino della Marca IGP, il coniglio di Arcevia, il ciauscolo e la crescia di queste colline — e la porta in tavola senza fretta. Accanto, la brace: il fuoco vivo, che resta il cuore di tutto.</p>
+    <p>Poi ci sono il parco, la piscina, le sere che si allungano. Perché qui, a tavola, il tempo si ferma.</p>
+  </div>
+  <div class="presentazione-filo" aria-hidden="true"></div>
 
   <section class="categoria-blocco" id="antipasti" aria-label="Antipasti">
     <h2 class="categoria">Antipasti</h2>

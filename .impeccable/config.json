@@ -1,0 +1,53 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "menu/index.html"
+        ],
+        "createdAt": "2026-09-14T12:46:16.721Z",
+        "reason": "Falso positivo: il checker assume un fondo chiaro #f7f2ec, ma queste pagine QR hanno body su #081E20 (radial-gradient multi-livello che il parser non legge). Contrasti reali ricalcolati con la formula WCAG compositando gli alpha: avorio 14.69:1, oro-chiaro 9.75, velo 8.09, oro 7.22, rosa-rame 7.04, congedo-riga 4.56 — tutti sopra 4.5:1 anche sul fondo schiarito dall'alone. Script: scratchpad/contrasto_mio.js"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "menu/cantina/index.html"
+        ],
+        "createdAt": "2026-09-14T12:46:16.740Z",
+        "reason": "Stesso falso positivo di menu/index.html: fondo assunto #f7f2ec invece del verde notte #081E20. Contrasti reali verificati con formula WCAG su alpha compositati, minimo 4.56:1. L'unica coppia sotto soglia (oro velato come testo, 2.20:1) e' stata scartata in fase di progetto: sulle sotto-categorie si usa --oro pieno."
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "check.js"
+        ],
+        "createdAt": "2026-09-14T12:47:25.496Z",
+        "reason": "Falso positivo: check.js e' lo script di validazione, non una pagina. La riga 186 e' la regex /<img[^>]*>/gi con cui il validatore cerca le img senza alt nelle pagine del sito; non e' markup e non viene mai servito (check.js sta in SKIP_ROOT di build.js)."
+      },
+      {
+        "rule": "wide-tracking",
+        "value": "*",
+        "files": [
+          "menu/index.html"
+        ],
+        "createdAt": "2026-09-14T12:52:51.278Z",
+        "reason": "Eccezione prevista dalla regola stessa (short uppercase labels): gli unici usi sono etichette in maiuscolo del design system di queste pagine QR — pill CUCINA/CANTINA, nastro, categorie in Cinzel, prezzi e .congedo-riga (indirizzo a 11px scritto maiuscolo nel sorgente, quindi senza text-transform che il detector possa riconoscere). Il testo corrente e' tutto a letter-spacing 0: piatto-nome, piatto-dettaglio, presentazione, chiusura, congedo-motto. Suppressione per valore non accettata dalla regola: '*' scoped ai due file e' la forma piu' stretta disponibile."
+      },
+      {
+        "rule": "wide-tracking",
+        "value": "*",
+        "files": [
+          "menu/cantina/index.html"
+        ],
+        "createdAt": "2026-09-14T12:52:51.296Z",
+        "reason": "Eccezione prevista dalla regola stessa (short uppercase labels): gli unici usi sono etichette in maiuscolo del design system di queste pagine QR — pill CUCINA/CANTINA, nastro, categorie in Cinzel, prezzi e .congedo-riga (indirizzo a 11px scritto maiuscolo nel sorgente, quindi senza text-transform che il detector possa riconoscere). Il testo corrente e' tutto a letter-spacing 0: piatto-nome, piatto-dettaglio, presentazione, chiusura, congedo-motto. Suppressione per valore non accettata dalla regola: '*' scoped ai due file e' la forma piu' stretta disponibile."
+      }
+    ]
+  }
+}

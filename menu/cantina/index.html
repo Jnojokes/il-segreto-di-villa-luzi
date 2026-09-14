@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>La cantina · Villa Luzi 1737 · Treia, Marche</title>
+<meta name="description" content="La cantina del Segreto, il ristorante di Villa Luzi 1737 a Treia: bollicine, champagne, bianchi e rossi delle Marche e d'Italia, vini dolci e da meditazione.">
+<!-- Pagina riservata al QR sul tavolo: nessun link dal sito, fuori sitemap, noindex. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#081E20">
+<link rel="canonical" href="https://www.villaluzi1737.com/menu/cantina/">
+<link rel="icon" type="image/png" href="/assets/img/LS-Icon.png">
+
+<meta property="og:title" content="La cantina · Il Segreto, Villa Luzi 1737">
+<meta property="og:description" content="La cantina del Segreto: bollicine, champagne, i bianchi e i rossi delle Marche, i dolci da meditazione.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.villaluzi1737.com/menu/cantina/">
+<meta property="og:image" content="https://www.villaluzi1737.com/assets/tavola.webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap"></noscript>
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   LA CANTINA · pagina QR da tavolo — l'altra faccia di /menu/.
+   Stesso impianto standalone della cucina: niente partial,
+   niente site.css, CSS inline. Qui cambia solo il contenuto:
+   i vini, le due sottotestate Marche / Italia, e il selettore
+   che riporta alla cucina in un tap.
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --verde-notte: #081E20;
+  --fondo: #0A2426;
+  --oro: #C9A079;
+  --oro-chiaro: #DDBE93;
+  --oro-velato: rgba(201, 160, 121, 0.4);
+  --avorio: #F4ECDC;
+  --velo: rgba(244, 236, 220, 0.72);
+  --rosa-rame: #D49785;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(201, 160, 121, 0.14) 0%, transparent 52%),
+    radial-gradient(ellipse at 50% 100%, rgba(8, 30, 32, 0.9) 0%, transparent 70%),
+    var(--verde-notte);
+  color: var(--avorio);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/* grana di velluto */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E");
+  z-index: 3;
+}
+
+.carta {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: clamp(40px, 9vw, 64px) 24px 72px;
+  text-align: center;
+}
+
+/* ── testata ── */
+.testata-logo { width: 64px; height: auto; margin: 0 auto; opacity: 0.95; }
+.testata-nome {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: clamp(21px, 5.6vw, 27px);
+  letter-spacing: 0.24em;
+  padding-left: 0.24em;
+  margin-top: 18px;
+}
+.testata-motto {
+  font-style: italic;
+  color: var(--velo);
+  font-size: clamp(17px, 4.6vw, 20px);
+  margin-top: 6px;
+}
+h1.testata-titolo {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-weight: 400;
+  color: var(--oro-chiaro);
+  font-size: clamp(15px, 4.1vw, 18px);
+  letter-spacing: 0.34em;
+  padding-left: 0.34em;
+  text-transform: uppercase;
+  margin-top: 30px;
+}
+.testata-filo {
+  width: 54px;
+  height: 1px;
+  background: var(--oro-velato);
+  margin: 22px auto 0;
+}
+
+/* ── le due facce della carta: interruttore, non nav del sito ──
+   Bordo in oro pieno e non velato: a 1px l'oro velato sul verde
+   notte sta a 2,2:1, sotto i 3:1 che WCAG chiede al contorno di
+   un controllo. L'oro pieno regge 5,7:1 anche sotto l'alone. */
+.facce {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+.facce a {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: clamp(11px, 3vw, 12px);
+  letter-spacing: 0.2em;
+  text-indent: 0.2em; /* compensa la spaziatura sull'ultima lettera */
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--oro);
+  border: 1px solid var(--oro);
+  border-radius: 999px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 clamp(18px, 5vw, 26px);
+}
+.facce a[aria-current] {
+  background: var(--oro);
+  color: var(--verde-notte);
+}
+.facce a:hover, .facce a:focus-visible { border-color: var(--oro-chiaro); color: var(--oro-chiaro); }
+.facce a[aria-current]:hover, .facce a[aria-current]:focus-visible { background: var(--oro-chiaro); color: var(--verde-notte); }
+
+/* ── nastro delle sezioni: sempre a portata di pollice ──
+   Scorre a QUALUNQUE larghezza. I margini automatici sulla prima
+   e sull'ultima voce centrano il nastro quando lo spazio avanza e
+   si azzerano quando manca: con justify-content: center la parte
+   che esce a sinistra finirebbe fuori schermo e nessuno scroll la
+   riporterebbe indietro. */
+.nastro {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  margin-top: 34px;
+  padding: 13px 8px;
+  background: rgba(8, 30, 32, 0.92);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(201, 160, 121, 0.22);
+  border-bottom: 1px solid rgba(201, 160, 121, 0.22);
+  display: flex;
+  justify-content: flex-start;
+  gap: clamp(14px, 4vw, 26px);
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.nastro::-webkit-scrollbar { display: none; }
+.nastro a:first-child { margin-inline-start: auto; }
+.nastro a:last-child { margin-inline-end: auto; }
+.nastro a {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: clamp(10px, 2.8vw, 12px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--oro);
+  text-decoration: none;
+}
+.nastro a:hover, .nastro a:focus-visible { color: var(--oro-chiaro); }
+
+/* ── categorie e voci ── */
+.categoria-blocco { margin-top: clamp(48px, 11vw, 64px); scroll-margin-top: 72px; }
+h2.categoria {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: clamp(16px, 4.4vw, 20px);
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+  text-transform: uppercase;
+  color: var(--oro-chiaro);
+}
+/* sottotestate Marche / Italia: oro pieno, non velato — l'oro
+   velato come testo sta a 2,2:1 e qui si legge al lume di candela.
+   Il velato resta dov'è decorativo: il filetto sopra. */
+h3.sotto-categoria {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: clamp(11px, 3vw, 13px);
+  letter-spacing: 0.26em;
+  padding-left: 0.26em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-top: clamp(34px, 8vw, 44px);
+}
+h3.sotto-categoria::before {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 1px;
+  background: var(--oro-velato);
+  margin: 0 auto 14px;
+}
+h2.categoria + h3.sotto-categoria { margin-top: clamp(22px, 5vw, 28px); }
+
+.piatto { margin-top: clamp(26px, 6.4vw, 34px); }
+.piatto-nome {
+  font-size: clamp(19px, 5.2vw, 23px);
+  color: var(--avorio);
+  max-width: 42ch;
+  margin: 0 auto;
+  line-height: 1.4;
+}
+.piatto-dettaglio {
+  font-style: italic;
+  font-size: clamp(16px, 4.3vw, 19px);
+  color: var(--rosa-rame);
+  margin-top: 2px;
+}
+.piatto-prezzo {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: clamp(13px, 3.6vw, 15px);
+  letter-spacing: 0.16em;
+  padding-left: 0.16em;
+  color: var(--oro);
+  margin-top: 6px;
+}
+.categoria-nota {
+  font-style: italic;
+  font-size: clamp(15px, 4vw, 18px);
+  color: var(--velo);
+  margin-top: clamp(24px, 6vw, 32px);
+}
+
+/* ── chiusura della carta, sopra il congedo ── */
+.chiusura {
+  font-style: italic;
+  color: var(--velo);
+  font-size: clamp(16px, 4.3vw, 19px);
+  line-height: 1.55;
+  max-width: 34em;
+  margin: clamp(54px, 12vw, 72px) auto 0;
+  text-wrap: pretty;
+}
+
+/* ── congedo ── */
+.congedo { margin-top: clamp(60px, 14vw, 84px); }
+.congedo-filo {
+  width: 54px;
+  height: 1px;
+  background: var(--oro-velato);
+  margin: 0 auto 26px;
+}
+.congedo-motto {
+  font-style: italic;
+  color: var(--velo);
+  font-size: clamp(17px, 4.6vw, 20px);
+}
+.congedo-riga {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  padding-left: 0.2em;
+  color: rgba(244, 236, 220, 0.5);
+  margin-top: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<main class="carta">
+
+  <img class="testata-logo" src="/assets/img/LS-Mark.png" alt="Il Segreto, Villa Luzi 1737" width="128" height="128">
+  <p class="testata-nome">IL SEGRETO</p>
+  <p class="testata-motto">Dove il tempo si ferma</p>
+  <h1 class="testata-titolo">La cantina</h1>
+  <div class="testata-filo" aria-hidden="true"></div>
+
+  <nav class="facce" aria-label="Le due carte">
+    <a href="/menu/">Cucina</a>
+    <a href="/menu/cantina/" aria-current="page">Cantina</a>
+  </nav>
+
+  <nav class="nastro" aria-label="Le sezioni della cantina">
+    <a href="#bollicine">Bollicine</a>
+    <a href="#champagne">Champagne</a>
+    <a href="#bianchi">Bianchi</a>
+    <a href="#rosati">Rosati</a>
+    <a href="#rossi">Rossi</a>
+    <a href="#dolci">Dolci</a>
+  </nav>
+
+  <section class="categoria-blocco" id="bollicine" aria-label="Bollicine">
+    <h2 class="categoria">Bollicine</h2>
+    <div class="piatto">
+      <p class="piatto-nome">Varà</p>
+      <p class="piatto-dettaglio">Tenute Muròla · Passerina, metodo Martinotti</p>
+      <p class="piatto-prezzo">€25</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Jurek</p>
+      <p class="piatto-dettaglio">Tenute Muròla · metodo classico</p>
+      <p class="piatto-prezzo">€40</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Spumante Rosé Extra Brut</p>
+      <p class="piatto-dettaglio">Tenuta De Angelis</p>
+      <p class="piatto-prezzo">€25</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Passerina Spumantizzata</p>
+      <p class="piatto-dettaglio">Tenuta De Angelis</p>
+      <p class="piatto-prezzo">€25</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Prà dei Salt Millesimato</p>
+      <p class="piatto-dettaglio">Bernardi · Valdobbiadene Prosecco Superiore DOCG</p>
+      <p class="piatto-prezzo">€28</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Prosecco Extra Dry</p>
+      <p class="piatto-dettaglio">Bellussi</p>
+      <p class="piatto-prezzo">€29</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Valdobbiadene Prosecco Superiore DOCG Brut</p>
+      <p class="piatto-dettaglio">Bellussi</p>
+      <p class="piatto-prezzo">€35</p>
+    </div>
+    <!-- [DA CONFERMARE: Franciacorta — etichetta e prezzo mai comunicati dalla
+         direzione. Chiesto a voce il 26 agosto 2026, non ancora arrivato.
+         Quando arriva, va qui in coda alle bollicine.] -->
+  </section>
+
+  <section class="categoria-blocco" id="champagne" aria-label="Champagne">
+    <h2 class="categoria">Champagne</h2>
+    <div class="piatto">
+      <p class="piatto-nome">Brut</p>
+      <p class="piatto-dettaglio">Jean Duclert</p>
+      <p class="piatto-prezzo">€75</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Blanc de Blancs</p>
+      <p class="piatto-dettaglio">De Vilmont</p>
+      <p class="piatto-prezzo">€90</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">La Cuvée Brut</p>
+      <p class="piatto-dettaglio">Laurent-Perrier</p>
+      <p class="piatto-prezzo">€130</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Impérial Brut</p>
+      <p class="piatto-dettaglio">Moët &amp; Chandon</p>
+      <p class="piatto-prezzo">€150</p>
+    </div>
+  </section>
+
+  <section class="categoria-blocco" id="bianchi" aria-label="Vini bianchi">
+    <h2 class="categoria">Vini bianchi</h2>
+
+    <h3 class="sotto-categoria">Marche</h3>
+    <div class="piatto">
+      <p class="piatto-nome">Marche Bianco IGT</p>
+      <p class="piatto-dettaglio">Colle Mara</p>
+      <p class="piatto-prezzo">€12</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Passerina Marche IGT</p>
+      <p class="piatto-dettaglio">Tenuta De Angelis · biologico</p>
+      <p class="piatto-prezzo">€15</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Baccius</p>
+      <p class="piatto-dettaglio">Tenute Muròla · Colli Maceratesi Ribona DOC</p>
+      <p class="piatto-prezzo">€16</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Pecorino di Offida DOCG</p>
+      <p class="piatto-dettaglio">Tenuta De Angelis</p>
+      <p class="piatto-prezzo">€18</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Ribona</p>
+      <p class="piatto-dettaglio">Colle Mara · Colli Maceratesi DOC</p>
+      <p class="piatto-prezzo">€20</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Giulia Morichelli D'Altemps</p>
+      <p class="piatto-dettaglio">Tenute Muròla · Marche Bianco IGT</p>
+      <p class="piatto-prezzo">€25</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Verdicchio di Matelica DOC</p>
+      <p class="piatto-dettaglio">Bisci</p>
+      <p class="piatto-prezzo">€28</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Le Vaglie</p>
+      <p class="piatto-dettaglio">Santa Barbara · Verdicchio dei Castelli di Jesi Classico</p>
+      <p class="piatto-prezzo">€30</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Cambrugiano</p>
+      <p class="piatto-dettaglio">Belisario · Verdicchio di Matelica Riserva DOCG</p>
+      <p class="piatto-prezzo">€30</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Anima Celeste</p>
+      <p class="piatto-dettaglio">Santa Barbara</p>
+      <p class="piatto-prezzo">€36</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Stefano Antonucci</p>
+      <p class="piatto-dettaglio">Santa Barbara · Verdicchio dei Castelli di Jesi DOC</p>
+      <p class="piatto-prezzo">€50</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Mirum</p>
+      <p class="piatto-dettaglio">La Monacesca · Verdicchio di Matelica Riserva DOCG</p>
+      <p class="piatto-prezzo">€50</p>
+    </div>
+
+    <h3 class="sotto-categoria">Italia</h3>
+    <div class="piatto">
+      <p class="piatto-nome">Müller Thurgau DOC</p>
+      <p class="piatto-dettaglio">Rottensteiner · Alto Adige</p>
+      <p class="piatto-prezzo">€24</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Gewürztraminer</p>
+      <p class="piatto-dettaglio">Valle Isarco · Alto Adige</p>
+      <p class="piatto-prezzo">€34</p>
+    </div>
+    <!-- [DA CONFERMARE: Grillo della Timpa — Feudo Montoni (Cammarata, PA),
+         Sicilia DOC. Sul foglio era attribuito a «Feudo Arancio»: attribuzione
+         corretta in Feudo Montoni, da confermare. Prezzo tagliato dal bordo
+         della foto, leggibile solo «3_». Va qui, fra i bianchi d'Italia.] -->
+  </section>
+
+  <section class="categoria-blocco" id="rosati" aria-label="Vini rosati">
+    <h2 class="categoria">Vini rosati</h2>
+    <div class="piatto">
+      <p class="piatto-nome">Millerose</p>
+      <p class="piatto-dettaglio">Tenute Muròla · Marche Rosato IGT</p>
+      <p class="piatto-prezzo">€15</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Bianconero</p>
+      <p class="piatto-dettaglio">Moroder · Marche</p>
+      <p class="piatto-prezzo">€24</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Fos</p>
+      <p class="piatto-dettaglio">Lumavite · Marche Rosato IGT, biologico</p>
+      <p class="piatto-prezzo">€25</p>
+    </div>
+  </section>
+
+  <section class="categoria-blocco" id="rossi" aria-label="Vini rossi">
+    <h2 class="categoria">Vini rossi</h2>
+
+    <h3 class="sotto-categoria">Marche</h3>
+    <div class="piatto">
+      <p class="piatto-nome">Rosso Piceno</p>
+      <p class="piatto-dettaglio">Colle Mara</p>
+      <p class="piatto-prezzo">€12</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Rosso Piceno Superiore DOC</p>
+      <p class="piatto-dettaglio">Tenuta De Angelis</p>
+      <p class="piatto-prezzo">€20</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Lacrima di Morro d'Alba DOC</p>
+      <p class="piatto-dettaglio">Vicari · «da sempre»</p>
+      <p class="piatto-prezzo">€24</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Aìon</p>
+      <p class="piatto-dettaglio">Moroder · Rosso Conero DOC</p>
+      <p class="piatto-prezzo">€25</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Teodoro</p>
+      <p class="piatto-dettaglio">Tenute Muròla · Marche Rosso IGT</p>
+      <p class="piatto-prezzo">€28</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Oro</p>
+      <p class="piatto-dettaglio">Tenuta De Angelis · Rosso Piceno Superiore DOC</p>
+      <p class="piatto-prezzo">€35</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Sami</p>
+      <p class="piatto-dettaglio">Lumavite · Marche Rosso IGT, Syrah, biologico</p>
+      <p class="piatto-prezzo">€42</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Frasseto</p>
+      <p class="piatto-dettaglio">Lumavite · Marche Rosso IGT, Sangiovese, biologico</p>
+      <p class="piatto-prezzo">€42</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Tusiano</p>
+      <p class="piatto-dettaglio">Lumavite · Marche Rosso IGT, biologico</p>
+      <p class="piatto-prezzo">€42</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Dorico</p>
+      <p class="piatto-dettaglio">Moroder · Conero Riserva DOCG</p>
+      <p class="piatto-prezzo">€60</p>
+    </div>
+
+    <h3 class="sotto-categoria">Italia</h3>
+    <div class="piatto">
+      <p class="piatto-nome">Chianti DOCG</p>
+      <p class="piatto-dettaglio">Carpineto · Toscana</p>
+      <p class="piatto-prezzo">€23</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Valpolicella Ripasso DOC</p>
+      <p class="piatto-dettaglio">Murari · Veneto</p>
+      <p class="piatto-prezzo">€24</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Montepulciano d'Abruzzo</p>
+      <p class="piatto-dettaglio">Spinelli · Abruzzo</p>
+      <p class="piatto-prezzo">€28</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Morellino di Scansano DOCG</p>
+      <p class="piatto-dettaglio">Campo all'Olmo · Toscana</p>
+      <p class="piatto-prezzo">€35</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Etna Rosso DOC</p>
+      <p class="piatto-dettaglio">Pietradolce · Sicilia</p>
+      <p class="piatto-prezzo">€55</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Amarone della Valpolicella DOCG</p>
+      <p class="piatto-dettaglio">Murari · Veneto</p>
+      <p class="piatto-prezzo">€58</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Barbaresco DOCG 2021</p>
+      <p class="piatto-dettaglio">Ada Nada · Piemonte</p>
+      <p class="piatto-prezzo">€70</p>
+    </div>
+    <!-- [DA CONFERMARE: Brunello di Montalcino DOCG — Carpineto. Sul foglio
+         senza prezzo: in carta o no, e a quanto.] -->
+    <!-- [DA CONFERMARE: Tignanello — Antinori. Sul foglio senza prezzo:
+         in carta o no, e a quanto.] -->
+  </section>
+
+  <section class="categoria-blocco" id="dolci" aria-label="Vini dolci e da meditazione">
+    <h2 class="categoria">Dolci e da meditazione</h2>
+    <div class="piatto">
+      <p class="piatto-nome">Malvasia</p>
+      <p class="piatto-dettaglio">Pellegrino · vino liquoroso, Sicilia</p>
+      <p class="piatto-prezzo">€30</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Passito di Pantelleria</p>
+      <p class="piatto-dettaglio">Pellegrino · Sicilia</p>
+      <p class="piatto-prezzo">€27</p>
+    </div>
+    <div class="piatto">
+      <p class="piatto-nome">Vino di Visciole</p>
+      <p class="piatto-dettaglio">Vicari · Marche</p>
+      <p class="piatto-dettaglio">al calice con cantuccini €5</p>
+      <p class="piatto-prezzo">€35</p>
+    </div>
+  </section>
+
+  <p class="chiusura">I prezzi si intendono alla bottiglia. La selezione cambia con le stagioni: chiedete in sala, c'è sempre qualcosa che non è ancora finito in carta.</p>
+
+  <footer class="congedo">
+    <div class="congedo-filo" aria-hidden="true"></div>
+    <p class="congedo-motto">Il Segreto, dove il tempo si ferma.</p>
+    <p class="congedo-riga">VILLA LUZI 1737 · CONTRADA CHIARAVALLE 49 · TREIA (MC)</p>
+  </footer>
+
+</main>
+
+<!-- Beverage: contenuti non ancora forniti dalla direzione (14 settembre 2026).
+     Quando arrivano: sezione #beverage in coda, sottocategorie birre / cocktail
+     / amari e distillati / caffetteria / analcolici, stesso markup dei vini,
+     più la voce nel nastro. -->
+
+</body>
+</html>

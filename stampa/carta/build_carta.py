@@ -181,6 +181,31 @@ DOLCI_VINI = [
     ("Vino di Visciole", "Vicari · Marche — al calice con cantuccini € 5", "35"),
 ]
 
+
+# ─────────────────────────────────────────────────────────────
+#  PRESENTAZIONE — riscritta su misura il 14 settembre 2026.
+#  Il testo WhatsApp di partenza era di un altro locale: parlava
+#  di azienda agricola, orto, uova e olio propri, erbe spontanee.
+#  Nessuna di queste cose risulta da villaluzi1737.com, quindi
+#  qui restano solo fatti verificabili: la dimora del 1737, lo
+#  chef Jan Paul Kana, i fornitori già citati in carta, la brace.
+# ─────────────────────────────────────────────────────────────
+INTRO = [
+    "C'è una dimora del 1737 alle porte di Treia, e dentro una cucina che "
+    "guarda avanti. Il Segreto nasce da qui: dal rispetto per un luogo che ha "
+    "attraversato tre secoli, e dalla voglia di raccontare le Marche con la "
+    "lingua di oggi.",
+
+    "La brigata dello chef Jan Paul Kana, Responsabile Regionale dei Cuochi "
+    "delle Marche, sceglie la materia prima una per una &mdash; la pasta Mancini, "
+    "il suino della Marca IGP, il coniglio di Arcevia, il ciauscolo e la crescia "
+    "di queste colline &mdash; e la porta in tavola senza fretta. Accanto, la brace: "
+    "il fuoco vivo, che resta il cuore di tutto.",
+
+    "Poi ci sono il parco, la piscina, le sere che si allungano. Perché qui, "
+    "a tavola, il tempo si ferma.",
+]
+
 # ─────────────────────────────────────────────────────────────
 #  RENDER HELPERS
 # ─────────────────────────────────────────────────────────────
@@ -208,6 +233,9 @@ def vini(items):
         out.append('</div>')
     return "\n".join(out)
 
+def intro():
+    return "\n".join(f'<p class="intro-p">{p}</p>' for p in INTRO)
+
 def h2(t):   return f'<h2 class="cat"><span>{t}</span></h2>'
 def h3(t):   return f'<p class="sub">{t}</p>'
 
@@ -225,7 +253,7 @@ F1_COPERTINA = f"""
   <div class="cover-body">
     <p class="cover-titolo">La carta</p>
     <div class="cover-rule"></div>
-    <p class="cover-kicker">cucina &amp; cantina</p>
+    <div class="intro">{intro()}</div>
   </div>
   <div class="cover-foot">
     <p class="cf-mark">VILLA LUZI 1737</p>
@@ -404,13 +432,16 @@ p.sub {
   display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .cover-titolo {
   font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 500;
-  font-size: 42pt; color: #123A37; line-height: 1;
+  font-size: 34pt; color: #123A37; line-height: 1;
 }
-.cover-rule { width: 22mm; border-top: 0.7pt solid #C5AB74; margin: 7mm auto; }
-.cover-kicker {
-  font-family: "Cinzel", serif; font-weight: 700; font-size: 8pt;
-  letter-spacing: 0.3em; text-indent: 0.3em; color: #B49656;
+.cover-rule { width: 22mm; border-top: 0.7pt solid #C5AB74; margin: 6mm auto 7mm; }
+.intro { max-width: 132mm; margin: 0 auto; }
+.intro-p {
+  font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 400;
+  font-size: 10.6pt; line-height: 1.5; color: #4a5a56;
+  text-align: center; text-wrap: pretty;
 }
+.intro-p + .intro-p { margin-top: 3.6mm; }
 .cover-foot { position: absolute; left: 0; right: 0; bottom: 22mm;
   text-align: center; padding: 0 15mm; }
 .cf-mark {

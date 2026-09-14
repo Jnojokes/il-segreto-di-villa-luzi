@@ -21,7 +21,7 @@ const DIST = path.join(ROOT, 'dist');
 // File e cartelle che non appartengono al sito pubblicato.
 // SKIP_ROOT vale solo al primo livello della repo; SKIP_ANY a ogni profondità.
 const SKIP_ROOT = new Set([
-  '.git', '.gitignore', '.claude', '.agents', 'dist', 'partials', 'Tappe',
+  '.git', '.gitignore', '.claude', '.agents', '.impeccable', 'dist', 'partials', 'Tappe',
   'build.js', 'check.js', 'serve.js', 'netlify.toml', 'vercel.json', 'skills-lock.json',
   'package.json', 'package-lock.json',
   'CONSEGNA_DEV',            // sorgente media (35 GB): non pubblicare in dist/
