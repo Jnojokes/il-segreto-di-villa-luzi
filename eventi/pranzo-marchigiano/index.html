@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<!-- viewport-fit=cover: senza, le env(safe-area-inset-*) valgono 0 -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Il numero in pagina non deve diventare un link tel: automatico su iOS:
+     questo evento si prenota solo su WhatsApp. -->
+<meta name="format-detection" content="telephone=no">
+
+<title>Pranzo marchigiano con stornelli e saltarelli | Il Segreto di Villa Luzi</title>
+<meta name="description" content="Domenica 11 ottobre alle 13, pranzo marchigiano a Il Segreto di Villa Luzi con gli stornelli e i saltarelli dal vivo dei Grazie Graziá. Cinque portate, 45 € a persona, vino della casa incluso.">
+<meta name="theme-color" content="#0B0B0B">
+<!-- Dominio canonico: www.villaluzi1737.com, come le altre landing evento.
+     Landing ads standalone: niente partial del sito, niente site.css,
+     pagina in BLOCKED dentro check.js. -->
+<link rel="canonical" href="https://www.villaluzi1737.com/eventi/pranzo-marchigiano/">
+<link rel="icon" type="image/png" href="/assets/img/LS-Icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Villa Luzi 1737">
+<meta property="og:locale" content="it_IT">
+<meta property="og:url" content="https://www.villaluzi1737.com/eventi/pranzo-marchigiano/">
+<meta property="og:title" content="Pranzo marchigiano con stornelli e saltarelli dal vivo">
+<meta property="og:description" content="Domenica 11 ottobre alle 13, pranzo marchigiano a Il Segreto di Villa Luzi con gli stornelli e i saltarelli dal vivo dei Grazie Graziá. Cinque portate, 45 € a persona, vino della casa incluso.">
+<meta property="og:image" content="https://www.villaluzi1737.com/assets/pranzo-marchigiano/og-pranzo-marchigiano.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Locandina del Pranzo marchigiano: la fisarmonica con i baffi, domenica 11 ottobre ore 13:00, 45 euro a persona, vino della casa incluso">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pranzo marchigiano con stornelli e saltarelli dal vivo">
+<meta name="twitter:description" content="Domenica 11 ottobre alle 13 a Il Segreto di Villa Luzi, con i Grazie Graziá. 45 € a persona, vino della casa incluso.">
+<meta name="twitter:image" content="https://www.villaluzi1737.com/assets/pranzo-marchigiano/og-pranzo-marchigiano.jpg">
+
+<!-- La fisarmonica e' la prima cosa che si vede: si scarica subito. -->
+<link rel="preload" as="image" fetchpriority="high"
+      imagesrcset="/assets/pranzo-marchigiano/fisarmonica-480.webp 480w, /assets/pranzo-marchigiano/fisarmonica-800.webp 800w, /assets/pranzo-marchigiano/fisarmonica-1200.webp 1200w"
+      imagesizes="(min-width: 760px) 640px, calc(100vw - 40px)">
+
+<!-- ══════════════ META PIXEL ══════════════
+     Dataset 5285830348309655, lo stesso delle altre landing. Eventi di
+     questa pagina, e nessun altro:
+       PageView     dallo snippet base
+       ViewContent  al caricamento, content_name "pranzo-marchigiano"
+       Lead         al click su WhatsApp, in fondo alla pagina
+     Niente eventi personalizzati (trackCustom), niente dataLayer.
+     La funzione eventId sta qui perche' la usano sia ViewContent sia Lead. -->
+<script>
+window.VL_TRACK = {
+  pixelId: '5285830348309655',
+  contentName: 'pranzo-marchigiano',
+  /* UUID vero dove c'e' (contesti sicuri), altrimenti un ripiego unico
+     quanto basta: l'id serve solo ad appaiare browser e server. */
+  eventId: function () {
+    try {
+      if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
+    } catch (e) {}
+    return 'pm-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+  }
+};
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', window.VL_TRACK.pixelId);
+fbq('track', 'PageView');
+/* Subito, senza aspettare il DOM: chi rimbalza in due secondi deve
+   comunque entrare nel pubblico di retargeting. */
+fbq('track', 'ViewContent', { content_name: window.VL_TRACK.contentName }, { eventID: window.VL_TRACK.eventId() });
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"></noscript>
+
+<!-- JSON-LD Event: i campi del brief, piu' image e description (consigliati
+     da Google per i risultati evento) presi dall'og:image e dalla meta
+     description di questa pagina. Il civico non c'e': in pagina va
+     l'indirizzo detto dal cliente, "Contrada Chiaravalle, Passo di Treia". -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Pranzo marchigiano",
+  "description": "Domenica 11 ottobre alle 13, pranzo marchigiano a Il Segreto di Villa Luzi con gli stornelli e i saltarelli dal vivo dei Grazie Graziá. Cinque portate, 45 € a persona, vino della casa incluso.",
+  "image": ["https://www.villaluzi1737.com/assets/pranzo-marchigiano/og-pranzo-marchigiano.jpg"],
+  "startDate": "2026-10-11T13:00:00+02:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "Il Segreto di Villa Luzi",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Contrada Chiaravalle, Passo di Treia",
+      "addressLocality": "Treia",
+      "addressRegion": "MC",
+      "addressCountry": "IT"
+    }
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "45",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://www.villaluzi1737.com/eventi/pranzo-marchigiano/"
+  },
+  "performer": { "@type": "MusicGroup", "name": "Grazie Graziá" },
+  "organizer": { "@type": "Organization", "name": "Il Segreto di Villa Luzi", "url": "https://www.villaluzi1737.com/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Villa Luzi", "item": "https://www.villaluzi1737.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Eventi", "item": "https://www.villaluzi1737.com/eventi/" },
+    { "@type": "ListItem", "position": 3, "name": "Pranzo marchigiano" }
+  ]
+}
+</script>
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   PRANZO MARCHIGIANO · 11 ottobre 2026 — landing ads standalone
+   (convenzione delle altre landing evento: niente partial, niente
+   site.css, CSS e JS inline). Direzione sua, quella della locandina:
+   fondo nero, tipografia bianca, un solo accento, il prezzo in
+   negativo nella barra bianca piena. Filetti bianchi come unici
+   separatori.
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --nero:        #0B0B0B;
+  --nero-fondo:  #050505;                     /* solo la chiusura */
+  --avorio:      #F4ECDC;                     /* 16.6:1 sul nero */
+  --avorio-velo: rgba(244, 236, 220, 0.74);   /* ~9:1 sul nero */
+  --bianco:      #FFFFFF;
+  --filo:        rgba(255, 255, 255, 0.78);
+
+  /* NESSUN FONT SCARICATO. Il brief chiede un display condensato e
+     vieta font nuovi: si usano i condensati gia' installati sui
+     dispositivi (scelta dell'utente, 17/09/2026).
+       iPhone e Mac   Avenir Next Condensed (tutti i pesi)
+       Android        Roboto Condensed, famiglia di sistema sans-serif-condensed
+       Windows        Bahnschrift, con font-stretch: condensed
+     "Roboto Condensed" prima dell'alias Android: la trova chi l'ha
+     installata sul computer. Le larghezze di Avenir Next Condensed e
+     Roboto Condensed stanno entro il 4%: le misure qui sotto reggono
+     su entrambe. MAI font-weight 300 con Avenir Next Condensed: non ha
+     il Light e il browser scenderebbe all'UltraLight. */
+  --condensato: "Avenir Next Condensed", "Roboto Condensed", "sans-serif-condensed", Bahnschrift, "Arial Narrow", sans-serif;
+
+  --lato: max(20px, env(safe-area-inset-left, 0px));
+  --ease: cubic-bezier(.22, .61, .36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+/* html pieno di nero: senza, il rimbalzo di iOS scopre il bianco */
+html { background: var(--nero); scroll-behavior: smooth; }
+body {
+  background: var(--nero);
+  color: var(--avorio);
+  font-family: var(--condensato);
+  font-stretch: condensed;
+  font-weight: 400;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+::selection { background: var(--bianco); color: var(--nero); }
+
+/* ── filetti: gli unici separatori della pagina ── */
+.filo {
+  display: block;
+  width: 100%;
+  height: 0;
+  border: 0;
+  border-top: 1px solid var(--filo);
+}
+
+/* ── bottone WhatsApp ──
+   Contorno e non pieno: il pieno bianco in pagina e' uno solo, la barra
+   del prezzo. Al passaggio (e al tocco) si riempie. */
+.btn-wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: 56px;
+  max-width: 100%;
+  padding: 0.3em 1.2em;
+  padding-left: calc(1.2em + 0.1em);          /* compensa il tracking */
+  border: 2px solid var(--avorio);
+  color: var(--avorio);
+  background: transparent;
+  text-decoration: none;
+  font-family: var(--condensato);
+  font-weight: 700;
+  font-size: min(19px, 5.2vw);
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.btn-wa svg { width: 1.2em; height: 1.2em; fill: currentColor; flex: none; }
+.btn-wa:hover,
+.btn-wa:active { background: var(--avorio); color: var(--nero); }
+.btn-wa:focus-visible { outline: 2px solid var(--avorio); outline-offset: 4px; }
+
+/* ═════════════════ HERO ═════════════════
+   Una colonna, come la locandina: fisarmonica grande, poi le righe di
+   testo separate dai filetti. Sul telefono la misura della fisarmonica
+   cede all'altezza dello schermo, cosi' prezzo e bottone restano in
+   vista senza scorrere: misurato con Avenir Next Condensed e con Roboto
+   Condensed, bottone sopra la piega da 360x640 in su. */
+.hero { padding: max(14px, env(safe-area-inset-top, 0px)) var(--lato) clamp(40px, 9vw, 72px); }
+.hero-colonna {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.hero-fisarmonica {
+  /* 1.6 e' la proporzione del disegno (1200x751). Il ripiego senza svh
+     e' la sola larghezza: su un browser vecchio si scorre un po', niente
+     di rotto. */
+  width: min(100%, 460px);
+  animation: mantice 0.9s var(--ease) both;
+  transform-origin: 50% 60%;
+}
+@supports (height: 1svh) {
+  .hero-fisarmonica { width: min(100%, 460px, calc((100svh - 440px) * 1.6)); min-width: 160px; }
+}
+@keyframes mantice {
+  from { opacity: 0; transform: scaleX(0.9); }
+  to   { opacity: 1; transform: none; }
+}
+
+.hero-occhiello {
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: min(14px, 4vw);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  padding-left: 0.16em;
+  text-transform: uppercase;
+  color: var(--avorio);
+}
+/* Due righe su telefono (PRANZO / MARCHIGIANO), una sola da 700px.
+   13.6vw: a 375px "MARCHIGIANO" e' largo 318px su 335 disponibili con
+   Avenir Next Condensed, 309 con Roboto Condensed. */
+.hero-titolo {
+  margin-top: 6px;
+  font-weight: 800;
+  font-size: min(13.6vw, 64px);
+  line-height: 0.92;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--avorio);
+}
+.hero-titolo span { display: block; }
+.hero .filo { margin: 10px 0 8px; }
+/* 17px e non 18: con Roboto Condensed a 18px va a capo a 390px */
+.hero-sottotitolo {
+  font-weight: 400;
+  font-size: clamp(15px, 4.35vw, 17px);
+  line-height: 1.3;
+  color: var(--avorio);
+  text-wrap: balance;
+}
+.hero-gruppo {
+  margin-top: 4px;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+  padding-left: 0.04em;
+  text-transform: uppercase;
+  color: var(--avorio);
+}
+.hero-quando {
+  font-weight: 700;
+  font-size: min(19px, 5.3vw);
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  padding-left: 0.06em;
+  text-transform: uppercase;
+  color: var(--avorio);
+}
+/* L'accento della pagina, l'unico: la barra bianca piena col prezzo */
+.hero-prezzo {
+  width: 100%;
+  margin-top: 12px;
+  padding: 0.24em 0.4em 0.2em;
+  background: var(--bianco);
+  color: var(--nero);
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 1.05;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+/* "vino della casa incluso" fra due filetti, come sotto la barra della locandina */
+.hero-vino {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  margin-top: 6px;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: var(--avorio);
+}
+.hero-vino::before,
+.hero-vino::after { content: ""; flex: 1; border-top: 1px solid var(--filo); }
+.hero .btn-wa { margin-top: 16px; }
+
+/* entrata del testo: breve, e il bottone e' pieno entro un secondo */
+.su { animation: su 0.7s var(--ease) both; }
+.su.r1 { animation-delay: 0.08s; }
+.su.r2 { animation-delay: 0.18s; }
+.su.r3 { animation-delay: 0.28s; }
+@keyframes su {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (min-width: 700px) {
+  .hero { padding-top: clamp(28px, 4vh, 48px); }
+  .hero-fisarmonica { width: min(100%, 640px); }
+  @supports (height: 1svh) {
+    .hero-fisarmonica { width: min(100%, 640px, calc((100svh - 515px) * 1.6)); min-width: 260px; }
+  }
+  .hero-occhiello { margin-top: 20px; font-size: 18px; }
+  /* Una riga sola, larga quanto la fisarmonica come nella locandina.
+     "PRANZO MARCHIGIANO" misura 9.9 em con Avenir Next Condensed Heavy:
+     a 72px (721) andava a capo nella colonna da 720. */
+  .hero-titolo { font-size: min(66px, 9.2vw); margin-top: 8px; }
+  .hero-titolo span { display: inline; }
+  .hero .filo { margin: 16px 0 12px; }
+  .hero-sottotitolo { font-size: 22px; }
+  .hero-gruppo { font-size: 30px; margin-top: 4px; }
+  .hero-quando { font-size: 24px; }
+  .hero-prezzo { font-size: 42px; margin-top: 18px; }
+  .hero-vino { font-size: 20px; margin-top: 10px; }
+  .hero .btn-wa { margin-top: 26px; }
+  .btn-wa { font-size: 21px; min-height: 62px; padding-inline: 1.8em calc(1.8em - 0.1em); }
+}
+
+/* ═════════════════ SEZIONI ═════════════════ */
+.sezione { padding: clamp(64px, 14vw, 128px) var(--lato); }
+.sezione-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+.sez-occhiello {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.24em;
+  padding-left: 0.24em;
+  text-transform: uppercase;
+  color: var(--avorio-velo);
+}
+.sez-titolo {
+  margin-top: 8px;
+  font-weight: 800;
+  font-size: clamp(46px, 13vw, 88px);
+  line-height: 0.92;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--avorio);
+}
+
+/* ── le tre righe pratiche: quando, quanto, dove ──
+   In pila fino a 1080px, poi in colonne: sotto quella misura la colonna
+   non tiene su una riga "Il Segreto di Villa Luzi" e l'indirizzo. I
+   filetti fanno da cornice sopra e sotto e da separatore fra le righe. */
+.pratiche { padding: 0 var(--lato); }
+.righe {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--filo);
+  border-bottom: 1px solid var(--filo);
+}
+.riga { padding: 26px 8px 28px; text-align: center; }
+.riga + .riga { border-top: 1px solid var(--filo); }
+.riga dt {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.24em;
+  padding-left: 0.24em;
+  text-transform: uppercase;
+  color: var(--avorio-velo);
+}
+.riga dd { margin-top: 8px; }
+/* 26px: "Il Segreto di Villa Luzi" sta su una riga anche nella colonna
+   da 316px del desktop con Roboto Condensed (293) */
+.riga-dato {
+  display: block;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--avorio);
+}
+.riga-dettaglio {
+  display: block;
+  margin-top: 5px;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.3;
+  color: var(--avorio);
+}
+@media (min-width: 1080px) {
+  .righe { grid-template-columns: repeat(3, 1fr); }
+  .riga { padding: 40px 16px 42px; }
+  .riga + .riga { border-top: 0; border-left: 1px solid var(--filo); }
+}
+
+/* ── il menù ──
+   Le portate arrivano da content/eventi/pranzo-marchigiano.menu.json,
+   rese da build.js. Qui solo lo stile del contratto di classi. */
+.menu-lista { max-width: 560px; margin: clamp(34px, 7vw, 56px) auto 0; }
+.menu-voce + .menu-voce { margin-top: clamp(26px, 6vw, 38px); }
+.menu-corso {
+  display: flex;
+  align-items: center;
+  gap: 0.9em;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--avorio);
+}
+.menu-corso::before,
+.menu-corso::after { content: ""; flex: 1; border-top: 1px solid var(--filo); }
+/* il tracking lascia spazio dopo l'ultima lettera: si pareggia a sinistra */
+.menu-corso::before { margin-right: 0.32em; }
+.menu-piatto {
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: clamp(23px, 6.4vw, 34px);
+  line-height: 1.15;
+  color: var(--avorio);
+  text-wrap: balance;
+}
+.menu-piatto + .menu-piatto { margin-top: 6px; }
+.menu-nota {
+  margin-top: clamp(30px, 7vw, 46px);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
+  letter-spacing: 0.2em;
+  padding-left: 0.2em;
+  text-transform: uppercase;
+  color: var(--avorio-velo);
+}
+
+/* Filetto fra le sezioni: largo quanto le tre righe pratiche (1080px) e
+   non tutto schermo, cosi' su desktop tutti i filetti cadono sulla
+   stessa griglia. */
+.stornellatori,
+.prenota,
+.chiusura { position: relative; }
+.stornellatori::before,
+.prenota::before,
+.chiusura::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: var(--lato);
+  right: var(--lato);
+  max-width: 1080px;
+  margin: 0 auto;
+  border-top: 1px solid var(--filo);
+}
+
+/* ── gli stornellatori ── */
+.racconto { max-width: 34em; margin: clamp(28px, 6vw, 44px) auto 0; }
+.racconto p {
+  font-weight: 400;
+  font-size: clamp(20px, 5.2vw, 25px);
+  line-height: 1.45;
+  color: var(--avorio);
+  text-wrap: pretty;
+}
+.racconto p + p { margin-top: 0.8em; }
+
+/* ── come si prenota ── */
+.prenota-testo {
+  max-width: 30em;
+  margin: clamp(24px, 5vw, 36px) auto 0;
+  font-weight: 400;
+  font-size: clamp(20px, 5.2vw, 25px);
+  line-height: 1.45;
+  color: var(--avorio);
+  text-wrap: pretty;
+}
+.prenota-numero { font-weight: 700; white-space: nowrap; }
+.prenota .btn-wa { margin-top: clamp(26px, 6vw, 38px); }
+
+/* ═════════════════ CHIUSURA ═════════════════
+   Indirizzo e mappa: mappa e link di Google gia' usati nel repo
+   (eventi/la-domenica e pagine contatti), vedi il commento nel markup. */
+.chiusura {
+  background: var(--nero-fondo);
+  padding: clamp(56px, 12vw, 96px) var(--lato) calc(clamp(40px, 8vw, 64px) + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+}
+.chiusura-inner { max-width: 720px; margin: 0 auto; }
+.chiusura-logo { width: 132px; margin: 0 auto; }
+.chiusura-indirizzo {
+  margin-top: 22px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--avorio);
+}
+.chiusura-indirizzo strong {
+  display: block;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding-left: 0.08em;
+  text-transform: uppercase;
+}
+.mappa {
+  margin-top: 26px;
+  aspect-ratio: 16 / 10;
+  max-height: 380px;
+  width: 100%;
+  background: #1A1A1A;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  overflow: hidden;
+}
+/* la mappa di Google a colori farebbe da secondo accento: in scala di
+   grigi e invertita resta leggibile e sta nel nero della pagina */
+.mappa iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(1) invert(0.92) contrast(0.9);
+}
+.chiusura-link {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 2px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--avorio);
+  border-bottom: 1px solid var(--filo);
+}
+.chiusura-link:hover { border-color: var(--avorio); }
+.chiusura-link:focus-visible { outline: 2px solid var(--avorio); outline-offset: 3px; }
+.chiusura-lama {
+  margin-top: clamp(34px, 7vw, 48px);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.3;
+  color: var(--avorio);
+}
+.chiusura-legale {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--avorio-velo);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-fisarmonica, .su { animation: none; }
+  .btn-wa { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- glifo WhatsApp definito una volta, usato dai due bottoni -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ico-wa" viewBox="0 0 24 24">
+    <path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+  </symbol>
+</svg>
+
+<main>
+
+  <!-- ═════ HERO ═════
+       Il testo della locandina e' tutto HTML: l'immagine e' solo la
+       fisarmonica, ritagliata dalla locandina 2K e rifatta in bianco su
+       trasparenza. -->
+  <section class="hero" aria-labelledby="titolo">
+    <div class="hero-colonna">
+      <img class="hero-fisarmonica"
+           src="/assets/pranzo-marchigiano/fisarmonica-800.webp"
+           srcset="/assets/pranzo-marchigiano/fisarmonica-480.webp 480w, /assets/pranzo-marchigiano/fisarmonica-800.webp 800w, /assets/pranzo-marchigiano/fisarmonica-1200.webp 1200w"
+           sizes="(min-width: 760px) 640px, calc(100vw - 40px)"
+           width="1200" height="751" fetchpriority="high"
+           alt="Disegno di una fisarmonica con cappello, occhiali tondi e baffi">
+
+      <p class="hero-occhiello su r1">Il Segreto di Villa Luzi organizza</p>
+      <h1 class="hero-titolo su r1" id="titolo"><span>Pranzo</span> <span>marchigiano</span></h1>
+      <hr class="filo su r2" aria-hidden="true">
+      <p class="hero-sottotitolo su r2">pranzo spettacolo con stornelli e saltarelli dal vivo</p>
+      <p class="hero-gruppo su r2">con i Grazie Graziá</p>
+      <hr class="filo su r2" aria-hidden="true">
+      <p class="hero-quando su r3"><time datetime="2026-10-11T13:00+02:00">Domenica 11 ottobre, ore 13:00</time></p>
+      <p class="hero-prezzo su r3">€ 45 a persona</p>
+      <p class="hero-vino su r3">vino della casa incluso</p>
+
+      <a class="btn-wa su r3" data-cta="hero"
+         href="https://wa.me/393803643888?text=Buongiorno%2C%20vorrei%20prenotare%20per%20il%20Pranzo%20marchigiano%20di%20domenica%2011%20ottobre."
+         target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#ico-wa"></use></svg>
+        <span>Prenota su WhatsApp</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═════ LE TRE RIGHE PRATICHE ═════ -->
+  <section class="pratiche" aria-label="Quando, quanto e dove">
+    <dl class="righe">
+      <div class="riga">
+        <dt>Quando</dt>
+        <dd>
+          <span class="riga-dato">Domenica 11 ottobre</span>
+          <span class="riga-dettaglio">ore 13:00</span>
+        </dd>
+      </div>
+      <div class="riga">
+        <dt>Quanto</dt>
+        <dd>
+          <span class="riga-dato">€ 45 a persona</span>
+          <span class="riga-dettaglio">vino della casa incluso</span>
+        </dd>
+      </div>
+      <div class="riga">
+        <dt>Dove</dt>
+        <dd>
+          <span class="riga-dato">Il Segreto di Villa Luzi</span>
+          <span class="riga-dettaglio">Contrada Chiaravalle, Passo di Treia (MC)</span>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ═════ IL MENÙ ═════
+       Le portate NON si scrivono qui: stanno in
+       content/eventi/pranzo-marchigiano.menu.json e build.js le rende
+       al posto del marker qui sotto. Se il JSON e' rotto la build esce
+       con 1 e la pagina non si pubblica. Due voci attendono conferma
+       dalla cucina (gnocchi al ciauscolo, insalata): si correggono nel JSON. -->
+  <section class="sezione menu" aria-labelledby="menu-titolo">
+    <div class="sezione-inner">
+      <p class="sez-occhiello">Pranzo marchigiano</p>
+      <h2 class="sez-titolo" id="menu-titolo">Il menù</h2>
+      <!-- @menu:pranzo-marchigiano -->
+    </div>
+  </section>
+
+  <!-- ═════ GLI STORNELLATORI ═════
+       Testo del gruppo, come l'ha mandato il loro referente. Non si
+       aggiunge niente sullo svolgimento della giornata. -->
+  <section class="sezione stornellatori" aria-labelledby="gruppo-titolo">
+    <div class="sezione-inner">
+      <p class="sez-occhiello">Gli stornellatori</p>
+      <h2 class="sez-titolo" id="gruppo-titolo">Grazie Graziá</h2>
+      <div class="racconto">
+        <p>Gli stornellatori dei Grazie Graziá portano avanti la tradizione del canto improvvisato sulla base dei saltarelli tradizionali della zona del centro Marche.</p>
+        <p>Il nome del gruppo ricorda Graziano, uno degli anziani che ha ispirato i primi componenti a suonare i saltarelli e a imparare la simpatica e allegra arte dello stornello.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ COME SI PRENOTA ═════
+       Una sola CTA oltre a quella dell'hero. Niente form, niente altri
+       numeri. Il 380 364 3888 vale SOLO per questo evento: le altre pagine
+       restano col numero della villa finche' non si decide diversamente. -->
+  <section class="sezione prenota" id="prenota" aria-labelledby="prenota-titolo">
+    <div class="sezione-inner">
+      <h2 class="sez-titolo" id="prenota-titolo">Come si prenota</h2>
+      <p class="prenota-testo">La prenotazione è obbligatoria e si fa su WhatsApp, al numero <span class="prenota-numero">380 364 3888</span>.</p>
+      <a class="btn-wa" data-cta="prenota"
+         href="https://wa.me/393803643888?text=Buongiorno%2C%20vorrei%20prenotare%20per%20il%20Pranzo%20marchigiano%20di%20domenica%2011%20ottobre."
+         target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#ico-wa"></use></svg>
+        <span>Prenota su WhatsApp</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═════ CHIUSURA · indirizzo e mappa ═════
+     L'indirizzo scritto e' quello detto dal cliente. Mappa e link sono
+     quelli gia' in repo (la mappa di eventi/la-domenica, il link delle
+     pagine contatti) e cercano "Contrada Chiaravalle 49": e' la ricerca
+     che mette il segnaposto sulla villa. z=14 lascia vedere la strada
+     provinciale e i dintorni, non solo le due vie davanti al cancello. -->
+<footer class="chiusura">
+  <div class="chiusura-inner">
+    <img class="chiusura-logo" src="/assets/pranzo-marchigiano/logo-il-segreto-avorio-360.webp"
+         width="360" height="388" loading="lazy" decoding="async"
+         alt="Il Segreto, Dove il tempo si ferma">
+    <address class="chiusura-indirizzo">
+      <strong>Il Segreto di Villa Luzi</strong>
+      Contrada Chiaravalle, Passo di Treia (MC)
+    </address>
+    <div class="mappa">
+      <iframe src="https://maps.google.com/maps?q=Contrada%20Chiaravalle%2049%20Treia%20MC&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+              title="Mappa: Il Segreto di Villa Luzi, Contrada Chiaravalle, Passo di Treia (MC)"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <a class="chiusura-link" href="https://maps.google.com/?q=Contrada+Chiaravalle+49,+62010+Treia+MC" target="_blank" rel="noopener">Apri in Google Maps</a>
+    <p class="chiusura-lama">In collaborazione con LAMA Eventi</p>
+    <p class="chiusura-legale">© 2026 Villa Luzi, P.IVA 02184340434</p>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   MISURAZIONE · il Lead
+   UN SOLO evento Lead per click su WhatsApp. UN SOLO listener, delegato:
+   la jazz ne registra uno per ogni link wa.me, le landing di agosto uno
+   delegato, e chi copia da entrambe fa partire DUE Lead a click. Lo stampo
+   per elemento (900 ms) neutralizza il doppio tap e il click sintetizzato
+   dopo il touch su iOS.
+
+   CONVERSIONS API: NON configurata per questa pagina. Il sito e' statico
+   (build.js copia file in dist/, nel repo non c'e' nessuna funzione server
+   ne' un token), quindi il Lead parte SOLO dal browser. L'eventID pero' si
+   genera gia' qui, uno per click, e va a fbq: se un domani un mittente
+   server mandera' anche lui il Lead, dovra' spedire lo STESSO id come
+   event_id e lo stesso event_name 'Lead'. Senza, Meta conta lo stesso
+   click due volte, come sulle landing precedenti. L'id dell'ultimo click
+   resta sul link cliccato, nell'attributo data-event-id.
+   ═══════════════════════════════════════════════════════════════════ */
+(function () {
+  var d = document, w = window;
+
+  d.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!t || !t.closest) return;
+    var a = t.closest('a[href^="https://wa.me/"]');
+    if (!a) return;
+
+    var ora = Date.now();
+    if (ora - (+a.getAttribute('data-lead-at') || 0) < 900) return;
+    a.setAttribute('data-lead-at', ora);
+
+    try {
+      var c = w.VL_TRACK;
+      var id = c.eventId();
+      a.setAttribute('data-event-id', id);
+      if (typeof w.fbq === 'function') {
+        w.fbq('track', 'Lead', {
+          content_name: c.contentName,
+          method: 'whatsapp',
+          cta: a.getAttribute('data-cta') || 'pagina'
+        }, { eventID: id });
+      }
+    } catch (err) { /* il tracciamento non deve MAI bloccare il click */ }
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -47,6 +47,24 @@
         ],
         "createdAt": "2026-09-14T12:52:51.296Z",
         "reason": "Eccezione prevista dalla regola stessa (short uppercase labels): gli unici usi sono etichette in maiuscolo del design system di queste pagine QR — pill CUCINA/CANTINA, nastro, categorie in Cinzel, prezzi e .congedo-riga (indirizzo a 11px scritto maiuscolo nel sorgente, quindi senza text-transform che il detector possa riconoscere). Il testo corrente e' tutto a letter-spacing 0: piatto-nome, piatto-dettaglio, presentazione, chiusura, congedo-motto. Suppressione per valore non accettata dalla regola: '*' scoped ai due file e' la forma piu' stretta disponibile."
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "eventi/pranzo-marchigiano/index.html"
+        ],
+        "createdAt": "2026-09-17T11:22:29.564Z",
+        "reason": "Falso positivo (verifica di Claude, non dell'utente): il detector riporta testo #000000 su #0b0b0b, ma in pagina non esiste testo nero sul nero (probabile lettura letterale di a { color: inherit }). Contrasto WCAG misurato in Chrome con colori calcolati e alpha compositati risalendo gli antenati: 43 blocchi di testo a 390x745 e 1440x900, minimo 9.28:1 (etichette avorio al 74%), nessuno sotto soglia. Script: scratchpad/pm/contrasto.mjs"
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "eventi/pranzo-marchigiano/index.html"
+        ],
+        "createdAt": "2026-09-17T11:28:14.917Z",
+        "reason": "Eccezione prevista dalla regola stessa (short labels), decisione di Claude sul brief, non conferma esplicita dell'utente: l'unico testo sopra soglia e' l'occhiello dell'hero 'Il Segreto di Villa Luzi organizza' (34 caratteri, una riga, 14-18px), maiuscolo come sulla locandina che il brief chiede di seguire. Gli altri maiuscoli sono etichette e titoli da 5 a 30 caratteri; paragrafi, piatti, sottotitolo e dettagli sono in minuscolo. Suppressione per valore non disponibile per la regola: '*' limitato a questo file e' la forma piu' stretta."
       }
     ]
   }

@@ -1,0 +1,9 @@
+{
+  "portate": [
+    { "corso": "Antipasto", "piatti": ["Antipasto misto marchigiano"] },
+    { "corso": "Primi",     "piatti": ["Vincisgrassi", "Gnocchi al ciauscolo e Varnelli"] },
+    { "corso": "Secondo",   "piatti": ["Agnello fritto, olive e creme fatte in casa, insalata"] },
+    { "corso": "Dolce",     "piatti": ["Zuppa inglese fatta in casa"] }
+  ],
+  "nota": "Vino della casa incluso"
+}
