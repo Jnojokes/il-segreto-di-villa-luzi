@@ -65,6 +65,24 @@
         ],
         "createdAt": "2026-09-17T11:28:14.917Z",
         "reason": "Eccezione prevista dalla regola stessa (short labels), decisione di Claude sul brief, non conferma esplicita dell'utente: l'unico testo sopra soglia e' l'occhiello dell'hero 'Il Segreto di Villa Luzi organizza' (34 caratteri, una riga, 14-18px), maiuscolo come sulla locandina che il brief chiede di seguire. Gli altri maiuscoli sono etichette e titoli da 5 a 30 caratteri; paragrafi, piatti, sottotitolo e dettagli sono in minuscolo. Suppressione per valore non disponibile per la regola: '*' limitato a questo file e' la forma piu' stretta."
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "eventi/cena-degustazione-cantina-bacelli/index.html"
+        ],
+        "createdAt": "2026-09-21T13:50:57.628Z",
+        "reason": "Falso positivo (verifica di Claude, non dell'utente), stesso caso della landing pranzo-marchigiano: il detector legge testo #000000 su fondo nero, ma in pagina non c'e' testo nero sul nero (probabile lettura letterale di a { color: inherit }). Contrasto WCAG misurato in Chrome con colori calcolati e alpha compositati: 45 blocchi di testo a 390x745 e 44 a 1440x900, minimo 7.49:1 (badge oro con testo nero), nessuno sotto soglia. Script: scratchpad/pm/contrasto.mjs"
+      },
+      {
+        "rule": "repeating-stripes-gradient",
+        "value": "*",
+        "files": [
+          "eventi/cena-degustazione-cantina-bacelli/index.html"
+        ],
+        "createdAt": "2026-09-21T13:51:46.580Z",
+        "reason": "Scelta di progetto di Claude sul brief del cliente (non conferma dell'utente): la locandina scelta si chiama RISONANZA ed e' fatta di anelli concentrici attorno al calice. Il repeating-radial-gradient prosegue quegli anelli oltre il bordo dell'immagine, centrato sul calice via JS, a opacita' effettiva ~0.07: e' il motivo dell'arte, non una texture a righe aggiunta per riempire. Il brief lo chiede esplicitamente: «Gli anelli attorno al calice possono continuare in CSS sui lati dello schermo, con un repeating-radial-gradient sottile in oro a bassa opacita'»."
       }
     ]
   }

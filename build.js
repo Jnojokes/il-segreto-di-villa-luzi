@@ -91,15 +91,29 @@ partial('footer');
 // cucina, una parola del foglio scritto a mano letta male): sta in un JSON
 // che si corregge senza toccare l'HTML. Si rende QUI, a build-time, e mai
 // con JavaScript nel browser: lo scraper Open Graph di Facebook e i crawler
-// AI non eseguono JS. Formato (nota facoltativa):
-//   { "portate": [ { "corso": "Primi", "piatti": ["…", "…"] } ],
+// AI non eseguono JS. Formato completo, tutto facoltativo tranne portate:
+//   { "portate": [
+//       { "corso": "Primi",  "piatti": ["…", "…"] },            // più piatti
+//       { "corso": "Dolce",  "piatto": "…", "vino": null }      // un piatto, col suo vino
+//     ],
+//     "musica": "Musica dal vivo tra una portata e l'altra",
+//     "artisti": ["…"],
 //     "nota": "Vino della casa incluso" }
-// Un JSON rotto o incompleto NON pubblica la pagina: la build esce con 1 e
-// dice file e campo. Anche le chiavi sconosciute sono un errore, così un
-// "piatto" scritto al posto di "piatti" non fa sparire una portata in silenzio.
+// Il vino è { "nome": "Monte Circe", "denominazione": "Verdicchio … DOC" }.
+//
+// UN CAMPO VUOTO NON DIVENTA MAI UN SEGNAPOSTO IN PAGINA: vino null, artisti
+// [], musica o nota assenti o vuote semplicemente non si rendono. Con
+// "portate" vuoto si rende la sola riga d'attesa qui sotto: è la regola dopo
+// il "[DA CONFERMARE: quale dolce]" finito online sulla Candle Experience.
+// Un JSON rotto o una portata incompleta invece NON pubblicano la pagina: la
+// build esce con 1 e dice file e campo. Anche le chiavi sconosciute sono un
+// errore, così un "piatti" scritto al posto di "piatto" non fa sparire una
+// portata in silenzio.
 // Contratto delle classi, il CSS vive nella landing:
 //   .menu-lista > .menu-voce > h3.menu-corso + p.menu-piatto (ripetibile)
-//   p.menu-nota
+//                              + p.menu-vino > span.menu-vino-nome + span.menu-vino-doc
+//   p.menu-musica · p.menu-artisti · p.menu-nota · p.menu-attesa
+const MENU_ATTESA = 'Il menù della serata sarà pubblicato qui a breve.';
 function testoMenu(s) {
   // Chi scrive il JSON non deve conoscere l'HTML: apostrofo tipografico,
   // poi escape dei caratteri che romperebbero il markup.
@@ -122,33 +136,69 @@ function menu(slug) {
   } catch (e) {
     throw errore(e.code === 'ENOENT' ? 'file mancante' : `JSON non valido (${e.message})`);
   }
+  const AMMESSE = ['portate', 'musica', 'artisti', 'nota'];
   if (!oggetto(dati)) throw errore('atteso un oggetto con "portate"');
   for (const k of Object.keys(dati)) {
-    if (k !== 'portate' && k !== 'nota') throw errore(`chiave sconosciuta "${k}" (ammesse: portate, nota)`);
+    if (!AMMESSE.includes(k)) throw errore(`chiave sconosciuta "${k}" (ammesse: ${AMMESSE.join(', ')})`);
   }
-  if (!Array.isArray(dati.portate) || !dati.portate.length) throw errore('"portate" deve essere una lista non vuota');
-  if ('nota' in dati && !pieno(dati.nota)) throw errore('"nota" vuota: si scrive il testo o si toglie la chiave');
+  if (!Array.isArray(dati.portate)) throw errore('"portate" deve essere una lista (vuota se il menù non c\'è ancora)');
+  if ('artisti' in dati && dati.artisti !== null && !Array.isArray(dati.artisti)) throw errore('"artisti" deve essere una lista di nomi');
+
+  // Menù non ancora arrivato: una riga sola, e nient'altro.
+  if (!dati.portate.length) {
+    return [`<!-- menù da ${rel}: appena arriva si riempie "portate", la pagina non si tocca -->`,
+      `<p class="menu-attesa">${testoMenu(MENU_ATTESA)}</p>`].join('\n');
+  }
 
   const voci = dati.portate.map((p, i) => {
-    if (!oggetto(p)) throw errore(`portate[${i}] deve essere un oggetto con "corso" e "piatti"`);
+    if (!oggetto(p)) throw errore(`portate[${i}] deve essere un oggetto con "corso" e "piatto" (o "piatti")`);
     for (const k of Object.keys(p)) {
-      if (k !== 'corso' && k !== 'piatti') throw errore(`portate[${i}]: chiave sconosciuta "${k}" (ammesse: corso, piatti)`);
+      if (!['corso', 'piatto', 'piatti', 'vino'].includes(k)) {
+        throw errore(`portate[${i}]: chiave sconosciuta "${k}" (ammesse: corso, piatto, piatti, vino)`);
+      }
     }
     if (!pieno(p.corso)) throw errore(`portate[${i}].corso mancante o vuoto`);
-    if (!Array.isArray(p.piatti) || !p.piatti.length) throw errore(`portate[${i}].piatti deve essere una lista non vuota`);
-    const piatti = p.piatti.map((piatto, j) => {
-      if (!pieno(piatto)) throw errore(`portate[${i}].piatti[${j}] mancante o vuoto`);
-      return `    <p class="menu-piatto">${testoMenu(piatto)}</p>`;
-    });
-    return ['  <div class="menu-voce">', `    <h3 class="menu-corso">${testoMenu(p.corso)}</h3>`, ...piatti, '  </div>'].join('\n');
+    if ('piatto' in p && 'piatti' in p) throw errore(`portate[${i}]: o "piatto" o "piatti", non tutti e due`);
+
+    let piatti;
+    if ('piatti' in p) {
+      if (!Array.isArray(p.piatti) || !p.piatti.length) throw errore(`portate[${i}].piatti deve essere una lista non vuota`);
+      piatti = p.piatti.map((piatto, j) => {
+        if (!pieno(piatto)) throw errore(`portate[${i}].piatti[${j}] mancante o vuoto`);
+        return `    <p class="menu-piatto">${testoMenu(piatto)}</p>`;
+      });
+    } else {
+      if (!pieno(p.piatto)) throw errore(`portate[${i}].piatto mancante o vuoto`);
+      piatti = [`    <p class="menu-piatto">${testoMenu(p.piatto)}</p>`];
+    }
+
+    // Vino facoltativo: null o assente = nessuna riga, nemmeno vuota.
+    let vino = [];
+    if (p.vino !== null && p.vino !== undefined) {
+      if (!oggetto(p.vino)) throw errore(`portate[${i}].vino deve essere un oggetto { nome, denominazione } oppure null`);
+      for (const k of Object.keys(p.vino)) {
+        if (k !== 'nome' && k !== 'denominazione') throw errore(`portate[${i}].vino: chiave sconosciuta "${k}" (ammesse: nome, denominazione)`);
+      }
+      if (!pieno(p.vino.nome)) throw errore(`portate[${i}].vino.nome mancante o vuoto (per togliere il vino si scrive "vino": null)`);
+      if (!pieno(p.vino.denominazione)) throw errore(`portate[${i}].vino.denominazione mancante o vuota`);
+      vino = [`    <p class="menu-vino"><span class="menu-vino-nome">${testoMenu(p.vino.nome)}</span> <span class="menu-vino-doc">${testoMenu(p.vino.denominazione)}</span></p>`];
+    }
+
+    return ['  <div class="menu-voce">', `    <h3 class="menu-corso">${testoMenu(p.corso)}</h3>`, ...piatti, ...vino, '  </div>'].join('\n');
   });
+
+  const artisti = Array.isArray(dati.artisti) ? dati.artisti.filter((a) => pieno(a)).map((a) => testoMenu(a)) : [];
+  const coda = [];
+  if (pieno(dati.musica)) coda.push(`<p class="menu-musica">${testoMenu(dati.musica)}</p>`);
+  if (artisti.length) coda.push(`<p class="menu-artisti">${artisti.join(', ')}</p>`);
+  if (pieno(dati.nota)) coda.push(`<p class="menu-nota">${testoMenu(dati.nota)}</p>`);
 
   return [
     `<!-- portate da ${rel}: si correggono lì, non qui -->`,
     '<div class="menu-lista">',
     ...voci,
     '</div>',
-    ...('nota' in dati ? [`<p class="menu-nota">${testoMenu(dati.nota)}</p>`] : []),
+    ...coda,
   ].join('\n');
 }
 

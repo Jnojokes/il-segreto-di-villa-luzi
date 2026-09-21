@@ -1,0 +1,26 @@
+{
+  "portate": [
+    {
+      "corso": "Antipasto",
+      "piatto": "Maritozzo salato ripieno di ciavuscolo, salsa di pecorino e crumble di crudo della Marca",
+      "vino": { "nome": "Monte Circe", "denominazione": "Verdicchio dei Castelli di Jesi Classico DOC" }
+    },
+    {
+      "corso": "Primo",
+      "piatto": "Paccheri Mancini con ragù di coniglio e crema di pisellini",
+      "vino": { "nome": "Brèjo", "denominazione": "Verdicchio dei Castelli di Jesi Classico Superiore DOC" }
+    },
+    {
+      "corso": "Secondo",
+      "piatto": "Guancia di manzo brasato su patate mousseline",
+      "vino": { "nome": "Ciocò", "denominazione": "Castelli di Jesi Verdicchio Riserva Classico DOCG" }
+    },
+    {
+      "corso": "Dolce",
+      "piatto": "Cuore caldo al cioccolato e gelato alle melanzane",
+      "vino": null
+    }
+  ],
+  "musica": "Musica dal vivo tra una portata e l'altra",
+  "artisti": []
+}

@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<!-- viewport-fit=cover: senza, le env(safe-area-inset-*) valgono 0 e la
+     barra fissa in basso finisce sotto l'home indicator -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- il numero in pagina non deve diventare un link tel: automatico su iOS:
+     questa serata si prenota su WhatsApp -->
+<meta name="format-detection" content="telephone=no">
+
+<title>Cena degustazione con i vini di Cantina Bacelli | Il Segreto di Villa Luzi</title>
+<meta name="description" content="Sabato 26 settembre alle 20 a Il Segreto di Villa Luzi: quattro portate, quattro calici di Cantina Bacelli e musica dal vivo. 40 € a persona.">
+<meta name="theme-color" content="#0A0A0A">
+<!-- Dominio canonico: www.villaluzi1737.com, come le altre landing evento.
+     Landing ads standalone: niente partial del sito, niente site.css,
+     pagina in BLOCKED dentro check.js. -->
+<link rel="canonical" href="https://www.villaluzi1737.com/eventi/cena-degustazione-cantina-bacelli/">
+<link rel="icon" type="image/png" href="/assets/img/LS-Icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Villa Luzi 1737">
+<meta property="og:locale" content="it_IT">
+<meta property="og:url" content="https://www.villaluzi1737.com/eventi/cena-degustazione-cantina-bacelli/">
+<meta property="og:title" content="Cena degustazione con i vini di Cantina Bacelli">
+<meta property="og:description" content="Sabato 26 settembre alle 20 a Il Segreto di Villa Luzi: quattro portate, quattro calici di Cantina Bacelli e musica dal vivo. 40 € a persona.">
+<meta property="og:image" content="https://www.villaluzi1737.com/assets/cena-degustazione-cantina-bacelli/og-cena-degustazione-cantina-bacelli.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cena degustazione con i vini di Cantina Bacelli, sabato 26 settembre alle 20:00, quattro portate e quattro calici, 40 euro a persona">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cena degustazione con i vini di Cantina Bacelli">
+<meta name="twitter:description" content="Sabato 26 settembre alle 20 a Il Segreto di Villa Luzi: quattro portate, quattro calici e musica dal vivo. 40 € a persona.">
+<meta name="twitter:image" content="https://www.villaluzi1737.com/assets/cena-degustazione-cantina-bacelli/og-cena-degustazione-cantina-bacelli.jpg">
+
+<!-- Font: Cormorant Garamond Italic e' gia' del sito, Jost e' il geometrico
+     della locandina (uno solo in piu'). Caricamento non bloccante: il testo
+     compare subito coi ripieghi di sistema e poi passa al font vero. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap"></noscript>
+
+<!-- il calice e' l'immagine dell'hero: si scarica subito -->
+<link rel="preload" as="image" fetchpriority="high"
+      imagesrcset="/assets/cena-degustazione-cantina-bacelli/calice-480.webp 480w, /assets/cena-degustazione-cantina-bacelli/calice-800.webp 800w, /assets/cena-degustazione-cantina-bacelli/calice-1100.webp 1100w"
+      imagesizes="(min-width: 700px) 460px, calc(100vw - 40px)">
+
+<!-- ══════════════ MISURAZIONE · CONFIGURAZIONE ══════════════
+     Unico posto con identificativi e testi. La logica in fondo alla pagina
+     non contiene nessun literal. Eventi di questa pagina, e nessun altro:
+       PageView     dallo snippet base
+       ViewContent  al caricamento
+       Lead         a ogni clic su WhatsApp, prima della navigazione
+     Ogni evento ha il suo eventID (UUID generato qui): il dataset riceve
+     gli stessi eventi anche da una sorgente server fuori da questo repo, e
+     senza eventID Meta non deduplica e conta ogni Lead due volte. -->
+<script>
+window.VL_TRACK = {
+  pixelId:     '5285830348309655',
+  contentName: 'cena-degustazione-cantina-bacelli',
+  numero:      '393803643888',
+  /* Il testo finisce aperto, con lo spazio finale: chi scrive completa con
+     il numero di persone invece di chiedere informazioni. La variante
+     "ho visto" parte solo da un annuncio (utm_medium=paid) e serve a
+     riconoscere in chat le prenotazioni che arrivano dalle inserzioni. */
+  testo: {
+    normale:  'Buongiorno, vorrei prenotare per la Cena Degustazione di sabato 26 settembre. Saremo in ',
+    annuncio: 'Buongiorno, ho visto la Cena Degustazione di sabato 26 settembre e vorrei prenotare. Saremo in '
+  },
+  eventId: function () {
+    try {
+      if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
+    } catch (e) {}
+    return 'cd-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+  }
+};
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', window.VL_TRACK.pixelId);
+fbq('track', 'PageView');
+/* subito, senza aspettare il DOM: chi rimbalza in due secondi deve
+   comunque entrare nel pubblico di retargeting */
+fbq('track', 'ViewContent', { content_name: window.VL_TRACK.contentName }, { eventID: window.VL_TRACK.eventId() });
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"></noscript>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Cena degustazione con i vini di Cantina Bacelli",
+  "description": "Quattro portate e quattro calici di Cantina Bacelli, con musica dal vivo tra una portata e l'altra.",
+  "startDate": "2026-09-26T20:00:00+02:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "image": "https://www.villaluzi1737.com/assets/cena-degustazione-cantina-bacelli/og-cena-degustazione-cantina-bacelli.jpg",
+  "location": {
+    "@type": "Place",
+    "name": "Il Segreto di Villa Luzi",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Contrada Chiaravalle, Passo di Treia",
+      "addressLocality": "Treia",
+      "addressRegion": "MC",
+      "addressCountry": "IT"
+    }
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "40",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://www.villaluzi1737.com/eventi/cena-degustazione-cantina-bacelli/"
+  },
+  "organizer": { "@type": "Organization", "name": "Il Segreto di Villa Luzi", "url": "https://www.villaluzi1737.com/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Villa Luzi", "item": "https://www.villaluzi1737.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Eventi", "item": "https://www.villaluzi1737.com/eventi/" },
+    { "@type": "ListItem", "position": 3, "name": "Cena degustazione" }
+  ]
+}
+</script>
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   CENA DEGUSTAZIONE · 26 settembre 2026 — landing ads standalone
+   Direzione della locandina scelta (RISONANZA): nero pieno, avorio,
+   oro per corsivi ed etichette, il calice visto dall'alto con gli
+   anelli che continuano oltre l'immagine. Impianto e componenti da
+   /eventi/pranzo-marchigiano/.
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --nero:        #0A0A0A;
+  --nero-fondo:  #050505;
+  --avorio:      #F2DFBF;                     /* 15.3:1 sul nero */
+  --avorio-velo: rgba(242, 223, 191, 0.72);   /* 7.8:1 sul nero */
+  --oro:         #D2AE71;                     /* 9.4:1 sul nero */
+  --oro-pieno:   #C4984C;                     /* fondo del badge, testo nero: 8:1 */
+  --oro-filo:    rgba(210, 174, 113, 0.45);
+  --oro-velo:    rgba(210, 174, 113, 0.14);
+
+  --display: 'Jost', 'Futura', 'Avenir Next', 'Century Gothic', system-ui, sans-serif;
+  --corsivo: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+
+  --lato: max(20px, env(safe-area-inset-left, 0px));
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --barra-h: 76px;                            /* altezza della barra fissa, la pubblica il JS */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: var(--nero); scroll-behavior: smooth; }
+body {
+  background: var(--nero);
+  color: var(--avorio);
+  font-family: var(--display);
+  font-weight: 400;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+::selection { background: var(--oro-pieno); color: var(--nero); }
+
+/* ── bottone WhatsApp: avorio pieno, l'elemento piu' chiaro della pagina ──
+   Il badge del prezzo resta oro: cosi' prezzo e azione non si confondono. */
+.btn-wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: 54px;
+  max-width: 100%;
+  padding: 0.35em 1.3em;
+  padding-left: calc(1.3em + 0.14em);         /* compensa il tracking */
+  background: var(--avorio);
+  color: var(--nero);
+  text-decoration: none;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: min(16px, 4.4vw);
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.2s var(--ease);
+}
+.btn-wa svg { width: 1.3em; height: 1.3em; fill: currentColor; flex: none; }
+.btn-wa:hover { background: #FFFFFF; }
+.btn-wa:focus-visible { outline: 2px solid var(--oro); outline-offset: 4px; }
+
+/* ═════════════════ HERO ═════════════════
+   Una colonna come la locandina. Il calice cede altezza allo schermo:
+   il bottone sta tutto sopra la piega anche a 360x640, con margine. */
+.hero {
+  position: relative;
+  padding: max(14px, env(safe-area-inset-top, 0px)) var(--lato) clamp(36px, 8vw, 64px);
+  overflow: hidden;
+}
+/* gli anelli del calice proseguono oltre l'immagine, molto tenui */
+.hero::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: var(--anelli-y, 300px);
+  width: 210vmax;
+  height: 210vmax;
+  transform: translate(-50%, -50%);
+  background: repeating-radial-gradient(circle at 50% 50%, transparent 0 22px, var(--oro-velo) 22px 23px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+.hero-colonna {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.hero-occhiello {
+  font-weight: 400;
+  font-size: min(12px, 3.3vw);
+  line-height: 1.3;
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+  text-transform: uppercase;
+  color: var(--avorio-velo);
+}
+/* una riga sola come sulla locandina: 7.7vw tiene "CENA DEGUSTAZIONE"
+   dentro i 320px utili di uno schermo da 360 */
+.hero-titolo {
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: min(7.7vw, 34px);
+  line-height: 1.05;
+  letter-spacing: 0.06em;
+  padding-left: 0.06em;
+  text-transform: uppercase;
+  color: var(--avorio);
+}
+.hero-sottotitolo {
+  margin-top: 6px;
+  font-family: var(--corsivo);
+  font-style: italic;
+  font-weight: 400;
+  font-size: min(21px, 5.8vw);
+  line-height: 1.25;
+  color: var(--oro);
+}
+.hero-calice {
+  width: min(100%, 420px);
+  margin: 10px auto 0;
+  /* il bordo sfuma nel nero della pagina: niente quadrato visibile */
+  -webkit-mask-image: radial-gradient(circle closest-side at 50% 50%, #000 70%, rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(circle closest-side at 50% 50%, #000 70%, rgba(0, 0, 0, 0) 100%);
+}
+@supports (height: 1svh) {
+  /* su schermi bassi il calice si stringe, il bottone resta sopra la piega */
+  .hero-calice { width: min(100%, 420px, calc(100svh - 400px)); min-width: 150px; }
+}
+.hero-formula {
+  margin-top: 12px;
+  font-weight: 500;
+  font-size: min(22px, 6.1vw);
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  padding-left: 0.14em;
+  text-transform: uppercase;
+  color: var(--avorio);
+}
+.hero-musica {
+  margin-top: 4px;
+  font-family: var(--corsivo);
+  font-style: italic;
+  font-size: min(18px, 5vw);
+  line-height: 1.3;
+  color: var(--oro);
+}
+/* data e ora: due blocchi separati da spazio, mai da un segno */
+.hero-quando {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4em 1.6em;
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: min(15px, 3.9vw);
+  line-height: 1.3;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--avorio);
+}
+.hero-prezzo {
+  margin-top: 12px;
+  padding: 0.42em 0.9em 0.38em;
+  background: var(--oro-pieno);
+  color: var(--nero);
+  font-weight: 600;
+  font-size: min(22px, 6vw);
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+  padding-left: calc(0.9em + 0.08em);
+  text-transform: uppercase;
+}
+.hero .btn-wa { margin-top: 14px; }
+
+@media (min-width: 700px) {
+  .hero { padding-top: clamp(24px, 4vh, 44px); }
+  .hero-occhiello { font-size: 14px; }
+  .hero-titolo { font-size: min(60px, 8.2vw); margin-top: 14px; }
+  .hero-sottotitolo { font-size: 30px; margin-top: 8px; }
+  .hero-calice { width: min(100%, 460px); margin-top: 14px; }
+  @supports (height: 1svh) {
+    .hero-calice { width: min(100%, 460px, calc(100svh - 530px)); min-width: 220px; }
+  }
+  .hero-formula { font-size: 30px; margin-top: 18px; }
+  .hero-musica { font-size: 24px; margin-top: 6px; }
+  .hero-quando { font-size: 19px; margin-top: 14px; gap: 0.4em 2.4em; }
+  .hero-prezzo { font-size: 30px; margin-top: 18px; }
+  .hero .btn-wa { margin-top: 22px; font-size: 18px; min-height: 60px; padding-inline: 1.7em calc(1.7em + 0.14em); }
+}
+
+/* ═════════════════ SEZIONI ═════════════════ */
+.sezione { padding: clamp(56px, 12vw, 104px) var(--lato); }
+.sezione-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+.sez-occhiello {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+  text-transform: uppercase;
+  color: var(--avorio-velo);
+}
+.sez-titolo {
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: clamp(34px, 9vw, 52px);
+  line-height: 1.05;
+  letter-spacing: 0.1em;
+  padding-left: 0.1em;
+  text-transform: uppercase;
+  color: var(--avorio);
+}
+.sez-sottotitolo {
+  margin-top: 6px;
+  font-family: var(--corsivo);
+  font-style: italic;
+  font-size: clamp(19px, 5vw, 24px);
+  line-height: 1.3;
+  color: var(--oro);
+}
+/* filetto oro fra le sezioni, largo quanto il contenuto */
+.sezione + .sezione,
+.chiusura { position: relative; }
+.sezione + .sezione::before,
+.chiusura::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: var(--lato);
+  right: var(--lato);
+  max-width: 1080px;
+  margin: 0 auto;
+  border-top: 1px solid var(--oro-filo);
+}
+
+/* ── il menù ──
+   Le portate arrivano da content/eventi/cena-degustazione-cantina-bacelli.menu.json,
+   rese da build.js. Il vino del dolce non c'e' ancora: nel JSON e' null e
+   qui non compare nessuna riga. */
+.menu-lista { max-width: 620px; margin: clamp(30px, 6vw, 48px) auto 0; }
+.menu-voce + .menu-voce { margin-top: clamp(24px, 5.5vw, 34px); }
+.menu-corso {
+  display: flex;
+  align-items: center;
+  gap: 0.9em;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--oro);
+}
+.menu-corso::before,
+.menu-corso::after { content: ""; flex: 1; border-top: 1px solid var(--oro-filo); }
+.menu-corso::before { margin-right: 0.3em; }   /* pareggia il tracking finale */
+.menu-piatto {
+  margin-top: 10px;
+  font-family: var(--corsivo);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(21px, 5.6vw, 27px);
+  line-height: 1.3;
+  color: var(--avorio);
+  text-wrap: balance;
+}
+.menu-vino { margin-top: 7px; line-height: 1.4; }
+.menu-vino-nome {
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--oro);
+  white-space: nowrap;
+}
+.menu-vino-doc {
+  font-family: var(--corsivo);
+  font-style: italic;
+  font-size: clamp(15px, 4vw, 17px);
+  color: var(--avorio-velo);
+}
+.menu-musica {
+  margin-top: clamp(28px, 6vw, 40px);
+  font-family: var(--corsivo);
+  font-style: italic;
+  font-size: clamp(18px, 4.8vw, 21px);
+  line-height: 1.35;
+  color: var(--oro);
+}
+.menu-artisti,
+.menu-nota {
+  margin-top: 8px;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  padding-left: 0.2em;
+  text-transform: uppercase;
+  color: var(--avorio-velo);
+}
+/* riga d'attesa quando il menù non c'e' ancora (vedi build.js) */
+.menu-attesa {
+  margin-top: clamp(26px, 6vw, 40px);
+  font-family: var(--corsivo);
+  font-style: italic;
+  font-size: clamp(19px, 5vw, 23px);
+  line-height: 1.4;
+  color: var(--avorio-velo);
+}
+
+/* ── le tre righe pratiche: quando, quanto, dove ──
+   La griglia porta gia' il suo filetto sopra: qui si spegne quello di
+   sezione, altrimenti si vedono due righe d'oro a pochi pixel. */
+.pratiche { padding-top: clamp(38px, 8vw, 68px); }
+.pratiche::before { content: none; }
+.righe {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--oro-filo);
+  border-bottom: 1px solid var(--oro-filo);
+}
+.riga { padding: 24px 8px 26px; text-align: center; }
+.riga + .riga { border-top: 1px solid var(--oro-filo); }
+.riga dt {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+  text-transform: uppercase;
+  color: var(--oro);
+}
+.riga dd { margin-top: 8px; }
+.riga-dato {
+  display: block;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  padding-left: 0.1em;
+  text-transform: uppercase;
+  color: var(--avorio);
+}
+.riga-dettaglio {
+  display: block;
+  margin-top: 5px;
+  font-family: var(--corsivo);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--avorio-velo);
+}
+@media (min-width: 1080px) {
+  .righe { grid-template-columns: repeat(3, 1fr); }
+  .riga { padding: 36px 16px 38px; }
+  .riga + .riga { border-top: 0; border-left: 1px solid var(--oro-filo); }
+}
+
+/* ── i due loghi, come in fondo alla locandina ── */
+.loghi {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(22px, 7vw, 46px);
+  margin: clamp(28px, 6vw, 44px) auto 0;
+}
+.loghi img { width: auto; }
+.logo-segreto { height: clamp(78px, 20vw, 104px); }
+.logo-bacelli { height: clamp(62px, 16vw, 84px); }
+.loghi-filo { width: 1px; align-self: stretch; background: var(--oro-filo); }
+
+/* ── come si prenota ── */
+.prenota-testo {
+  max-width: 30em;
+  margin: clamp(22px, 5vw, 32px) auto 0;
+  font-family: var(--corsivo);
+  font-style: italic;
+  font-size: clamp(20px, 5.2vw, 25px);
+  line-height: 1.4;
+  color: var(--avorio);
+  text-wrap: pretty;
+}
+.prenota-numero { font-style: normal; font-family: var(--display); font-weight: 500; font-size: 0.82em; letter-spacing: 0.1em; white-space: nowrap; }
+.prenota .btn-wa { margin-top: clamp(24px, 5.5vw, 34px); }
+
+/* ═════════════════ CHIUSURA ═════════════════ */
+.chiusura {
+  background: var(--nero-fondo);
+  padding: clamp(50px, 10vw, 84px) var(--lato) calc(clamp(36px, 7vw, 56px) + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+}
+.chiusura-inner { max-width: 720px; margin: 0 auto; }
+.chiusura-nome {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.3;
+  letter-spacing: 0.16em;
+  padding-left: 0.16em;
+  text-transform: uppercase;
+  color: var(--avorio);
+}
+.chiusura-indirizzo {
+  margin-top: 8px;
+  font-style: italic;
+  font-family: var(--corsivo);
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--avorio-velo);
+}
+.mappa {
+  margin-top: 24px;
+  aspect-ratio: 16 / 10;
+  max-height: 360px;
+  width: 100%;
+  background: #161616;
+  border: 1px solid var(--oro-filo);
+  overflow: hidden;
+}
+/* la mappa a colori sarebbe l'unica macchia colorata della pagina:
+   in scala di grigi e invertita sta nel nero */
+.mappa iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(1) invert(0.92) contrast(0.9);
+}
+.chiusura-link {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 10px 2px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.2;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--oro);
+  border-bottom: 1px solid var(--oro-filo);
+}
+.chiusura-link:hover { border-color: var(--oro); }
+.chiusura-link:focus-visible { outline: 2px solid var(--oro); outline-offset: 3px; }
+.chiusura-legale {
+  margin-top: clamp(28px, 6vw, 40px);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--avorio-velo);
+}
+
+/* ═════ BARRA FISSA (solo telefono) ═════
+   Compare quando il bottone dell'hero esce dallo schermo e sparisce
+   quando la CTA finale e' in vista: non copre mai un bottone gia' li'. */
+.barra {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  display: none;
+  padding: 11px calc(14px + env(safe-area-inset-right, 0px)) calc(11px + env(safe-area-inset-bottom, 0px)) calc(14px + env(safe-area-inset-left, 0px));
+  background: var(--nero-fondo);
+  border-top: 1px solid var(--oro-filo);
+  transform: translateY(110%);
+  transition: transform 0.28s var(--ease);
+}
+.barra .btn-wa { display: flex; width: 100%; }
+.barra.visibile { transform: none; }
+@media (max-width: 699px) {
+  .barra { display: block; }
+  /* lo spazio che la barra copre lo restituisce il body, altrimenti
+     l'ultima riga della chiusura resta sotto */
+  body { padding-bottom: var(--barra-h); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .barra { transition: none; }
+  .btn-wa { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- glifo WhatsApp, uno solo per tutti i bottoni -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ico-wa" viewBox="0 0 24 24">
+    <path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+  </symbol>
+</svg>
+
+<main>
+
+  <!-- ═════ HERO ═════
+       Il testo della locandina e' tutto HTML: l'immagine e' il solo calice,
+       senza testo, ritagliato dall'arte della locandina RISONANZA. -->
+  <section class="hero" aria-labelledby="titolo">
+    <div class="hero-colonna">
+      <p class="hero-occhiello">Il Segreto di Villa Luzi</p>
+      <h1 class="hero-titolo" id="titolo">Cena degustazione</h1>
+      <p class="hero-sottotitolo">con i vini di Cantina Bacelli</p>
+
+      <img class="hero-calice"
+           src="/assets/cena-degustazione-cantina-bacelli/calice-800.webp"
+           srcset="/assets/cena-degustazione-cantina-bacelli/calice-480.webp 480w, /assets/cena-degustazione-cantina-bacelli/calice-800.webp 800w, /assets/cena-degustazione-cantina-bacelli/calice-1100.webp 1100w"
+           sizes="(min-width: 700px) 460px, calc(100vw - 40px)"
+           width="1100" height="1100" fetchpriority="high"
+           alt="Un calice di Verdicchio visto dall'alto, con anelli dorati che si allargano attorno">
+
+      <p class="hero-formula">4 portate 4 calici</p>
+      <p class="hero-musica">musica dal vivo tra una portata e l&rsquo;altra</p>
+      <p class="hero-quando">
+        <span><time datetime="2026-09-26">Sabato 26 settembre</time></span>
+        <span>ore 20:00</span>
+      </p>
+      <p class="hero-prezzo">€ 40 a persona</p>
+
+      <a class="btn-wa" data-wa data-cta="hero"
+         href="https://wa.me/393803643888?text=Buongiorno%2C%20vorrei%20prenotare%20per%20la%20Cena%20Degustazione%20di%20sabato%2026%20settembre.%20Saremo%20in%20"
+         target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#ico-wa"></use></svg>
+        <span>Prenota su WhatsApp</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═════ IL MENÙ ═════
+       I piatti NON si scrivono qui: stanno in
+       content/eventi/cena-degustazione-cantina-bacelli.menu.json e build.js
+       li rende al posto del marker. Il vino del dolce e i nomi degli
+       artisti non ci sono ancora: nel JSON restano null e vuoti, e in
+       pagina non compare nessuna riga al loro posto. -->
+  <section class="sezione menu" aria-labelledby="menu-titolo">
+    <div class="sezione-inner">
+      <p class="sez-occhiello">Cena degustazione</p>
+      <h2 class="sez-titolo" id="menu-titolo">Menù</h2>
+      <p class="sez-sottotitolo">con i vini di Cantina Bacelli</p>
+      <!-- @menu:cena-degustazione-cantina-bacelli -->
+    </div>
+  </section>
+
+  <!-- ═════ LE TRE RIGHE PRATICHE ═════ -->
+  <section class="sezione pratiche" aria-label="Quando, quanto e dove">
+    <dl class="righe">
+      <div class="riga">
+        <dt>Quando</dt>
+        <dd>
+          <span class="riga-dato">Sabato 26 settembre</span>
+          <span class="riga-dettaglio">ore 20:00</span>
+        </dd>
+      </div>
+      <div class="riga">
+        <dt>Quanto</dt>
+        <dd>
+          <span class="riga-dato">€ 40 a persona</span>
+          <span class="riga-dettaglio">quattro portate, quattro calici</span>
+        </dd>
+      </div>
+      <div class="riga">
+        <dt>Dove</dt>
+        <dd>
+          <span class="riga-dato">Il Segreto di Villa Luzi</span>
+          <span class="riga-dettaglio">Contrada Chiaravalle, Passo di Treia (MC)</span>
+        </dd>
+      </div>
+    </dl>
+
+    <!-- i due loghi affiancati, come in fondo alla locandina -->
+    <div class="loghi">
+      <img class="logo-segreto" src="/assets/cena-degustazione-cantina-bacelli/logo-il-segreto-360.webp"
+           width="360" height="388" loading="lazy" decoding="async"
+           alt="Il Segreto, Dove il tempo si ferma">
+      <span class="loghi-filo" aria-hidden="true"></span>
+      <img class="logo-bacelli" src="/assets/cena-degustazione-cantina-bacelli/logo-cantina-bacelli-480.webp"
+           width="480" height="357" loading="lazy" decoding="async"
+           alt="Cantina Bacelli">
+    </div>
+  </section>
+
+  <!-- ═════ COME SI PRENOTA ═════
+       La CTA finale. Niente form, niente altri numeri. Non si scrive che la
+       prenotazione e' obbligatoria: non ce l'hanno detto. -->
+  <section class="sezione prenota" id="prenota" aria-labelledby="prenota-titolo">
+    <div class="sezione-inner">
+      <h2 class="sez-titolo" id="prenota-titolo">Come si prenota</h2>
+      <p class="prenota-testo">Le prenotazioni si fanno su WhatsApp, al numero <span class="prenota-numero">380 364 3888</span>.</p>
+      <a class="btn-wa" data-wa data-cta="fine"
+         href="https://wa.me/393803643888?text=Buongiorno%2C%20vorrei%20prenotare%20per%20la%20Cena%20Degustazione%20di%20sabato%2026%20settembre.%20Saremo%20in%20"
+         target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#ico-wa"></use></svg>
+        <span>Prenota su WhatsApp</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═════ CHIUSURA · indirizzo e mappa ═════
+     L'indirizzo scritto e' quello del cliente, senza civico. Mappa e link
+     sono quelli gia' in repo e cercano "Contrada Chiaravalle 49": e' la
+     ricerca che mette il segnaposto sulla villa. -->
+<footer class="chiusura">
+  <div class="chiusura-inner">
+    <p class="chiusura-nome">Il Segreto di Villa Luzi</p>
+    <address class="chiusura-indirizzo">Contrada Chiaravalle, Passo di Treia (MC)</address>
+    <div class="mappa">
+      <iframe src="https://maps.google.com/maps?q=Contrada%20Chiaravalle%2049%20Treia%20MC&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+              title="Mappa: Il Segreto di Villa Luzi, Contrada Chiaravalle, Passo di Treia (MC)"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <a class="chiusura-link" href="https://maps.google.com/?q=Contrada+Chiaravalle+49,+62010+Treia+MC" target="_blank" rel="noopener">Apri in Google Maps</a>
+    <p class="chiusura-legale">© 2026 Villa Luzi, P.IVA 02184340434</p>
+  </div>
+</footer>
+
+<!-- barra fissa col bottone, solo sotto i 700px -->
+<div class="barra" id="barra">
+  <a class="btn-wa" data-wa data-cta="barra"
+     href="https://wa.me/393803643888?text=Buongiorno%2C%20vorrei%20prenotare%20per%20la%20Cena%20Degustazione%20di%20sabato%2026%20settembre.%20Saremo%20in%20"
+     target="_blank" rel="noopener">
+    <svg aria-hidden="true"><use href="#ico-wa"></use></svg>
+    <span>Prenota su WhatsApp</span>
+  </a>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   WHATSAPP E MISURAZIONE
+
+   1. TESTO PRECOMPILATO. L'href in HTML porta gia' il testo normale, cosi'
+      senza JavaScript funziona tutto. Al caricamento, se si arriva da un
+      annuncio (utm_medium=paid), il testo diventa la variante "ho visto":
+      in chat si riconoscono le prenotazioni che arrivano dalle inserzioni.
+      Il testo finisce con uno spazio, aperto, e resta %20 fino in fondo:
+      si costruisce l'href a mano perche' URL/searchParams riserializza la
+      query e trasforma i %20 in "+", che non tutti i client WhatsApp
+      rileggono come spazio.
+
+   2. APERTURA DELL'APP dal browser interno di Instagram e Facebook, dove
+      wa.me atterra su una pagina intermedia. Su iOS si prova lo schema
+      whatsapp://, su Android l'intent:// col fallback dichiarato; se dopo
+      1,5 s la pagina e' ancora in primo piano si va su wa.me. Fuori da quei
+      browser non si tocca niente: il link fa il suo lavoro.
+
+   3. MISURAZIONE. Un solo listener delegato (due meccanismi insieme
+      farebbero partire due Lead per clic) e uno stampo per elemento contro
+      il doppio tap. Il Lead parte PRIMA della navigazione, con eventID.
+   ═══════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+  var d = document, w = window, c = w.VL_TRACK;
+  var ua = navigator.userAgent || '';
+  var iOS = /iPhone|iPad|iPod/i.test(ua);
+  var android = /Android/i.test(ua);
+  var inApp = /Instagram|FBAN|FBAV|FB_IAB/i.test(ua);
+
+  /* ── 1. testo precompilato ── */
+  var daAnnuncio = false;
+  try {
+    daAnnuncio = (new URLSearchParams(w.location.search).get('utm_medium') || '').toLowerCase() === 'paid';
+  } catch (e) {}
+  var testo = daAnnuncio ? c.testo.annuncio : c.testo.normale;
+  var wa = 'https://wa.me/' + c.numero + '?text=' + encodeURIComponent(testo);
+  var link = d.querySelectorAll('a[data-wa]');
+  if (daAnnuncio) {
+    Array.prototype.forEach.call(link, function (a) { a.setAttribute('href', wa); });
+  }
+
+  /* ── 2. apertura diretta dell'app ── */
+  function apriApp(href) {
+    var schema = iOS
+      ? 'whatsapp://send?phone=' + c.numero + '&text=' + encodeURIComponent(testo)
+      : 'intent://send/?phone=' + c.numero + '&text=' + encodeURIComponent(testo) +
+        '#Intent;scheme=whatsapp;package=com.whatsapp;S.browser_fallback_url=' + encodeURIComponent(href) + ';end';
+    var uscito = false;
+    function nascosta() { if (d.hidden) uscito = true; }
+    d.addEventListener('visibilitychange', nascosta);
+    w.setTimeout(function () {
+      d.removeEventListener('visibilitychange', nascosta);
+      if (!uscito && !d.hidden) w.location.href = href;   /* l'app non ha risposto: wa.me */
+    }, 1500);
+    w.location.href = schema;
+  }
+
+  /* ── 3. un solo Lead per clic, prima della navigazione ── */
+  d.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!t || !t.closest) return;
+    var a = t.closest('a[data-wa]');
+    if (!a) return;
+
+    var ora = Date.now();
+    if (ora - (+a.getAttribute('data-lead-at') || 0) < 900) { e.preventDefault(); return; }
+    a.setAttribute('data-lead-at', ora);
+
+    try {
+      var id = c.eventId();
+      a.setAttribute('data-event-id', id);
+      if (typeof w.fbq === 'function') {
+        w.fbq('track', 'Lead', {
+          content_name: c.contentName,
+          cta: a.getAttribute('data-cta') || 'pagina'
+        }, { eventID: id });
+      }
+    } catch (err) { /* il tracciamento non deve MAI bloccare il clic */ }
+
+    if (inApp && (iOS || android)) {
+      e.preventDefault();
+      apriApp(a.getAttribute('href'));
+    }
+  });
+
+  /* ── la barra fissa ──
+     Si mostra quando il bottone dell'hero e' uscito dallo schermo e si
+     ritira quando la CTA finale e' in vista. Senza IntersectionObserver
+     resta nascosta: in pagina ci sono gia' due bottoni. */
+  var barra = d.getElementById('barra');
+  var heroCta = d.querySelector('.hero .btn-wa');
+  var fineCta = d.querySelector('.prenota .btn-wa');
+  if (barra && heroCta && fineCta && 'IntersectionObserver' in w) {
+    var visibile = { hero: true, fine: false };
+    var aggiorna = function () {
+      barra.classList.toggle('visibile', !visibile.hero && !visibile.fine);
+    };
+    var osserva = function (el, chiave) {
+      new IntersectionObserver(function (voci) {
+        visibile[chiave] = voci[0].isIntersecting;
+        aggiorna();
+      }, { rootMargin: '0px 0px -12% 0px' }).observe(el);
+    };
+    osserva(heroCta, 'hero');
+    osserva(fineCta, 'fine');
+
+    /* la barra copre il fondo della pagina: lo spazio lo restituisce il body */
+    if ('ResizeObserver' in w) {
+      new ResizeObserver(function () {
+        var h = Math.ceil(barra.getBoundingClientRect().height);
+        if (h > 0) d.documentElement.style.setProperty('--barra-h', h + 'px');
+      }).observe(barra);
+    }
+  }
+
+  /* gli anelli in CSS partono dal centro del calice, non da un punto fisso */
+  var calice = d.querySelector('.hero-calice');
+  if (calice) {
+    var centra = function () {
+      var hero = d.querySelector('.hero');
+      var y = calice.getBoundingClientRect().top - hero.getBoundingClientRect().top + calice.offsetHeight / 2;
+      hero.style.setProperty('--anelli-y', Math.round(y) + 'px');
+    };
+    if (calice.complete) centra(); else calice.addEventListener('load', centra);
+    w.addEventListener('resize', centra);
+  }
+})();
+</script>
+
+</body>
+</html>
