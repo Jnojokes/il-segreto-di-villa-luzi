@@ -83,6 +83,15 @@
         ],
         "createdAt": "2026-09-21T13:51:46.580Z",
         "reason": "Scelta di progetto di Claude sul brief del cliente (non conferma dell'utente): la locandina scelta si chiama RISONANZA ed e' fatta di anelli concentrici attorno al calice. Il repeating-radial-gradient prosegue quegli anelli oltre il bordo dell'immagine, centrato sul calice via JS, a opacita' effettiva ~0.07: e' il motivo dell'arte, non una texture a righe aggiunta per riempire. Il brief lo chiede esplicitamente: «Gli anelli attorno al calice possono continuare in CSS sui lati dello schermo, con un repeating-radial-gradient sottile in oro a bassa opacita'»."
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "eventi/cena-pata-negra/index.html"
+        ],
+        "createdAt": "2026-09-21T13:59:26.716Z",
+        "reason": "Falso positivo (verifica di Claude, non dell'utente), come sulle altre due landing nere: il detector legge testo #000000 su fondo nero, che in pagina non esiste (probabile lettura letterale di a { color: inherit }). Contrasto WCAG misurato in Chrome con colori calcolati e alpha compositati: 36 blocchi di testo, minimo 6.67:1 (badge oro con testo nero), nessuno sotto soglia. Script: scratchpad/pm/contrasto.mjs"
       }
     ]
   }

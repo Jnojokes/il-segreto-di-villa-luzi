@@ -29,6 +29,7 @@ const BLOCKED = new Set([
   'eventi/candle-experience/index.html',
   'eventi/pranzo-marchigiano/index.html',
   'eventi/cena-degustazione-cantina-bacelli/index.html',
+  'eventi/cena-pata-negra/index.html',
   'pranzo-e-piscina/index.html',
   // Menù QR da tavolo: standalone, noindex, niente nav del sito. L'unico
   // link interno è il selettore fra le due facce della stessa carta.
