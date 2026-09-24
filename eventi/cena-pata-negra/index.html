@@ -383,9 +383,9 @@ a { color: inherit; }
 }
 .racconto p + p { margin-top: 0.7em; }
 
-/* ── il menù: oggi non c'e' ancora ──
-   La riga d'attesa arriva da build.js: quando content/eventi/cena-pata-negra.menu.json
-   avra' le portate, questa sezione si riempira' da sola. */
+/* ── il menù ──
+   Le portate arrivano da build.js, lette da content/eventi/cena-pata-negra.menu.json:
+   con "portate" vuoto resta la sola riga d'attesa (.menu-attesa). */
 .menu-lista { max-width: 620px; margin: clamp(30px, 6vw, 48px) auto 0; }
 .menu-voce + .menu-voce { margin-top: clamp(24px, 5.5vw, 34px); }
 .menu-corso {
@@ -427,7 +427,8 @@ a { color: inherit; }
   color: var(--avorio-velo);
 }
 .menu-musica,
-.menu-attesa {
+.menu-attesa,
+.menu-nota {
   margin-top: clamp(26px, 6vw, 40px);
   font-family: var(--corsivo);
   font-style: italic;
@@ -435,8 +436,9 @@ a { color: inherit; }
   line-height: 1.4;
   color: var(--avorio-velo);
 }
-.menu-artisti,
-.menu-nota {
+/* la nota chiude l'elenco in corsivo oro, come sul post del menù */
+.menu-nota { font-weight: 600; color: var(--oro-chiaro); }
+.menu-artisti {
   margin-top: 8px;
   font-weight: 600;
   font-size: 13px;
@@ -663,9 +665,9 @@ a { color: inherit; }
   </section>
 
   <!-- ═════ IL MENÙ ═════
-       Il menù non e' ancora arrivato: content/eventi/cena-pata-negra.menu.json
-       ha "portate" vuoto e build.js rende la sola riga d'attesa. Quando la
-       cucina manda i piatti si riempie il JSON, la pagina non si tocca. -->
+       Le portate stanno in content/eventi/cena-pata-negra.menu.json (dallo chef,
+       24/9): build.js le rende al marker qui sotto. Un piatto si corregge nel
+       JSON, la pagina non si tocca. -->
   <section class="sezione menu" aria-labelledby="menu-titolo">
     <div class="sezione-inner">
       <p class="sez-occhiello">Cena Pata Negra</p>

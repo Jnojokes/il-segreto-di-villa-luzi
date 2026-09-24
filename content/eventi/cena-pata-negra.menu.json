@@ -1,1 +1,9 @@
-{ "portate": [], "nota": "Bevande incluse" }
+{
+  "portate": [
+    { "corso": "Antipasto", "piatto": "Pata negra, fichi, pecorino e miele" },
+    { "corso": "Primo", "piatto": "Risotto zucca, amaretti e polvere di pata negra" },
+    { "corso": "Secondo", "piatto": "Carré di maiale arrosto, mele e taleggio, cavolfiore prezzemolato e pata negra croccante" },
+    { "corso": "Dessert", "piatto": "Millefoglie, crema chantilly e pere caramellate" }
+  ],
+  "nota": "Bevande incluse"
+}
