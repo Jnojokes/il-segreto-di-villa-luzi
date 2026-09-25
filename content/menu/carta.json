@@ -8,13 +8,13 @@
       {"nome": "Tagliere Degustazione", "descrizione": "con zuppa e trippa della tradizione", "prezzo": 18},
       {"nome": "Coratella d’Agnello", "descrizione": "con cipolla", "prezzo": 8},
       {"nome": "Carpaccio di Manzo", "descrizione": "su panella di ceci e insalata di finocchi", "prezzo": 15},
-      {"nome": "Degustazione di Formaggi", "prezzo": 18},
+      {"nome": "Degustazione di Formaggi", "prezzo": 15},
       {"nome": "Prosciutto al Coltello di Suino della Marca IGP", "prezzo": 18},
       {"nome": "Prosciutto Pata Negra al Coltello", "descrizione": "100 g", "prezzo": 28}
     ]},
     {"id": "primi", "titolo": "Primi piatti", "piatti": [
       {"nome": "Tagliatelle ai Porcini", "descrizione": "con guanciale croccante", "prezzo": 18},
-      {"nome": "Pappardelle al Cinghiale", "descrizione": "con frutti di bosco", "prezzo": 14},
+      {"nome": "Pappardelle al Cinghiale", "descrizione": "con frutti di bosco", "prezzo": 16},
       {"nome": "Gnocchi de lu Vatte", "prezzo": 15},
       {"nome": "Spaghettone alla Gricia", "prezzo": 12},
       {"nome": "Tortellini in Brodo di Gallina", "prezzo": 15}
