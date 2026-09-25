@@ -834,6 +834,8 @@ section { position: relative; padding: 140px 32px; }
   font-size: 17px;
   color: var(--avorio);
   line-height: 1.25;
+  /* niente parola sola in fondo ("Gorgonzola", "Coltello" a 390px) */
+  text-wrap: pretty;
 }
 .menu-card .menu-item-desc {
   font-family: 'Cormorant Garamond', serif;
@@ -2136,6 +2138,9 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
     </p>
   </div>
 
+  <!-- Piatti, prezzi, note e conteggi delle carte arrivano da
+       content/menu/carta.json, la stessa fonte di /menu/: si cambiano lì.
+       Qui restano titoli, icone e il posto di ogni nota (vedi carta() in build.js). -->
   <div class="menu-layout">
 
     <article class="menu-card open" data-cat="antipasti">
@@ -2144,53 +2149,11 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v8a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V3"/><path d="M7 13v8"/><path d="M17 3c-1.5 0-3 2-3 5s1.5 5 3 5v8"/></svg>
         </span>
         <span class="menu-card-name">Antipasti</span>
-        <span class="menu-card-count">7</span>
+        <span class="menu-card-count"><!-- @carta-conta:antipasti --></span>
         <svg class="menu-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="menu-card-body-wrap"><div class="menu-card-body"><div class="menu-card-body-inner" id="cat-antipasti">
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Selezione di Salumi e Formaggi</span>
-            <span class="menu-item-desc">confetture artigianali e crescia · degustazione per due</span>
-          </div>
-          <span class="menu-item-price">€ 30,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main"><span class="menu-item-name">Il Nostro Vitello Tonnato</span></div>
-          <span class="menu-item-price">€ 15,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Carpaccio di Carne Salada</span>
-            <span class="menu-item-desc">panella di ceci, misticanza, scaglie di Castelmagno DOP e miele di corbezzolo</span>
-          </div>
-          <span class="menu-item-price">€ 18,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Battuta di Pomodoro</span>
-            <span class="menu-item-desc">burrata, colatura di alici, olio al basilico e cialda di pane</span>
-          </div>
-          <span class="menu-item-price">€ 12,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Torre di Melanzane</span>
-            <span class="menu-item-desc">bufala e pomodoro grigliato</span>
-          </div>
-          <span class="menu-item-price">€ 12,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Prosciutto al Coltello</span>
-            <span class="menu-item-desc">suino della Marca IGP</span>
-          </div>
-          <span class="menu-item-price">€ 18,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main"><span class="menu-item-name">Prosciutto Pata Negra al Coltello</span></div>
-          <span class="menu-item-price">€ 28,00 / hg</span>
-        </div>
+        <!-- @carta-segreto:antipasti -->
       </div></div></div>
     </article>
 
@@ -2200,52 +2163,11 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M7 4c0 4 5 6 5 6s5-2 5-6"/><path d="M7 11c0 4 5 6 5 6s5-2 5-6"/><path d="M7 18c0 2 5 4 5 4s5-2 5-4"/></svg>
         </span>
         <span class="menu-card-name">Primi</span>
-        <span class="menu-card-count">6</span>
+        <span class="menu-card-count"><!-- @carta-conta:primi --></span>
         <svg class="menu-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="menu-card-body-wrap"><div class="menu-card-body"><div class="menu-card-body-inner" id="cat-primi">
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Tortelloni Verdi di Rucola</span>
-            <span class="menu-item-desc">ripieni di cicoria ripassata, erbe di campo e ricotta · burro demi-sel, maggiorana, parmigiano e riduzione di aceto balsamico</span>
-          </div>
-          <span class="menu-item-price">€ 16,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Paccheri Selezione Mancini</span>
-            <span class="menu-item-desc">coniglio di Arcevia, crema di melanzane arrosto, mandorle siciliane tostate e menta fresca</span>
-          </div>
-          <span class="menu-item-price">€ 15,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Gnocchi di Patate</span>
-            <span class="menu-item-desc">ragù di salsicce, datterini rossi e gialli</span>
-          </div>
-          <span class="menu-item-price">€ 13,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Tagliatelle Paglia e Fieno</span>
-            <span class="menu-item-desc">anatra, birra, salsa di pane e polvere di olive nere</span>
-          </div>
-          <span class="menu-item-price">€ 15,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Fusilloni Mancini</span>
-            <span class="menu-item-desc">dall'orto al piatto e ricotta salata</span>
-          </div>
-          <span class="menu-item-price">€ 12,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Spaghettoni Mancini</span>
-            <span class="menu-item-desc">alla gricia della Marca</span>
-          </div>
-          <span class="menu-item-price">€ 13,00</span>
-        </div>
+        <!-- @carta-segreto:primi -->
       </div></div></div>
     </article>
 
@@ -2255,45 +2177,11 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2 0 4 1 4 4s-2 4-2 6 2 3 2 5-2 3-4 3-4-1-4-3 2-3 2-5-2-3-2-6 2-4 4-4z"/></svg>
         </span>
         <span class="menu-card-name">Secondi</span>
-        <span class="menu-card-count">5</span>
+        <span class="menu-card-count"><!-- @carta-conta:secondi --></span>
         <svg class="menu-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="menu-card-body-wrap"><div class="menu-card-body"><div class="menu-card-body-inner" id="cat-secondi">
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Carré d'Agnello Neozelandese CBT</span>
-            <span class="menu-item-desc">fagiolini alla brace e pesca caramellata</span>
-          </div>
-          <span class="menu-item-price">€ 20,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Tagliata di Manzo Argentino</span>
-            <span class="menu-item-desc">frutta estiva e salsa teriyaki</span>
-          </div>
-          <span class="menu-item-price">€ 30,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Coniglio in Agrodolce</span>
-            <span class="menu-item-desc">di caponata siciliana</span>
-          </div>
-          <span class="menu-item-price">€ 18,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Assortimento di Carne alla Brace</span>
-            <span class="menu-item-desc">con patate Anna</span>
-          </div>
-          <span class="menu-item-price">€ 25,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Tataki d'Anguria</span>
-            <span class="menu-item-desc">feta e germogli di soia</span>
-          </div>
-          <span class="menu-item-price">€ 16,00</span>
-        </div>
+        <!-- @carta-segreto:secondi -->
       </div></div></div>
     </article>
 
@@ -2303,134 +2191,15 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7 12 21l8.5-14z"/><path d="M3.5 7c5-2.4 12-2.4 17 0"/><circle cx="10" cy="10" r=".7" fill="currentColor" stroke="none"/><circle cx="13.6" cy="12" r=".7" fill="currentColor" stroke="none"/><circle cx="11.4" cy="15" r=".7" fill="currentColor" stroke="none"/></svg>
         </span>
         <span class="menu-card-name">Pizze</span>
-        <span class="menu-card-count">17</span>
+        <span class="menu-card-count"><!-- @carta-conta:pizze-rosse+pizze-bianche --></span>
         <svg class="menu-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="menu-card-body-wrap"><div class="menu-card-body"><div class="menu-card-body-inner" id="cat-pizze">
-        <p>Impasto a lunga lievitazione, farine selezionate · cottura in forno a legna</p>
-        <!-- Carta pizze v11 (15 luglio 2026). DA CONFERMARE: prezzo Crescia
-             (non indicato sul foglio); Marchigiana/Estiva/Bosco 14 o 15
-             (correzione a mano, letto 14); ingredienti Margherita proposti. -->
+        <!-- @carta-segreto-nota:pizze-rosse -->
         <p>Rosse</p>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Margherita</span>
-            <span class="menu-item-desc">pomodoro Greci, fior di latte, basilico</span>
-          </div>
-          <span class="menu-item-price">€ 10,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Bufalina</span>
-            <span class="menu-item-desc">pomodoro Greci, mozzarella di bufala, olio al basilico</span>
-          </div>
-          <span class="menu-item-price">€ 12,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Capricciosa</span>
-            <span class="menu-item-desc">pomodoro Greci, fior di latte, carciofini, olive nere, funghi, prosciutto cotto</span>
-          </div>
-          <span class="menu-item-price">€ 13,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Diavola</span>
-            <span class="menu-item-desc">pomodoro Greci, fior di latte, ventricina piccante</span>
-          </div>
-          <span class="menu-item-price">€ 12,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Lucifero</span>
-            <span class="menu-item-desc">pomodoro Greci, nduja calabrese, burrata</span>
-          </div>
-          <span class="menu-item-price">€ 12,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Tempio</span>
-            <span class="menu-item-desc">pomodoro Greci, fior di latte, vellutata di melanzane, melanzane croccanti, fonduta di pecorino</span>
-          </div>
-          <span class="menu-item-price">€ 13,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Napoli</span>
-            <span class="menu-item-desc">pomodoro Greci, fior di latte, alici del Cantabrico, capperi croccanti</span>
-          </div>
-          <span class="menu-item-price">€ 13,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Sibilla</span>
-            <span class="menu-item-desc">pomodoro, mozzarella, cicoria ripassata, salsiccia, cipolla caramellata</span>
-          </div>
-          <span class="menu-item-price">€ 14,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Marchigiana</span>
-            <span class="menu-item-desc">pomodoro, mozzarella, ciauscolo e Varnelli, cicoria</span>
-          </div>
-          <span class="menu-item-price">€ 14,00</span>
-        </div>
+        <!-- @carta-segreto:pizze-rosse -->
         <p>Bianche</p>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Crescia</span>
-            <span class="menu-item-desc">crescia, cipolla e rosmarino</span>
-          </div>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Hortus</span>
-            <span class="menu-item-desc">fior di latte, crema di zucchine, guanciale, crema di pecorino</span>
-          </div>
-          <span class="menu-item-price">€ 13,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Diana</span>
-            <span class="menu-item-desc">fior di latte, mortadella di cinghiale, granella di pistacchio, burrata, olio al basilico</span>
-          </div>
-          <span class="menu-item-price">€ 13,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">La Duchessa</span>
-            <span class="menu-item-desc">fior di latte, alici del Cantabrico, burrata</span>
-          </div>
-          <span class="menu-item-price">€ 13,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Estiva</span>
-            <span class="menu-item-desc">crescia, pomodoro a fette, prosciutto crudo, burrata</span>
-          </div>
-          <span class="menu-item-price">€ 14,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Bosco</span>
-            <span class="menu-item-desc">fior di latte, porcini, tartufo</span>
-          </div>
-          <span class="menu-item-price">€ 14,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">4 Formaggi</span>
-            <span class="menu-item-desc">mozzarella, gorgonzola, crema di pecorino, Castelmagno, scamorza affumicata</span>
-          </div>
-          <span class="menu-item-price">€ 14,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Greca</span>
-            <span class="menu-item-desc">mozzarella, rucola, feta, noci, pomodorini secchi, miele</span>
-          </div>
-          <span class="menu-item-price">€ 14,00</span>
-        </div>
+        <!-- @carta-segreto:pizze-bianche -->
       </div></div></div>
     </article>
 
@@ -2440,17 +2209,11 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11h14"/><path d="M6 11l1.1 7.6a2 2 0 0 0 2 1.7h5.8a2 2 0 0 0 2-1.7L18 11"/><circle cx="9.5" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="14.2" cy="7.2" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="9.3" r="1.1" fill="currentColor" stroke="none"/></svg>
         </span>
         <span class="menu-card-name">Fritti</span>
-        <span class="menu-card-count">1</span>
+        <span class="menu-card-count"><!-- @carta-conta:fritti --></span>
         <svg class="menu-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="menu-card-body-wrap"><div class="menu-card-body"><div class="menu-card-body-inner" id="cat-fritti">
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">Fritto Misto</span>
-            <span class="menu-item-desc">patatine fritte, olive all'ascolana, cremini, fiori di zucca, verdure pastellate, salvia · per due persone</span>
-          </div>
-          <span class="menu-item-price">€ 15,00</span>
-        </div>
+        <!-- @carta-segreto:fritti -->
       </div></div></div>
     </article>
 
@@ -2460,27 +2223,26 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l10-10"/><path d="M14 8l-3 3"/><path d="M14 8a4 4 0 0 1 6 0l-3 3z"/></svg>
         </span>
         <span class="menu-card-name">Carni al Taglio</span>
-        <span class="menu-card-count">4</span>
+        <span class="menu-card-count"><!-- @carta-conta:carni-al-taglio --></span>
         <svg class="menu-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="menu-card-body-wrap"><div class="menu-card-body"><div class="menu-card-body-inner" id="cat-tagli">
-        <div class="menu-item">
-          <div class="menu-item-main"><span class="menu-item-name">Marchigiana</span></div>
-          <span class="menu-item-price">€ 8,00 / hg</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main"><span class="menu-item-name">Irlandese</span></div>
-          <span class="menu-item-price">€ 8,00 / hg</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main"><span class="menu-item-name">Kobe</span></div>
-          <span class="menu-item-price on-request">su richiesta</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main"><span class="menu-item-name">Wagyu</span></div>
-          <span class="menu-item-price">€ 30,00 / hg</span>
-        </div>
-        <p>Tagli e pezzature in sala</p>
+        <!-- @carta-segreto:carni-al-taglio -->
+        <!-- @carta-segreto-nota:carni-al-taglio -->
+      </div></div></div>
+    </article>
+
+    <article class="menu-card" data-cat="contorni">
+      <button type="button" class="menu-card-header" aria-expanded="false" aria-controls="cat-contorni">
+        <span class="menu-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18C6 10.5 11 5 19 5c0 8-5.5 13-13 13z"/><path d="M4 20 14 10"/></svg>
+        </span>
+        <span class="menu-card-name">Contorni</span>
+        <span class="menu-card-count"><!-- @carta-conta:contorni --></span>
+        <svg class="menu-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="menu-card-body-wrap"><div class="menu-card-body"><div class="menu-card-body-inner" id="cat-contorni">
+        <!-- @carta-segreto:contorni -->
       </div></div></div>
     </article>
 
@@ -2490,29 +2252,11 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13h16v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M4 13a4 4 0 0 1 8 0 4 4 0 0 1 8 0"/><path d="M12 7V4"/></svg>
         </span>
         <span class="menu-card-name">Dessert</span>
-        <span class="menu-card-count">4</span>
+        <span class="menu-card-count"><!-- @carta-conta:dessert --></span>
         <svg class="menu-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="menu-card-body-wrap"><div class="menu-card-body"><div class="menu-card-body-inner" id="cat-dolci">
-        <div class="menu-item">
-          <div class="menu-item-main"><span class="menu-item-name">Cannolo Siciliano</span></div>
-          <span class="menu-item-price">€ 8,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main">
-            <span class="menu-item-name">New York Cheesecake</span>
-            <span class="menu-item-desc">caramello salato</span>
-          </div>
-          <span class="menu-item-price">€ 8,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main"><span class="menu-item-name">Semifreddo al Croccante</span></div>
-          <span class="menu-item-price">€ 8,00</span>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-main"><span class="menu-item-name">Tiramisù</span></div>
-          <span class="menu-item-price">€ 6,00</span>
-        </div>
+        <!-- @carta-segreto:dessert -->
       </div></div></div>
     </article>
 

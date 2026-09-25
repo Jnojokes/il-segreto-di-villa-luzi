@@ -166,6 +166,19 @@ h1.testata-titolo {
   scrollbar-width: none;
 }
 .nastro::-webkit-scrollbar { display: none; }
+/* Su schermo largo lo scorrimento non si scopre (barra nascosta, niente
+   dito): il nastro esce dalla colonna quanto basta a mostrare tutte le
+   portate, centrato. Con i Contorni le voci sono otto e chiedono 684px
+   contro i 572 della colonna; scorre solo se non basta la finestra. */
+@media (min-width: 720px) {
+  .nastro {
+    width: max-content;
+    min-width: 100%;
+    max-width: calc(100vw - 48px);
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
 .nastro a:first-child { margin-inline-start: auto; }
 .nastro a:last-child { margin-inline-end: auto; }
 .nastro a {
@@ -219,6 +232,8 @@ h2.categoria {
   max-width: 42ch;
   margin: 0 auto;
   line-height: 1.4;
+  /* righe pari: a 390px "…della Marca" restava sopra e "IGP" da solo sotto */
+  text-wrap: balance;
 }
 .piatto-dettaglio {
   font-style: italic;
@@ -239,6 +254,7 @@ h2.categoria {
   font-size: clamp(15px, 4vw, 18px);
   color: var(--velo);
   margin-top: clamp(24px, 6vw, 32px);
+  text-wrap: balance;
 }
 
 /* ── congedo ── */
@@ -290,6 +306,7 @@ h2.categoria {
     <a href="#pizze-rosse">Pizze</a>
     <a href="#fritti">Fritti</a>
     <a href="#tagli">Tagli</a>
+    <a href="#contorni">Contorni</a>
     <a href="#dessert">Dessert</a>
   </nav>
 
@@ -305,237 +322,56 @@ h2.categoria {
   </div>
   <div class="presentazione-filo" aria-hidden="true"></div>
 
+  <!-- Piatti, prezzi e note delle sezioni arrivano da content/menu/carta.json,
+       la stessa fonte della carta di /il-segreto/: si cambiano lì. Qui restano
+       titoli, ordine e il posto di ogni nota (vedi carta() in build.js). -->
   <section class="categoria-blocco" id="antipasti" aria-label="Antipasti">
     <h2 class="categoria">Antipasti</h2>
-    <div class="piatto">
-      <p class="piatto-nome">Selezione di salumi e formaggi con confetture artigianali e crescia</p>
-      <p class="piatto-dettaglio">degustazione per due</p>
-      <p class="piatto-prezzo">€30</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Il nostro vitello tonnato</p>
-      <p class="piatto-prezzo">€15</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Carpaccio di carne salada su panella di ceci, misticanza, scaglie di Castelmagno DOP e miele di corbezzolo</p>
-      <p class="piatto-prezzo">€18</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Battuta di pomodoro, burrata, colatura di alici, olio al basilico e cialda di pane</p>
-      <p class="piatto-prezzo">€12</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Torre di melanzane, bufala e pomodoro grigliato</p>
-      <p class="piatto-prezzo">€12</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Prosciutto al coltello di suino della Marca IGP</p>
-      <p class="piatto-prezzo">€18</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Prosciutto pata negra al coltello</p>
-      <p class="piatto-dettaglio">100 g</p>
-      <p class="piatto-prezzo">€28</p>
-    </div>
+    <!-- @carta-qr:antipasti -->
   </section>
 
   <section class="categoria-blocco" id="primi" aria-label="Primi piatti">
     <h2 class="categoria">Primi piatti</h2>
-    <div class="piatto">
-      <p class="piatto-nome">Tortelloni verdi di rucola ripieni di cicoria ripassata, erbe di campo e ricotta, su burro demi-sel, maggiorana, parmigiano e riduzione di aceto balsamico</p>
-      <p class="piatto-prezzo">€16</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Paccheri selezione Mancini, coniglio di Arcevia, crema di melanzane arrosto, mandorle siciliane tostate e menta fresca</p>
-      <p class="piatto-prezzo">€15</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Gnocchi di patate, ragù di salsicce, datterini rossi e gialli</p>
-      <p class="piatto-prezzo">€13</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Tagliatelle paglia e fieno, anatra, birra, salsa di pane e polvere di olive nere</p>
-      <p class="piatto-prezzo">€15</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Fusilloni Mancini dall'orto al piatto e ricotta salata</p>
-      <p class="piatto-prezzo">€12</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Spaghettoni Mancini alla gricia della Marca</p>
-      <p class="piatto-prezzo">€13</p>
-    </div>
+    <!-- @carta-qr:primi -->
   </section>
 
   <section class="categoria-blocco" id="secondi" aria-label="Secondi piatti">
     <h2 class="categoria">Secondi piatti</h2>
-    <div class="piatto">
-      <p class="piatto-nome">Carré d'agnello neozelandese CBT con fagiolini alla brace e pesca caramellata</p>
-      <p class="piatto-prezzo">€20</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Tagliata di manzo argentino, frutta estiva e salsa teriyaki</p>
-      <p class="piatto-prezzo">€30</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Coniglio in agrodolce di caponata siciliana</p>
-      <p class="piatto-prezzo">€18</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Assortimento di carne alla brace con patate Anna</p>
-      <p class="piatto-prezzo">€25</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Tataki d'anguria, feta e germogli di soia</p>
-      <p class="piatto-prezzo">€16</p>
-    </div>
+    <!-- @carta-qr:secondi -->
   </section>
 
-  <!-- Carta pizze v11 (bozza di verifica del 15 luglio 2026).
-       Crescia senza prezzo (da definire); Marchigiana/Estiva/Bosco €14 con
-       correzione a mano sul foglio (14 o 15, da confermare); ingredienti
-       Margherita non riportati sul foglio: composizione classica proposta. -->
+  <!-- La nota dell'impasto vale per tutte le pizze: sta in testa, come sulla
+       carta stampata. -->
   <section class="categoria-blocco" id="pizze-rosse" aria-label="Pizze rosse">
     <h2 class="categoria">Pizze rosse</h2>
-    <div class="piatto">
-      <p class="piatto-nome">Margherita</p>
-      <p class="piatto-dettaglio">pomodoro Greci, fior di latte, basilico</p>
-      <p class="piatto-prezzo">€10</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Bufalina</p>
-      <p class="piatto-dettaglio">pomodoro Greci, mozzarella di bufala, olio al basilico</p>
-      <p class="piatto-prezzo">€12</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Capricciosa</p>
-      <p class="piatto-dettaglio">pomodoro Greci, fior di latte, carciofini, olive nere, funghi, prosciutto cotto</p>
-      <p class="piatto-prezzo">€13</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Diavola</p>
-      <p class="piatto-dettaglio">pomodoro Greci, fior di latte, ventricina piccante</p>
-      <p class="piatto-prezzo">€12</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Lucifero</p>
-      <p class="piatto-dettaglio">pomodoro Greci, nduja calabrese, burrata</p>
-      <p class="piatto-prezzo">€12</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Tempio</p>
-      <p class="piatto-dettaglio">pomodoro Greci, fior di latte, vellutata di melanzane, melanzane croccanti, fonduta di pecorino</p>
-      <p class="piatto-prezzo">€13</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Napoli</p>
-      <p class="piatto-dettaglio">pomodoro Greci, fior di latte, alici del Cantabrico, capperi croccanti</p>
-      <p class="piatto-prezzo">€13</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Sibilla</p>
-      <p class="piatto-dettaglio">pomodoro, mozzarella, cicoria ripassata, salsiccia, cipolla caramellata</p>
-      <p class="piatto-prezzo">€14</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Marchigiana</p>
-      <p class="piatto-dettaglio">pomodoro, mozzarella, ciauscolo e Varnelli, cicoria</p>
-      <p class="piatto-prezzo">€14</p>
-    </div>
+    <!-- @carta-qr-nota:pizze-rosse -->
+    <!-- @carta-qr:pizze-rosse -->
   </section>
 
   <section class="categoria-blocco" id="pizze-bianche" aria-label="Pizze bianche">
     <h2 class="categoria">Pizze bianche</h2>
-    <div class="piatto">
-      <p class="piatto-nome">Crescia</p>
-      <p class="piatto-dettaglio">crescia, cipolla e rosmarino</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Hortus</p>
-      <p class="piatto-dettaglio">fior di latte, crema di zucchine, guanciale, crema di pecorino</p>
-      <p class="piatto-prezzo">€13</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Diana</p>
-      <p class="piatto-dettaglio">fior di latte, mortadella di cinghiale, granella di pistacchio, burrata, olio al basilico</p>
-      <p class="piatto-prezzo">€13</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">La Duchessa</p>
-      <p class="piatto-dettaglio">fior di latte, alici del Cantabrico, burrata</p>
-      <p class="piatto-prezzo">€13</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Estiva</p>
-      <p class="piatto-dettaglio">crescia, pomodoro a fette, prosciutto crudo, burrata</p>
-      <p class="piatto-prezzo">€14</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Bosco</p>
-      <p class="piatto-dettaglio">fior di latte, porcini, tartufo</p>
-      <p class="piatto-prezzo">€14</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">4 Formaggi</p>
-      <p class="piatto-dettaglio">mozzarella, gorgonzola, crema di pecorino, Castelmagno, scamorza affumicata</p>
-      <p class="piatto-prezzo">€14</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Greca</p>
-      <p class="piatto-dettaglio">mozzarella, rucola, feta, noci, pomodorini secchi, miele</p>
-      <p class="piatto-prezzo">€14</p>
-    </div>
+    <!-- @carta-qr:pizze-bianche -->
   </section>
 
   <section class="categoria-blocco" id="fritti" aria-label="Fritti">
     <h2 class="categoria">Fritti</h2>
-    <div class="piatto">
-      <p class="piatto-nome">Fritto misto</p>
-      <p class="piatto-dettaglio">patatine fritte, olive all'ascolana, cremini, fiori di zucca, verdure pastellate, salvia</p>
-      <p class="piatto-dettaglio">per due persone</p>
-      <p class="piatto-prezzo">€15</p>
-    </div>
+    <!-- @carta-qr:fritti -->
   </section>
 
   <section class="categoria-blocco" id="tagli" aria-label="Carni al taglio">
     <h2 class="categoria">Carni al taglio</h2>
-    <div class="piatto">
-      <p class="piatto-nome">Marchigiana</p>
-      <p class="piatto-prezzo">€8 all'etto</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Irlandese</p>
-      <p class="piatto-prezzo">€8 all'etto</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Kobe</p>
-      <p class="piatto-prezzo">su richiesta</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Wagyu</p>
-      <p class="piatto-prezzo">€30 all'etto</p>
-    </div>
-    <p class="categoria-nota">Tagli e pezzature in sala</p>
+    <!-- @carta-qr:carni-al-taglio -->
+    <!-- @carta-qr-nota:carni-al-taglio -->
+  </section>
+
+  <section class="categoria-blocco" id="contorni" aria-label="Contorni">
+    <h2 class="categoria">Contorni</h2>
+    <!-- @carta-qr:contorni -->
   </section>
 
   <section class="categoria-blocco" id="dessert" aria-label="Dessert">
     <h2 class="categoria">Dessert</h2>
-    <div class="piatto">
-      <p class="piatto-nome">Cannolo siciliano</p>
-      <p class="piatto-prezzo">€8</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">New York cheesecake con caramello salato</p>
-      <p class="piatto-prezzo">€8</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Semifreddo al croccante</p>
-      <p class="piatto-prezzo">€8</p>
-    </div>
-    <div class="piatto">
-      <p class="piatto-nome">Tiramisù</p>
-      <p class="piatto-prezzo">€6</p>
-    </div>
+    <!-- @carta-qr:dessert -->
   </section>
 
   <footer class="congedo">

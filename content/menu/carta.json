@@ -1,0 +1,72 @@
+{
+  "aggiornato": "2026-09-25",
+  "sezioni": [
+    {"id": "antipasti", "titolo": "Antipasti", "piatti": [
+      {"nome": "Sformato di Zucca e Gorgonzola", "descrizione": "con chips di bacon croccante", "prezzo": 10},
+      {"nome": "Battuta di Manzo", "descrizione": "su fonduta di Parmigiano e nocciole tostate", "prezzo": 14},
+      {"nome": "Arancino Croccante", "descrizione": "su letto di pomodoro e granella di pistacchio", "prezzo": 10},
+      {"nome": "Tagliere Degustazione", "descrizione": "con zuppa e trippa della tradizione", "prezzo": 18},
+      {"nome": "Coratella d’Agnello", "descrizione": "con cipolla", "prezzo": 8},
+      {"nome": "Carpaccio di Manzo", "descrizione": "su panella di ceci e insalata di finocchi", "prezzo": 15},
+      {"nome": "Degustazione di Formaggi", "prezzo": 18},
+      {"nome": "Prosciutto al Coltello di Suino della Marca IGP", "prezzo": 18},
+      {"nome": "Prosciutto Pata Negra al Coltello", "descrizione": "100 g", "prezzo": 28}
+    ]},
+    {"id": "primi", "titolo": "Primi piatti", "piatti": [
+      {"nome": "Tagliatelle ai Porcini", "descrizione": "con guanciale croccante", "prezzo": 18},
+      {"nome": "Pappardelle al Cinghiale", "descrizione": "con frutti di bosco", "prezzo": 14},
+      {"nome": "Gnocchi de lu Vatte", "prezzo": 15},
+      {"nome": "Spaghettone alla Gricia", "prezzo": 12},
+      {"nome": "Tortellini in Brodo di Gallina", "prezzo": 15}
+    ]},
+    {"id": "secondi", "titolo": "Secondi piatti", "piatti": [
+      {"nome": "Guancia di Manzo Brasata", "descrizione": "a lenta cottura nel suo fondo", "prezzo": 18},
+      {"nome": "Coniglio in Porchetta", "descrizione": "alle erbe aromatiche", "prezzo": 16},
+      {"nome": "Stinco di Maiale", "descrizione": "con cavolfiore alla brace e patate", "prezzo": 15},
+      {"nome": "Tagliata di Manzo", "descrizione": "al sale e rosmarino", "prezzo": 24},
+      {"nome": "Tagliata di Manzo ai Porcini", "descrizione": "con porcini trifolati", "prezzo": 28},
+      {"nome": "Lesso della Tradizione", "descrizione": "lingua, petto di gallina e musetto", "prezzo": 24},
+      {"nome": "Assortimento Misto di Carni", "descrizione": "selezione di carni alla griglia", "prezzo": 24}
+    ]},
+    {"id": "pizze-rosse", "titolo": "Pizze rosse", "nota": "Impasto a lunga lievitazione, farine selezionate, cottura in forno a legna", "piatti": [
+      {"nome": "Margherita", "descrizione": "pomodoro Greci, fior di latte, basilico", "prezzo": 10},
+      {"nome": "Bufalina", "descrizione": "pomodoro Greci, mozzarella di bufala, olio al basilico", "prezzo": 12},
+      {"nome": "Capricciosa", "descrizione": "pomodoro Greci, fior di latte, carciofini, olive nere, funghi, prosciutto cotto", "prezzo": 13},
+      {"nome": "Diavola", "descrizione": "pomodoro Greci, fior di latte, ventricina piccante", "prezzo": 12},
+      {"nome": "Lucifero", "descrizione": "pomodoro Greci, nduja calabrese, burrata", "prezzo": 12},
+      {"nome": "Tempio", "descrizione": "pomodoro Greci, fior di latte, vellutata di melanzane, melanzane croccanti, fonduta di pecorino", "prezzo": 13},
+      {"nome": "Napoli", "descrizione": "pomodoro Greci, fior di latte, alici del Cantabrico, capperi croccanti", "prezzo": 13},
+      {"nome": "Sibilla", "descrizione": "pomodoro, mozzarella, cicoria ripassata, salsiccia, cipolla caramellata", "prezzo": 14},
+      {"nome": "Marchigiana", "descrizione": "pomodoro, mozzarella, ciauscolo e Varnelli, cicoria", "prezzo": 14}
+    ]},
+    {"id": "pizze-bianche", "titolo": "Pizze bianche", "piatti": [
+      {"nome": "Crescia", "descrizione": "crescia, cipolla e rosmarino", "prezzo": 7},
+      {"nome": "Hortus", "descrizione": "fior di latte, crema di zucchine, guanciale, crema di pecorino", "prezzo": 13},
+      {"nome": "Diana", "descrizione": "fior di latte, mortadella di cinghiale, granella di pistacchio, burrata, olio al basilico", "prezzo": 13},
+      {"nome": "La Duchessa", "descrizione": "fior di latte, alici del Cantabrico, burrata", "prezzo": 13},
+      {"nome": "Estiva", "descrizione": "crescia, pomodoro a fette, prosciutto crudo, burrata", "prezzo": 14},
+      {"nome": "Bosco", "descrizione": "fior di latte, porcini, tartufo", "prezzo": 14},
+      {"nome": "4 Formaggi", "descrizione": "mozzarella, gorgonzola, crema di pecorino, Castelmagno, scamorza affumicata", "prezzo": 14},
+      {"nome": "Greca", "descrizione": "mozzarella, rucola, feta, noci, pomodorini secchi, miele", "prezzo": 14}
+    ]},
+    {"id": "fritti", "titolo": "Fritti", "piatti": [
+      {"nome": "Fritto Misto", "descrizione": "patatine fritte, olive all’ascolana, cremini, fiori di zucca, verdure pastellate, salvia, per due persone", "prezzo": 15}
+    ]},
+    {"id": "carni-al-taglio", "titolo": "Carni al taglio", "nota": "Tagli e pezzature in sala", "piatti": [
+      {"nome": "Marchigiana", "prezzo": 8, "unita": "hg"},
+      {"nome": "Wagyu", "prezzo": 30, "unita": "hg"}
+    ]},
+    {"id": "contorni", "titolo": "Contorni", "piatti": [
+      {"nome": "Patate Anna", "prezzo": 6},
+      {"nome": "Cicoria Ripassata", "prezzo": 6},
+      {"nome": "Bietola", "prezzo": 6},
+      {"nome": "Cavolfiore", "prezzo": 6}
+    ]},
+    {"id": "dessert", "titolo": "Dessert", "piatti": [
+      {"nome": "Cannolo Siciliano", "prezzo": 8},
+      {"nome": "New York Cheesecake", "descrizione": "con caramello salato", "prezzo": 8},
+      {"nome": "Tortino al Cioccolato", "prezzo": 6},
+      {"nome": "Tiramisù", "prezzo": 6}
+    ]}
+  ]
+}
