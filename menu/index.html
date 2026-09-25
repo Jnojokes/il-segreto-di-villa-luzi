@@ -256,6 +256,15 @@ h2.categoria {
   margin-top: clamp(24px, 6vw, 32px);
   text-wrap: balance;
 }
+/* il coperto, da content/menu/carta.json: in fondo alla carta, come un prezzo */
+.coperto {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: clamp(13px, 3.6vw, 15px);
+  letter-spacing: 0.16em;
+  padding-left: 0.16em;
+  color: var(--oro);
+  margin-top: clamp(48px, 11vw, 64px);
+}
 
 /* ── congedo ── */
 .congedo { margin-top: clamp(60px, 14vw, 84px); }
@@ -373,6 +382,8 @@ h2.categoria {
     <h2 class="categoria">Dessert</h2>
     <!-- @carta-qr:dessert -->
   </section>
+
+  <!-- @carta-coperto:qr -->
 
   <footer class="congedo">
     <div class="congedo-filo" aria-hidden="true"></div>

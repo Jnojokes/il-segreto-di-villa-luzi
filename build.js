@@ -217,6 +217,7 @@ function menu(slug) {
 // piatto si tocca solo content/menu/carta.json. Formato (nota, descrizione
 // e unita facoltative, prezzi in euro, "unita": "hg" = all'etto):
 //   { "aggiornato": "2026-09-25",
+//     "coperto": 3,
 //     "sezioni": [
 //       { "id": "carni-al-taglio", "titolo": "Carni al taglio", "nota": "…",
 //         "piatti": [ { "nome": "Wagyu", "descrizione": "…", "prezzo": 30, "unita": "hg" } ] } ] }
@@ -235,7 +236,11 @@ function menu(slug) {
 //   @carta-segreto-nota:<id>   la nota della sezione, stile /il-segreto/
 //   @carta-conta:<id>[+<id>…]  quanti piatti si pubblicano (la card delle
 //                              pizze somma rosse e bianche)
-// Una nota assente non rende niente. Una pagina che usa uno stile deve
+//   @carta-coperto:qr|segreto  il coperto, nel formato prezzi della pagina
+// Una nota assente non rende niente. Il coperto invece si scrive sempre,
+// perché il cliente deve saperlo prima di sedersi: "coperto": null se non
+// si fa pagare, e se la chiave manca (un carta_sito.json vecchio ricopiato
+// qui) la build si ferma invece di toglierlo in silenzio. Una pagina che usa uno stile deve
 // rendere OGNI sezione del JSON una volta sola e dare un posto a ogni nota:
 // una sezione o una nota nuova nel JSON fermano la build finché la pagina
 // non le accoglie, invece di sparire in silenzio.
@@ -279,7 +284,13 @@ function carta() {
     throw errore(e.code === 'ENOENT' ? 'file mancante' : `JSON non valido (${e.message})`);
   }
   if (!oggetto(dati)) throw errore('atteso un oggetto con "aggiornato" e "sezioni"');
-  soloChiavi(dati, ['aggiornato', 'sezioni'], '');
+  soloChiavi(dati, ['aggiornato', 'coperto', 'sezioni'], '');
+  if (dati.coperto !== undefined && dati.coperto !== null) {
+    const cent = dati.coperto * 100;
+    if (typeof dati.coperto !== 'number' || !Number.isFinite(dati.coperto) || dati.coperto <= 0 || Math.abs(cent - Math.round(cent)) > 1e-6) {
+      throw errore('"coperto" deve essere un numero in euro maggiore di zero, al massimo con i centesimi (o null)');
+    }
+  }
   if (typeof dati.aggiornato !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(dati.aggiornato)) {
     throw errore('"aggiornato" deve essere una data AAAA-MM-GG');
   }
@@ -330,7 +341,7 @@ function carta() {
   });
 
   for (const piatto of senzaPrezzo) console.log(`· carta: ${piatto} senza prezzo, non pubblicato`);
-  cartaLetta = { aggiornato: dati.aggiornato, sezioni };
+  cartaLetta = { aggiornato: dati.aggiornato, coperto: dati.coperto, sezioni };
   return cartaLetta;
 }
 
@@ -351,11 +362,18 @@ function prezzoSegreto(p) {
   return `€ ${centesimi(p.prezzo)}${p.unita ? CARTA_UNITA[p.unita].segreto : ''}`;
 }
 
+// Una parentesi breve non si spezza a fine riga: a 390px "(solo / la
+// domenica)" andava a capo a metà. Gli spazi dentro diventano non
+// separabili (a video identici); le parentesi lunghe restano libere, per
+// non uscire dalla colonna stretta dell'accordion.
+const legaParentesi = (html) => html.replace(/\(([^()]{1,24})\)/g, (m, dentro) => `(${dentro.replace(/ /g, '&nbsp;')})`);
+const testoPiatto = (s) => legaParentesi(testoEsatto(s));
+
 function piattiQr(sezione) {
   return sezione.piatti.map((p) => [
     '<div class="piatto">',
-    `  <p class="piatto-nome">${testoEsatto(p.nome)}</p>`,
-    ...(p.descrizione ? [`  <p class="piatto-dettaglio">${testoEsatto(p.descrizione)}</p>`] : []),
+    `  <p class="piatto-nome">${testoPiatto(p.nome)}</p>`,
+    ...(p.descrizione ? [`  <p class="piatto-dettaglio">${testoPiatto(p.descrizione)}</p>`] : []),
     `  <p class="piatto-prezzo">${prezzoQr(p)}</p>`,
     '</div>',
   ].join('\n')).join('\n');
@@ -365,10 +383,10 @@ function piattiSegreto(sezione) {
   return sezione.piatti.map((p) => {
     const principale = p.descrizione
       ? ['  <div class="menu-item-main">',
-        `    <span class="menu-item-name">${testoEsatto(p.nome)}</span>`,
-        `    <span class="menu-item-desc">${testoEsatto(p.descrizione)}</span>`,
+        `    <span class="menu-item-name">${testoPiatto(p.nome)}</span>`,
+        `    <span class="menu-item-desc">${testoPiatto(p.descrizione)}</span>`,
         '  </div>']
-      : [`  <div class="menu-item-main"><span class="menu-item-name">${testoEsatto(p.nome)}</span></div>`];
+      : [`  <div class="menu-item-main"><span class="menu-item-name">${testoPiatto(p.nome)}</span></div>`];
     return ['<div class="menu-item">', ...principale, `  <span class="menu-item-price">${prezzoSegreto(p)}</span>`, '</div>'].join('\n');
   }).join('\n');
 }
@@ -399,8 +417,16 @@ function markerCarta(tipo, nome, uso) {
     uso.conta.push(...ids);
     return String(ids.reduce((n, id) => n + sezione(id).piatti.length, 0));
   }
+  if (tipo === 'carta-coperto') {
+    if (c.coperto === undefined) throw new Error(`carta: manca "coperto" in ${CARTA_REL} (il prezzo del coperto, o null se non si fa pagare)`);
+    if (c.coperto === null) return '';
+    const p = { prezzo: c.coperto, unita: '' };
+    if (nome === 'qr') return `<p class="coperto">Coperto ${prezzoQr(p)}</p>`;
+    if (nome === 'segreto') return `Coperto ${prezzoSegreto(p)}<br>`;
+    throw new Error(`@carta-coperto:${nome}: stile sconosciuto (ammessi: qr, segreto)`);
+  }
   const def = CARTA_MARKER[tipo];
-  if (!def) throw new Error(`marker @${tipo} sconosciuto (ammessi: ${[...Object.keys(CARTA_MARKER), 'carta-conta'].map((t) => '@' + t).join(', ')})`);
+  if (!def) throw new Error(`marker @${tipo} sconosciuto (ammessi: ${[...Object.keys(CARTA_MARKER), 'carta-conta', 'carta-coperto'].map((t) => '@' + t).join(', ')})`);
   if (nome.includes('+')) throw new Error(`@${tipo}:${nome}: una sezione sola, il "+" vale solo per @carta-conta`);
   const reso = def.rendi(sezione(nome));
   uso[def.stile][def.parte].push(nome);

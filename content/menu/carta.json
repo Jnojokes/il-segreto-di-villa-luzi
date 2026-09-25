@@ -1,5 +1,6 @@
 {
   "aggiornato": "2026-09-25",
+  "coperto": 3,
   "sezioni": [
     {"id": "antipasti", "titolo": "Antipasti", "piatti": [
       {"nome": "Sformato di Zucca e Gorgonzola", "descrizione": "con chips di bacon croccante", "prezzo": 10},
@@ -25,8 +26,8 @@
       {"nome": "Stinco di Maiale", "descrizione": "con cavolfiore alla brace e patate", "prezzo": 15},
       {"nome": "Tagliata di Manzo", "descrizione": "al sale e rosmarino", "prezzo": 24},
       {"nome": "Tagliata di Manzo ai Porcini", "descrizione": "con porcini trifolati", "prezzo": 28},
-      {"nome": "Lesso della Tradizione", "descrizione": "lingua, petto di gallina e musetto", "prezzo": 24},
-      {"nome": "Assortimento Misto di Carni", "descrizione": "selezione di carni alla griglia", "prezzo": 24}
+      {"nome": "Lesso della Tradizione (solo la domenica)", "descrizione": "lingua, petto di gallina e musetto", "prezzo": 24},
+      {"nome": "Assortimento Misto di Carni", "descrizione": "manzo, salsiccia, capocollo, agnello, costine, pancetta arrotolata con cipolla", "prezzo": 24}
     ]},
     {"id": "pizze-rosse", "titolo": "Pizze rosse", "nota": "Impasto a lunga lievitazione, farine selezionate, cottura in forno a legna", "piatti": [
       {"nome": "Margherita", "descrizione": "pomodoro Greci, fior di latte, basilico", "prezzo": 10},
