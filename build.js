@@ -9,6 +9,8 @@
                                    reso in HTML (vedi menu() più sotto)
      <!-- @carta-…:<sezione> --> →  content/menu/carta.json, la carta del
                                    ristorante (vedi carta() più sotto)
+     <!-- @chi-siamo:<parte> --> →  content/il-segreto/chi-siamo.json
+                                   (vedi chiSiamo() più sotto)
    I file SENZA marker (incluse le due pagine bloccate) vengono
    copiati byte-per-byte con copyFileSync: nessun roundtrip di
    encoding. L'output pubblicato resta HTML statico puro.
@@ -65,10 +67,11 @@ function readPartial(name) {
   return fs.readFileSync(path.join(ROOT, 'partials', `${name}.html`), 'utf8').trim();
 }
 
-// Tre famiglie di marker, risolte nello STESSO giro:
+// Quattro famiglie di marker, risolte nello STESSO giro:
 //   <!-- @include:<nome> -->     →  partials/<nome>.html
 //   <!-- @menu:<slug> -->        →  content/eventi/<slug>.menu.json, reso in HTML
 //   <!-- @carta-…:<sezione> -->  →  una parte di content/menu/carta.json
+//   <!-- @chi-siamo:<parte> -->  →  content/il-segreto/chi-siamo.json
 // Il nome ammette solo [a-z0-9-], quindi un marker non può uscire da
 // partials/ o da content/eventi/ (niente path traversal) e un nome scritto
 // male resta non risolto invece di leggere un file a caso. Il "+" serve
@@ -76,8 +79,8 @@ function readPartial(name) {
 // DUE regex e non una: MARKER_RE è globale, e .test() su una regex
 // globale avanza lastIndex — riusarla per il controllo farebbe saltare
 // un file su due.
-const MARKER_RE = /<!--\s*@(include|menu|carta-[a-z-]+):([a-z0-9-]+(?:\+[a-z0-9-]+)*)\s*-->/g;
-const HAS_MARKER = /<!--\s*@(?:include|menu|carta-[a-z-]+):/;
+const MARKER_RE = /<!--\s*@(include|menu|carta-[a-z-]+|chi-siamo):([a-z0-9-]+(?:\+[a-z0-9-]+)*)\s*-->/g;
+const HAS_MARKER = /<!--\s*@(?:include|menu|carta-[a-z-]+|chi-siamo):/;
 
 // Ogni partial si legge una volta per build.
 const PARTIALS = new Map();
@@ -245,12 +248,24 @@ const CARTA_REL = 'content/menu/carta.json';
 const CARTA_UNITA = { hg: { qr: " all'etto", segreto: ' / hg' } };
 let cartaLetta = null;
 
+// Mai un segnaposto di testo online: dopo il "[DA CONFERMARE: quale dolce]"
+// finito sulla Candle Experience, un testo con parentesi quadre, "DA
+// SPOSTARE", "Lorem" e simili ferma la build invece di finire in pagina.
+// Vale per la carta e per Chi siamo. Un campo che non c'è ancora si lascia
+// vuoto (null): la pagina lo salta.
+const SEGNAPOSTO_RE = /[[\]]|\bda (?:spostare|confermare|definire)\b|\blorem\b|\bipsum\b|\bTODO\b|\bTBD\b|\bXXX\b|^\s*(?:null|undefined|nan)\s*$/i;
+const segnaposto = (s) => typeof s === 'string' && SEGNAPOSTO_RE.test(s);
+
 function carta() {
   if (cartaLetta) return cartaLetta;
   const errore = (msg) => new Error(`carta non valida: ${CARTA_REL}: ${msg}`);
   const pieno = (v) => typeof v === 'string' && v.trim() !== '';
   const oggetto = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
-  const testoOpzionale = (v) => v === undefined || v === null || typeof v === 'string';
+  const testoOpzionale = (v, dove) => {
+    if (v !== undefined && v !== null && typeof v !== 'string') return false;
+    if (segnaposto(v)) throw errore(`${dove}: "${v}" sembra un segnaposto, non un testo da pubblicare`);
+    return true;
+  };
   const soloChiavi = (o, ammesse, dove) => {
     for (const k of Object.keys(o)) {
       if (!ammesse.includes(k)) throw errore(`${dove}chiave sconosciuta "${k}" (ammesse: ${ammesse.join(', ')})`);
@@ -278,8 +293,8 @@ function carta() {
     soloChiavi(s, ['id', 'titolo', 'nota', 'piatti'], `${dove}: `);
     if (typeof s.id !== 'string' || !/^[a-z0-9-]+$/.test(s.id)) throw errore(`${dove}.id mancante o fuori da [a-z0-9-]`);
     if (sezioni.has(s.id)) throw errore(`${dove}.id "${s.id}" ripetuto`);
-    if (!pieno(s.titolo)) throw errore(`${dove}.titolo mancante o vuoto`);
-    if (!testoOpzionale(s.nota)) throw errore(`${dove}.nota deve essere un testo (o null)`);
+    if (!pieno(s.titolo) || !testoOpzionale(s.titolo, `${dove}.titolo`)) throw errore(`${dove}.titolo mancante o vuoto`);
+    if (!testoOpzionale(s.nota, `${dove}.nota`)) throw errore(`${dove}.nota deve essere un testo (o null)`);
     if (!Array.isArray(s.piatti)) throw errore(`${dove}.piatti deve essere una lista`);
 
     const piatti = [];
@@ -287,8 +302,8 @@ function carta() {
       const qui = `${dove}.piatti[${j}] (${s.id})`;
       if (!oggetto(p)) throw errore(`${qui} deve essere un oggetto con "nome" e "prezzo"`);
       soloChiavi(p, ['nome', 'descrizione', 'prezzo', 'unita'], `${qui}: `);
-      if (!pieno(p.nome)) throw errore(`${qui}.nome mancante o vuoto`);
-      if (!testoOpzionale(p.descrizione)) throw errore(`${qui}.descrizione deve essere un testo (o null)`);
+      if (!pieno(p.nome) || !testoOpzionale(p.nome, `${qui}.nome`)) throw errore(`${qui}.nome mancante o vuoto`);
+      if (!testoOpzionale(p.descrizione, `${qui}.descrizione`)) throw errore(`${qui}.descrizione deve essere un testo (o null)`);
       if (p.unita !== undefined && p.unita !== null && !Object.hasOwn(CARTA_UNITA, p.unita)) {
         throw errore(`${qui}.unita "${p.unita}" sconosciuta (ammesse: ${Object.keys(CARTA_UNITA).join(', ')})`);
       }
@@ -319,8 +334,8 @@ function carta() {
   return cartaLetta;
 }
 
-function testoCarta(s) {
-  // Nomi e descrizioni si scrivono come nel JSON, apostrofi compresi:
+function testoEsatto(s) {
+  // Carta e Chi siamo si scrivono come nel JSON, apostrofi compresi:
   // solo l'escape dei caratteri che romperebbero il markup.
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
@@ -339,8 +354,8 @@ function prezzoSegreto(p) {
 function piattiQr(sezione) {
   return sezione.piatti.map((p) => [
     '<div class="piatto">',
-    `  <p class="piatto-nome">${testoCarta(p.nome)}</p>`,
-    ...(p.descrizione ? [`  <p class="piatto-dettaglio">${testoCarta(p.descrizione)}</p>`] : []),
+    `  <p class="piatto-nome">${testoEsatto(p.nome)}</p>`,
+    ...(p.descrizione ? [`  <p class="piatto-dettaglio">${testoEsatto(p.descrizione)}</p>`] : []),
     `  <p class="piatto-prezzo">${prezzoQr(p)}</p>`,
     '</div>',
   ].join('\n')).join('\n');
@@ -350,24 +365,25 @@ function piattiSegreto(sezione) {
   return sezione.piatti.map((p) => {
     const principale = p.descrizione
       ? ['  <div class="menu-item-main">',
-        `    <span class="menu-item-name">${testoCarta(p.nome)}</span>`,
-        `    <span class="menu-item-desc">${testoCarta(p.descrizione)}</span>`,
+        `    <span class="menu-item-name">${testoEsatto(p.nome)}</span>`,
+        `    <span class="menu-item-desc">${testoEsatto(p.descrizione)}</span>`,
         '  </div>']
-      : [`  <div class="menu-item-main"><span class="menu-item-name">${testoCarta(p.nome)}</span></div>`];
+      : [`  <div class="menu-item-main"><span class="menu-item-name">${testoEsatto(p.nome)}</span></div>`];
     return ['<div class="menu-item">', ...principale, `  <span class="menu-item-price">${prezzoSegreto(p)}</span>`, '</div>'].join('\n');
   }).join('\n');
 }
 
 const CARTA_MARKER = {
   'carta-qr': { stile: 'qr', parte: 'piatti', rendi: piattiQr },
-  'carta-qr-nota': { stile: 'qr', parte: 'note', rendi: (s) => (s.nota ? `<p class="categoria-nota">${testoCarta(s.nota)}</p>` : '') },
+  'carta-qr-nota': { stile: 'qr', parte: 'note', rendi: (s) => (s.nota ? `<p class="categoria-nota">${testoEsatto(s.nota)}</p>` : '') },
   'carta-segreto': { stile: 'segreto', parte: 'piatti', rendi: piattiSegreto },
-  'carta-segreto-nota': { stile: 'segreto', parte: 'note', rendi: (s) => (s.nota ? `<p>${testoCarta(s.nota)}</p>` : '') },
+  'carta-segreto-nota': { stile: 'segreto', parte: 'note', rendi: (s) => (s.nota ? `<p>${testoEsatto(s.nota)}</p>` : '') },
 };
 
-// Quello che una pagina ha chiesto alla carta, per il controllo finale.
+// Quello che una pagina ha chiesto alla carta e a Chi siamo, per il
+// controllo finale.
 function usoCarta() {
-  return { usata: false, firmata: false, conta: [], qr: { piatti: [], note: [] }, segreto: { piatti: [], note: [] } };
+  return { usata: false, firmata: false, conta: [], qr: { piatti: [], note: [] }, segreto: { piatti: [], note: [] }, chiSiamo: [] };
 }
 
 function markerCarta(tipo, nome, uso) {
@@ -421,6 +437,216 @@ function verificaCarta(uso) {
   return problemi;
 }
 
+// ── Chi siamo, su /il-segreto/, da file di contenuto ──
+// L'introduzione delle titolari e le schede delle persone del ristorante
+// (settembre 2026, su richiesta di Luana). Se cambiano i testi o arrivano
+// nomi e foto si tocca solo content/il-segreto/chi-siamo.json. Formato:
+//   { "intro": { "titolo": "…", "testo": ["paragrafo", "…"], "firma": null },
+//     "persone": [ { "id": "sonia", "nome": "…", "ruolo": "…", "ruolo_riga2": "…",
+//                    "testo": "…" (o una lista di paragrafi), "foto": null } ] }
+// Regole:
+// - una scheda compare se ha nome e ruolo; riga 2 del ruolo e testo sono
+//   facoltativi. Il nome che non è ancora arrivato si lascia a null: la
+//   scheda resta fuori, e non va mai scritto un nome finto;
+// - "foto": null → al posto della foto il riquadro con le iniziali
+//   (decorativo, aria-hidden, nessuna scritta). "foto": "/assets/…-800.webp"
+//   → la foto vera; le sorelle -<larghezza> dello stesso formato nella stessa
+//   cartella (es. -480, -800, -1200) diventano il srcset da sole;
+// - la firma dell'intro non si mostra: i nomi sono già nel titolo;
+// - intro vuota → la sezione non esiste e dove stava lo chef torna la sua
+//   sezione di prima, fatta con i dati della scheda "chef".
+// Marker: @chi-siamo:sezione subito dopo l'hero, @chi-siamo:chef dove stava
+// la sezione dello chef; tutti e due, una volta sola.
+// Contratto delle classi (il CSS vive nella pagina):
+//   section.chi-siamo > .chi-siamo-intro > h2.chi-siamo-titolo + .chi-siamo-testo > p
+//                     + .persone > article.persona > .persona-foto (img, o .persona-foto-vuota
+//                       > .persona-iniziali) + h3.persona-nome + p.persona-ruolo > span + span
+//                       + .persona-testo > p
+//   la sezione dello chef di prima: section.chef > .chef-card > … (come era scritta a mano)
+const CHI_SIAMO_REL = 'content/il-segreto/chi-siamo.json';
+// Larghezza delle schede, per il sizes delle foto (vedi .persona nel CSS).
+const PERSONA_SIZES = '(min-width: 1000px) 265px, (min-width: 700px) 320px, calc((100vw - 56px) / 2)';
+let chiSiamoLetto = null;
+
+function chiSiamo() {
+  if (chiSiamoLetto) return chiSiamoLetto;
+  const errore = (msg) => new Error(`chi siamo non valido: ${CHI_SIAMO_REL}: ${msg}`);
+  const oggetto = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
+  const soloChiavi = (o, ammesse, dove) => {
+    for (const k of Object.keys(o)) {
+      if (!ammesse.includes(k)) throw errore(`${dove}chiave sconosciuta "${k}" (ammesse: ${ammesse.join(', ')})`);
+    }
+  };
+  // un testo facoltativo: '' se manca, errore se non è un testo o è un segnaposto
+  const testo = (v, dove) => {
+    if (v === undefined || v === null) return '';
+    if (typeof v !== 'string') throw errore(`${dove} deve essere un testo (o null)`);
+    if (segnaposto(v)) throw errore(`${dove}: "${v}" sembra un segnaposto, non un testo da pubblicare`);
+    return v.trim();
+  };
+  const paragrafi = (v, dove) => {
+    if (Array.isArray(v)) return v.map((x, i) => testo(x, `${dove}[${i}]`)).filter(Boolean);
+    const t = testo(v, dove);
+    return t ? [t] : [];
+  };
+  const foto = (v, dove) => {
+    if (v === undefined || v === null) return null;
+    if (typeof v !== 'string' || !/^\/assets\/[\w./-]+\.(?:webp|avif|jpe?g|png)$/i.test(v) || v.includes('..')) {
+      throw errore(`${dove}: "${v}" non è il percorso di un'immagine in /assets/ (o null per il segnaposto)`);
+    }
+    if (!fs.existsSync(path.join(ROOT, v))) throw errore(`${dove}: ${v} non esiste nel repo`);
+    // srcset dalle sorelle nome-<larghezza>.<formato>, se ci sono
+    const m = path.basename(v).match(/^(.+)-(\d+)\.([a-z]+)$/i);
+    if (!m) return { src: v, srcset: '' };
+    const dir = path.posix.dirname(v);
+    const esc = (x) => x.replace(/[.*+?^$()|[\]\\{}]/g, '\\$&');
+    const stessa = new RegExp('^' + esc(m[1]) + '-(\\d+)\\.' + esc(m[3]) + '$', 'i');
+    const sorelle = fs.readdirSync(path.join(ROOT, dir))
+      .map((f) => f.match(stessa))
+      .filter(Boolean)
+      .map((x) => ({ file: `${dir}/${x[0]}`, w: Number(x[1]) }))
+      .sort((a, b) => a.w - b.w);
+    return { src: v, srcset: sorelle.length > 1 ? sorelle.map((x) => `${x.file} ${x.w}w`).join(', ') : '' };
+  };
+
+  let dati;
+  try {
+    dati = JSON.parse(fs.readFileSync(path.join(ROOT, CHI_SIAMO_REL), 'utf8'));
+  } catch (e) {
+    throw errore(e.code === 'ENOENT' ? 'file mancante' : `JSON non valido (${e.message})`);
+  }
+  if (!oggetto(dati)) throw errore('atteso un oggetto con "intro" e "persone"');
+  soloChiavi(dati, ['intro', 'persone'], '');
+
+  let intro = null;
+  if (dati.intro !== undefined && dati.intro !== null) {
+    if (!oggetto(dati.intro)) throw errore('"intro" deve essere un oggetto (o null)');
+    soloChiavi(dati.intro, ['titolo', 'testo', 'firma'], 'intro: ');
+    const titolo = testo(dati.intro.titolo, 'intro.titolo');
+    const corpo = paragrafi(dati.intro.testo, 'intro.testo');
+    // la firma si accetta ma non si mostra
+    if (testo(dati.intro.firma, 'intro.firma')) console.log('· chi siamo: la firma dell\'intro è compilata ma non si mostra');
+    if (titolo || corpo.length) intro = { titolo, testo: corpo };
+  }
+
+  if (!Array.isArray(dati.persone)) throw errore('"persone" deve essere una lista');
+  const visti = new Set();
+  const persone = dati.persone.map((p, i) => {
+    const dove = `persone[${i}]`;
+    if (!oggetto(p)) throw errore(`${dove} deve essere un oggetto`);
+    soloChiavi(p, ['id', 'nome', 'ruolo', 'ruolo_riga2', 'testo', 'foto'], `${dove}: `);
+    if (typeof p.id !== 'string' || !/^[a-z0-9-]+$/.test(p.id)) throw errore(`${dove}.id mancante o fuori da [a-z0-9-]`);
+    if (visti.has(p.id)) throw errore(`${dove}.id "${p.id}" ripetuto`);
+    visti.add(p.id);
+    const qui = `${dove} (${p.id})`;
+    const persona = {
+      id: p.id,
+      nome: testo(p.nome, `${qui}.nome`),
+      ruolo: testo(p.ruolo, `${qui}.ruolo`),
+      ruolo2: testo(p.ruolo_riga2, `${qui}.ruolo_riga2`),
+      testo: paragrafi(p.testo, `${qui}.testo`),
+      foto: foto(p.foto, `${qui}.foto`),
+    };
+    if (/^nome\b/i.test(persona.nome)) throw errore(`${qui}.nome: "${persona.nome}" sembra un segnaposto (il nome che non c'è si lascia a null)`);
+    return persona;
+  });
+
+  chiSiamoLetto = { intro, persone, visibili: persone.filter((p) => p.nome && p.ruolo) };
+  return chiSiamoLetto;
+}
+
+const attr = (s) => testoEsatto(s).replace(/"/g, '&quot;');
+// "Sonia Ruggeri" → SR: prima lettera del primo e dell'ultimo nome
+function iniziali(nome) {
+  const parole = nome.split(/\s+/).filter(Boolean);
+  const lettera = (w) => [...w][0].toLocaleUpperCase('it-IT');
+  return parole.length > 1 ? lettera(parole[0]) + lettera(parole[parole.length - 1]) : lettera(parole[0]);
+}
+// «Sonia Ruggeri, titolare, Il Segreto di Villa Luzi»
+const altPersona = (p) => `${p.nome}, ${p.ruolo.charAt(0).toLocaleLowerCase('it-IT')}${p.ruolo.slice(1)}, Il Segreto di Villa Luzi`;
+const imgPersona = (p, chiusura) => `<img src="${attr(p.foto.src)}"${p.foto.srcset ? ` srcset="${attr(p.foto.srcset)}" sizes="${PERSONA_SIZES}"` : ''} alt="${attr(altPersona(p))}" loading="lazy" decoding="async"${chiusura}>`;
+const vuotaPersona = (p, classi) => `<div class="${classi}" aria-hidden="true"><span class="persona-iniziali">${testoEsatto(iniziali(p.nome))}</span></div>`;
+
+function sezioneChiSiamo(d) {
+  const schede = d.visibili.map((p) => [
+    `  <article class="persona reveal" data-persona="${p.id}">`,
+    p.foto
+      ? `    <div class="persona-foto">${imgPersona(p, '')}</div>`
+      : `    ${vuotaPersona(p, 'persona-foto persona-foto-vuota')}`,
+    `    <h3 class="persona-nome">${testoEsatto(p.nome)}</h3>`,
+    `    <p class="persona-ruolo"><span>${testoEsatto(p.ruolo)}</span>${p.ruolo2 ? `<span>${testoEsatto(p.ruolo2)}</span>` : ''}</p>`,
+    ...(p.testo.length ? ['    <div class="persona-testo">', ...p.testo.map((x) => `      <p>${testoEsatto(x)}</p>`), '    </div>'] : []),
+    '  </article>',
+  ].join('\n'));
+  return [
+    `<!-- CHI SIAMO: testi, nomi e foto da ${CHI_SIAMO_REL}, si cambiano lì -->`,
+    '<section class="chi-siamo" id="chi-siamo">',
+    '  <div class="chi-siamo-intro reveal">',
+    ...(d.intro.titolo ? [`    <h2 class="chi-siamo-titolo">${testoEsatto(d.intro.titolo)}</h2>`] : []),
+    ...(d.intro.testo.length ? ['    <div class="chi-siamo-testo">', ...d.intro.testo.map((x) => `      <p>${testoEsatto(x)}</p>`), '    </div>'] : []),
+    '  </div>',
+    ...(schede.length ? ['  <div class="persone">', ...schede.map((x) => x.replace(/^/gm, '  ')), '  </div>'] : []),
+    '</section>',
+  ].join('\n');
+}
+
+// La sezione dello chef com'era prima di Chi siamo, per quando l'intro è
+// vuota: stessa struttura, dati dalla scheda "chef". Il ruolo va su due
+// righe, senza il middot di una volta.
+function sezioneChef(p) {
+  const parole = p.nome.split(/\s+/);
+  const nome = parole.length > 1
+    ? `${testoEsatto(parole.slice(0, -1).join(' '))} <em>${testoEsatto(parole[parole.length - 1])}</em>`
+    : testoEsatto(p.nome);
+  return [
+    `<!-- CHEF GLASSMORPHISM CARD: dati dalla scheda "chef" di ${CHI_SIAMO_REL} -->`,
+    '<section class="chef" id="chef">',
+    '  <div class="chef-card reveal">',
+    '    <div class="chef-card-photo">',
+    ...(p.foto
+      ? [`      ${imgPersona(p, ' /')}`, '      <div class="photo-frame"></div>']
+      : [`      ${vuotaPersona(p, 'persona-foto-vuota')}`]),
+    '    </div>',
+    '    <div class="chef-card-content">',
+    '      <div class="section-eyebrow">',
+    '        <span class="line"></span>',
+    '        <span class="eyebrow">Lo Chef</span>',
+    '      </div>',
+    '',
+    '      <h2 class="chef-name">',
+    `        ${nome}`,
+    '      </h2>',
+    `      <p class="chef-role">${testoEsatto(p.ruolo)}${p.ruolo2 ? `<br>${testoEsatto(p.ruolo2)}` : ''}</p>`,
+    ...(p.testo.length ? ['', '      <div class="chef-bio">', ...p.testo.map((x) => `        <p>${testoEsatto(x)}</p>`), '      </div>'] : []),
+    '',
+    '    </div>',
+    '  </div>',
+    '</section>',
+  ].join('\n');
+}
+
+function markerChiSiamo(nome, uso) {
+  const d = chiSiamo();
+  uso.chiSiamo.push(nome);
+  if (nome === 'sezione') return d.intro ? sezioneChiSiamo(d) : '';
+  if (nome === 'chef') {
+    if (d.intro) return '';
+    const chef = d.visibili.find((p) => p.id === 'chef');
+    return chef ? sezioneChef(chef) : '';
+  }
+  throw new Error(`marker @chi-siamo:${nome} sconosciuto (ammessi: @chi-siamo:sezione, @chi-siamo:chef)`);
+}
+
+function verificaChiSiamo(uso) {
+  if (!uso.chiSiamo.length) return [];
+  const problemi = [];
+  for (const parte of ['sezione', 'chef']) {
+    const n = uso.chiSiamo.filter((x) => x === parte).length;
+    if (n !== 1) problemi.push(`chi siamo: il marker @chi-siamo:${parte} compare ${n} volte (atteso 1): con l'intro vuota ${parte === 'chef' ? 'lo chef sparirebbe' : 'la sezione non avrebbe posto'}`);
+  }
+  return problemi;
+}
+
 let copied = 0;
 let withInclude = 0;
 let menus = 0;
@@ -466,6 +692,8 @@ function walk(srcDir, outDir, isRoot) {
             if (tipo === 'menu') {
               reso = menu(name);
               menuPagina++;
+            } else if (tipo === 'chi-siamo') {
+              reso = markerChiSiamo(name, uso);
             } else {
               reso = markerCarta(tipo, name, uso);
               if (tipo === 'carta-conta') return reso; // un numero, in riga
@@ -479,7 +707,7 @@ function walk(srcDir, outDir, isRoot) {
             return marker;
           }
         });
-        if (!problemi.length) problemi.push(...verificaCarta(uso));
+        if (!problemi.length) problemi.push(...verificaCarta(uso), ...verificaChiSiamo(uso));
         let rotta = false;
         // Una carta rotta si ripeterebbe a ogni marker: un messaggio solo.
         for (const problema of new Set(problemi)) {
@@ -487,7 +715,7 @@ function walk(srcDir, outDir, isRoot) {
           failed = rotta = true;
         }
         if (!problemi.length && HAS_MARKER.test(html)) {
-          console.error(`✗ marker @include/@menu/@carta non risolto in ${path.relative(ROOT, src)} (nome fuori da [a-z0-9-])`);
+          console.error(`✗ marker @include/@menu/@carta/@chi-siamo non risolto in ${path.relative(ROOT, src)} (nome fuori da [a-z0-9-])`);
           failed = rotta = true;
         }
         // La pagina col marker aperto non si scrive affatto: la build
@@ -512,7 +740,7 @@ fs.rmSync(DIST, { recursive: true, force: true });
 walk(ROOT, DIST, true);
 
 if (failed) {
-  console.error('build FALLITA: marker non risolti, menù o carta non validi.');
+  console.error('build FALLITA: marker non risolti, menù, carta o Chi siamo non validi.');
   process.exit(1);
 }
 console.log(`build ok → dist/ · ${copied} file copiati · ${withInclude} con include · ${PARTIALS.size} partial usati · ${menus} menù da content/ · carta in ${carte} pagine`);

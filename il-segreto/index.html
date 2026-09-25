@@ -68,7 +68,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400&display=swap" rel="stylesheet" />
 
 <style>
 :root {
@@ -580,6 +580,144 @@ section { position: relative; padding: 140px 32px; }
 }
 .chef-bio p { margin-bottom: 1em; }
 .chef-bio p:last-child { margin-bottom: 0; }
+
+/* ─── Chi siamo: le titolari e le persone del Segreto ───
+   Testi, nomi e foto da content/il-segreto/chi-siamo.json (build.js).
+   Titolo e paragrafi come quelli della narrativa; nelle schede nome,
+   ruolo su due righe nello stile di .chef-role e testo come .chef-bio.
+   La foto è 4:5 con gli angoli e l'ombra della card dello chef; finché
+   non arriva c'è il riquadro ottanio con le iniziali (aria-hidden, nessuna
+   scritta), che sparisce da solo quando nel JSON si compila "foto". */
+.chi-siamo {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(201,168,106,0.05) 0%, transparent 55%),
+    linear-gradient(180deg, var(--verde-notte) 0%, var(--ottanio-deep) 55%, var(--verde-notte) 100%);
+  text-align: center;
+}
+.chi-siamo-intro { max-width: 760px; margin: 0 auto; }
+.chi-siamo-titolo {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 40px;
+}
+.chi-siamo-testo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.6;
+  color: var(--whisper);
+  font-style: italic;
+  text-wrap: pretty;
+}
+.chi-siamo-testo p + p { margin-top: 1.2em; }
+
+/* quattro in fila su desktop (tre centrate finché manca il pizzaiolo),
+   due per riga sotto i 1000px */
+.persone {
+  max-width: 1180px;
+  margin: 96px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 72px 40px;
+}
+.persona { flex: 0 0 calc((100% - 3 * 40px) / 4); min-width: 0; }
+.persona-foto {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--verde-notte);
+  box-shadow: 0 50px 100px -30px rgba(0, 0, 0, 0.6);
+}
+.persona-foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+/* la cornice sottile della foto dello chef */
+.persona-foto::after {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(244, 236, 220, 0.2);
+  pointer-events: none;
+}
+.persona-foto-vuota {
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: var(--ottanio);
+}
+.persona-foto-vuota::after {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 1px solid var(--oro);
+  opacity: 0.75;
+  pointer-events: none;
+}
+.chef-card-photo > .persona-foto-vuota { position: absolute; inset: 0; }
+.persona-iniziali {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: clamp(30px, 3.2vw, 44px);
+  line-height: 1;
+  letter-spacing: 0.34em;
+  padding-left: 0.34em; /* il tracking non sposta le lettere dal centro */
+  color: var(--avorio);
+}
+.persona-nome {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: clamp(24px, 2.1vw, 30px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--avorio);
+  margin-top: 30px;
+}
+.persona-ruolo {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  line-height: 1.8;
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-top: 14px;
+}
+/* in una scheda di 265px "Responsabile Regionale Cuochi Marche" non sta in
+   una riga: va a capo pari, senza lasciare una parola sola */
+.persona-ruolo span { display: block; text-wrap: balance; }
+.persona-testo {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(18px, 1.5vw, 21px);
+  line-height: 1.6;
+  color: var(--whisper);
+  margin-top: 20px;
+  text-wrap: pretty;
+}
+.persona-testo p + p { margin-top: 0.8em; }
+@media (max-width: 999px) {
+  .persone { gap: 56px 16px; }
+  .persona { flex-basis: calc((100% - 16px) / 2); max-width: 320px; }
+}
+@media (max-width: 560px) {
+  .persone { margin-top: 64px; gap: 48px 16px; }
+  .persona-foto::after, .persona-foto-vuota::after { inset: 9px; }
+  .persona-nome { font-size: 21px; margin-top: 20px; }
+  .persona-ruolo { font-size: 10px; letter-spacing: 0.2em; padding-left: 0.2em; margin-top: 10px; }
+  .persona-testo { font-size: 17px; margin-top: 14px; }
+}
 
 /* ─── Custodia (boule chef) ─── */
 .custodia {
@@ -2057,6 +2195,8 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
   </div>
 </section>
 
+<!-- @chi-siamo:sezione -->
+
 <!-- NARRATIVE -->
 <section class="narrative">
   <div class="container-narrow">
@@ -2087,43 +2227,7 @@ src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"/>
   </div>
 </section>
 
-<!-- CHEF GLASSMORPHISM CARD -->
-<section class="chef" id="chef">
-  <div class="chef-card reveal">
-    <div class="chef-card-photo">
-      <img src="/assets/img/chef-jan-paul-kana.png" alt="Lo Chef Jan Paul Kana · Il Segreto · Villa Luzi" loading="lazy" />
-      <div class="photo-frame"></div>
-    </div>
-    <div class="chef-card-content">
-      <div class="section-eyebrow">
-        <span class="line"></span>
-        <span class="eyebrow">Lo Chef</span>
-      </div>
-
-      <h2 class="chef-name">
-        Jan Paul <em>Kana</em>
-      </h2>
-      <p class="chef-role">Chef del Segreto · Responsabile Regionale Cuochi Marche</p>
-
-      <div class="chef-bio">
-        <p>
-          Cucina italiana contemporanea,
-          formazione marchigiana,
-          esperienza tra ristorazione alberghiera e fine dining.
-        </p>
-        <p>
-          Responsabile Regionale dei Cuochi delle Marche,
-          chef nel territorio da anni.
-        </p>
-        <p>
-          Al Segreto, materia di stagione,
-          mano riconoscibile.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
+<!-- @chi-siamo:chef -->
 
 <!-- MENU -->
 <section class="menu-section" id="menu">

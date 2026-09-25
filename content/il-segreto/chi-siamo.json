@@ -1,0 +1,20 @@
+{
+  "intro": {
+    "titolo": "Siamo Sonia e Luana.",
+    "testo": [
+      "Il Segreto l’abbiamo aperto a fine maggio 2026, dentro Villa Luzi, a Treia. Lo abbiamo pensato per chi a tavola vuole fermarsi a lungo.",
+      "Quando prenotate rispondiamo noi, e quando arrivate ci trovate in sala. In cucina c’è Jan Paul Kana, al forno a legna il nostro pizzaiolo."
+    ],
+    "firma": null
+  },
+  "persone": [
+    { "id": "sonia", "nome": "Sonia Ruggeri", "ruolo": "Titolare", "ruolo_riga2": "Accoglienza e prenotazioni", "testo": "È lei che vi risponde quando prenotate un tavolo, una serata o una camera.", "foto": null },
+    { "id": "luana", "nome": "Luana Salemi", "ruolo": "Titolare", "ruolo_riga2": "Eventi e matrimoni", "testo": "Segue le serate a tema e i matrimoni in villa, dalla prima telefonata alla sera della festa.", "foto": null },
+    { "id": "chef", "nome": "Jan Paul Kana", "ruolo": "Chef del Segreto", "ruolo_riga2": "Responsabile Regionale Cuochi Marche", "testo": [
+        "Cucina italiana contemporanea, formazione marchigiana, esperienza tra ristorazione alberghiera e fine dining.",
+        "Responsabile Regionale dei Cuochi delle Marche, chef nel territorio da anni.",
+        "Al Segreto, materia di stagione, mano riconoscibile."
+      ], "foto": "/assets/img/chef-jan-paul-kana.png" },
+    { "id": "pizzaiolo", "nome": null, "ruolo": "Pizzaiolo", "ruolo_riga2": null, "testo": "Impasto a lunga lievitazione, farine selezionate, forno a legna: la pizza del Segreto la fa lui.", "foto": null }
+  ]
+}
