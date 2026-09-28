@@ -68,7 +68,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
 
 <style>
 :root {
@@ -585,9 +585,10 @@ section { position: relative; padding: 140px 32px; }
    Testi, nomi e foto da content/il-segreto/chi-siamo.json (build.js).
    Titolo e paragrafi come quelli della narrativa; nelle schede nome,
    ruolo su due righe nello stile di .chef-role e testo come .chef-bio.
-   La foto è 4:5 con gli angoli e l'ombra della card dello chef; finché
-   non arriva c'è il riquadro ottanio con le iniziali (aria-hidden, nessuna
-   scritta), che sparisce da solo quando nel JSON si compila "foto". */
+   La foto è 4:5 con gli angoli e l'ombra della card dello chef. Finché
+   una foto non c'è la scheda è solo testo (niente riquadri né iniziali,
+   28/09/2026) e sta in una riga sua, .persone-testo: quando nel JSON si
+   compila "foto" la scheda passa da sola nella riga delle foto. */
 .chi-siamo {
   background:
     radial-gradient(ellipse at 50% 0%, rgba(201,168,106,0.05) 0%, transparent 55%),
@@ -614,8 +615,8 @@ section { position: relative; padding: 140px 32px; }
 }
 .chi-siamo-testo p + p { margin-top: 1.2em; }
 
-/* quattro in fila su desktop (tre centrate finché manca il pizzaiolo),
-   due per riga sotto i 1000px */
+/* le schede con la foto: quattro in fila su desktop, due per riga sotto
+   i 1000px; ogni riga è centrata */
 .persone {
   max-width: 1180px;
   margin: 96px auto 0;
@@ -625,7 +626,12 @@ section { position: relative; padding: 140px 32px; }
   align-items: flex-start;
   gap: 72px 40px;
 }
+.persone + .persone { margin-top: 88px; }
 .persona { flex: 0 0 calc((100% - 3 * 40px) / 4); min-width: 0; }
+/* le schede senza foto: colonne di testo larghe quanto l'introduzione */
+.persone-testo { max-width: 760px; column-gap: 80px; }
+.persone-testo .persona { flex-basis: calc((100% - 80px) / 2); }
+.persona > .persona-nome:first-child { margin-top: 0; }
 .persona-foto {
   position: relative;
   aspect-ratio: 4 / 5;
@@ -650,30 +656,8 @@ section { position: relative; padding: 140px 32px; }
   border: 1px solid rgba(244, 236, 220, 0.2);
   pointer-events: none;
 }
-.persona-foto-vuota {
-  position: relative;
-  display: grid;
-  place-items: center;
-  background: var(--ottanio);
-}
-.persona-foto-vuota::after {
-  content: '';
-  position: absolute;
-  inset: 14px;
-  border: 1px solid var(--oro);
-  opacity: 0.75;
-  pointer-events: none;
-}
-.chef-card-photo > .persona-foto-vuota { position: absolute; inset: 0; }
-.persona-iniziali {
-  font-family: 'Cinzel', 'Times New Roman', serif;
-  font-weight: 400;
-  font-size: clamp(30px, 3.2vw, 44px);
-  line-height: 1;
-  letter-spacing: 0.34em;
-  padding-left: 0.34em; /* il tracking non sposta le lettere dal centro */
-  color: var(--avorio);
-}
+/* la vecchia sezione dello chef (intro vuota) senza la sua foto */
+.chef-card-senza-foto { grid-template-columns: 1fr; }
 .persona-nome {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
@@ -710,10 +694,13 @@ section { position: relative; padding: 140px 32px; }
 @media (max-width: 999px) {
   .persone { gap: 56px 16px; }
   .persona { flex-basis: calc((100% - 16px) / 2); max-width: 320px; }
+  .persone-testo { column-gap: 24px; }
+  .persone-testo .persona { flex-basis: calc((100% - 24px) / 2); }
+  .persone + .persone { margin-top: 64px; }
 }
 @media (max-width: 560px) {
   .persone { margin-top: 64px; gap: 48px 16px; }
-  .persona-foto::after, .persona-foto-vuota::after { inset: 9px; }
+  .persona-foto::after { inset: 9px; }
   .persona-nome { font-size: 21px; margin-top: 20px; }
   .persona-ruolo { font-size: 10px; letter-spacing: 0.2em; padding-left: 0.2em; margin-top: 10px; }
   .persona-testo { font-size: 17px; margin-top: 14px; }

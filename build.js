@@ -474,10 +474,13 @@ function verificaCarta(uso) {
 // - una scheda compare se ha nome e ruolo; riga 2 del ruolo e testo sono
 //   facoltativi. Il nome che non è ancora arrivato si lascia a null: la
 //   scheda resta fuori, e non va mai scritto un nome finto;
-// - "foto": null → al posto della foto il riquadro con le iniziali
-//   (decorativo, aria-hidden, nessuna scritta). "foto": "/assets/…-800.webp"
-//   → la foto vera; le sorelle -<larghezza> dello stesso formato nella stessa
-//   cartella (es. -480, -800, -1200) diventano il srcset da sole;
+// - "foto": null → la scheda è solo testo: niente riquadro, niente iniziali,
+//   niente sagome (dal 28/09/2026, finché le foto di Sonia e Luana non ci
+//   sono). "foto": "/assets/…-800.webp" → la foto vera; le sorelle
+//   -<larghezza> dello stesso formato nella stessa cartella (es. -480, -800,
+//   -1200) diventano il srcset da sole. Le schede vanno a righe: quelle di
+//   fila con la foto stanno insieme, quelle di fila senza foto pure, senza
+//   cambiare l'ordine del JSON;
 // - la firma dell'intro non si mostra: i nomi sono già nel titolo;
 // - intro vuota → la sezione non esiste e dove stava lo chef torna la sua
 //   sezione di prima, fatta con i dati della scheda "chef".
@@ -485,9 +488,9 @@ function verificaCarta(uso) {
 // la sezione dello chef; tutti e due, una volta sola.
 // Contratto delle classi (il CSS vive nella pagina):
 //   section.chi-siamo > .chi-siamo-intro > h2.chi-siamo-titolo + .chi-siamo-testo > p
-//                     + .persone > article.persona > .persona-foto (img, o .persona-foto-vuota
-//                       > .persona-iniziali) + h3.persona-nome + p.persona-ruolo > span + span
-//                       + .persona-testo > p
+//                     + .persone (.persone-testo se senza foto) > article.persona
+//                       > .persona-foto > img (se c'è) + h3.persona-nome
+//                       + p.persona-ruolo > span + span + .persona-testo > p
 //   la sezione dello chef di prima: section.chef > .chef-card > … (come era scritta a mano)
 const CHI_SIAMO_REL = 'content/il-segreto/chi-siamo.json';
 // Larghezza delle schede, per il sizes delle foto (vedi .persona nel CSS).
@@ -518,7 +521,7 @@ function chiSiamo() {
   const foto = (v, dove) => {
     if (v === undefined || v === null) return null;
     if (typeof v !== 'string' || !/^\/assets\/[\w./-]+\.(?:webp|avif|jpe?g|png)$/i.test(v) || v.includes('..')) {
-      throw errore(`${dove}: "${v}" non è il percorso di un'immagine in /assets/ (o null per il segnaposto)`);
+      throw errore(`${dove}: "${v}" non è il percorso di un'immagine in /assets/ (o null finché la foto non c'è)`);
     }
     if (!fs.existsSync(path.join(ROOT, v))) throw errore(`${dove}: ${v} non esiste nel repo`);
     // srcset dalle sorelle nome-<larghezza>.<formato>, se ci sono
@@ -582,28 +585,31 @@ function chiSiamo() {
 }
 
 const attr = (s) => testoEsatto(s).replace(/"/g, '&quot;');
-// "Sonia Ruggeri" → SR: prima lettera del primo e dell'ultimo nome
-function iniziali(nome) {
-  const parole = nome.split(/\s+/).filter(Boolean);
-  const lettera = (w) => [...w][0].toLocaleUpperCase('it-IT');
-  return parole.length > 1 ? lettera(parole[0]) + lettera(parole[parole.length - 1]) : lettera(parole[0]);
-}
 // «Sonia Ruggeri, titolare, Il Segreto di Villa Luzi»
 const altPersona = (p) => `${p.nome}, ${p.ruolo.charAt(0).toLocaleLowerCase('it-IT')}${p.ruolo.slice(1)}, Il Segreto di Villa Luzi`;
 const imgPersona = (p, chiusura) => `<img src="${attr(p.foto.src)}"${p.foto.srcset ? ` srcset="${attr(p.foto.srcset)}" sizes="${PERSONA_SIZES}"` : ''} alt="${attr(altPersona(p))}" loading="lazy" decoding="async"${chiusura}>`;
-const vuotaPersona = (p, classi) => `<div class="${classi}" aria-hidden="true"><span class="persona-iniziali">${testoEsatto(iniziali(p.nome))}</span></div>`;
 
 function sezioneChiSiamo(d) {
-  const schede = d.visibili.map((p) => [
+  const scheda = (p) => [
     `  <article class="persona reveal" data-persona="${p.id}">`,
-    p.foto
-      ? `    <div class="persona-foto">${imgPersona(p, '')}</div>`
-      : `    ${vuotaPersona(p, 'persona-foto persona-foto-vuota')}`,
+    ...(p.foto ? [`    <div class="persona-foto">${imgPersona(p, '')}</div>`] : []),
     `    <h3 class="persona-nome">${testoEsatto(p.nome)}</h3>`,
     `    <p class="persona-ruolo"><span>${testoEsatto(p.ruolo)}</span>${p.ruolo2 ? `<span>${testoEsatto(p.ruolo2)}</span>` : ''}</p>`,
     ...(p.testo.length ? ['    <div class="persona-testo">', ...p.testo.map((x) => `      <p>${testoEsatto(x)}</p>`), '    </div>'] : []),
     '  </article>',
-  ].join('\n'));
+  ].join('\n');
+  // righe: le schede di fila con la foto insieme, quelle senza foto insieme
+  const righe = [];
+  for (const p of d.visibili) {
+    const conFoto = Boolean(p.foto);
+    if (!righe.length || righe[righe.length - 1].conFoto !== conFoto) righe.push({ conFoto, persone: [] });
+    righe[righe.length - 1].persone.push(p);
+  }
+  const persone = righe.flatMap((r) => [
+    `  <div class="persone${r.conFoto ? '' : ' persone-testo'}">`,
+    ...r.persone.map((p) => scheda(p).replace(/^/gm, '  ')),
+    '  </div>',
+  ]);
   return [
     `<!-- CHI SIAMO: testi, nomi e foto da ${CHI_SIAMO_REL}, si cambiano lì -->`,
     '<section class="chi-siamo" id="chi-siamo">',
@@ -611,7 +617,7 @@ function sezioneChiSiamo(d) {
     ...(d.intro.titolo ? [`    <h2 class="chi-siamo-titolo">${testoEsatto(d.intro.titolo)}</h2>`] : []),
     ...(d.intro.testo.length ? ['    <div class="chi-siamo-testo">', ...d.intro.testo.map((x) => `      <p>${testoEsatto(x)}</p>`), '    </div>'] : []),
     '  </div>',
-    ...(schede.length ? ['  <div class="persone">', ...schede.map((x) => x.replace(/^/gm, '  ')), '  </div>'] : []),
+    ...persone,
     '</section>',
   ].join('\n');
 }
@@ -627,12 +633,13 @@ function sezioneChef(p) {
   return [
     `<!-- CHEF GLASSMORPHISM CARD: dati dalla scheda "chef" di ${CHI_SIAMO_REL} -->`,
     '<section class="chef" id="chef">',
-    '  <div class="chef-card reveal">',
-    '    <div class="chef-card-photo">',
     ...(p.foto
-      ? [`      ${imgPersona(p, ' /')}`, '      <div class="photo-frame"></div>']
-      : [`      ${vuotaPersona(p, 'persona-foto-vuota')}`]),
-    '    </div>',
+      ? ['  <div class="chef-card reveal">',
+        '    <div class="chef-card-photo">',
+        `      ${imgPersona(p, ' /')}`,
+        '      <div class="photo-frame"></div>',
+        '    </div>']
+      : ['  <div class="chef-card chef-card-senza-foto reveal">']),
     '    <div class="chef-card-content">',
     '      <div class="section-eyebrow">',
     '        <span class="line"></span>',
