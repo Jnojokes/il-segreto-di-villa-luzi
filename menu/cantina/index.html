@@ -175,6 +175,14 @@ h1.testata-titolo {
 }
 .nastro a:hover, .nastro a:focus-visible { color: var(--oro-chiaro); }
 
+/* ── il calice, in testa: chi apre la cantina dal QR lo vede subito ── */
+.calice {
+  font-style: italic;
+  color: var(--velo);
+  font-size: clamp(17px, 4.6vw, 20px);
+  margin-top: clamp(30px, 7.5vw, 40px);
+}
+
 /* ── categorie e voci ── */
 .categoria-blocco { margin-top: clamp(48px, 11vw, 64px); scroll-margin-top: 72px; }
 h2.categoria {
@@ -299,6 +307,10 @@ h2.categoria + h3.sotto-categoria { margin-top: clamp(22px, 5vw, 28px); }
     <a href="#rossi">Rossi</a>
     <a href="#dolci">Dolci</a>
   </nav>
+
+  <!-- Prezzo al calice da Luana, 3 ottobre 2026: «i calici tutti a 5 euro».
+       Quali vini si servono al calice non è detto: la riga dà solo il prezzo. -->
+  <p class="calice">Vini al calice, tutti a €5</p>
 
   <section class="categoria-blocco" id="bollicine" aria-label="Bollicine">
     <h2 class="categoria">Bollicine</h2>
