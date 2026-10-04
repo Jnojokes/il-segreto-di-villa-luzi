@@ -213,7 +213,7 @@ function menu(slug) {
 // Una fonte sola per le due pagine che la mostrano: /menu/ (la pagina del
 // QR sui tavoli) e la sezione #menu di /il-segreto/. Il JSON esce dallo
 // stesso sorgente del menù stampato (carta_sito.json nella cartella
-// menu_v12 del progetto) e si copia qui così com'è: quando cambia un
+// menu_v* più recente del progetto) e si copia qui così com'è: quando cambia un
 // piatto si tocca solo content/menu/carta.json. Formato (nota, descrizione
 // e unita facoltative, prezzi in euro, "unita": "hg" = all'etto):
 //   { "aggiornato": "2026-09-25",
@@ -221,6 +221,8 @@ function menu(slug) {
 //     "sezioni": [
 //       { "id": "carni-al-taglio", "titolo": "Carni al taglio", "nota": "…",
 //         "piatti": [ { "nome": "Wagyu", "descrizione": "…", "prezzo": 30, "unita": "hg" } ] } ] }
+// La nota di un piatto ("nota": "solo la domenica") va subito dopo il nome,
+// tra parentesi e in corsivo, come sul menù stampato.
 //
 // UN PIATTO SENZA PREZZO NON SI PUBBLICA: con "prezzo": null il piatto non
 // compare e non entra nei conteggi, e al suo posto non va niente (né "da
@@ -246,8 +248,10 @@ function menu(slug) {
 // non le accoglie, invece di sparire in silenzio.
 // Contratto delle classi (il CSS vive nelle pagine):
 //   qr       .piatto > p.piatto-nome + p.piatto-dettaglio + p.piatto-prezzo · p.categoria-nota
+//            · span.piatto-nota dentro il nome
 //   segreto  .menu-item > (.menu-item-main > span.menu-item-name + span.menu-item-desc)
 //            + span.menu-item-price · <p> dentro .menu-card-body-inner per la nota
+//            · span.menu-item-note dentro il nome
 const CARTA_REL = 'content/menu/carta.json';
 // L'unità accanto al prezzo, nel formato che ciascuna pagina usava a mano.
 const CARTA_UNITA = { hg: { qr: " all'etto", segreto: ' / hg' } };
@@ -312,8 +316,9 @@ function carta() {
     s.piatti.forEach((p, j) => {
       const qui = `${dove}.piatti[${j}] (${s.id})`;
       if (!oggetto(p)) throw errore(`${qui} deve essere un oggetto con "nome" e "prezzo"`);
-      soloChiavi(p, ['nome', 'descrizione', 'prezzo', 'unita'], `${qui}: `);
+      soloChiavi(p, ['nome', 'nota', 'descrizione', 'prezzo', 'unita'], `${qui}: `);
       if (!pieno(p.nome) || !testoOpzionale(p.nome, `${qui}.nome`)) throw errore(`${qui}.nome mancante o vuoto`);
+      if (!testoOpzionale(p.nota, `${qui}.nota`)) throw errore(`${qui}.nota deve essere un testo (o null)`);
       if (!testoOpzionale(p.descrizione, `${qui}.descrizione`)) throw errore(`${qui}.descrizione deve essere un testo (o null)`);
       if (p.unita !== undefined && p.unita !== null && !Object.hasOwn(CARTA_UNITA, p.unita)) {
         throw errore(`${qui}.unita "${p.unita}" sconosciuta (ammesse: ${Object.keys(CARTA_UNITA).join(', ')})`);
@@ -329,6 +334,7 @@ function carta() {
       }
       piatti.push({
         nome: p.nome.trim(),
+        nota: pieno(p.nota) ? p.nota.trim() : '',
         descrizione: pieno(p.descrizione) ? p.descrizione.trim() : '',
         prezzo: p.prezzo,
         unita: p.unita || '',
@@ -368,11 +374,12 @@ function prezzoSegreto(p) {
 // non uscire dalla colonna stretta dell'accordion.
 const legaParentesi = (html) => html.replace(/\(([^()]{1,24})\)/g, (m, dentro) => `(${dentro.replace(/ /g, '&nbsp;')})`);
 const testoPiatto = (s) => legaParentesi(testoEsatto(s));
+const notaPiatto = (p, classe) => (p.nota ? ` <span class="${classe}">${testoPiatto(`(${p.nota})`)}</span>` : '');
 
 function piattiQr(sezione) {
   return sezione.piatti.map((p) => [
     '<div class="piatto">',
-    `  <p class="piatto-nome">${testoPiatto(p.nome)}</p>`,
+    `  <p class="piatto-nome">${testoPiatto(p.nome)}${notaPiatto(p, 'piatto-nota')}</p>`,
     ...(p.descrizione ? [`  <p class="piatto-dettaglio">${testoPiatto(p.descrizione)}</p>`] : []),
     `  <p class="piatto-prezzo">${prezzoQr(p)}</p>`,
     '</div>',
@@ -381,12 +388,13 @@ function piattiQr(sezione) {
 
 function piattiSegreto(sezione) {
   return sezione.piatti.map((p) => {
+    const nome = `<span class="menu-item-name">${testoPiatto(p.nome)}${notaPiatto(p, 'menu-item-note')}</span>`;
     const principale = p.descrizione
       ? ['  <div class="menu-item-main">',
-        `    <span class="menu-item-name">${testoPiatto(p.nome)}</span>`,
+        `    ${nome}`,
         `    <span class="menu-item-desc">${testoPiatto(p.descrizione)}</span>`,
         '  </div>']
-      : [`  <div class="menu-item-main"><span class="menu-item-name">${testoPiatto(p.nome)}</span></div>`];
+      : [`  <div class="menu-item-main">${nome}</div>`];
     return ['<div class="menu-item">', ...principale, `  <span class="menu-item-price">${prezzoSegreto(p)}</span>`, '</div>'].join('\n');
   }).join('\n');
 }

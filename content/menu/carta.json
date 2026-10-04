@@ -1,12 +1,12 @@
 {
-  "aggiornato": "2026-09-25",
+  "aggiornato": "2026-10-04",
   "coperto": 3,
   "sezioni": [
     {"id": "antipasti", "titolo": "Antipasti", "piatti": [
-      {"nome": "Sformato di Zucca e Gorgonzola", "descrizione": "con chips di bacon croccante", "prezzo": 10},
+      {"nome": "Sformato di Zucca e Gorgonzola", "descrizione": "con chips di bacon croccante", "prezzo": 12},
       {"nome": "Battuta di Manzo", "descrizione": "su fonduta di Parmigiano e nocciole tostate", "prezzo": 14},
       {"nome": "Arancino Croccante", "descrizione": "su letto di pomodoro e granella di pistacchio", "prezzo": 10},
-      {"nome": "Tagliere Degustazione", "descrizione": "con zuppa e trippa della tradizione", "prezzo": 18},
+      {"nome": "Tagliere Degustazione", "descrizione": "di salumi locali della Marca, con zuppa e trippa della tradizione", "prezzo": 18},
       {"nome": "Coratella d’Agnello", "descrizione": "con cipolla", "prezzo": 8},
       {"nome": "Carpaccio di Manzo", "descrizione": "su panella di ceci e insalata di finocchi", "prezzo": 15},
       {"nome": "Degustazione di Formaggi", "prezzo": 15},
@@ -16,18 +16,20 @@
     {"id": "primi", "titolo": "Primi piatti", "piatti": [
       {"nome": "Tagliatelle ai Porcini", "descrizione": "con guanciale croccante", "prezzo": 18},
       {"nome": "Pappardelle al Cinghiale", "descrizione": "con frutti di bosco", "prezzo": 16},
-      {"nome": "Gnocchi de lu Vatte", "prezzo": 15},
+      {"nome": "Gnocchi de lu Vatte", "descrizione": "al sugo d’anatra", "prezzo": 15},
       {"nome": "Spaghettone alla Gricia", "prezzo": 12},
-      {"nome": "Tortellini in Brodo di Gallina", "prezzo": 15}
+      {"nome": "Tortellini in Brodo di Gallina", "prezzo": 15},
+      {"nome": "Fusillo al Ragù", "prezzo": 16},
+      {"nome": "Pacchero al Coniglio", "descrizione": "su vellutata di piselli", "prezzo": 16}
     ]},
     {"id": "secondi", "titolo": "Secondi piatti", "piatti": [
       {"nome": "Guancia di Manzo Brasata", "descrizione": "a lenta cottura nel suo fondo", "prezzo": 18},
-      {"nome": "Coniglio in Porchetta", "descrizione": "alle erbe aromatiche", "prezzo": 16},
+      {"nome": "Coniglio in Porchetta", "descrizione": "alle erbe aromatiche", "prezzo": 20},
       {"nome": "Stinco di Maiale", "descrizione": "con cavolfiore alla brace e patate", "prezzo": 15},
-      {"nome": "Tagliata di Manzo", "descrizione": "al sale e rosmarino", "prezzo": 24},
-      {"nome": "Tagliata di Manzo ai Porcini", "descrizione": "con porcini trifolati", "prezzo": 28},
-      {"nome": "Lesso della Tradizione (solo la domenica)", "descrizione": "lingua, petto di gallina e musetto", "prezzo": 24},
-      {"nome": "Assortimento Misto di Carni", "descrizione": "manzo, salsiccia, capocollo, agnello, costine, pancetta arrotolata con cipolla", "prezzo": 24}
+      {"nome": "Tagliata di Manzo Argentino", "descrizione": "al sale e rosmarino", "prezzo": 24},
+      {"nome": "Tagliata di Manzo Argentino ai Porcini", "descrizione": "con porcini trifolati", "prezzo": 28},
+      {"nome": "Lesso della Tradizione", "nota": "solo la domenica", "descrizione": "lingua, petto di gallina e musetto", "prezzo": 24},
+      {"nome": "Assortimento Misto di Carni", "descrizione": "alla griglia: manzo, salsiccia, capocollo, agnello, costine e pancetta arrotolata con cipolla", "prezzo": 24}
     ]},
     {"id": "pizze-rosse", "titolo": "Pizze rosse", "nota": "Impasto a lunga lievitazione, farine selezionate, cottura in forno a legna", "piatti": [
       {"nome": "Margherita", "descrizione": "pomodoro Greci, fior di latte, basilico", "prezzo": 10},
@@ -35,20 +37,21 @@
       {"nome": "Capricciosa", "descrizione": "pomodoro Greci, fior di latte, carciofini, olive nere, funghi, prosciutto cotto", "prezzo": 13},
       {"nome": "Diavola", "descrizione": "pomodoro Greci, fior di latte, ventricina piccante", "prezzo": 12},
       {"nome": "Lucifero", "descrizione": "pomodoro Greci, nduja calabrese, burrata", "prezzo": 12},
-      {"nome": "Tempio", "descrizione": "pomodoro Greci, fior di latte, vellutata di melanzane, melanzane croccanti, fonduta di pecorino", "prezzo": 13},
+      {"nome": "Tempio", "descrizione": "pomodoro Greci, fior di latte, vellutata di melanzane, fonduta di pecorino, lonza croccante", "prezzo": 13},
       {"nome": "Napoli", "descrizione": "pomodoro Greci, fior di latte, alici del Cantabrico, capperi croccanti", "prezzo": 13},
       {"nome": "Sibilla", "descrizione": "pomodoro, mozzarella, cicoria ripassata, salsiccia, cipolla caramellata", "prezzo": 14},
-      {"nome": "Marchigiana", "descrizione": "pomodoro, mozzarella, ciauscolo e Varnelli, cicoria", "prezzo": 14}
+      {"nome": "Marchigiana", "descrizione": "pomodoro, mozzarella, ciauscolo e Varnelli, cicoria", "prezzo": 14},
+      {"nome": "Sapori d’Inverno", "descrizione": "pomodoro, mozzarella, crema di zucca, radicchio, guanciale croccante", "prezzo": 13}
     ]},
     {"id": "pizze-bianche", "titolo": "Pizze bianche", "piatti": [
       {"nome": "Crescia", "descrizione": "crescia, cipolla e rosmarino", "prezzo": 7},
-      {"nome": "Hortus", "descrizione": "fior di latte, crema di zucchine, guanciale, crema di pecorino", "prezzo": 13},
+      {"nome": "Hortus", "descrizione": "fior di latte, crema di zucchine, guanciale croccante, crema di pecorino", "prezzo": 13},
       {"nome": "Diana", "descrizione": "fior di latte, mortadella di cinghiale, granella di pistacchio, burrata, olio al basilico", "prezzo": 13},
-      {"nome": "La Duchessa", "descrizione": "fior di latte, alici del Cantabrico, burrata", "prezzo": 13},
-      {"nome": "Estiva", "descrizione": "crescia, pomodoro a fette, prosciutto crudo, burrata", "prezzo": 14},
       {"nome": "Bosco", "descrizione": "fior di latte, porcini, tartufo", "prezzo": 14},
       {"nome": "4 Formaggi", "descrizione": "mozzarella, gorgonzola, crema di pecorino, Castelmagno, scamorza affumicata", "prezzo": 14},
-      {"nome": "Greca", "descrizione": "mozzarella, rucola, feta, noci, pomodorini secchi, miele", "prezzo": 14}
+      {"nome": "Greca", "descrizione": "mozzarella, rucola, feta, noci, pomodorini secchi, miele", "prezzo": 14},
+      {"nome": "Dell’Orto", "descrizione": "mozzarella, verdure di stagione", "prezzo": 13},
+      {"nome": "Carpaccio", "descrizione": "crescia, burrata, carne salada, rucola, glassa al balsamico", "prezzo": 14}
     ]},
     {"id": "fritti", "titolo": "Fritti", "piatti": [
       {"nome": "Fritto Misto", "descrizione": "patatine fritte, olive all’ascolana, cremini, fiori di zucca, verdure pastellate, salvia, per due persone", "prezzo": 15}

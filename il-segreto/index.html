@@ -968,15 +968,13 @@ section { position: relative; padding: 140px 32px; }
   font-size: 14px;
   color: var(--whisper);
   line-height: 1.4;
+  /* come i nomi: a 390px "cipolla" e "croccante" restavano soli sull'ultima riga */
+  text-wrap: pretty;
 }
+/* la nota del piatto, "(solo la domenica)": dopo il nome, in corsivo come sul menù stampato */
 .menu-card .menu-item-note {
-  display: inline-block;
-  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 12px;
-  color: var(--oro-soft);
-  margin-left: 0;
-  margin-top: 2px;
+  color: var(--whisper);
 }
 .menu-card .menu-item-price {
   font-family: 'Playfair Display', serif;
@@ -1038,13 +1036,6 @@ section { position: relative; padding: 140px 32px; }
   color: var(--whisper);
   line-height: 1.45;
   font-weight: 300;
-}
-.menu-item-note {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 13px;
-  color: var(--oro-soft);
-  margin-top: 2px;
 }
 
 .menu-item-price {

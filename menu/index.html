@@ -240,6 +240,13 @@ h2.categoria {
   font-size: clamp(16px, 4.3vw, 19px);
   color: var(--rosa-rame);
   margin-top: 2px;
+  /* come i nomi: a 390px "tradizione" e "croccanti" restavano soli sull'ultima riga */
+  text-wrap: balance;
+}
+/* la nota del piatto, "(solo la domenica)": dopo il nome, in corsivo come sul menù stampato */
+.piatto-nota {
+  font-style: italic;
+  color: var(--rosa-rame);
 }
 .piatto-prezzo {
   font-family: 'Cinzel', 'Times New Roman', serif;
