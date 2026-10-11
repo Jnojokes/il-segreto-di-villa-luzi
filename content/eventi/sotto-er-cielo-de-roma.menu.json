@@ -1,0 +1,12 @@
+{
+  "portate": [
+    { "corso": "Antipasti", "piatto": "Supplì romano" },
+    { "corso": "Antipasti", "piatto": "Carciofi alla romana con mentuccia" },
+    { "corso": "Antipasti", "piatto": "Fiori di zucca" },
+    { "corso": "Primo", "piatto": "Spaghettone alla gricia" },
+    { "corso": "Primo", "piatto": "Mezza manica all’amatriciana" },
+    { "corso": "Secondo", "piatto": "Coda alla vaccinara" },
+    { "corso": "Dolce", "piatto": "Crostata ricotta e visciole" }
+  ],
+  "nota": "Vino della casa incluso"
+}
