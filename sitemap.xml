@@ -27,7 +27,7 @@
   </url>
   <url>
     <loc>https://villaluzi1737.it/eventi/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-10-11</lastmod>
     <priority>0.9</priority>
   </url>
   <!-- villaluzi1737.it è NXDOMAIN: la landing ads usa il dominio live .com -->
@@ -69,6 +69,11 @@
   <url>
     <loc>https://www.villaluzi1737.com/eventi/pranzo-marchigiano/</loc>
     <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.villaluzi1737.com/eventi/cena-con-delitto/</loc>
+    <lastmod>2026-10-11</lastmod>
     <priority>0.7</priority>
   </url>
   <url>

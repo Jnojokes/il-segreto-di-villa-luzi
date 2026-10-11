@@ -101,23 +101,31 @@ partial('footer');
 // AI non eseguono JS. Formato completo, tutto facoltativo tranne portate:
 //   { "portate": [
 //       { "corso": "Primi",  "piatti": ["…", "…"] },            // più piatti
-//       { "corso": "Dolce",  "piatto": "…", "vino": null }      // un piatto, col suo vino
+//       { "corso": "Dolce",  "piatto": "…", "vino": null },     // un piatto, col suo vino
+//       { "corso": null,     "piatto": "…" }                    // un piatto senza etichetta
 //     ],
 //     "musica": "Musica dal vivo tra una portata e l'altra",
 //     "artisti": ["…"],
 //     "nota": "Vino della casa incluso" }
 // Il vino è { "nome": "Monte Circe", "denominazione": "Verdicchio … DOC" }.
+// Le portate DI FILA con lo stesso corso stanno in una voce sola, con
+// l'etichetta una volta sopra il gruppo: tre antipasti sotto «Antipasti».
+// "corso": null stampa il piatto senza etichetta, per le locandine che non
+// dividono le portate (anche questi, di fila, stanno in una voce sola). Il
+// corso si scrive sempre: null è una scelta, una chiave dimenticata è un errore.
 //
 // UN CAMPO VUOTO NON DIVENTA MAI UN SEGNAPOSTO IN PAGINA: vino null, artisti
 // [], musica o nota assenti o vuote semplicemente non si rendono. Con
 // "portate" vuoto si rende la sola riga d'attesa qui sotto: è la regola dopo
 // il "[DA CONFERMARE: quale dolce]" finito online sulla Candle Experience.
-// Un JSON rotto o una portata incompleta invece NON pubblicano la pagina: la
-// build esce con 1 e dice file e campo. Anche le chiavi sconosciute sono un
-// errore, così un "piatti" scritto al posto di "piatto" non fa sparire una
-// portata in silenzio.
+// Un JSON rotto, una portata incompleta o un testo che sembra un segnaposto
+// (parentesi quadre, "da confermare", TODO… vedi SEGNAPOSTO_RE) invece NON
+// pubblicano la pagina: la build esce con 1 e dice file e campo. Anche le
+// chiavi sconosciute sono un errore, così un "piatti" scritto al posto di
+// "piatto" non fa sparire una portata in silenzio.
 // Contratto delle classi, il CSS vive nella landing:
-//   .menu-lista > .menu-voce > h3.menu-corso + p.menu-piatto (ripetibile)
+//   .menu-lista > .menu-voce > h3.menu-corso (se il corso non è null)
+//                              + p.menu-piatto (ripetibile)
 //                              + p.menu-vino > span.menu-vino-nome + span.menu-vino-doc
 //   p.menu-musica · p.menu-artisti · p.menu-nota · p.menu-attesa
 const MENU_ATTESA = 'Il menù della serata sarà pubblicato qui a breve.';
@@ -136,6 +144,11 @@ function menu(slug) {
   const errore = (msg) => new Error(`menù non valido: ${rel}: ${msg}`);
   const pieno = (v) => typeof v === 'string' && v.trim() !== '';
   const oggetto = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
+  // un testo che va in pagina: mai un segnaposto
+  const testo = (v, dove) => {
+    if (segnaposto(v)) throw errore(`${dove}: "${v}" sembra un segnaposto, non un testo da pubblicare (un dato che manca si lascia vuoto)`);
+    return testoMenu(v);
+  };
 
   let dati;
   try {
@@ -157,14 +170,16 @@ function menu(slug) {
       `<p class="menu-attesa">${testoMenu(MENU_ATTESA)}</p>`].join('\n');
   }
 
-  const voci = dati.portate.map((p, i) => {
+  const gruppi = [];
+  dati.portate.forEach((p, i) => {
     if (!oggetto(p)) throw errore(`portate[${i}] deve essere un oggetto con "corso" e "piatto" (o "piatti")`);
     for (const k of Object.keys(p)) {
       if (!['corso', 'piatto', 'piatti', 'vino'].includes(k)) {
         throw errore(`portate[${i}]: chiave sconosciuta "${k}" (ammesse: corso, piatto, piatti, vino)`);
       }
     }
-    if (!pieno(p.corso)) throw errore(`portate[${i}].corso mancante o vuoto`);
+    if (!('corso' in p)) throw errore(`portate[${i}].corso mancante (per un piatto senza etichetta si scrive "corso": null)`);
+    if (p.corso !== null && !pieno(p.corso)) throw errore(`portate[${i}].corso vuoto (per un piatto senza etichetta si scrive "corso": null)`);
     if ('piatto' in p && 'piatti' in p) throw errore(`portate[${i}]: o "piatto" o "piatti", non tutti e due`);
 
     let piatti;
@@ -172,11 +187,11 @@ function menu(slug) {
       if (!Array.isArray(p.piatti) || !p.piatti.length) throw errore(`portate[${i}].piatti deve essere una lista non vuota`);
       piatti = p.piatti.map((piatto, j) => {
         if (!pieno(piatto)) throw errore(`portate[${i}].piatti[${j}] mancante o vuoto`);
-        return `    <p class="menu-piatto">${testoMenu(piatto)}</p>`;
+        return `    <p class="menu-piatto">${testo(piatto, `portate[${i}].piatti[${j}]`)}</p>`;
       });
     } else {
       if (!pieno(p.piatto)) throw errore(`portate[${i}].piatto mancante o vuoto`);
-      piatti = [`    <p class="menu-piatto">${testoMenu(p.piatto)}</p>`];
+      piatti = [`    <p class="menu-piatto">${testo(p.piatto, `portate[${i}].piatto`)}</p>`];
     }
 
     // Vino facoltativo: null o assente = nessuna riga, nemmeno vuota.
@@ -188,17 +203,30 @@ function menu(slug) {
       }
       if (!pieno(p.vino.nome)) throw errore(`portate[${i}].vino.nome mancante o vuoto (per togliere il vino si scrive "vino": null)`);
       if (!pieno(p.vino.denominazione)) throw errore(`portate[${i}].vino.denominazione mancante o vuota`);
-      vino = [`    <p class="menu-vino"><span class="menu-vino-nome">${testoMenu(p.vino.nome)}</span> <span class="menu-vino-doc">${testoMenu(p.vino.denominazione)}</span></p>`];
+      vino = [`    <p class="menu-vino"><span class="menu-vino-nome">${testo(p.vino.nome, `portate[${i}].vino.nome`)}</span> <span class="menu-vino-doc">${testo(p.vino.denominazione, `portate[${i}].vino.denominazione`)}</span></p>`];
     }
 
-    return ['  <div class="menu-voce">', `    <h3 class="menu-corso">${testoMenu(p.corso)}</h3>`, ...piatti, ...vino, '  </div>'].join('\n');
+    // Di fila con lo stesso corso: stessa voce, etichetta una volta sola.
+    const corso = p.corso === null ? null : testo(p.corso, `portate[${i}].corso`);
+    const ultimo = gruppi[gruppi.length - 1];
+    if (ultimo && ultimo.corso === corso) ultimo.righe.push(...piatti, ...vino);
+    else gruppi.push({ corso, righe: [...piatti, ...vino] });
   });
 
-  const artisti = Array.isArray(dati.artisti) ? dati.artisti.filter((a) => pieno(a)).map((a) => testoMenu(a)) : [];
+  const voci = gruppi.map((g) => [
+    '  <div class="menu-voce">',
+    ...(g.corso === null ? [] : [`    <h3 class="menu-corso">${g.corso}</h3>`]),
+    ...g.righe,
+    '  </div>',
+  ].join('\n'));
+
+  const artisti = Array.isArray(dati.artisti)
+    ? dati.artisti.map((a, j) => (pieno(a) ? testo(a, `artisti[${j}]`) : '')).filter(Boolean)
+    : [];
   const coda = [];
-  if (pieno(dati.musica)) coda.push(`<p class="menu-musica">${testoMenu(dati.musica)}</p>`);
+  if (pieno(dati.musica)) coda.push(`<p class="menu-musica">${testo(dati.musica, 'musica')}</p>`);
   if (artisti.length) coda.push(`<p class="menu-artisti">${artisti.join(', ')}</p>`);
-  if (pieno(dati.nota)) coda.push(`<p class="menu-nota">${testoMenu(dati.nota)}</p>`);
+  if (pieno(dati.nota)) coda.push(`<p class="menu-nota">${testo(dati.nota, 'nota')}</p>`);
 
   return [
     `<!-- portate da ${rel}: si correggono lì, non qui -->`,
@@ -260,8 +288,8 @@ let cartaLetta = null;
 // Mai un segnaposto di testo online: dopo il "[DA CONFERMARE: quale dolce]"
 // finito sulla Candle Experience, un testo con parentesi quadre, "DA
 // SPOSTARE", "Lorem" e simili ferma la build invece di finire in pagina.
-// Vale per la carta e per Chi siamo. Un campo che non c'è ancora si lascia
-// vuoto (null): la pagina lo salta.
+// Vale per i menù degli eventi, la carta e Chi siamo. Un campo che non c'è
+// ancora si lascia vuoto (null): la pagina lo salta.
 const SEGNAPOSTO_RE = /[[\]]|\bda (?:spostare|confermare|definire)\b|\blorem\b|\bipsum\b|\bTODO\b|\bTBD\b|\bXXX\b|^\s*(?:null|undefined|nan)\s*$/i;
 const segnaposto = (s) => typeof s === 'string' && SEGNAPOSTO_RE.test(s);
 
