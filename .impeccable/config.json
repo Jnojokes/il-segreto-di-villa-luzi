@@ -92,6 +92,24 @@
         ],
         "createdAt": "2026-09-21T13:59:26.716Z",
         "reason": "Falso positivo (verifica di Claude, non dell'utente), come sulle altre due landing nere: il detector legge testo #000000 su fondo nero, che in pagina non esiste (probabile lettura letterale di a { color: inherit }). Contrasto WCAG misurato in Chrome con colori calcolati e alpha compositati: 36 blocchi di testo, minimo 6.67:1 (badge oro con testo nero), nessuno sotto soglia. Script: scratchpad/pm/contrasto.mjs"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "eventi/halloween/index.html"
+        ],
+        "createdAt": "2026-10-20T09:31:56.461Z",
+        "reason": "Falso positivo verificato per bisezione (20/10): i due finding 'text #000000 on #170805' sono i due <noscript> (CSS dei font e img del pixel) che il parser legge come testo nero; tolti i noscript scendono a 0. Stesso caso su eventi/cena-pata-negra (#000000 su #0a0a0a). Contrasti reali misurati in Chrome sui pixel renderizzati: vedi rapporto della landing Halloween."
+      },
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "eventi/halloween/index.html"
+        ],
+        "createdAt": "2026-10-20T09:31:56.484Z",
+        "reason": "Scelta voluta, chiesta dal brief del thread principale (20/10): solo l'h1 «Halloween», che riprende il lettering oro metallico della locandina del cliente (annuncio e pagina devono corrispondere); color resta l'oro pieno come ripiego."
       }
     ]
   }

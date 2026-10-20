@@ -32,6 +32,7 @@ const BLOCKED = new Set([
   'eventi/cena-pata-negra/index.html',
   'eventi/cena-con-delitto/index.html',
   'eventi/sotto-er-cielo-de-roma/index.html',
+  'eventi/halloween/index.html',
   'pranzo-e-piscina/index.html',
   // Menù QR da tavolo: standalone, noindex, niente nav del sito. L'unico
   // link interno è il selettore fra le due facce della stessa carta.

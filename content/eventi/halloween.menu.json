@@ -1,0 +1,9 @@
+{
+  "portate": [
+    { "corso": "Antipasto", "piatto": "Tortino di zucca con crema al gorgonzola" },
+    { "corso": "Primo", "piatto": "Risotto alla zucca con burrata e amaretti" },
+    { "corso": "Secondo", "piatto": "Stinco di maiale glassato alle castagne con patate arrosto" },
+    { "corso": "Dessert", "piatto": "Tortino del Vampiro al cioccolato" }
+  ],
+  "nota": "Bevande incluse: una bottiglia di vino ogni quattro persone"
+}
