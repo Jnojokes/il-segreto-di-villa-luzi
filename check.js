@@ -158,7 +158,7 @@ for (const file of collect(DIST).sort()) {
 
     // 5. canonical, OG, lang (regex insensibili all'ordine degli attributi)
     const canonTag = (html.match(/<link[^>]*rel=["']canonical["'][^>]*>/i) || [])[0];
-    if (!canonTag || !/href=["']https:\/\/villaluzi1737\.it\//i.test(canonTag)) {
+    if (!canonTag || !/href=["']https:\/\/www\.villaluzi1737\.com\//i.test(canonTag)) {
       errors.push('canonical assoluto assente');
     }
     for (const prop of ['og:title', 'og:description', 'og:image', 'og:url']) {

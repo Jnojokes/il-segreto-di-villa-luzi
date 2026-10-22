@@ -33,4 +33,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://villaluzi1737.it/sitemap.xml
+Sitemap: https://www.villaluzi1737.com/sitemap.xml
