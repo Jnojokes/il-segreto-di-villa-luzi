@@ -110,6 +110,33 @@
         ],
         "createdAt": "2026-10-20T09:31:56.484Z",
         "reason": "Scelta voluta, chiesta dal brief del thread principale (20/10): solo l'h1 «Halloween», che riprende il lettering oro metallico della locandina del cliente (annuncio e pagina devono corrispondere); color resta l'oro pieno come ripiego."
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "pizza-e-bevanda/index.html"
+        ],
+        "createdAt": "2026-10-23T13:27:09.344Z",
+        "reason": "Claude: falso positivo, la pagina è chiara (#F4ECDC); l'ombra ottanio #0e3b3e ha offset verticale su .buono e .btn-wa, la stessa convenzione di pranzo-e-piscina"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "pizza-e-bevanda/index.html"
+        ],
+        "createdAt": "2026-10-23T13:56:12.802Z",
+        "reason": "Claude, 23/10: falso positivo della lettura statica. Il parser legge l'h1 a 16px perché «Pizza / Bevanda» sta in span con font-size clamp(38px, 12.4vw, 66px) che non risolve. La scansione nel browser (detect via URL a 390x844 e 1280x800) non segnala la regola, che nella stessa modalità segnala invece una pagina di controllo davvero piatta (h1 16px, h2 13px, testo 13px). La regola non accetta un valore: '*' limitato a questo file."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "pizza-e-bevanda/index.html"
+        ],
+        "createdAt": "2026-10-23T13:56:23.277Z",
+        "reason": "Claude, 23/10: colore del brand, non un ripiego. È l'avorio --avorio: #F4ECDC di assets/css/site.css, usato da tutto il sito (13 pagine), dall'email del buono e dalla carta del buono stampato di Villa Luzi. La regola non accetta un valore: '*' limitato a questo file."
       }
     ]
   }

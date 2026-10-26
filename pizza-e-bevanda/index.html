@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+
+<title>Pizza e bevanda a 18 € il giovedì | Il Segreto di Villa Luzi</title>
+<meta name="description" content="Ogni giovedì a cena al Segreto di Villa Luzi, Passo di Treia: pizza e bevanda a 18 €, solo con prenotazione. Lascia nome ed email e ricevi il buono.">
+<meta name="theme-color" content="#F4ECDC">
+<!-- Landing ads standalone, come quelle degli eventi: niente partial del
+     sito, tutto inline, pagina in BLOCKED dentro check.js. Unico obiettivo:
+     farsi mandare il buono via email (api/buono.mjs, Resend). Il giovedì
+     sera il buono si mostra in sala: è la prova che si è vista l'offerta.
+
+     Solo i fatti confermati da Luana il 23/10/2026: pizza e bevanda a
+     18 €, ogni giovedì, a cena, solo con prenotazione, buono da mostrare
+     in sala. Quali pizze, quali bevande, se vale a persona e fino a quando
+     non ci è stato detto: qui non si scrive. -->
+<link rel="canonical" href="https://www.villaluzi1737.com/pizza-e-bevanda/">
+<link rel="icon" type="image/png" href="/assets/img/LS-Icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Villa Luzi 1737">
+<meta property="og:locale" content="it_IT">
+<meta property="og:url" content="https://www.villaluzi1737.com/pizza-e-bevanda/">
+<meta property="og:title" content="Pizza e bevanda a 18 €, ogni giovedì a cena">
+<meta property="og:description" content="Al Segreto di Villa Luzi, Passo di Treia: lascia nome ed email e ricevi il buono da mostrare in sala. Solo con prenotazione.">
+<meta property="og:image" content="https://www.villaluzi1737.com/assets/pizza-e-bevanda/og-pizza-e-bevanda.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Il buono del Segreto di Villa Luzi, pizza e bevanda a 18 € ogni giovedì a cena, accanto a una pizza nel parco della villa">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pizza e bevanda a 18 €, ogni giovedì a cena">
+<meta name="twitter:description" content="Al Segreto di Villa Luzi, Passo di Treia: lascia nome ed email e ricevi il buono da mostrare in sala. Solo con prenotazione.">
+<meta name="twitter:image" content="https://www.villaluzi1737.com/assets/pizza-e-bevanda/og-pizza-e-bevanda.jpg">
+
+<!-- Font. Cinzel e Cormorant Garamond sono quelli del brand; Playfair
+     Display Black è il carattere del buono stampato (PIZZA, BEVANDA, il
+     prezzo) e arriva ritagliato con &text= sui soli caratteri che servono:
+     poche centinaia di byte invece del file intero. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&text=PIZABEVND18%E2%82%AC%C2%A0&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&text=PIZABEVND18%E2%82%AC%C2%A0&display=swap">
+</noscript>
+
+<!-- ══════════════ MISURAZIONE · CONFIGURAZIONE ══════════════
+     PageView     dallo snippet base
+     ViewContent  al caricamento
+     Lead         quando il buono parte davvero (stato «inviato»), non al
+                  clic: il clic non dice se l'email è valida
+     Contact      a ogni clic su WhatsApp
+     Ogni evento col suo eventID: il dataset riceve gli stessi eventi anche
+     da una sorgente server fuori da questo repo, e senza eventID Meta li
+     conterebbe due volte. -->
+<script>
+window.VL_TRACK = {
+  pixelId:     '5285830348309655',
+  contentName: 'pizza-e-bevanda',
+  numero:      '393803643888',
+  /* finisce aperto, con lo spazio: chi scrive completa col numero di persone */
+  testo: {
+    normale:  'Buongiorno, vorrei prenotare per giovedì con il buono pizza e bevanda. Saremo in ',
+    annuncio: 'Buongiorno, ho visto il buono pizza e bevanda e vorrei prenotare per giovedì. Saremo in '
+  },
+  eventId: function () {
+    try {
+      if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
+    } catch (e) {}
+    return 'pb-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+  }
+};
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', window.VL_TRACK.pixelId);
+fbq('track', 'PageView', {}, { eventID: window.VL_TRACK.eventId() });
+fbq('track', 'ViewContent', { content_name: window.VL_TRACK.contentName }, { eventID: window.VL_TRACK.eventId() });
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=5285830348309655&ev=PageView&noscript=1"></noscript>
+
+<!-- Niente BreadcrumbList: /pizza-e-bevanda/ è una landing di radice senza
+     pagina padre. Niente orari né date di validità: non sono confermati. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "@id": "https://www.villaluzi1737.com/pizza-e-bevanda/#ilsegreto",
+  "name": "Il Segreto di Villa Luzi",
+  "url": "https://www.villaluzi1737.com/pizza-e-bevanda/",
+  "image": "https://www.villaluzi1737.com/assets/pizza-e-bevanda/og-pizza-e-bevanda.jpg",
+  "servesCuisine": ["Italiana", "Pizza"],
+  "acceptsReservations": true,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Contrada Chiaravalle 49",
+    "addressLocality": "Treia",
+    "addressRegion": "MC",
+    "postalCode": "62010",
+    "addressCountry": "IT"
+  },
+  "makesOffer": {
+    "@type": "Offer",
+    "name": "Pizza e bevanda",
+    "description": "Ogni giovedì a cena, pizza e bevanda a 18 €. Solo con prenotazione, con il buono ricevuto via email da mostrare in sala.",
+    "price": "18",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://www.villaluzi1737.com/pizza-e-bevanda/",
+    "seller": { "@id": "https://www.villaluzi1737.com/pizza-e-bevanda/#ilsegreto" }
+  }
+}
+</script>
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   PIZZA E BEVANDA · il buono del giovedì — landing ads standalone
+   La pagina è il buono: lo stesso biglietto stampato che Luana fa girare
+   (doppia cornice, rami d'ulivo agli angoli, PIZZA e BEVANDA in nero
+   pieno, il prezzo in un ovale scuro), con il modulo nella parte da
+   strappare. Sul telefono il biglietto sta in piedi e si strappa in
+   orizzontale; da 900px si gira come la stampa e lo strappo diventa
+   verticale. Inchiostro ottanio su avorio, nessun oro: l'unico colore
+   in più è il verde di WhatsApp.
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --carta:      #F4ECDC;                     /* la pagina */
+  --buono:      #FBF7EE;                     /* il biglietto */
+  --inchiostro: #0E3B3E;
+  --tenue:      #3E5F61;                     /* 6.5:1 sul biglietto */
+  --filo:       rgba(14, 59, 62, 0.24);
+  --errore:     #9B2C1B;
+  --wa:         #25D366;
+  --wa-ink:     #05301A;
+
+  --titoli:  'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
+  --serif:   'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --nero:    'Playfair Display', 'Bodoni 72', Didot, Georgia, serif;   /* Playfair Black, solo PIZZA, BEVANDA e prezzo */
+  --sans:    system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --lato: max(16px, env(safe-area-inset-left, 0px));
+  --ease: cubic-bezier(.22, .61, .36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: var(--carta); scroll-behavior: smooth; }
+body {
+  background: var(--carta);
+  color: var(--inchiostro);
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+button, input { font: inherit; color: inherit; }
+::selection { background: var(--inchiostro); color: var(--buono); }
+[hidden] { display: none !important; }
+
+/* ── impaginato: telefono buono, passi, foto; da 900px il buono disteso
+   in alto, sotto foto e passi affiancati ── */
+.palco {
+  display: grid;
+  grid-template-areas: "buono" "passi" "foto";
+  gap: clamp(40px, 10vw, 64px);
+  max-width: 980px;
+  margin: 0 auto;
+  padding: max(14px, env(safe-area-inset-top, 0px)) var(--lato) clamp(44px, 10vw, 72px);
+}
+@media (min-width: 900px) {
+  .palco {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "buono buono" "foto passi";
+    column-gap: 56px;
+    row-gap: 64px;
+    align-items: center;
+    padding-top: 48px;
+  }
+}
+
+/* ═════════════════ IL BUONO ═════════════════
+   Cornice doppia come sulla stampa: il bordo pieno di 2px e, 5px più
+   dentro, il filetto sottile del ::before. */
+.buono {
+  grid-area: buono;
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  background: var(--buono);
+  border: 2px solid var(--inchiostro);
+  box-shadow: 0 22px 44px -26px rgba(14, 59, 62, 0.45);
+}
+.buono::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid var(--inchiostro);
+  pointer-events: none;
+}
+
+/* ── la parte dell'offerta ── */
+.offerta {
+  position: relative;
+  padding: clamp(28px, 7.4vw, 42px) 18px clamp(28px, 7vw, 38px);
+  text-align: center;
+}
+/* i rami d'ulivo della stampa: in alto a sinistra e in basso a destra,
+   sopra la cornice interna come sul cartoncino */
+.rametto {
+  position: absolute;
+  width: clamp(52px, 15vw, 92px);
+  height: auto;
+  aspect-ratio: 100 / 150;
+  color: var(--inchiostro);
+  pointer-events: none;
+}
+.rametto--alto  { top: 1px; left: 1px; }
+.rametto--basso { right: 1px; bottom: 16px; transform: rotate(180deg); }
+
+.marchio {
+  font-family: var(--titoli);
+  font-weight: 600;
+  font-size: clamp(19px, 5.6vw, 25px);
+  line-height: 1.1;
+  letter-spacing: 0.14em;
+  padding-left: 0.14em;
+  text-transform: uppercase;
+}
+.marchio-di {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1px;
+  font-style: italic;
+  font-size: clamp(20px, 5.6vw, 25px);
+  line-height: 1.2;
+}
+.marchio-di::before,
+.marchio-di::after {
+  content: "";
+  width: clamp(22px, 8vw, 40px);
+  height: 1px;
+  background: currentColor;
+}
+.dove,
+.condizione {
+  font-family: var(--titoli);
+  font-weight: 400;
+  font-size: clamp(10px, 2.9vw, 12px);
+  line-height: 1.4;
+  letter-spacing: 0.26em;
+  padding-left: 0.26em;
+  text-transform: uppercase;
+  color: var(--tenue);
+}
+.dove { margin-top: 5px; }
+
+.titolo { margin-top: clamp(14px, 4.2vw, 22px); font-weight: normal; }
+.titolo-parola {
+  display: block;
+  font-family: var(--nero);
+  font-weight: 900;
+  font-size: clamp(38px, 12.4vw, 66px);
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+/* la «e» fra due filetti, come la E piccola della stampa */
+.titolo-e {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 2px 0 4px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(21px, 5.8vw, 27px);
+  line-height: 1.1;
+}
+.titolo-e::before,
+.titolo-e::after {
+  content: "";
+  flex: 0 1 clamp(54px, 22vw, 128px);
+  height: 1px;
+  background: currentColor;
+}
+
+/* il prezzo nell'ovale scuro, con il filetto chiaro dentro */
+.prezzo { margin-top: clamp(16px, 4.4vw, 22px); }
+.prezzo-cifra {
+  position: relative;
+  display: inline-block;
+  padding: 0.14em 0.86em 0.2em;
+  border-radius: 999px;
+  background: var(--inchiostro);
+  color: var(--buono);
+  font-family: var(--nero);
+  font-weight: 900;
+  font-size: clamp(30px, 9vw, 42px);
+  line-height: 1.05;
+  white-space: nowrap;
+}
+.prezzo-cifra::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(251, 247, 238, 0.7);
+  border-radius: inherit;
+}
+.quando {
+  margin-top: clamp(12px, 3.4vw, 18px);
+  font-style: italic;
+  font-size: clamp(22px, 6.2vw, 28px);
+  line-height: 1.2;
+}
+.condizione { margin-top: 5px; }
+
+/* ── lo strappo: tratteggio fra due tacche tonde ──
+   Le tacche sono cerchi del colore della pagina sopra il bordo del
+   biglietto, tagliati a metà con clip-path: la metà fuori sparisce, la
+   metà dentro fa da intaglio e interrompe tutte e due le cornici. */
+.strappo {
+  position: relative;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--inchiostro) 0 7px, transparent 7px 12px) center / calc(100% - 52px) 1px no-repeat;
+}
+.strappo::before,
+.strappo::after {
+  content: "";
+  position: absolute;
+  top: -12px;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--inchiostro);
+  border-radius: 50%;
+  background: var(--carta);
+}
+.strappo::before { left: -13px; clip-path: inset(0 0 0 11px); }
+.strappo::after  { right: -13px; clip-path: inset(0 11px 0 0); }
+
+/* ── la parte da staccare: il modulo ── */
+.richiesta {
+  position: relative;
+  padding: clamp(26px, 7vw, 36px) clamp(20px, 6.4vw, 40px) clamp(28px, 7.4vw, 40px);
+}
+.richiesta-titolo {
+  font-family: var(--titoli);
+  font-weight: 600;
+  font-size: clamp(15px, 4.4vw, 18px);
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  padding-left: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  text-wrap: balance;
+}
+.richiesta-intro {
+  margin-top: 3px;
+  font-style: italic;
+  font-size: clamp(19px, 5.2vw, 22px);
+  line-height: 1.3;
+  text-align: center;
+  color: var(--tenue);
+}
+.modulo { margin-top: 18px; }
+.campo + .campo { margin-top: 14px; }
+.campo label {
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--titoli);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.campo input {
+  display: block;
+  width: 100%;
+  height: 52px;
+  padding: 0 14px;
+  border: 1px solid rgba(14, 59, 62, 0.55);
+  border-radius: 3px;
+  background: #FFFEFB;
+  color: var(--inchiostro);
+  font-family: var(--sans);
+  font-size: 17px;                      /* sotto i 16px Safari ingrandisce la pagina al tocco */
+  line-height: 1.2;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.15s;
+}
+/* outline e bordi, mai box-shadow: col contrasto elevato di Windows le
+   ombre spariscono e il campo attivo non si vedrebbe più */
+.campo input:focus {
+  border-color: var(--inchiostro);
+  outline: 2px solid var(--inchiostro);
+  outline-offset: 1px;
+}
+.campo input[aria-invalid="true"] {
+  padding: 0 13px;
+  border: 2px solid var(--errore);
+}
+.campo input[aria-invalid="true"]:focus { outline-color: var(--errore); }
+.campo-errore,
+.esito {
+  font-family: var(--sans);
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--errore);
+}
+.campo-errore { margin-top: 6px; }
+.esito { margin-top: 12px; text-align: center; }
+.proposta {
+  margin-top: 8px;
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--tenue);
+}
+/* bottoni che si leggono come link: la proposta e «Correggi l'email» */
+.come-link {
+  padding: 2px 0;
+  border: 0;
+  background: none;
+  color: var(--inchiostro);
+  font-family: var(--sans);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.come-link:focus-visible { outline: 2px solid var(--inchiostro); outline-offset: 2px; }
+
+/* la trappola per i bot: fuori dallo schermo, mai display:none (alcuni bot
+   saltano i campi nascosti così) */
+.trappola {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.invia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 56px;
+  margin-top: 20px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 3px;
+  background: var(--inchiostro);
+  color: var(--buono);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.2s var(--ease), transform 0.1s;
+}
+.invia:hover { background: #164B4F; }
+.invia:active { transform: translateY(1px); }
+.invia:focus-visible { outline: 2px solid var(--inchiostro); outline-offset: 3px; }
+.invia[aria-disabled="true"] { cursor: progress; background: var(--tenue); }
+.nota-dati {
+  margin-top: 12px;
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--tenue);
+}
+.nota-dati a { color: var(--inchiostro); text-underline-offset: 2px; }
+
+/* ── il buono partito: timbro, frase del server, e si prenota ── */
+.riuscita { text-align: center; }
+.riuscita-titolo:focus { outline: none; }
+.timbro {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 104px;
+  height: 104px;
+  margin: 0 auto;
+  border: 2px solid var(--inchiostro);
+  border-radius: 50%;
+  font-family: var(--titoli);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  padding-left: 0.2em;
+  text-transform: uppercase;
+  transform: rotate(-10deg);
+}
+.timbro::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--inchiostro);
+  border-radius: 50%;
+}
+.timbro.batte { animation: timbra 0.42s var(--ease) both; }
+@keyframes timbra {
+  from { opacity: 0; transform: rotate(-10deg) scale(1.5); }
+  to   { opacity: 1; transform: rotate(-10deg) scale(1); }
+}
+.riuscita-titolo {
+  margin-top: 18px;
+  font-family: var(--titoli);
+  font-weight: 600;
+  font-size: clamp(17px, 5vw, 21px);
+  line-height: 1.25;
+  letter-spacing: 0.08em;
+  padding-left: 0.08em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.riuscita-testo {
+  max-width: 30em;
+  margin: 8px auto 0;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--tenue);
+  overflow-wrap: anywhere;
+}
+.riuscita-poi {
+  margin-top: 20px;
+  font-style: italic;
+  font-size: clamp(21px, 5.8vw, 24px);
+  line-height: 1.25;
+}
+.riuscita .btn-wa { margin-top: 12px; }
+.correggi {
+  margin-top: 18px;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--tenue);
+}
+
+/* ── bottone WhatsApp: verde pieno, ombre ottanio e non nere ── */
+.btn-wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  min-height: 52px;
+  max-width: 100%;
+  padding: 0 26px 0 calc(26px + 0.16em);
+  border-radius: 999px;
+  background: var(--wa);
+  color: var(--wa-ink);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 10px 24px rgba(14, 59, 62, 0.18), 0 2px 6px rgba(14, 59, 62, 0.1);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.btn-wa svg { width: 19px; height: 19px; fill: currentColor; flex: none; }
+.btn-wa:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(14, 59, 62, 0.24), 0 2px 6px rgba(14, 59, 62, 0.12); }
+.btn-wa:focus-visible { outline: 2px solid var(--inchiostro); outline-offset: 3px; }
+
+/* ═════════════════ COME FUNZIONA ═════════════════ */
+.passi { grid-area: passi; width: 100%; max-width: 520px; margin: 0 auto; }
+.passi-titolo {
+  font-family: var(--titoli);
+  font-weight: 600;
+  font-size: clamp(15px, 4.4vw, 18px);
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  padding-left: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.passi-lista {
+  list-style: none;
+  margin-top: 16px;
+  border-top: 1px solid var(--filo);
+  counter-reset: passo;
+}
+.passo {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+  padding: 16px 2px 17px;
+  border-bottom: 1px solid var(--filo);
+  counter-increment: passo;
+  font-size: clamp(20px, 5.4vw, 23px);
+  line-height: 1.35;
+  text-wrap: pretty;
+}
+.passo::before {
+  content: counter(passo);
+  font-family: var(--titoli);
+  font-weight: 600;
+  font-size: 1.15em;
+  line-height: 1;
+  text-align: center;
+}
+.numero {
+  font-family: var(--titoli);
+  font-weight: 600;
+  font-size: 0.82em;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.numero:focus-visible { outline: 2px solid var(--inchiostro); outline-offset: 3px; }
+
+/* ═════════════════ LA FOTO ═════════════════ */
+.foto {
+  grid-area: foto;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 8px;
+  background: #FFFEFB;
+  border: 1px solid var(--filo);
+}
+.foto img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+
+/* ═════════════════ CHIUSURA ═════════════════ */
+.chiusura {
+  border-top: 1px solid var(--filo);
+  padding: clamp(44px, 10vw, 72px) var(--lato) calc(clamp(32px, 7vw, 52px) + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+}
+.chiusura-logo { width: 104px; margin: 0 auto; }
+.chiusura-nome {
+  margin-top: 16px;
+  font-family: var(--titoli);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: 0.12em;
+  padding-left: 0.12em;
+  text-transform: uppercase;
+}
+.chiusura-indirizzo { margin-top: 4px; font-style: italic; font-size: 19px; line-height: 1.4; }
+.chiusura-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 2px;
+  font-family: var(--titoli);
+  font-weight: 600;
+  font-size: 12.5px;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid var(--filo);
+}
+.chiusura-link:hover { border-color: var(--inchiostro); }
+.chiusura-link:focus-visible { outline: 2px solid var(--inchiostro); outline-offset: 3px; }
+.privacy {
+  max-width: 62ch;
+  margin: clamp(34px, 8vw, 48px) auto 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--filo);
+  text-align: left;
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--tenue);
+}
+.privacy-titolo {
+  margin-bottom: 6px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--inchiostro);
+}
+.privacy p + p { margin-top: 8px; }
+.privacy a { color: var(--inchiostro); }
+.chiusura-legale {
+  margin-top: 22px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--tenue);
+}
+
+/* ═════ DA 900px: il biglietto si distende come la stampa ═════
+   Offerta a sinistra, modulo a destra, lo strappo in verticale con le
+   tacche in alto e in basso. */
+@media (min-width: 900px) {
+  .buono {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) 1px minmax(0, 1fr);
+    max-width: 940px;
+  }
+  .offerta { padding: 46px 30px 44px; }
+  .richiesta { display: flex; flex-direction: column; justify-content: center; padding: 40px 44px; }
+  .strappo {
+    height: auto;
+    background: repeating-linear-gradient(180deg, var(--inchiostro) 0 7px, transparent 7px 12px) center / 1px calc(100% - 52px) no-repeat;
+  }
+  .strappo::before { top: -13px; left: calc(50% - 12px); right: auto; clip-path: inset(11px 0 0 0); }
+  .strappo::after  { top: auto; bottom: -13px; left: calc(50% - 12px); right: auto; clip-path: inset(0 0 11px 0); }
+  .rametto--basso { bottom: 1px; }
+  .foto { max-width: 400px; margin-right: 0; }
+  .passi { margin-left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn-wa, .invia, .campo input { transition: none; }
+  .btn-wa:hover { transform: none; }
+  .timbro.batte { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- una foglia d'ulivo lunga 28, con la nervatura chiara dell'incisione -->
+    <g id="foglia">
+      <path d="M0 0C7-4.8 19.6-4.6 28 0C19.6 4.6 7 4.8 0 0Z"/>
+      <path d="M1.5 0H25" fill="none" stroke="#FBF7EE" stroke-width=".7" stroke-linecap="round"/>
+    </g>
+  </defs>
+  <!-- il rametto pende dall'angolo: gambo curvo, foglie alterne che
+       si accorciano verso la punta -->
+  <symbol id="rametto" viewBox="0 0 100 150" fill="currentColor">
+    <path d="M20 4Q32 70 76 126" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <use href="#foglia" transform="translate(23.3 19.7) rotate(28) scale(.86)"/>
+    <use href="#foglia" transform="translate(28.4 37.6) rotate(120) scale(.92)"/>
+    <use href="#foglia" transform="translate(34.7 55.2) rotate(20)"/>
+    <use href="#foglia" transform="translate(42.3 72.4) rotate(112)"/>
+    <use href="#foglia" transform="translate(51.1 89.1) rotate(12) scale(.95)"/>
+    <use href="#foglia" transform="translate(61.2 105.5) rotate(104) scale(.9)"/>
+    <use href="#foglia" transform="translate(76 126) rotate(52) scale(.8)"/>
+  </symbol>
+  <symbol id="ico-wa" viewBox="0 0 24 24">
+    <path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+  </symbol>
+</svg>
+
+<main class="palco">
+
+  <!-- ═════ IL BUONO ═════ -->
+  <section class="buono" aria-labelledby="titolo">
+
+    <div class="offerta">
+      <svg class="rametto rametto--alto" aria-hidden="true" focusable="false"><use href="#rametto"></use></svg>
+      <svg class="rametto rametto--basso" aria-hidden="true" focusable="false"><use href="#rametto"></use></svg>
+
+      <p class="marchio">Il Segreto</p>
+      <p class="marchio-di">di Villa Luzi</p>
+      <p class="dove">Passo di Treia (MC)</p>
+
+      <h1 class="titolo" id="titolo">
+        <span class="titolo-parola">Pizza</span>
+        <span class="titolo-e">e</span>
+        <span class="titolo-parola">bevanda</span>
+      </h1>
+      <p class="prezzo"><span class="prezzo-cifra">18&nbsp;€</span></p>
+      <p class="quando">Ogni giovedì, a cena</p>
+      <p class="condizione">Solo con prenotazione</p>
+    </div>
+
+    <div class="strappo" aria-hidden="true"></div>
+
+    <!-- La parte da staccare. Senza JavaScript il modulo si spedisce da
+         solo e api/buono.mjs risponde con una pagina; con JavaScript la
+         risposta arriva qui sotto, al posto del modulo. -->
+    <div class="richiesta" id="richiesta">
+      <div id="richiesta-modulo">
+        <h2 class="richiesta-titolo" id="richiesta-titolo">Ricevi il buono via email</h2>
+        <p class="richiesta-intro">Il giovedì sera lo mostri in sala.</p>
+
+        <form class="modulo" id="modulo" action="/api/buono/" method="post" aria-labelledby="richiesta-titolo">
+          <div class="campo">
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" type="text" required maxlength="40"
+                   autocomplete="given-name" autocapitalize="words" spellcheck="false"
+                   enterkeyhint="next" aria-describedby="nome-errore">
+            <p class="campo-errore" id="nome-errore" hidden></p>
+          </div>
+          <div class="campo">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required maxlength="254"
+                   autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false"
+                   enterkeyhint="send" aria-describedby="email-errore email-proposta">
+            <p class="campo-errore" id="email-errore" hidden></p>
+            <p class="proposta" id="email-proposta" hidden>Forse intendevi <button type="button" class="come-link" id="proposta-indirizzo"></button>?</p>
+          </div>
+
+          <div class="trappola" aria-hidden="true">
+            <label for="sito">Lascia vuoto questo campo</label>
+            <input id="sito" name="sito" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button class="invia" id="invia" type="submit"><span id="invia-testo">Mandami il buono</span></button>
+          <p class="esito" id="esito" role="alert" hidden></p>
+          <p class="nota-dati">Nome ed email servono solo a mandarti il buono. <a href="#privacy">Informativa</a></p>
+        </form>
+      </div>
+
+      <div class="riuscita" id="riuscita" hidden>
+        <p class="timbro" id="timbro" aria-hidden="true">Inviato</p>
+        <h2 class="riuscita-titolo" id="riuscita-titolo" tabindex="-1">Il buono è in arrivo</h2>
+        <p class="riuscita-testo" id="riuscita-testo"></p>
+        <p class="riuscita-poi">Ora prenota il tuo giovedì:</p>
+        <a class="btn-wa" data-wa data-cta="buono-inviato"
+           href="https://wa.me/393803643888?text=Buongiorno%2C%20vorrei%20prenotare%20per%20gioved%C3%AC%20con%20il%20buono%20pizza%20e%20bevanda.%20Saremo%20in%20"
+           target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#ico-wa"></use></svg>
+          <span>Prenota su WhatsApp</span>
+        </a>
+        <p class="correggi">Indirizzo sbagliato? <button type="button" class="come-link" id="correggi">Correggi l'email</button></p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═════ COME FUNZIONA ═════
+       Il numero di WhatsApp è un link e non un bottone: prima del buono
+       l'azione principale della pagina resta il modulo. -->
+  <section class="passi" aria-labelledby="passi-titolo">
+    <h2 class="passi-titolo" id="passi-titolo">Come funziona</h2>
+    <ol class="passi-lista">
+      <li class="passo"><p>Lascia nome ed email: ti mandiamo il buono.</p></li>
+      <li class="passo"><p>Prenota un giovedì su WhatsApp, al <a class="numero" data-wa data-cta="come-funziona"
+         href="https://wa.me/393803643888?text=Buongiorno%2C%20vorrei%20prenotare%20per%20gioved%C3%AC%20con%20il%20buono%20pizza%20e%20bevanda.%20Saremo%20in%20"
+         target="_blank" rel="noopener">380 364 3888</a>.</p></li>
+      <li class="passo"><p>Il giovedì sera mostra il buono in sala.</p></li>
+    </ol>
+  </section>
+
+  <!-- ═════ LA FOTO ═════ la stessa delle inserzioni -->
+  <figure class="foto">
+    <img src="/assets/pizza-e-bevanda/pizza-parco-720.webp"
+         srcset="/assets/pizza-e-bevanda/pizza-parco-480.webp 480w, /assets/pizza-e-bevanda/pizza-parco-720.webp 720w, /assets/pizza-e-bevanda/pizza-parco-1080.webp 1080w"
+         sizes="(min-width: 900px) 384px, calc(100vw - 50px)"
+         width="1080" height="1350" loading="lazy" decoding="async"
+         alt="Una pizza del Segreto nel parco di Villa Luzi, con la villa in fondo al viale">
+  </figure>
+
+</main>
+
+<!-- ═════ CHIUSURA · indirizzo e informativa ═════ -->
+<footer class="chiusura">
+  <img class="chiusura-logo" src="/assets/pizza-e-bevanda/logo-il-segreto-360.webp"
+       width="360" height="388" loading="lazy" decoding="async"
+       alt="Il Segreto, Dove il tempo si ferma">
+  <p class="chiusura-nome">Il Segreto di Villa Luzi</p>
+  <address class="chiusura-indirizzo">Contrada Chiaravalle, Passo di Treia&nbsp;(MC)</address>
+  <a class="chiusura-link" href="https://maps.google.com/?q=Contrada+Chiaravalle+49,+62010+Treia+MC" target="_blank" rel="noopener">Apri in Google Maps</a>
+
+  <!-- [informativa breve da far rileggere a Villa Luzi prima della messa online] -->
+  <section class="privacy" id="privacy" aria-labelledby="privacy-titolo">
+    <h2 class="privacy-titolo" id="privacy-titolo">Informativa sul modulo del buono</h2>
+    <p>Titolare del trattamento è Villa Luzi, P.IVA 02184340434, Contrada Chiaravalle 49, 62010 Treia (MC), <a href="mailto:villaluzi1737@gmail.com">villaluzi1737@gmail.com</a>. Nome ed email servono solo a mandarti il buono che hai chiesto e a riconoscerlo in sala; la base giuridica è la tua richiesta (art. 6, par. 1, lett. b del GDPR). Non li usiamo per newsletter e non li cediamo a nessuno.</p>
+    <p>L'email parte attraverso Resend, il servizio di invio che tratta i dati per nostro conto come responsabile del trattamento. Non teniamo un archivio degli indirizzi: restano solo nei registri del servizio di invio e nelle email che ci scrivi.</p>
+    <p>Puoi chiedere in ogni momento di vedere, correggere o cancellare i tuoi dati scrivendo a villaluzi1737@gmail.com, e puoi proporre reclamo al Garante per la protezione dei dati personali.</p>
+  </section>
+
+  <p class="chiusura-legale">© 2026 Villa Luzi, P.IVA 02184340434</p>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   IL MODULO DEL BUONO, WHATSAPP E MISURAZIONE
+
+   1. MODULO: gli stessi controlli di api/buono.mjs, così gli errori
+      comuni si vedono subito; il server li rifà comunque. Se il dominio
+      dell'email somiglia a uno noto (gmail.it, hotmial.com) l'invio si
+      ferma una volta sola per proporre la correzione: un secondo tocco
+      su «Mandami il buono» spedisce l'indirizzo così com'è. La proposta
+      compare solo all'invio e mai all'uscita dal campo: sul telefono
+      sposterebbe il bottone sotto il dito.
+   2. LEAD con eventID solo quando la funzione risponde «inviato»: il
+      buono è partito per un indirizzo valido. «Già partito oggi» non
+      conta di nuovo.
+   3. WHATSAPP come sulle landing degli eventi: testo «ho visto» da un
+      annuncio (utm_medium=paid), app aperta dal browser interno di
+      Instagram e Facebook, Contact con eventID a ogni clic.
+   ═══════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+  var d = document, w = window, c = w.VL_TRACK;
+  var caricata = Date.now();
+  var ridotto = !!(w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  /* ── WhatsApp ── */
+  var ua = navigator.userAgent || '';
+  var iOS = /iPhone|iPad|iPod/i.test(ua);
+  var android = /Android/i.test(ua);
+  var inApp = /Instagram|FBAN|FBAV|FB_IAB/i.test(ua);
+
+  var daAnnuncio = false;
+  try {
+    daAnnuncio = (new URLSearchParams(w.location.search).get('utm_medium') || '').toLowerCase() === 'paid';
+  } catch (e) {}
+  var testo = daAnnuncio ? c.testo.annuncio : c.testo.normale;
+  var wa = 'https://wa.me/' + c.numero + '?text=' + encodeURIComponent(testo);
+  if (daAnnuncio) {
+    Array.prototype.forEach.call(d.querySelectorAll('a[data-wa]'), function (a) { a.setAttribute('href', wa); });
+  }
+
+  function apriApp(href) {
+    var schema = iOS
+      ? 'whatsapp://send?phone=' + c.numero + '&text=' + encodeURIComponent(testo)
+      : 'intent://send/?phone=' + c.numero + '&text=' + encodeURIComponent(testo) +
+        '#Intent;scheme=whatsapp;package=com.whatsapp;S.browser_fallback_url=' + encodeURIComponent(href) + ';end';
+    var uscito = false;
+    function nascosta() { if (d.hidden) uscito = true; }
+    d.addEventListener('visibilitychange', nascosta);
+    w.setTimeout(function () {
+      d.removeEventListener('visibilitychange', nascosta);
+      if (!uscito && !d.hidden) w.location.href = href;
+    }, 1500);
+    w.location.href = schema;
+  }
+
+  d.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!t || !t.closest) return;
+    var a = t.closest('a[data-wa]');
+    if (!a) return;
+
+    var ora = Date.now();
+    if (ora - (+a.getAttribute('data-contatto-at') || 0) < 900) { e.preventDefault(); return; }
+    a.setAttribute('data-contatto-at', ora);
+
+    try {
+      if (typeof w.fbq === 'function') {
+        w.fbq('track', 'Contact', {
+          content_name: c.contentName,
+          cta: a.getAttribute('data-cta') || 'pagina'
+        }, { eventID: c.eventId() });
+      }
+    } catch (err) { /* il tracciamento non deve MAI bloccare il clic */ }
+
+    if (inApp && (iOS || android)) {
+      e.preventDefault();
+      apriApp(a.getAttribute('href'));
+    }
+  });
+
+  /* ── il modulo ── */
+  var modulo = d.getElementById('modulo');
+  if (!modulo || !w.fetch || !w.JSON) return;   /* senza fetch resta l'invio classico */
+
+  var parteModulo = d.getElementById('richiesta-modulo');
+  var riuscita = d.getElementById('riuscita');
+  var campoNome = d.getElementById('nome');
+  var campoEmail = d.getElementById('email');
+  var campoSito = d.getElementById('sito');
+  var erroreNome = d.getElementById('nome-errore');
+  var erroreEmail = d.getElementById('email-errore');
+  var proposta = d.getElementById('email-proposta');
+  var propostaIndirizzo = d.getElementById('proposta-indirizzo');
+  var bottone = d.getElementById('invia');
+  var bottoneTesto = d.getElementById('invia-testo');
+  var esito = d.getElementById('esito');
+
+  /* i testi del server arrivano con la risposta; questi servono prima */
+  var M = {
+    nomeVuoto: 'Scrivi il tuo nome.',
+    nome: 'Scrivi il tuo nome, solo con lettere.',
+    emailVuota: 'Scrivi la tua email.',
+    email: "Controlla l'indirizzo email: sembra incompleto.",
+    rete: 'Sembra che manchi la connessione: controlla la rete e riprova.',
+    guasto: 'Non siamo riusciti a mandare il buono. Riprova tra qualche minuto, oppure prenota su WhatsApp al 380 364 3888.'
+  };
+
+  var reNome = null, rePuntoLettera = null;
+  try {
+    reNome = new RegExp("^[\\p{L}\\p{M}][\\p{L}\\p{M}'’ .-]*$", 'u');
+    rePuntoLettera = new RegExp('\\.[\\p{L}\\p{M}]', 'u');
+  } catch (e) { /* browser senza \p{}: decide il server */ }
+  var reEmail = /^[a-z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*\.[a-z]{2,24}$/;
+
+  function pulisciNome(valore) {
+    var nome = String(valore || '');
+    if (nome.normalize) nome = nome.normalize('NFC');
+    nome = nome.replace(/\s+/g, ' ').trim();
+    if (nome.length < 1 || nome.length > 40) return null;
+    if (reNome && !reNome.test(nome)) return null;
+    if (rePuntoLettera && rePuntoLettera.test(nome)) return null;
+    return nome;
+  }
+  function pulisciEmail(valore) {
+    var email = String(valore || '').trim().toLowerCase();
+    if (email.length < 6 || email.length > 254) return null;
+    return reEmail.test(email) ? email : null;
+  }
+
+  /* ── proposta di correzione del dominio ──
+     I domini più usati in Italia; tin.it e tim.it stanno tutti e due nella
+     lista, così nessuno dei due viene «corretto» nell'altro. */
+  var DOMINI = ['gmail.com', 'hotmail.it', 'libero.it', 'yahoo.it', 'icloud.com', 'outlook.it',
+    'hotmail.com', 'live.it', 'virgilio.it', 'alice.it', 'tiscali.it', 'yahoo.com', 'outlook.com',
+    'live.com', 'tim.it', 'tin.it', 'fastwebnet.it', 'email.it', 'inwind.it', 'me.com', 'msn.com'];
+  var SVISTE = { 'gmail.it': 'gmail.com', 'icloud.it': 'icloud.com', 'libero.com': 'libero.it',
+    'virgilio.com': 'virgilio.it', 'tiscali.com': 'tiscali.it' };
+
+  function distanza(a, b) {
+    var riga = [], i, j, prima, tmp;
+    for (j = 0; j <= b.length; j++) riga[j] = j;
+    for (i = 1; i <= a.length; i++) {
+      prima = riga[0];
+      riga[0] = i;
+      for (j = 1; j <= b.length; j++) {
+        tmp = riga[j];
+        riga[j] = Math.min(riga[j] + 1, riga[j - 1] + 1, prima + (a.charAt(i - 1) === b.charAt(j - 1) ? 0 : 1));
+        prima = tmp;
+      }
+    }
+    return riga[b.length];
+  }
+
+  function correzione(email) {
+    var at = email.lastIndexOf('@');
+    var dominio = email.slice(at + 1);
+    if (DOMINI.indexOf(dominio) !== -1) return '';
+    var giusto = SVISTE[dominio] || '';
+    if (!giusto) {
+      var soglia = dominio.length > 8 ? 2 : 1, migliore = soglia + 1;
+      DOMINI.forEach(function (noto) {
+        var dd = distanza(dominio, noto);
+        if (dd < migliore) { migliore = dd; giusto = noto; }
+      });
+    }
+    if (!giusto) {
+      var m = dominio.match(/^(.+)\.(con|cmo|cpm|ocm|vom|xom|comm)$/);
+      if (m) giusto = m[1] + '.com';
+    }
+    return giusto ? email.slice(0, at + 1) + giusto : '';
+  }
+
+  var propostaVista = '';
+
+  function segnala(campo, riga, messaggio) {
+    riga.textContent = messaggio;
+    riga.hidden = false;
+    campo.setAttribute('aria-invalid', 'true');
+  }
+  function sistemato(campo, riga) {
+    riga.hidden = true;
+    riga.textContent = '';
+    campo.removeAttribute('aria-invalid');
+  }
+  function avvisa(messaggio) {
+    esito.textContent = messaggio;
+    esito.hidden = false;
+  }
+
+  campoNome.addEventListener('input', function () { sistemato(campoNome, erroreNome); esito.hidden = true; });
+  campoEmail.addEventListener('input', function () { sistemato(campoEmail, erroreEmail); proposta.hidden = true; esito.hidden = true; });
+
+  propostaIndirizzo.addEventListener('click', function () {
+    campoEmail.value = propostaIndirizzo.textContent;
+    proposta.hidden = true;
+    sistemato(campoEmail, erroreEmail);
+    bottone.focus();
+  });
+
+  var inVolo = false, leadFatto = false;
+  modulo.noValidate = true;
+
+  modulo.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (inVolo) return;
+    esito.hidden = true;
+
+    var nome = pulisciNome(campoNome.value);
+    var email = pulisciEmail(campoEmail.value);
+    if (nome) sistemato(campoNome, erroreNome);
+    else segnala(campoNome, erroreNome, campoNome.value.trim() ? M.nome : M.nomeVuoto);
+    if (email) sistemato(campoEmail, erroreEmail);
+    else segnala(campoEmail, erroreEmail, campoEmail.value.trim() ? M.email : M.emailVuota);
+    if (!nome) { campoNome.focus(); return; }
+    if (!email) { campoEmail.focus(); return; }
+
+    var giusto = correzione(email);
+    if (giusto && giusto !== propostaVista) {
+      propostaVista = giusto;
+      propostaIndirizzo.textContent = giusto;
+      proposta.hidden = false;
+      propostaIndirizzo.focus();
+      return;
+    }
+    proposta.hidden = true;
+    invia(nome, email);
+  });
+
+  function invia(nome, email) {
+    inVolo = true;
+    bottone.setAttribute('aria-disabled', 'true');
+    bottoneTesto.textContent = 'Sto inviando…';
+
+    var freno = w.AbortController ? new AbortController() : null;
+    var timer = freno ? w.setTimeout(function () { freno.abort(); }, 20000) : 0;
+    var rete = true;
+
+    fetch(modulo.getAttribute('action'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify({ nome: nome, email: email, sito: campoSito.value, t: Date.now() - caricata }),
+      signal: freno ? freno.signal : undefined
+    }).then(function (r) {
+      rete = false;
+      return r.json();
+    }).then(function (dati) {
+      if (!dati || typeof dati.stato !== 'string') throw new Error('risposta');
+      rispondi(dati);
+    }).catch(function () {
+      avvisa(rete ? M.rete : M.guasto);
+    }).then(function () {
+      w.clearTimeout(timer);
+      inVolo = false;
+      bottone.removeAttribute('aria-disabled');
+      bottoneTesto.textContent = 'Mandami il buono';
+    });
+  }
+
+  function rispondi(dati) {
+    if (dati.ok) { partito(dati); return; }
+    if (dati.stato === 'nome') { segnala(campoNome, erroreNome, dati.messaggio || M.nome); campoNome.focus(); return; }
+    if (dati.stato === 'email' || dati.stato === 'email_rifiutata') {
+      segnala(campoEmail, erroreEmail, dati.messaggio || M.email);
+      campoEmail.focus();
+      return;
+    }
+    avvisa(dati.messaggio || M.guasto);
+  }
+
+  function partito(dati) {
+    d.getElementById('riuscita-titolo').textContent =
+      dati.stato === 'gia_inviato' ? 'Il buono è già partito' : 'Il buono è in arrivo';
+    d.getElementById('riuscita-testo').textContent = dati.messaggio || '';
+    parteModulo.hidden = true;
+    riuscita.hidden = false;
+
+    var timbro = d.getElementById('timbro');
+    timbro.classList.remove('batte');
+    void timbro.offsetWidth;            /* riparte anche al secondo invio */
+    timbro.classList.add('batte');
+
+    var titolo = d.getElementById('riuscita-titolo');
+    try { titolo.focus({ preventScroll: true }); } catch (e) { titolo.focus(); }
+    var box = riuscita.getBoundingClientRect();
+    if (box.top < 0 || box.bottom > (w.innerHeight || d.documentElement.clientHeight)) {
+      riuscita.scrollIntoView({ block: 'center', behavior: ridotto ? 'auto' : 'smooth' });
+    }
+
+    if (dati.stato === 'inviato' && !leadFatto) {
+      leadFatto = true;
+      try {
+        if (typeof w.fbq === 'function') {
+          w.fbq('track', 'Lead', { content_name: c.contentName }, { eventID: c.eventId() });
+        }
+      } catch (err) {}
+    }
+  }
+
+  d.getElementById('correggi').addEventListener('click', function () {
+    riuscita.hidden = true;
+    parteModulo.hidden = false;
+    propostaVista = '';
+    campoEmail.focus();
+    try { campoEmail.select(); } catch (e) {}
+  });
+})();
+</script>
+
+</body>
+</html>

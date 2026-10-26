@@ -1,0 +1,8 @@
+# `vercel deploy` dal Mac non legge .gitignore, solo questo file: senza queste
+# righe caricherebbe su Vercel le chiavi locali (.env.resend), la dist/ della
+# build locale e i file locali che git ignora. I deploy da GitHub non cambiano:
+# questi file non sono nel repo.
+.env*
+dist
+.claude/settings.local.json
+.impeccable/hook.cache.json

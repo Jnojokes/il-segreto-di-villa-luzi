@@ -33,6 +33,9 @@ const SKIP_ROOT = new Set([
   'CONSEGNA_DEV',            // sorgente media (35 GB): non pubblicare in dist/
   'stampa',                  // sorgenti e PDF della carta da stampa: non si pubblicano
   'content',                 // contenuti in JSON (menù degli eventi, carta): entrano nelle pagine a build-time
+  'api',                     // funzioni Vercel (il buono via Resend): girano sul server, il sorgente non si pubblica
+  '.vercel',                 // collegamento locale al progetto Vercel
+  '.vercelignore',           // cosa non caricare con `vercel deploy` dal Mac
 ]);
 const SKIP_ANY = new Set(['.DS_Store', 'node_modules']);
 // I documenti di lavoro si riconoscono dal nome: un pattern invece della
@@ -43,6 +46,7 @@ const SKIP_ROOT_PATTERNS = [
   /^Screenshot /,
   /^dist \d+$/,                  // "dist 2", "dist 4"…: duplicati creati da iCloud
   /^(?:PROMPT|REPORT)_.*\.md$/,  // documenti di lavoro
+  /^\.env/,                      // chiavi scaricate con `vercel env pull`: mai in dist/
 ];
 
 // Pagine dismesse dalla ristrutturazione del 2026-07-16: fuori dalla build
